@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Shankh Jewels Jewellers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+          font-family: 'Roboto', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: aliceblue;
+          color: #333;
+      }
+
+      .container {
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+          max-width: 1200px;
+          margin: auto;
+      }
+
+      .profile-section {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          margin-bottom: 30px;
+          position: relative;
+      }
+
+      .profile-icon {
+          width: 50px;
+          height: 50px;
+          background-color: #024dbc;
+          color: #fff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 30px;
+          margin-right: 10px;
+      }
+
+      .profile-details span {
+          display: block;
+          color: #024dbc;
+          font-size: 20px;
+      }
+
+      .toggle-btn {
+          display: none; /* Hide by default */
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          color: #024dbc;
+          margin-left: auto;
+      }
+
+      .sidebar {
+          width: 350px;
+          background-color: #fff;
+          padding: 10px;
+          border-right: 1px solid #ddd;
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          z-index: 1000;
+          transform: translateX(0); /* Always show on desktop */
+          transition: transform 0.3s ease;
+          overflow-y: auto;
+      }
+
+      .sidebar.hide {
+          transform: translateX(-100%); /* Hide on mobile */
+      }
+
+      .sidebar-nav ul {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      .sidebar-nav ul li {
+          margin-bottom: 15px;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+      }
+
+      .sidebar-nav ul li a {
+          text-decoration: none;
+          color: #024dbc;
+          display: flex;
+          align-items: center;
+          padding: 2px;
+      }
+
+      .sidebar-nav ul li a:hover {
+          text-decoration: underline;
+      }
+
+      .sidebar-nav ul li i {
+          margin-right: 15px;
+      }
+
+      .content {
+          margin-left: 350px;
+          padding: 20px;
+          background-color: #fff;
+          flex-grow: 1;
+          margin-top: 70px;
+      }
+
+      .orders-header {
+          margin-bottom: 20px;
+      }
+
+      .orders-header h1 {
+          margin-top: 0;
+          font-size: 24px;
+          color: #024dbc;
+      }
+
+      .order-tabs {
+          display: flex;
+          flex-wrap: wrap;
+          border-bottom: 2px solid #ddd;
+      }
+
+      .order-tabs .tab {
+          padding: 10px 15px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-right: 10px;
+          color: #888;
+      }
+
+      .order-tabs .tab.active,
+      .order-tabs .tab:hover {
+          color: #000;
+          border-bottom: 2px solid #000;
+      }
+
+      .no-orders {
+          text-align: center;
+          color: #024dbc;
+      }
+
+      .no-orders i {
+          font-size: 50px;
+          margin-bottom: 20px;
+      }
+
+      .no-orders p {
+          margin: 0;
+      }
+
+      .no-orders button {
+          padding: 10px 20px;
+          background-color: #57aaf3;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 20px;
+          border-radius: 4px;
+      }
+
+      .no-orders button:hover {
+          background-color: #024dbc;
+      }
+
+      footer {
+          background-color: #f8f8f8;
+          text-align: center;
+          padding: 20px;
+          border-top: 1px solid #ddd;
+      }
+
+      .help-button {
+          background-color: #57aaf3;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          cursor: pointer;
+          font-size: 16px;
+          border-radius: 4px;
+      }
+
+      .help-button:hover {
+          background-color: #024dbc;
+      }
+
+      /* Media Queries for Tablet and Mobile Views */
+      @media (min-width: 769px) and (max-width: 1024px) {
+          .sidebar {
+              width: 250px;
+          }
+
+          .toggle-btn {
+              display: none; /* Hide button on tablets */
+          }
+
+          .content {
+              margin-left: 250px;
+          }
+      }
+
+      @media (max-width: 768px) {
+          .toggle-btn {
+              display: block; /* Show button on mobile */
+          }
+
+          .sidebar {
+              width: 100%;
+              max-width: 100%;
+              padding: 10px;
+              border-right: none;
+              border-bottom: 1px solid #ddd;
+              position: absolute;
+              height: 100%;
+              transform: translateX(-100%); /* Hide on mobile */
+          }
+
+          .sidebar.show {
+              transform: translateX(0); /* Show when toggled */
+          }
+
+          .content {
+              margin-left: 0;
+              padding: 15px;
+          }
+
+          .order-tabs .tab {
+              padding: 10px 10px;
+              font-size: 14px;
+          }
+
+          .no-orders i {
+              font-size: 40px;
+          }
+
+          .no-orders button {
+              padding: 8px 15px;
+              font-size: 14px;
+          }
+      }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="profile-section">
+            <div class="profile-icon">J</div>
+            <div class="profile-details">
+                <span>Hi, John Doe</span>
+                <span>johndoe@gmail.com</span>
+            </div>
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-icon">J</div>
+                <div class="profile-details">
+                    <span>Hi, John Doe</span>
+                    <span>johndoe@gmail.com</span>
+                </div>
+                <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            </div>
+            <nav class="sidebar-nav">
+       <ul>
+                    <li><i class="fas fa-shopping-cart"></i> Orders</li>
+                    <li><a href="my orders.html">My Orders</a></li>
+                    <li><a href="return 1.html">Cancel / Return Requests</a></li>
+                    <li><i class="fas fa-heart"></i> My Stuff</li>
+                    <li><a href="wishlist1.html">My Wishlist</a></li>
+                    <li><a href="ShoppingCart.html">Shopping Cart</a></li>
+                    <li><i class="fas fa-cog"></i> My Settings</li>
+                    <li><a href="mob_profile.html">Profile</a></li>
+                    <li><a href="Add_Address.html">Manage Addresses</a></li>
+                    <li><a href="index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+          <div class="orders-header">
+              <h1>Cancel/Return Requests</h1>
+              <div class="order-tabs">
+                  <span class="tab active">Requested (0)</span>
+                  <span class="tab">Completed (0)</span>
+                  <span class="tab">Cancelled (0)</span>
+              </div>
+          </div>
+          <div class="no-orders">
+              <i class="fas fa-search"></i>
+              <p>No Orders Yet</p>
+              <p>No Orders Found, Continue shopping with us in just one click</p>
+              <button>Shop Now</button>
+          </div>
+      </div>
+    </main>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashirwaad Jewellers Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin: 25px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"],
+        .login-container input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            padding: 10px;
+            background-color: #57aaf3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-container button:hover {
+            background-color: #57aaf3;
+        }
+
+        .login-container .links {
+            margin-top: 20px;
+        }
+
+        .login-container .links a {
+            color: #57aaf3;
+            text-decoration: none;
+        }
+
+        .login-container .links a:hover {
+            text-decoration: underline;
+        }
+
+        .tab {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            color: #57aaf3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #57aaf3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Log in to ASHIRWAAD JWELLERS</h2>
+        <div>
+            <a id="password-tab" class="tab active" href="#" onclick="showTab('password')">Login with password</a>
+            <a id="otp-tab" class="tab" href="#" onclick="showTab('otp')">Login with OTP</a>
+        </div>
+        <div id="password-login">
+            <form id="password-login-form">
+                <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                <button type="submit">LOG ME IN</button>
+            </form>
+        </div>
+        <div id="otp-login" style="display: none;">
+            <form id="otp-login-form">
+                <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                <button type="submit">LOG ME IN</button>
+            </form>
+        </div>
+        <div class="links">
+            <a href="forgotten-password.html">Forgot Password?</a><br>
+            New to ASHIRWAAD JWELLERS? <a href="Mobile-verification.html">Register Account</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const api_uri = 'http://localhost:3000';
+
+            // Function to toggle between password and OTP login forms
+            function showTab(tabName) {
+                document.getElementById('password-login').style.display = tabName === 'password' ? 'block' : 'none';
+                document.getElementById('otp-login').style.display = tabName === 'otp' ? 'block' : 'none';
+                document.getElementById('password-tab').classList.toggle('active', tabName === 'password');
+                document.getElementById('otp-tab').classList.toggle('active', tabName === 'otp');
+            }
+
+            // Add event listener for password login form
+            document.getElementById('password-login-form').addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch(`${api_uri}/api/login`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password }),
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+
+                        // Store profile information in local storage
+                        localStorage.setItem('userEmail', email);
+                        localStorage.setItem('userId', result.profile._id);
+                        localStorage.setItem('fullName', result.profile.fullName);
+                        localStorage.setItem('phoneNumber', result.profile.phoneNumber);
+                        localStorage.setItem('address', result.profile.address);
+
+                        // Log profile information to the console
+                        console.log('User ID (_id):', result.profile._id);
+                        console.log('Full Name:', result.profile.fullName);
+                        console.log('Email:', result.profile.email);
+                        console.log('Phone Number:', result.profile.phoneNumber);
+                        console.log('Address:', result.profile.address);
+
+                        alert('Login successful!');
+                        // Redirect after 2 seconds
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    } else {
+                        const error = await response.json();
+                        alert(`Invalid credentials: ${error.message}`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+
+            // Add event listener for OTP login form
+            document.getElementById('otp-login-form').addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const phone = document.getElementById('phone').value;
+
+                try {
+                    const response = await fetch(`${api_uri}/api/send-otp`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ phone }),
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert('OTP sent successfully!');
+                        // Add further logic here to handle OTP verification
+                    } else {
+                        const error = await response.json();
+                        alert(`Failed to send OTP: ${error.message}`);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

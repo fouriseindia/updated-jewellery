@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Products</title>
+    <link rel="stylesheet" href="./css/view-products.css">
+</head>
+<body>
+    <div class="container">
+        <h1>View Products</h1>
+        
+        <!-- Category Tabs -->
+        <div class="tab-section">
+            <button class="tab-button active" onclick="showCategory('exclusiveDiscount')">Exclusive Discount</button>
+            <button class="tab-button" onclick="showCategory('discoverJewellery')">Discover Jewellery</button>
+            <button class="tab-button" onclick="showCategory('shopByLook')">Shop by Look</button>
+        </div>
+
+        <!-- Product Tables -->
+        <div id="exclusiveDiscount" class="product-category">
+            <h2>Exclusive Discount Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Discount (%)</th>
+                        <th>Starting Price ($)</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="exclusiveDiscountTable">
+                    <!-- Products will be loaded here dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="discoverJewellery" class="product-category" style="display: none;">
+            <h2>Discover Jewellery Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Discount (%)</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="discoverJewelleryTable">
+                    <!-- Products will be loaded here dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="shopByLook" class="product-category" style="display: none;">
+            <h2>Shop by Look Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Discount (%)</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="shopByLookTable">
+                    <!-- Products will be loaded here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="./js/view-products.js"></script>
+</body>
+</html>

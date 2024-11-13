@@ -1,0 +1,357 @@
+
+  /*********************** slider section begin*****************/
+  * {box-sizing:border-box}
+
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1500px;
+    position: relative;
+    margin: auto;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+ /*************************baner ****************************************/
+ .banner {
+    width: 100%; /* Ensure the banner takes up the full width of its container */
+    overflow: hidden; /* Hide any overflow content */
+    padding: 20px 0; /* Add padding: 20px top and bottom, 0 left and right */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+  }
+  
+  .banner img {
+    width: 100%; /* Make sure the image fits the container */
+    height: auto; /* Maintain the aspect ratio of the image */
+  }
+  
+  
+/********************************************************************************/
+
+/* Custom CSS for dropdown filters */
+
+.horizontal_filters .container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.horizontal_filters .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.horizontal_filters .col {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.horizontal_filters .filter_item {
+  margin-bottom: 15px;
+}
+
+.horizontal_filters .dropdown-toggle {
+  width: 100%;
+  text-align: left;
+  background-color: #a5c3dd;
+  border: 1px solid #57aaf3;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.horizontal_filters .dropdown-menu {
+  width: 100%;
+}
+
+.horizontal_filters .dropdown-menu label {
+  display: block;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.horizontal_filters .dropdown-menu label:hover {
+  background-color: aliceblue;
+}
+
+.horizontal_filters .product-count {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.horizontal_filters .product-count p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/********cart part***********/
+
+.offer-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(to right, #3850b8, #f06c8b);
+  color: white;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%, 15% 50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.card-custom {
+  width: 100%; /* Take full width of the parent column */
+  max-width: 500px; /* Adjusted to a wider value */
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px; /* Adjust this to your desired maximum width */
+  padding: 0 10px;
+  margin: 0 auto; /* Center the container */
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card-img-top,
+.card-img-hover {
+    width: 100%;
+    transition: opacity 0.3s ease-in-out;
+    height: auto;
+}
+
+.card-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+}
+
+.card-img-container:hover .card-img-hover {
+    opacity: 1;
+}
+
+.card-img-container:hover .card-img-top {
+    opacity: 0;
+}
+
+.card {
+    border: 1px solid #ddd;
+    margin-bottom: 30px; /* Add margin-bottom for gap between rows */
+}
+
+.card-body {
+    min-height: 150px; /* Ensure consistent card height */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap onto the next line if there’s not enough space */
+  margin-right: -10px; /* Adjust to match the padding in .col-md-3 */
+  margin-left: -10px; /* Adjust to match the padding in .col-md-3 */
+}
+
+/* Truncated Text */
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Show only one line */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." */
+    font-size: 1rem; /* Adjust font size as needed */
+    color: #333;
+}
+
+.row > .col-md-3 {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+  background-color: #a5c3dd; /* Primary color */
+  color: #000000; /* White text */
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background-color: #57aaf3; /* Darker shade of primary color */
+  transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+
+.show-more-button {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px; /* Adjust this value to change the vertical spacing */
+}
+
+.pricing {
+    font-size: 1rem;
+}
+
+.sale-price {
+    color: rgb(2, 2, 2);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.regular-price {
+    color: rgb(58, 19, 19);
+}
+
+.card-img-container {
+    position: relative;
+}
+
+.card-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-img-container:hover .card-img-hover {
+    opacity: 1;
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 42px; /* Adjust size as needed */
+    height: 42px; /* Adjust size as needed */
+    cursor: pointer;
+    fill: rgb(245, 185, 185); /* Default color */
+    transition: fill 0.2s ease;
+    border-radius: 45%; /* Rounded shape */
+    padding: 7px; /* Space around icon */
+    background: rgba(192, 189, 189, 0.4); /* Semi-transparent background */
+}
+
+.wishlist-icon.red {
+    fill: rgb(221, 85, 85); /* Color when clicked */
+}
+
+.rating {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(180, 174, 174, 0.7);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.rating img {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+/**************************************************************************/

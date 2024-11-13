@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shankh Jewels Jewelry</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+    <!-- <link rel="stylesheet" href="lastest.css"> -->
+      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+    <body>
+    
+   
+        <div class="home_black_version">
+            <header class="header_area header_black">
+                <!-- header top starts -->
+                <div class="header_top">
+                    <div class="container">
+                        <div class="row align-items-center">
+                
+                                      <div class="col-lg-6 col-md-6 st">
+                            <div class="image-container">
+                                <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid" 
+                                     alt="Shiny Diamond Jewelry Logo">
+                                <p>Shankh Jewels</p>
+                            </div>
+                        </div>
+                
+                            <div class="col-lg-6 col-md-6">
+                                <div class="top_right text-right">
+                                <ul>
+                                    <li class="top_links">
+                                        <a href="#"><span id="user-email">My Account</span> <i
+                                                class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li id="login"><a href="login.html">Login</a></li>
+                                            <li><a href="acc.html">Account dashboard</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
+                                            <li><a href="wishlist1.html">Wishlist</a></li>
+                                            <li id="logout"><a  onclick="logout()">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- header top ends -->
+        
+        
+                <!-- header bottom starts -->
+    <div class="header_bottom sticky-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-6 col-6">
+                            <!-- Toggle Button for Mobile -->
+                            <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+
+                            <!-- Main Menu (Desktop Only) -->
+                            <div class="main_menu_inner">
+                                <div class="main_menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="active">
+                                                <a href="index.html">Home </a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                                <ul class="mega_menu" id="main_menu">
+                                                    <!-- Dynamic categories will be injected here -->
+                                                </ul>
+
+                                                <script>
+                                                    const fetchAndDisplayCategories = async () => {
+                                                        try {
+                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
+                                                            if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                            const categories = await response.json();
+                                                            const mainMenu = document.getElementById('main_menu');
+                                                            mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                            // Organize categories into a map by main category
+                                                            const categoryMap = {};
+
+                                                            categories.forEach(category => {
+                                                                const mainCategory = category.mainCategory;
+                                                                const subCategory = category.name;
+
+                                                                if (mainCategory === "Men" || mainCategory === "Women") {
+                                                                    if (!categoryMap[mainCategory]) {
+                                                                        categoryMap[mainCategory] = [];
+                                                                    }
+                                                                    categoryMap[mainCategory].push(subCategory);
+                                                                }
+                                                            });
+
+                                                            for (const mainCategory in categoryMap) {
+                                                                const mainCategoryItem = document.createElement('li');
+                                                                const subCategories = categoryMap[mainCategory];
+
+
+                                                                mainCategoryItem.innerHTML = `
+                                                                  <a href="${mainCategory.toLowerCase()}.html">${mainCategory} <i class="ion-chevron-down"></i></a>
+                                                                  <ul>
+                                                                      ${subCategories.map(sub => `<li><a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">${sub}</a></li>`).join('')}
+                                                                  </ul>
+                                                              `;
+
+                                                                mainMenu.appendChild(mainCategoryItem);
+                                                            }
+                                                        } catch (error) {
+                                                            console.error('Error fetching categories:', error);
+                                                        }
+                                                    };
+
+                                                    fetchAndDisplayCategories();
+                                                </script>
+
+
+
+                                            <li>
+                                                <a href="latestcollection.html">Latest Collections <i
+                                                        class="ion-chevron-down"></i></a>
+                                                <ul class="mega_menu" id="main_menu1">
+                                                    <!-- Dynamic categories will be injected here -->
+                                                </ul>
+
+                                                <script>
+                                                    const fetchAndDisplayCategories1 = async () => {
+                                                        try {
+                                                            const response = await fetch('http://localhost:3000/api/categories');
+                                                            if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                            const categories = await response.json();
+                                                            const mainMenu = document.getElementById('main_menu1');
+                                                            mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                            // Organize categories into a map by main category
+                                                            const categoryMap = {};
+
+                                                            categories.forEach(category => {
+                                                                const mainCategory = category.mainCategory; // e.g., "Men", "Women", or "Latest Collection"
+                                                                const subCategory = category.name; // e.g., "Diamond Ring", "Ring", etc.
+
+                                                                // Filter for "Latest Collection" main category
+                                                                if (mainCategory === "Latest Collection") {
+                                                                    if (!categoryMap[mainCategory]) {
+                                                                        categoryMap[mainCategory] = [];
+                                                                    }
+
+                                                                    // Add subcategory to the main category
+                                                                    categoryMap[mainCategory].push(subCategory);
+                                                                }
+                                                            });
+
+                                                            // Create the "Latest Collection" list
+                                                            for (const mainCategory in categoryMap) {
+                                                                const mainCategoryItem = document.createElement('li');
+                                                                const subCategories = categoryMap[mainCategory];
+
+                                                                // Render main category with subcategories linking to category-post.html
+                                                                mainCategoryItem.innerHTML = `
+                                                                    <ul>
+                                                                        ${subCategories.length ? subCategories.map(sub => `
+                                                                            <li>
+                                                                                <a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">
+                                                                                    ${sub}
+                                                                                </a>
+                                                                            </li>`).join('') : '<li>No items available</li>'}
+                                                                    </ul>
+                                                                `;
+
+                                                                mainMenu.appendChild(mainCategoryItem);
+                                                            }
+                                                        } catch (error) {
+                                                            console.error('Error fetching categories:', error);
+                                                        }
+                                                    };
+
+                                                    // Call the function to load categories
+                                                    fetchAndDisplayCategories1();
+                                                </script>
+
+                                            </li>
+                                            <li><a href="offer.html">Offer</a></li>
+                                            <li><a href="about.html">About Us</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-6">
+                            <div class="middel_right">
+                                <div class="search_btn">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search Product ....">
+                                        <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- <div class="wishlist_btn">
+                        <a href="#"><i class="ion-heart"></i></a>
+                    </div> -->
+                                <!-- <div class="cart_link">
+                        <a href="#"><i class="ion-android-cart"></i>
+                            <span class="cart_text_quantity">Rs.67,598</span> -->
+                                <!-- <i class="ion-chevron-down"></i>
+                        </a>
+                        <span class="cart_quantity">2</span>
+  
+                        mini cart
+                        <div class="mini_cart">
+                            <div class="cart_close">
+                                <div class="cart_text">
+                                    <h3>cart</h3>
+                                </div>
+                                <div class="mini_cart_close">
+                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Earings</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 54,599</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Bracelet</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 12,999</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_total">
+                                <span>Subtotal : </span>
+                                <span>Rs. 67,598</span>
+                            </div>
+                            <div class="mini_cart_footer">
+                                <div class="cart_button view_cart">
+                                    <a href="#">View Cart</a>
+                                </div>
+                                <div class="cart_button checkout">
+                                    <a href="#" class="active">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mini cart ends  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <!-- header bottom ends -->
+      
+        <!-- Sidebar Structure -->
+      <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+      
+        <!-- Category Dropdown -->
+        <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+        <div class="dropdown-container">
+          <ul class="mega_menu">
+            <li>
+              <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+              <ul>
+                <li><a href="earing.html">Earring</a></li>
+                <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+                <li><a href="rings.html">Rings</a></li>
+                <li><a href="anklets.html">Anklets</a></li>
+                <li><a href="braclet.html">Bracelets</a></li>
+                <li class="has-submenu">
+                  <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+                  <ul class="submenu-inline">
+                    <li><a href="jewelleryset.html">Jewellery Set</a></li>
+                    <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                    <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+                    <li><a href="toerings.html">Toe Rings</a></li>
+                    <li><a href="bangals.html">Bangles</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+              <ul>
+                <li><a href="men_ring.html">Ring</a></li>
+                <li><a href="men_pendant.html">Pendant & Chains</a></li>
+                <li><a href="men_braclet.html">Bracelet</a></li>
+                <li><a href="men_earing.html">Earring</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      
+        <!-- Latest Collections Link with Dropdown -->
+        <a href="javascript:void(0)"  class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+        <div class="dropdown-container">
+          <ul class="sub_menu pages">
+            <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+            <li><a href="cherryontop.html">Cherry on Top</a></li>
+            <li><a href="loveinparis.html">Love in Paris</a></li>
+            <li><a href="justarrived.html">Just Arrived</a></li>
+            <li><a href="everydaywear.html">Every Day Wear</a></li>
+            <li><a href="officewear.html">Office Wear</a></li>
+            <li><a href="partywear.html">Party Wear</a></li>
+            <li><a href="weddingwear.html">Wedding Wear</a></li>
+            <li><a href="oxidised.html">Oxidised </a></li>
+            <li><a href="silver.html">Silver</a></li>
+          </ul>
+        </div>
+      
+        <a href="offer.html">Offer</a>
+        <a href="about.html">About Us</a>
+      </div>
+      
+            </header>
+    
+            <!-- slider section starts -->
+           
+                </div>
+            </div>
+            <!-- slider section ends -->
+        
+        <!-- Slideshow container -->
+        <div class="banner">
+            <img src="images/latestcollection/wingsonwonder/wingsofwonderbanner.jpg" style="width:100%" alt="Banner Image">
+        </div>
+
+        <div class="custom-horizontal-scroll-wrapper" style="margin-top: 25%;">
+            <div class="custom-horizontal-scroll-container">
+                <!-- Card 1 -->
+                <a href="cherryontop.html" class="custom-card">
+                    <img src="images/latestcollection/cheeryontop/cherrypop.jpg" alt="Cherry Pop Collection Image">
+                    <div class="custom-card-content">
+                        <h2>Cheering Pop Collection</h2>
+                    </div>
+                </a>
+                <!-- Card 2 -->
+                <a href="loveinparis.html" class="custom-card">
+                    <img src="images/latestcollection/loverfromparis/loveinparis.jpg" alt="Love In Paris Image">
+                    <div class="custom-card-content">
+                        <h2>Love in Paris</h2>
+                    </div>
+                </a>
+                <!-- Card 3 -->
+                <a href="wingsofwonder.html" class="custom-card">
+                    <img src="images/latestcollection/wingsonwonder/wingsofwonder.jpg" alt="Wings of Wonder Image">
+                    <div class="custom-card-content">
+                        <h2> Wings Of Wonder</h2>
+                    </div>
+                </a>
+                <!-- Card 4 -->
+                <a href="justarrived.html" class="custom-card">
+                    <img src="images/latestcollection/justarrived/justarrived.jpg" alt="Just Arrived Image">
+                    <div class="custom-card-content">
+                        <h2>Just Arrived</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+         <section class="horizontal_filters">
+            <div class="container">
+                <div class="row">
+                    <!-- Product Type filter -->
+                   
+    
+                    <!-- Price filter -->
+                      <div class="col">
+                        <div class="filter_item">
+                            <div class="filter_options">
+                                     <div class="dropdown" style="    width: 100%; ">
+                                    <button class="btn dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        Price
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+                                        <li><label><input type="checkbox" name="price_range" value="0-100"> Rs. 0 - Rs. 100</label></li>
+                                        <li><label><input type="checkbox" name="price_range" value="100-500"> Rs. 100 - Rs. 500</label></li>
+                                        <li><label><input type="checkbox" name="price_range" value="500-1000"> Rs. 500 - Rs. 1000</label></li>
+                                        <li><label><input type="checkbox" name="price_range" value="500-1000"> Rs. 1000 - Rs. 5000</label></li>
+                                        <!-- Add more price ranges as needed -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    
+    
+                   
+    
+                    <!-- Sort by filter -->
+                    <div class="col">
+                        <div class="filter_item">
+                            <div class="filter_options">
+                                     <div class="dropdown" style="    width: 100%; ">
+                                    <button class="btn dropdown-toggle" type="button" id="sortByDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        Sort by: Featured
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
+                                        <li><label><input type="radio" name="sort_by" value="featured" checked> Featured</label></li>
+                                        <li><label><input type="radio" name="sort_by" value="price_asc"> Price: Low to High</label></li>
+                                        <li><label><input type="radio" name="sort_by" value="price_desc"> Price: High to Low</label></li>
+                                        <li><label><input type="radio" name="sort_by" value="newest"> Newest</label></li>
+                                        <li><label><input type="radio" name="sort_by" value="newest"> Oldest</label></li>
+                                        <!-- Add more sort by options here -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!-- Empty -->
+            </div>
+        </section>
+
+
+        <!--card options -->
+        <div class="container mt-4">
+            <!-- Row 1 -->
+            <div class="row" id="ringCardsSection">
+                <!-- Column 1 -->
+                <div class="col-md-3">
+                    <div class="card" id="card1" style="width: 18rem;" >
+                        <div class="card-img-container">
+                            <div class="offer-badge">BestSeller</div>
+                            <img src="images/latestcollection/wingsonwonder/wingsonwonder1.jpg" class="card-img-top" alt="Silver Jewelry 1">
+                            <img src="images/latestcollection/wingsonwonder/wingsonwonder1_hover.jpg" class="card-img-hover" alt="Silver Jewelry 1 Hover">
+                            <div class="rating">
+                                <img src="images/12.png" alt="Rating Icon"> 5.0 
+                            </div>
+                            <svg class="wishlist-icon" id="wishlist1" onclick="toggleWishlist(event, this)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                           </svg>
+                            <button class="view-btn" onclick="window.location.href='detail.html'" >
+                            View
+                        </button>
+                         </div>
+                        <div class="card-body">
+                            <div class="pricing">
+                                <span class="sale-price">₹1,499</span>
+                                <span class="regular-price"><del>₹2,799</del></span>
+                            </div>
+                            <p class="card-text">Silver Heart's Paradise Ring</p>
+                           <div class="show-more-button">
+                                <a href="Cart.html" class="btn btn-primary">Add to Cart</a>
+                                <a href="checkout.html" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+             <!-- Show More Button -->
+
+        
+
+         <!-- footer section starts -->
+      <footer class="footer_widgets footer_black">
+        <div class="container">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="widgets_container contact_us">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer_contact">
+                                <p><i class="fas fa-map-marker-alt"></i> Address: Shop No 43\3b,<br> Vitthal Mangal Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
+                                <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ShankhJewelsjewlers@gmail.com">ShankhJewelsjewlers@gmail.com</a></p>
+                                
+                                <ul>
+                                   <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-snapchat"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                             </div>
+                             
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Information</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="about.html"> <i class="fas fa-chevron-right"></i>&nbsp;About Us </a></li>
+                                    <li><a href="category.html"> <i class="fas fa-chevron-right"></i>&nbsp;Category </a></li>
+                                    <li><a href="women.html"> <i class="fas fa-chevron-right"></i>&nbsp;Womens </a></li>
+                                    <li><a href="men.html"> <i class="fas fa-chevron-right"></i>&nbsp;Mens </a></li>
+                                    <li><a href="latestcollection.html"> <i class="fas fa-chevron-right"></i>&nbsp;Latest Collection </a></li>
+                                    <li><a href="offer.html"><i class="fas fa-chevron-right"></i>&nbsp; Offer </a></li>
+                                 </ul>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Help</h3>
+                             <div class="footer_menu">
+                                <ul>
+                                    <li><a href="shipping.html"> <i class="fas fa-chevron-right"></i>&nbsp;Shipping/&nbsp;Returns & Exchange Information</a></li>
+                                    <!-- <li><a href=".html"><i class="fas fa-chevron-right"></i>&nbsp;Returns & Exchange</a></li> -->
+                                    <li><a href="term.html"><i class="fas fa-chevron-right"></i>&nbsp;Terms & Conditions</a></li>
+                                    <li><a href="Privacy.html"> <i class="fas fa-chevron-right"></i>&nbsp;Privacy Policy</a></li>
+                                    <li><a href="faq.html"> <i class="fas fa-chevron-right"></i>&nbsp;FAQs</a></li>
+                                    <li><a href="Contact.html"> <i class="fas fa-chevron-right"></i>&nbsp;Contact</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <div class="widgets_container product_widget">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer-content" >
+                           <p style=" color: #a0a0a0;"> <i class="fas fa-chevron-right"></i>&nbsp;"Our mission is to provide exceptional designs that fit seamlessly into your daily life and personal style. Today, Shankh Jewels is a vibrant, growing startup committed to delivering innovation and elegance. We proudly serve a diverse customer base through our online platform and expanding retail presence, striving to make beautiful jewellery accessible to all."</p>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright_area">
+                            <p>Copyright &copy; 2020 <a href="#">Shankh Jewels</a> All rights Reserved.<br> Designed by <a href="https://fouriseindia.com">Fourise Software Solutions Pvt. Ltd.</a></p>
+                            <img src="images/icon/papyel2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+     <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script src="main.js"></script>
+
+    <script> function openNav() {
+        document.getElementById("sidebar").style.width = "250px";
+      }
+      
+      function closeNav() {
+        document.getElementById("sidebar").style.width = "0";
+      }
+      
+      // Dropdown toggle functionality
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      var i;
+      
+      for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+      }
+      
+      
+    document.addEventListener('DOMContentLoaded', function() {
+      var items = document.querySelectorAll('.instagram__item.set-bg');
+      items.forEach(function(item) {
+        var bgImg = item.getAttribute('data-bgimg');
+        if (bgImg) {
+          item.style.backgroundImage = 'url(' + bgImg + ')';
+        }
+      });
+    });
+    
+    </script>
+</body>
+
+</html>

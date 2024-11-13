@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .verification-form {
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .mobile-container {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="verification-form">
+      <center><h1 style="border: 2px solid yellow; border-radius: 10%; box-shadow: 2px 2px blueviolet;">Welcome to Milk<span style="color: orange;">O</span><span style="color: green;">za</span></h1>
+        <h2>Verify Mobile Your Number</h2></center>
+        <form id="mobileVerificationForm">
+            <label for="mobile">Mobile Number</label>
+            <div class="mobile-container">
+              <input type="text" id="mobile" name="mobile" class="input-field" required>
+              <span id="GenerateOTP" class="toggle-icon">Generate OTP</span>
+            </div>
+
+            <label for="otp">Enter OTP</label>
+            <div class="mobile-container otpfield" id="otpfield">
+                <input type="text" id="otp" name="otp" class="input-field" required disabled>
+                <span id="toggleVerify" class="toggle-icon">Verify</span>
+            </div>
+
+            <button id="submit-btn"type="submit" class="submit-btn">Verify and Proceed</button>
+        </form>
+    </div>
+  </div>
+  <script >
+    document.getElementById('GenerateOTP').addEventListener('click', function() {
+    const mobile = document.getElementById('mobile').value;
+    if (!mobile) {
+        alert('Please enter your mobile number.');
+        return;
+    }
+    // Send OTP request
+    alert('OTP generated and sent to your mobile.');
+    document.getElementById('otp').disabled = false;
+});
+
+document.getElementById('toggleVerify').addEventListener('click', function() {
+    const otp = document.getElementById('otp').value;
+    if (!otp) {
+        alert('Please enter the OTP.');
+        return;
+    }else{
+    // Verify OTP
+    sessionStorage.setItem('otpAuth','verified')
+    sessionStorage.setItem('mobile',document.getElementById('mobile').value)
+    alert('OTP verified. Proceeding...');
+    // Redirect to signup form or continue the process
+     // Redirect to signup page
+    }
+});
+document.getElementById('submit-btn').addEventListener('click',function(e){
+  e.preventDefault()
+  const otp = document.getElementById('otp').value;
+    if (!otp) {
+        alert('Please enter the OTP.');
+        return;
+    }else{
+    // Verify OTP
+    sessionStorage.setItem('otpAuth','verified')
+    sessionStorage.setItem('mobile',document.getElementById('mobile').value)
+    alert('OTP verified. Proceeding...');
+    // Redirect to signup form or continue the process
+     // Redirect to signup page
+    }
+})
+  </script>
+  <script src="./js/UserVerifyMobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Offers</title>
+    <link rel="stylesheet" href="./css/offer.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Manage Offers</h1>
+
+        <!-- Tabs Navigation -->
+        <div class="tab-section">
+            <button class="tab-button active" onclick="openTab(event, 'exclusiveDiscount')">Add Exclusive Discount</button>
+            <button class="tab-button" onclick="openTab(event, 'discoverJewellery')">Discover Jewellery</button>
+            <button class="tab-button" onclick="openTab(event, 'shopByLook')">Shop by Look</button>
+        </div>
+        
+        <!-- Add Exclusive Discount Tab -->
+        <div id="exclusiveDiscount" class="tab-content active">
+            <h2>Add Exclusive Discount</h2>
+            <form id="exclusiveDiscountForm" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="startingPrice">Starting Price ($):</label>
+                    <input type="number" id="startingPrice" name="startingPrice" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount (%):</label>
+                    <input type="number" id="discount" name="discount" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="submit-btn" onclick="submitExclusiveDiscount()">Add Offer</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Discover Jewellery Tab -->
+        <div id="discoverJewellery" class="tab-content">
+            <h2>Discover Jewellery</h2>
+            <form id="discoverJewelleryForm" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="productName2">Product Name:</label>
+                    <input type="text" id="productName2" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="discount2">Discount (%):</label>
+                    <input type="number" id="discount2" name="discount" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="image2">Upload Image:</label>
+                    <input type="file" id="image2" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="submit-btn" onclick="submitDiscoverJewellery()">Add Offer</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Shop by Look Tab -->
+        <div id="shopByLook" class="tab-content">
+            <h2>Shop by Look</h2>
+            <form id="shopByLookForm" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="productName3">Product Name:</label>
+                    <input type="text" id="productName3" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="discount3">Discount (%):</label>
+                    <input type="number" id="discount3" name="discount" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label for="image3">Upload Image:</label>
+                    <input type="file" id="image3" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="submit-btn" onclick="submitShopByLook()">Add Offer</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- View Products Section -->
+        <h1>View Products</h1>
+        <div class="tab-section">
+            <button class="tab-button active" onclick="showCategory('exclusiveDiscountProducts')">Exclusive Discount</button>
+            <button class="tab-button" onclick="showCategory('discoverJewelleryProducts')">Discover Jewellery</button>
+            <button class="tab-button" onclick="showCategory('shopByLookProducts')">Shop by Look</button>
+        </div>
+
+        <!-- Product Tables -->
+        <div id="exclusiveDiscountProducts" class="product-category" style="display: none;">
+            <h2>Exclusive Discount Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Discount (%)</th>
+                        <th>Starting Price ($)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="exclusiveDiscountTable">
+                    <!-- Products will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Edit Product Modal -->
+        <div id="editProductModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Edit Product</h2>
+                <form id="editProductForm" onsubmit="submitEdit(event)">
+                    <input type="hidden" id="editProductId">
+                    <label for="editProductName">Product Name:</label>
+                    <input type="text" id="editProductName" required>
+                    <label for="editDiscount">Discount (%):</label>
+                    <input type="number" id="editDiscount" required>
+                    <label for="editStartingPrice">Starting Price ($):</label>
+                    <input type="number" id="editStartingPrice" required>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            async function fetchExclusiveDiscountProducts() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/exdiscount/exclusiveDiscount');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+        
+                    const products = await response.json();
+                    updateExclusiveDiscountTable(products);
+                } catch (error) {
+                    console.error('Failed to fetch products:', error);
+                }
+            }
+        
+            function updateExclusiveDiscountTable(products) {
+                const tableBody = document.getElementById('exclusiveDiscountTable');
+                tableBody.innerHTML = '';
+        
+                products.forEach(product => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${product.productName}</td>
+                        <td>${product.discount}</td>
+                        <td>${product.startingPrice || '-'}</td>
+                        <td>
+                            <button class="edit-btn" onclick="editProduct('${product._id}', '${product.productName}', ${product.discount}, ${product.startingPrice})">Edit</button>
+                            <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+        
+            function editProduct(productId, productName, discount, startingPrice) {
+                // Populate the modal fields with product details
+                document.getElementById('editProductId').value = productId;
+                document.getElementById('editProductName').value = productName;
+                document.getElementById('editDiscount').value = discount;
+                document.getElementById('editStartingPrice').value = startingPrice;
+        
+                // Show the modal
+                document.getElementById('editProductModal').style.display = 'block';
+            }
+        
+            function closeModal() {
+                document.getElementById('editProductModal').style.display = 'none';
+            }
+        
+            async function submitEdit(event) {
+                event.preventDefault();
+                const productId = document.getElementById('editProductId').value;
+                const productName = document.getElementById('editProductName').value;
+                const discount = document.getElementById('editDiscount').value;
+                const startingPrice = document.getElementById('editStartingPrice').value;
+        
+                try {
+                    const response = await fetch(`http://localhost:3000/api/exdiscount/${productId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productName, discount, startingPrice })
+                    });
+        
+                    if (response.ok) {
+                        alert('Product updated successfully!');
+                        fetchExclusiveDiscountProducts(); // Refresh the product list
+                        closeModal(); // Close the modal
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Error: ${errorData.message || 'Failed to update product'}`);
+                    }
+                } catch (error) {
+                    console.error('Error while updating product:', error);
+                    alert('An unexpected error occurred. Please try again.');
+                }
+            }
+        
+            async function deleteProduct(productId) {
+                try {
+                    if (!productId) {
+                        console.error('Product ID is undefined or invalid');
+                        return;
+                    }
+        
+                    const response = await fetch(`http://localhost:3000/api/exdiscount/${productId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+        
+                    if (response.ok) {
+                        alert(`Product with ID ${productId} has been deleted successfully`);
+                        fetchExclusiveDiscountProducts(); // Refresh the product list
+                    } else {
+                        const errorData = await response.json();
+                        alert(`Error: ${errorData.message || 'Failed to delete the product'}`);
+                    }
+                } catch (error) {
+                    console.error('Error while deleting product:', error);
+                    alert('An unexpected error occurred. Please try again.');
+                }
+            }
+        
+            document.addEventListener('DOMContentLoaded', () => {
+                fetchExclusiveDiscountProducts();
+            });
+        </script>
+       
+        
+        
+       
+        
+        
+        
+        
+        
+        
+        <div id="discoverJewelleryProducts" class="product-category">
+            <h2>Discover Jewellery Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Image</th>
+                        <th>Actions</th> <!-- Added Actions column -->
+                    </tr>
+                </thead>
+                <tbody id="discoverJewelleryTable">
+                    <!-- Products will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <script>
+        // Function to fetch products specifically for 'Discover Jewellery Products'
+        async function fetchDiscoverJewelleryProducts() {
+            try {
+                const response = await fetch('http://localhost:3000/api/offers/discoverJewellery');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+        
+                // Read the response body as JSON
+                const products = await response.json();
+                updateDiscoverJewelleryTable(products);
+            } catch (error) {
+                console.error('Failed to fetch products:', error);
+            }
+        }
+        
+        // Function to update the product table with fetched data for Discover Jewellery Products
+        function updateDiscoverJewelleryTable(products) {
+            const tableBody = document.getElementById('discoverJewelleryTable');
+        
+            // Clear existing rows
+            tableBody.innerHTML = '';
+        
+            // Populate table with fetched data
+            products.forEach(product => {
+                const row = document.createElement('tr');
+        
+                // Populate row with product data, checking if product.id exists
+                row.innerHTML = `
+                    <td>${product.productName}</td>
+                    <td><img src="${product.imageUrl}" alt="${product.productName}" width="50" /></td>
+                    <td>
+                        <button class="edit-btn" onclick="editProduct('${product._id}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Function to handle editing a product
+        function editProduct(productId) {
+            console.log("Edit product with ID:", productId);
+            // Implement your logic for editing the product (e.g., open a modal or form)
+        }
+        
+        // Function to handle deleting a product
+        async function deleteProduct(productId) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/offers/discoverJewellery/${productId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    console.log(`Product with ID ${productId} has been deleted`);
+                    // Re-fetch the updated product list
+                    fetchDiscoverJewelleryProducts();
+                } else {
+                    console.error('Failed to delete the product');
+                }
+            } catch (error) {
+                console.error('Error while deleting product:', error);
+            }
+        }
+        
+        // Initialize the fetch on page load for Discover Jewellery Products
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchDiscoverJewelleryProducts(); // Fetch products specifically for Discover Jewellery
+        });
+        </script>
+        
+        <div id="shopByLookProducts" class="product-category">
+            <h2>Shop by Look Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Discount (%)</th>
+                        <th>Images</th>
+                        <th>Actions</th> <!-- Added Actions column -->
+                    </tr>
+                </thead>
+                <tbody id="shopByLookTable">
+                    <!-- Products will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <script>
+            // Function to fetch products specifically for 'Shop by Look Products'
+            async function fetchShopByLookProducts() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/offers/shopByLook');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+        
+                    // Read the response body as JSON
+                    const products = await response.json();
+                    updateShopByLookTable(products);
+                } catch (error) {
+                    console.error('Failed to fetch products:', error);
+                }
+            }
+        
+            // Function to update the product table with fetched data for Shop by Look Products
+            function updateShopByLookTable(products) {
+                console.log(products);
+                const tableBody = document.getElementById('shopByLookTable');
+        
+                // Clear existing rows
+                tableBody.innerHTML = '';
+        
+                // Populate table with fetched data
+                products.forEach(product => {
+                    const row = document.createElement('tr');
+        
+                    // Construct the correct path for the image
+                    //const imagePath = `http://localhost:3000/public/uploads/${product.image.replace(/\\/g, '/')}`; // Replace backslashes with forward slashes
+        
+                    // Populate row with product data
+                    row.innerHTML = `
+                        <td>${product.productName}</td>
+                        <td>${product.discount}</td>
+                        <td><img src="./public/uploads/${product.image}" alt="${product.productName}" width="50" /></td>
+                        <td>
+                            <button class="edit-btn" onclick="editProduct('${product._id}')">Edit</button>
+                            <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+        
+            // Function to handle editing a product
+            function editProduct(productId) {
+                console.log("Edit product with ID:", productId);
+                // Implement your logic for editing the product (e.g., open a modal or form)
+            }
+        
+            // Function to handle deleting a product
+            async function deleteProduct(productId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/exdiscount/${productId}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        console.log(`Product with ID ${productId} has been deleted`);
+                        // Re-fetch the updated product list
+                        fetchShopByLookProducts();
+                    } else {
+                        console.error('Failed to delete the product');
+                    }
+                } catch (error) {
+                    console.error('Error while deleting product:', error);
+                }
+            }
+        
+            // Initialize the fetch on page load for Shop by Look Products
+            document.addEventListener('DOMContentLoaded', () => {
+                fetchShopByLookProducts(); // Fetch products specifically for Shop by Look
+            });
+        </script>
+        
+        
+        
+        
+        
+
+    <script src="js/offer.js"></script>
+</body>
+
+</html>

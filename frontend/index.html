@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shankh Jewels</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://kit.fontawesome.com/f101be23f6.js" crossorigin="anonymous"></script>
+     <script src="js/navigation.js"></script>
+
+
+    <style>
+        .social1 {
+            position: fixed;
+            bottom: 20px;
+            z-index: 1;
+            width: 35px;
+            /* Default width for the icon only */
+            left: 0;
+            /* Align to the left side of the screen */
+        }
+
+        .social1 ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .social1 ul li {
+            display: block;
+            margin: 5px 0;
+            /* Adjusted margin for better spacing */
+            width: 35px;
+            /* Default width for the icon only */
+            text-align: right;
+            padding: 8px;
+            border-radius: 0 30px 30px 0;
+            transition: width 0.5s ease, background-color 0.5s ease;
+            /* Smooth transition for width and background color */
+            white-space: nowrap;
+            /* Prevents text from wrapping */
+            overflow: hidden;
+            /* Ensures the text is hidden by default */
+        }
+
+        .social1 ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .social1 ul li i {
+            margin-left: 10px;
+            padding: 4px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 17px;
+            background-color: #fff;
+        }
+
+        /* Specific styles for each social icon */
+        .social1 ul li.youtube {
+            background-color: #FF0000;
+        }
+
+        .social1 ul li.youtube i {
+            color: #FF0000;
+        }
+
+        .social1 ul li.whatsapp {
+            background-color: #25d366;
+        }
+
+        .social1 ul li.whatsapp i {
+            color: #25d366;
+        }
+
+        .social1 ul li.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social1 ul li.instagram i {
+            color: #000;
+        }
+
+        .social1 ul li.facebook {
+            background-color: #3b5998;
+        }
+
+        .social1 ul li.facebook i {
+            color: #3b5998;
+        }
+
+        .social1 ul li.snapchat {
+            background-color: #FFFC00;
+            color: black;
+        }
+
+        .social1 ul li.snapchat i {
+            color: #FFFC00;
+        }
+
+        /* Hover effect to expand the icons */
+        .social1 ul li:hover {
+            width: 230px;
+            /* Expanded width */
+            background: rgba(232, 8, 8, 0.4);
+            /* Optional background change on hover */
+        }
+
+        .social1 ul li:hover a {
+            color: #fff;
+            /* Ensure text color remains visible */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 765px) {
+            .social1 {
+                width: 70px;
+            }
+
+            .social1 ul li:hover {
+                width: 150px;
+                /* Adjust the expanded width for smaller screens */
+            }
+        }
+
+
+
+
+        /* Show the toggle button and hide the main menu on mobile */
+        @media (max-width: 765px) {
+            .social1 {
+                width: 70px;
+            }
+
+            .social1 ul li:hover {
+                width: 150px;
+                /* Adjust the expanded width for smaller screens */
+            }
+
+            /* Ensure search bar stays inside the page */
+            .search-bar {
+                width: 95%;
+                /* Reduce width slightly to avoid going outside the page */
+                box-sizing: border-box;
+                /* Include padding and border in the element's total width */
+                padding: 10px;
+                /* Optional: Add padding for better appearance */
+                border-radius: 10px;
+                /* Make the corners rounded */
+                margin-left: 10px;
+                /* Decrease margin on the left side */
+                padding-left: 20px;
+            }
+        }
+
+        /* Adjustments for small screens */
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+            .sidebar a {
+                font-size: 1px;
+            }
+        }
+
+        .social1 ul li:hover {
+            transform: translate(80px, 0);
+            background: rgba(232, 8, 8, 0.4);
+        }
+
+        .fa-snapchat-ghost:before,
+        .fa-snapchat:before {
+            content: "\f2ab";
+            color: black;
+        }
+
+        @media (max-width: 600px) {
+            .custom-col-5 {
+                height: 200px;
+                width: 45%;
+            }
+
+            /* Ensure search bar stays inside the page */
+            .search-bar {
+                width: 90%;
+                /* Adjust the width for very small screens */
+                margin-left: 5px;
+                /* Reduce left margin to keep it inside the page */
+                margin-right: auto;
+                /* Keep it centered horizontally */
+                border-radius: 10px;
+                /* Rounded corners */
+            }
+        }
+    </style>
+    
+
+    <script>
+        // Function to add product to cart
+        function addToCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push(product);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert("Product added to cart!");
+        }
+
+        // Fetch products from the backend
+        // 
+
+        const apiUrl = 'http://localhost:3000/api';
+
+       
+        // Function to add product to cart
+        function addToCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            // Check if the product already exists in the cart
+            let existingProduct = cartItems.find(item => item._id === product._id);
+            if (existingProduct) {
+                alert('Product is already in the cart!');
+            } else {
+                cartItems.push(product);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                alert("Product added to cart!");
+            }
+        }
+
+
+        // Function to handle Buy Now action
+        function buyNow(productId, productPrice, productTitle, productDescription) {
+            // Get the specific quantity input for this product
+            const quantityInput = document.getElementById(`quantity-${productId}`);
+            const quantity = Number(quantityInput.value);
+
+            // Calculate the total price based on the quantity
+            const totalPrice = productPrice * quantity;
+
+            // Redirect to the checkout page with product id, total price, and product name
+            window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}&description=${productDescription}`;
+        }
+
+        fetch('http://localhost:3000/api/products/all')
+            .then(response => response.json())
+            .then(products => {
+                const productList = document.getElementById('product-list');
+                products.forEach(product => {
+                    const productCard = `
+                <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-img-container">
+                            <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
+                            <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                            <div class="rating">
+                                <img src="images/12.png" alt="Rating Icon"> 5.0
+                            </div>
+                            <button class="view-btn" onclick="window.location.href='detail.html?id=${product._id}'" 
+                                style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #b6d7f4; color: black; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+                                View
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="pricing">
+                                <span class="sale-price">₹${product.productPrice}</span>
+                                <span class="regular-price"><del>₹${product.regularPrice}</del></span>
+                            </div>
+                            <p class="card-text">${product.productDescription}</p>
+                            <div class="show-more-button">
+                                <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
+                                <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                    productList.innerHTML += productCard;
+                });
+            })
+            .catch(err => console.log('Error: ', err));
+
+    </script>
+</head>
+
+<body>
+    <div class="home_black_version">
+        <header class="header_area header_black">
+            <!-- header top starts -->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6 col-md-6 st">
+                            <div class="image-container">
+                                <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid"
+                                    alt="Shiny Diamond Jewelry Logo">
+                                <p>Shankh Jewels</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li class="top_links">
+                                        <a href="#"><span id="user-email">My Account</span> <i
+                                                class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li id="login"><a href="login.html">Login</a></li>
+                                            <li><a href="acc.html">Account dashboard</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
+                                            <li><a href="wishlist1.html">Wishlist</a></li>
+                                            <li id="logout"><a  onclick="logout()">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- header top ends -->
+
+
+            <!-- header bottom starts -->
+            <div class="header_bottom sticky-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-6 col-6">
+                            <!-- Toggle Button for Mobile -->
+                            <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+
+                            <!-- Main Menu (Desktop Only) -->
+                            <div class="main_menu_inner">
+                                <div class="main_menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="active">
+                                                <a href="index.html">Home </a>
+                                            </li>
+                                            <li>
+                                                <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                                <ul class="mega_menu" id="main_menu">
+                                                    <!-- Dynamic categories will be injected here -->
+                                                </ul>
+
+                                                <script>
+                                                    const fetchAndDisplayCategories = async () => {
+                                                        try {
+                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
+                                                            if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                            const categories = await response.json();
+                                                            const mainMenu = document.getElementById('main_menu');
+                                                            mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                            // Organize categories into a map by main category
+                                                            const categoryMap = {};
+
+                                                            categories.forEach(category => {
+                                                                const mainCategory = category.mainCategory;
+                                                                const subCategory = category.name;
+
+                                                                if (mainCategory === "Men" || mainCategory === "Women") {
+                                                                    if (!categoryMap[mainCategory]) {
+                                                                        categoryMap[mainCategory] = [];
+                                                                    }
+                                                                    categoryMap[mainCategory].push(subCategory);
+                                                                }
+                                                            });
+
+                                                            for (const mainCategory in categoryMap) {
+                                                                const mainCategoryItem = document.createElement('li');
+                                                                const subCategories = categoryMap[mainCategory];
+
+
+                                                                mainCategoryItem.innerHTML = `
+                                                                  <a href="${mainCategory.toLowerCase()}.html">${mainCategory} <i class="ion-chevron-down"></i></a>
+                                                                  <ul>
+                                                                      ${subCategories.map(sub => `<li><a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">${sub}</a></li>`).join('')}
+                                                                  </ul>
+                                                              `;
+
+                                                                mainMenu.appendChild(mainCategoryItem);
+                                                            }
+                                                        } catch (error) {
+                                                            console.error('Error fetching categories:', error);
+                                                        }
+                                                    };
+
+                                                    fetchAndDisplayCategories();
+                                                </script>
+
+
+
+                                            <li>
+                                                <a href="latestcollection.html">Latest Collections <i
+                                                        class="ion-chevron-down"></i></a>
+                                                <ul class="mega_menu" id="main_menu1">
+                                                    <!-- Dynamic categories will be injected here -->
+                                                </ul>
+
+                                                <script>
+                                                    const fetchAndDisplayCategories1 = async () => {
+                                                        try {
+                                                            const response = await fetch('http://localhost:3000/api/categories');
+                                                            if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                            const categories = await response.json();
+                                                            const mainMenu = document.getElementById('main_menu1');
+                                                            mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                            // Organize categories into a map by main category
+                                                            const categoryMap = {};
+
+                                                            categories.forEach(category => {
+                                                                const mainCategory = category.mainCategory; // e.g., "Men", "Women", or "Latest Collection"
+                                                                const subCategory = category.name; // e.g., "Diamond Ring", "Ring", etc.
+
+                                                                // Filter for "Latest Collection" main category
+                                                                if (mainCategory === "Latest Collection") {
+                                                                    if (!categoryMap[mainCategory]) {
+                                                                        categoryMap[mainCategory] = [];
+                                                                    }
+
+                                                                    // Add subcategory to the main category
+                                                                    categoryMap[mainCategory].push(subCategory);
+                                                                }
+                                                            });
+
+                                                            // Create the "Latest Collection" list
+                                                            for (const mainCategory in categoryMap) {
+                                                                const mainCategoryItem = document.createElement('li');
+                                                                const subCategories = categoryMap[mainCategory];
+
+                                                                // Render main category with subcategories linking to category-post.html
+                                                                mainCategoryItem.innerHTML = `
+                                                                    <ul>
+                                                                        ${subCategories.length ? subCategories.map(sub => `
+                                                                            <li>
+                                                                                <a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">
+                                                                                    ${sub}
+                                                                                </a>
+                                                                            </li>`).join('') : '<li>No items available</li>'}
+                                                                    </ul>
+                                                                `;
+
+                                                                mainMenu.appendChild(mainCategoryItem);
+                                                            }
+                                                        } catch (error) {
+                                                            console.error('Error fetching categories:', error);
+                                                        }
+                                                    };
+
+                                                    // Call the function to load categories
+                                                    fetchAndDisplayCategories1();
+                                                </script>
+
+                                            </li>
+                                            <li><a href="offer.html">Offer</a></li>
+                                            <li><a href="about.html">About Us</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-6">
+                            <div class="middel_right">
+                                <div class="search_btn">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search Product ....">
+                                        <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- <div class="wishlist_btn">
+                        <a href="#"><i class="ion-heart"></i></a>
+                    </div> -->
+                                <!-- <div class="cart_link">
+                        <a href="#"><i class="ion-android-cart"></i>
+                            <span class="cart_text_quantity">Rs.67,598</span> -->
+                                <!-- <i class="ion-chevron-down"></i>
+                        </a>
+                        <span class="cart_quantity">2</span>
+  
+                        mini cart
+                        <div class="mini_cart">
+                            <div class="cart_close">
+                                <div class="cart_text">
+                                    <h3>cart</h3>
+                                </div>
+                                <div class="mini_cart_close">
+                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Earings</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 54,599</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Bracelet</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 12,999</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_total">
+                                <span>Subtotal : </span>
+                                <span>Rs. 67,598</span>
+                            </div>
+                            <div class="mini_cart_footer">
+                                <div class="cart_button view_cart">
+                                    <a href="#">View Cart</a>
+                                </div>
+                                <div class="cart_button checkout">
+                                    <a href="#" class="active">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mini cart ends  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- header bottom ends -->
+
+    <!-- Sidebar Structure -->
+    <!-- Sidebar Structure -->
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+
+
+        <!-- Category Dropdown -->
+        <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+        <div class="dropdown-container">
+            <ul class="mega_menu">
+                <li>
+                    <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="earing.html">Earring</a></li>
+                        <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+                        <li><a href="rings.html">Rings</a></li>
+                        <li><a href="anklets.html">Anklets</a></li>
+                        <li><a href="braclet.html">Bracelets</a></li>
+                        <li class="has-submenu">
+                            <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+                            <ul class="submenu-inline">
+                                <li><a href="jewelleryset.html">Jewellery Set</a></li>
+                                <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                                <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+                                <li><a href="toerings.html">Toe Rings</a></li>
+                                <li><a href="bangals.html">Bangles</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/2.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -40% off this week</p>
+                            <h1>Earings and Pendant</h1>
+                            <span>Complete bridal set with white pearls</span>
+                            <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/3.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -10% off this week</p>
+                            <h1>Wedding Rings</h1>
+                            <span>Shankh Jewels Special wedding rings for couples.</span>
+                            <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- slider section starts -->
+    <div class="slider_area slider_black owl-carousel">
+        <div class="single_slider" data-bgimg="images/slider/1.png">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -20% off this week</p>
+                            <h1>Necklace</h1>
+                            <span>22 Carat gold necklace for wedding</span>
+                            <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/2.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -40% off this week</p>
+                            <h1>Earings and Pendant</h1>
+                            <span>Complete bridal set with white pearls</span>
+                            <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/3.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -10% off this week</p>
+                            <h1>Wedding Rings</h1>
+                            <span>Shankh Jewels Special wedding rings for couples.</span>
+                            <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- slider section ends -->
+    <!-- slider section ends -->
+    <!-- banner section starts -->
+    <section class="banner_section banner_black">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_banner">
+                        <div class="banner_thumb">
+                            <a href="#"><img src="images/banner/bg-1.jpg" alt="banner1"></a>
+                            <div class="banner_content">
+                                <p>New Design</p>
+                                <h2>Small design Rings</h2>
+                                <span>Sale 20% </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_banner">
+                        <div class="banner_thumb">
+                            <a href="#"><img src="images/banner/bg-2.jpg" alt="banner2"></a>
+                            <div class="banner_content">
+                                <p>Bestselling Rings</p>
+                                <h2>White gold rings</h2>
+                                <span>Sale 10% </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_banner">
+                        <div class="banner_thumb">
+                            <a href="#"><img src="images/banner/bg-3.jpg" alt="banner3"></a>
+                            <div class="banner_content">
+                                <p>Featured Rings</p>
+                                <h2>Platinium Rings</h2>
+                                <span>Sale 30% </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner section ends -->
+    <!--card options -->
+    <div class="container-fluid" style="width: 95%;">
+        <!-- Row 1 -->
+        <div class="row" id="ringCardsSection">
+            <div class="col-12">
+                <div class="section_title">
+                    <h2>Bestselling Products</h2>
+                </div>
+            </div>
+
+
+            <div id="product-list" class="row"></div>
+
+
+        </div>
+    </div>
+
+
+    <!-- product section area sends -->
+
+    <!-- banner full width start -->
+    <section class="banner_fullwidth black_fullwidth">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="banner_text">
+                        <p>Sale Off 20% All Products</p>
+                        <h2>New Trending Collection</h2>
+                        <span>Best Design makes you more special.</span>
+                        <a href="#">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner full width end -->
+
+
+
+    <!-- blog section starts -->
+    <section class="blog_section blog_black">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title">
+                        <h2>Shankh Jewels Updates</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog_wrapper blog_column3 owl-carousel">
+                    <div class="col-lg-4">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="#"><img src="images/blog/4.jpg" alt="blog 4"></a>
+                            </div>
+                            <div class="blog_content">
+                                <h3><a href="#">Earrings for Navratri</a></h3>
+                                <div class="author_name">
+                                    <p>
+                                        <span>by</span>
+                                        <span class="themes">Shankh Jewels</span>
+                                        <!-- <span class="post_by">/ 4 November 2020</span> -->
+                                    </p>
+                                </div>
+
+                                <div class="post_desc">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fugit commodi
+                                        quo eligendi laudantium quisquam, magnam hic numquam fuga illum sed aperiam
+                                        sint, expedita dolor.</p>
+                                </div>
+                                <div class="read_more">
+                                    <a href="#">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="#"><img src="images/blog/1.jpg" alt="blog 1"></a>
+                            </div>
+                            <div class="blog_content">
+                                <h3><a href="#">Pendant for engagement</a></h3>
+                                <div class="author_name">
+                                    <p>
+                                        <span>by</span>
+                                        <span class="themes">Shankh Jewels</span>
+                                        <!-- <span class="post_by">/ 3 November 2020</span> -->
+                                    </p>
+                                </div>
+
+                                <div class="post_desc">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fugit commodi
+                                        quo eligendi laudantium quisquam, magnam hic numquam fuga illum sed aperiam
+                                        sint, expedita dolor.</p>
+                                </div>
+                                <div class="read_more">
+                                    <a href="#">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="#"><img src="images/blog/2.jpg" alt="blog 2"></a>
+                            </div>
+                            <div class="blog_content">
+                                <h3><a href="#">Engagement Couple Rings</a></h3>
+                                <div class="author_name">
+                                    <p>
+                                        <span>by</span>
+                                        <span class="themes">Shankh Jewels</span>
+                                        <!-- <span class="post_by">/ 2 November 2020</span> -->
+                                    </p>
+                                </div>
+
+                                <div class="post_desc">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fugit commodi
+                                        quo eligendi laudantium quisquam, magnam hic numquam fuga illum sed aperiam
+                                        sint, expedita dolor.</p>
+                                </div>
+                                <div class="read_more">
+                                    <a href="#">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single_blog">
+                            <div class="blog_thumb">
+                                <a href="#"><img src="images/blog/3.jpg" alt="blog 3"></a>
+                            </div>
+                            <div class="blog_content">
+                                <h3><a href="#">Earrings for Party</a></h3>
+                                <div class="author_name">
+                                    <p>
+                                        <span>by</span>
+                                        <span class="themes">Shankh Jewels</span>
+                                        <!-- <span class="post_by">/ 5 November 2020</span> -->
+                                    </p>
+                                </div>
+
+                                <div class="post_desc">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt fugit commodi
+                                        quo eligendi laudantium quisquam, magnam hic numquam fuga illum sed aperiam
+                                        sint, expedita dolor.</p>
+                                </div>
+                                <div class="read_more">
+                                    <a href="#">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- blog section ends -->
+
+    <!-- instagram section starts -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-bgimg="images/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="ion-social-instagram"></i>
+                            <a href="#">@ Shankh Jewels</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- instagram section  ends-->
+
+    <!-- subscribe section starts -->
+    <div class="newsletter_area newsletter_black">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="newsletter_content">
+                        <h2>Subscribe for Shankh Jewels Magazines</h2>
+                        <p>Get E-mail of all the updates about our lastest and special offers</p>
+                        <div class="subscibe_form">
+                            <form class="footer-newsletter">
+                                <input type="email" placeholder="Email address ..." autocapitalize="off"
+                                    autocomplete="off">
+                                <button>Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- subscribe section ends -->
+    <!-- banner area starts  -->
+    <section class="banner_section banner_section_five">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 col-md-12">
+                    <div class="port-box">
+                        <div class="text-overlay">
+                            <h1>New Arrivals 2020</h1>
+                            <p>Crown for wife</p>
+                        </div>
+                        <img src="images/banner/1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="port-box">
+                        <div class="text-overlay">
+                            <h1>Featured Products 2020</h1>
+                            <p>Pendant for Valentine</p>
+                        </div>
+                        <img src="images/banner/2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner area ends -->
+
+    <!-- banner full width start -->
+
+
+    <!-- footer section starts -->
+    <footer class="footer_widgets footer_black">
+        <div class="container">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="widgets_container contact_us">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer_contact">
+                                <p><i class="fas fa-map-marker-alt"></i> Address: Shop No 43\3b,<br> Vitthal Mangal
+                                    Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
+                                <p><i class="fas fa-phone-alt"></i> Phone: <a
+                                        href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                                <p><i class="fas fa-envelope"></i> Email: <a
+                                        href="mailto:ShankhJewelsjewlers@gmail.com">ShankhJewelsjewlers@gmail.com</a>
+                                </p>
+
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-snapchat"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Information</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="about.html"> <i class="fas fa-chevron-right"></i>&nbsp;About Us </a>
+                                    </li>
+                                    <li><a href="category.html"> <i class="fas fa-chevron-right"></i>&nbsp;Category </a>
+                                    </li>
+                                    <li><a href="women.html"> <i class="fas fa-chevron-right"></i>&nbsp;Womens </a></li>
+                                    <li><a href="men.html"> <i class="fas fa-chevron-right"></i>&nbsp;Mens </a></li>
+                                    <li><a href="latestcollection.html"> <i
+                                                class="fas fa-chevron-right"></i>&nbsp;Latest Collection </a></li>
+                                    <li><a href="offer.html"><i class="fas fa-chevron-right"></i>&nbsp; Offer </a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Help</h3>
+                            <div class="footer_menu">
+                                <ul>
+
+
+                                    <li><a href="shipping.html"> <i
+                                                class="fas fa-chevron-right"></i>&nbsp;Shipping/Returns & &nbsp;Exchange
+                                            Information</a></li>
+
+                                    <li><a href="term.html"><i class="fas fa-chevron-right"></i>&nbsp;Terms &
+                                            Conditions</a></li>
+                                    <li><a href="Privacy.html"> <i class="fas fa-chevron-right"></i>&nbsp;Privacy
+                                            Policy</a></li>
+
+                                    <li><a href="faq.html"> <i class="fas fa-chevron-right"></i>&nbsp;FAQs</a></li>
+                                    <li><a href="Contact.html"> <i class="fas fa-chevron-right"></i>&nbsp;Contact</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <div class="widgets_container product_widget">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer-content">
+                                <p style=" color: #a0a0a0;"> <i class="fas fa-chevron-right"></i>&nbsp;"Our mission is
+                                    to provide exceptional designs that fit seamlessly into your daily life and personal
+                                    style. Today, Shankh Jewels is a vibrant, growing startup committed to delivering
+                                    innovation and elegance. We proudly serve a diverse customer base through our online
+                                    platform and expanding retail presence, striving to make beautiful jewellery
+                                    accessible to all."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright_area">
+                            <p>Copyright &copy; 2020 <a href="#">Shankh Jewels</a> All rights Reserved.<br> Designed by
+                                <a href="https://fouriseindia.com">Fourise Software Solutions Pvt. Ltd.</a>
+                            </p>
+                            <img src="images/icon/papyel2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- footer section ends -->
+    </div>
+
+    <!-- modal section starts -->
+    <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal_body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
+                                <div class="modal_tab">
+                                    <div class="tab-content product-details-large">
+                                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/70.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/71.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/72.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab4" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/73.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal_tab_button">
+                                        <ul class="nav product_navactive owl-carousel" role="tablist">
+                                            <li>
+                                                <a href="#tab1" class="nav-link active" data-toggle="tab" role="tab"
+                                                    aria-controls="tab1" aria-selected="false"><img
+                                                        src="images/product/70.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab2" class="nav-link" data-toggle="tab" role="tab"
+                                                    aria-controls="tab2" aria-selected="false"><img
+                                                        src="images/product/71.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab3" class="nav-link button_three" data-toggle="tab"
+                                                    role="tab" aria-controls="tab3" aria-selected="false"><img
+                                                        src="images/product/72.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab4" class="nav-link" data-toggle="tab" role="tab"
+                                                    aria-controls="tab4" aria-selected="false"><img
+                                                        src="images/product/73.jpg" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="modal_right">
+                                    <div class="modal_title mb-10">
+                                        <h2>Women's Necklace</h2>
+                                    </div>
+                                    <div class="modal_price mb-10">
+                                        <span class="new_price">Rs. 51164</span>
+                                        <span class="old_price">Rs. 54164</span>
+                                    </div>
+                                    <div class="see_all">
+                                        <a href="#">See All Features</a>
+                                    </div>
+                                    <div class="modal_add_to_cart mb-15">
+                                        <form action="#">
+                                            <input type="number" min="0" max="100" step="1">
+                                            <button type="submit">Add To Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal_description mb-15">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus quibusdam
+                                            nisi voluptas consequatur tempora, recusandae nemo blanditiis eaque odit
+                                            voluptatibus voluptatem, ipsa incidunt fugiat a.</p>
+                                    </div>
+                                    <div class="modal_social">
+                                        <h2>Share this Product</h2>
+                                        <ul>
+                                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-rss"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal section ends -->
+    <!-- Add additional sections here -->
+    <script> function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+
+        // Dropdown toggle functionality
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll('.instagram__item.set-bg');
+            items.forEach(function (item) {
+                var bgImg = item.getAttribute('data-bgimg');
+                if (bgImg) {
+                    item.style.backgroundImage = 'url(' + bgImg + ')';
+                }
+            });
+        });
+
+
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

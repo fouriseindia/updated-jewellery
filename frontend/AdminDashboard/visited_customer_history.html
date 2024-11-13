@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Visitor Details</title>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #6fb3f0;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            background-color: aliceblue;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details, .visit-history, .order-summary {
+            margin-bottom: 20px;
+        }
+        .details p, .order-summary p {
+            margin: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section-title {
+            background: #6fb3f0;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Customer Visitor Details</h1>
+    </header>
+    <main>
+        <h2 id="customerName">Customer Name</h2>
+        <div class="details">
+            <div class="section-title">Customer Details</div>
+            <p>Name: <span id="customerNameDetail">John Doe</span></p>
+            <p>Address: <span id="customerAddress">456 Avenue, City</span></p>
+            <p>Mobile Number: <span id="customerMobile">123-456-7890</span></p>
+            <p>Email: <span id="customerEmail">john.doe@example.com</span></p>
+            <p>Date of Birth: <span id="customerDOB">1990-01-01</span></p>
+            <p>Age: <span id="customerAge">34</span></p>
+        </div>
+        <!-- <div class="visit-history">
+            <div class="section-title">Visit History</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/01/2024</td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>15/02/2024</td>
+                        <td>11:30 AM</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="order-summary">
+            <div class="section-title">Order Summary</div>
+            <p>Total Orders: <span id="totalOrders">10</span></p>
+            <p>Total Amount Spent: ₹<span id="totalAmountSpent">1000.00</span></p>
+        </div> -->
+        <div class="transaction-history">
+            <div class="section-title">Transaction History</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Transaction ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/01/2024</td>
+                        <td>₹123.45</td>
+                        <td>TXN12345</td>
+                    </tr>
+                    <!-- Additional rows for transaction history -->
+                </tbody>
+            </table>
+        </div>
+
+        <a href="InvoicePage.html" style="text-decoration: none;">
+            <button type="button" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; border-radius: 5px;">
+                Create Invoice
+            </button>
+        </a>
+        
+        <!-- <div class="category-wise">
+            <div class="section-title">Category-wise Product Count</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Electronics</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Clothing</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Home & Kitchen</td>
+                        <td>2</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div> -->
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const customerId = params.get('customerId');
+            if (customerId) {
+                document.getElementById('customerName').innerText = `Customer ID: ${customerId}`;
+                // Fetch and display the actual customer details using customerId
+                // You would replace the dummy data below with actual data fetched from your backend
+
+                // Example of fetching data and populating fields
+                // This part should be replaced with actual data fetching logic
+                document.getElementById('customerNameDetail').innerText = 'John Doe';
+                document.getElementById('customerAddress').innerText = '456 Avenue, City';
+                document.getElementById('customerMobile').innerText = '123-456-7890';
+                document.getElementById('customerEmail').innerText = 'john.doe@example.com';
+                document.getElementById('customerDOB').innerText = '1990-01-01';
+                document.getElementById('customerAge').innerText = '34';
+                document.getElementById('totalOrders').innerText = '10';
+                document.getElementById('totalAmountSpent').innerText = '1000.00';
+                
+                // Populate visit history table
+                const visitHistory = [
+                    { date: '01/01/2024', time: '10:00 AM' },
+                    { date: '15/02/2024', time: '11:30 AM' },
+                    // Add more visits here
+                ];
+                const visitHistoryTable = document.querySelector('.visit-history tbody');
+                visitHistoryTable.innerHTML = visitHistory.map(visit => `
+                    <tr>
+                        <td>${visit.date}</td>
+                        <td>${visit.time}</td>
+                    </tr>
+                `).join('');
+
+                // Populate transaction history table
+                const transactionHistory = [
+                    { date: '01/01/2024', amount: '123.45', transactionId: 'TXN12345' },
+                    // Add more transactions here
+                ];
+                const transactionHistoryTable = document.querySelector('.transaction-history tbody');
+                transactionHistoryTable.innerHTML = transactionHistory.map(txn => `
+                    <tr>
+                        <td>${txn.date}</td>
+                        <td>₹${txn.amount}</td>
+                        <td>${txn.transactionId}</td>
+                    </tr>
+                `).join('');
+
+                // Populate category-wise product count table
+                const categoryWiseCount = [
+                    { category: 'Electronics', count: 5 },
+                    { category: 'Clothing', count: 3 },
+                    { category: 'Home & Kitchen', count: 2 },
+                    // Add more categories here
+                ];
+                const categoryWiseTable = document.querySelector('.category-wise tbody');
+                categoryWiseTable.innerHTML = categoryWiseCount.map(cat => `
+                    <tr>
+                        <td>${cat.category}</td>
+                        <td>${cat.count}</td>
+                    </tr>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>

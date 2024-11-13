@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/images/logo1.jpeg" rel="icon">
+  <title>Category Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: aliceblue;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #98c5ed;
+      background-color: #c5ddf2;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: background-color 0.3s;
+    }
+
+    .tab button.active {
+      background-color: #80bcf1;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+      border-top: none;
+    }
+
+    .input-field {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .category-list {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .category-list th, .category-list td {
+      border: 1px solid #c5ddf2;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .category-list th {
+      background-color: #c5ddf2;
+    }
+
+    .delete-btn, .edit-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .edit-btn {
+      background-color: #007bff;
+    }
+
+    .delete-btn:hover, .edit-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 5px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @media only screen and (max-width: 756px) {
+      .tab button {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .tabcontent {
+        padding: 10px;
+      }
+
+      .input-field {
+        width: calc(100% - 20px);
+        padding: 8px;
+      }
+
+      .submit-btn {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      .category-list th, .category-list td {
+        padding: 6px;
+        font-size: 12px;
+      }
+    }
+
+    @media only screen and (min-width: 757px) and (max-width: 1190px) {
+      .tab button {
+        padding: 12px;
+        font-size: 16px;
+      }
+
+      .tabcontent {
+        padding: 15px;
+      }
+
+      .input-field {
+        width: calc(100% - 18px);
+        padding: 10px;
+      }
+
+      .submit-btn {
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      .category-list th, .category-list td {
+        padding: 8px;
+        font-size: 14px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+      <div class="tab">
+          <button class="tablinks active" onclick="openTab(event, 'addCategory')">Add Category</button>
+          <button class="tablinks" onclick="openTab(event, 'manageCategory')">Manage Categories</button>
+      </div>
+
+      <div id="addCategory" class="tabcontent" style="display:block;">
+          <h2>Add New Category</h2>
+          <form id="addCategoryForm" onsubmit="addCategory(event)">
+              <label for="mainCategory">Main Category:</label><br>
+              <select id="mainCategory" name="mainCategory" class="input-field">
+                  <option value="">None (Main Category)</option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Latest Collection">Latest Collection</option>
+              </select><br>
+              <label for="categoryName">Category Name:</label><br>
+              <input type="text" id="categoryName" name="categoryName" class="input-field" placeholder="Enter category name"><br>
+              <button type="submit" class="submit-btn">Add Category</button>
+          </form>
+      </div>
+
+      <div id="manageCategory" class="tabcontent">
+          <h2>Manage Categories</h2>
+          <table class="category-list">
+              <thead>
+                  <tr>
+                      <th>Category ID</th>
+                      <th>Category Name</th>
+                      <th>Main Category</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="categoryListBody">
+                  <!-- Category data will be populated here dynamically -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <div id="editCategoryModal" class="modal">
+      <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>Edit Category</h2>
+          <form id="editCategoryForm" onsubmit="updateCategory(event)">
+              <input type="hidden" id="editCategoryId">
+              <label for="editMainCategory">Main Category:</label><br>
+              <select id="editMainCategory" name="editMainCategory" class="input-field">
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Latest Collection">Latest Collection</option>
+              </select><br>
+              <label for="editCategoryName">Category Name:</label><br>
+              <input type="text" id="editCategoryName" name="editCategoryName" class="input-field" placeholder="Enter category name"><br>
+              <button type="submit" class="submit-btn">Update Category</button>
+          </form>
+      </div>
+  </div>
+
+  <script>
+      let categories = [];
+      const apiUri = 'http://localhost:3000/api/categories';
+
+      // Fetch existing categories from the server
+      async function fetchCategories() {
+          const response = await fetch(apiUri);
+          categories = await response.json();
+          populateCategoryList();
+      }
+
+      // Function to switch between tabs
+      function openTab(event, tabName) {
+          const tabcontents = document.getElementsByClassName("tabcontent");
+          for (let i = 0; i < tabcontents.length; i++) {
+              tabcontents[i].style.display = "none";
+          }
+          const tablinks = document.getElementsByClassName("tablinks");
+          for (let i = 0; i < tablinks.length; i++) {
+              tablinks[i].classList.remove("active");
+          }
+          document.getElementById(tabName).style.display = "block";
+          event.currentTarget.classList.add("active");
+
+          if (tabName === 'manageCategory') {
+              populateCategoryList();
+          }
+      }
+
+      // Function to add a new category
+      async function addCategory(event) {
+    event.preventDefault();
+    const categoryName = document.getElementById("categoryName").value.trim();
+    const mainCategory = document.getElementById("mainCategory").value;
+    
+    if (categoryName === '') {
+        alert('Please enter a category name.');
+        return;
+    }
+
+    const newCategory = {
+        name: categoryName,
+        mainCategory
+    };
+
+    const response = await fetch(apiUri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCategory)
+    });
+
+    if (response.ok) {
+        document.getElementById("addCategoryForm").reset();
+        fetchCategories();
+        openTab(event, 'manageCategory');
+    } else {
+        alert('Error adding category.');
+    }
+}
+
+// Populate the category list in the manage tab
+function populateCategoryList() {
+    const categoryListBody = document.getElementById("categoryListBody");
+    categoryListBody.innerHTML = '';
+
+    categories.forEach((category, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>
+                <a href="/frontend/category-post.html?mainCategory=${encodeURIComponent(category.mainCategory)}&subCategory=${encodeURIComponent(category.name)}" target="_blank">
+                    ${category.name}
+                </a>
+            </td>
+            <td>${category.mainCategory || 'Main Category'}</td>
+            <td>
+                <button onclick="editCategory('${category._id}')">Edit</button>
+                <button onclick="deleteCategory('${category._id}')">Delete</button>
+            </td>
+        `;
+        categoryListBody.appendChild(row);
+    });
+}
+
+
+      // Edit category
+      function editCategory(categoryId) {
+          const category = categories.find(c => c._id === categoryId);
+          if (!category) return;
+
+          document.getElementById("editCategoryId").value = category._id;
+          document.getElementById("editCategoryName").value = category.name;
+          document.getElementById("editMainCategory").value = category.mainCategory;
+
+          const modal = document.getElementById("editCategoryModal");
+          modal.style.display = "block";
+      }
+
+      // Close modal
+      function closeModal() {
+          const modal = document.getElementById("editCategoryModal");
+          modal.style.display = "none";
+      }
+
+      // Update category
+      async function updateCategory(event) {
+          event.preventDefault();
+
+          const categoryId = document.getElementById("editCategoryId").value;
+          const updatedCategory = {
+              name: document.getElementById("editCategoryName").value.trim(),
+              mainCategory: document.getElementById("editMainCategory").value
+          };
+
+          const response = await fetch(`${apiUri}/${categoryId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(updatedCategory)
+          });
+
+          if (response.ok) {
+              closeModal();
+              fetchCategories();
+          } else {
+              alert('Error updating category.');
+          }
+      }
+
+      // Delete category
+      async function deleteCategory(categoryId) {
+          if (!confirm('Are you sure you want to delete this category?')) return;
+
+          const response = await fetch(`${apiUri}/${categoryId}`, {
+              method: 'DELETE'
+          });
+
+          if (response.ok) {
+              fetchCategories();
+          } else {
+              alert('Error deleting category.');
+          }
+      }
+
+      // Fetch categories on page load
+      fetchCategories();
+  </script>
+</body>
+
+</html>

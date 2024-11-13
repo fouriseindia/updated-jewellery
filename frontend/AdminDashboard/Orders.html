@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link href="Images/Logo.jpg" rel="icon">
+    <style>
+       /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #6fb3f0;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Ensures links wrap to the next line on smaller screens */
+            justify-content: center;
+            margin: 0; /* Remove default margin */
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px; /* Add padding to make links easier to tap */
+            display: block; /* Ensure links take up full width */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #searchBar input {
+            padding: 10px;
+            width: 100%; /* Full width for search input on smaller screens */
+            max-width: 300px; /* Limit maximum width for readability */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c5ddf2;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            gap: 3px;
+
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-check-details {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1190px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px; /* Adjust margin for smaller screens */
+            }
+        }
+
+        @media (max-width: 756px) {
+            nav ul {
+                flex-direction: column; /* Stack links vertically */
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            table {
+                font-size: 12px; /* Adjust font size for readability on smaller screens */
+            }
+
+            th, td {
+                padding: 8px; /* Adjust padding for smaller content */
+            }
+
+            .actions {
+                flex-direction: column; /* Stack action buttons vertically */
+                align-items: center;
+            }
+
+            button {
+                margin-bottom: 5px; /* Add spacing between action buttons */
+            }
+        }
+    </style>
+    <script src="autho.js"></script>
+</head>
+<body>
+    <header>
+        <h1 style="text-align: center;">Customers History</h1>
+    </header>
+    <main>
+        <h2>Orders</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchOrders()" placeholder="Search for orders..">
+        </div>
+        <table id="ordersTable">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Address2 (Optional)</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Order Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+                <!-- Rows will be populated here dynamically -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        // Example order data
+
+
+        // const orders = [
+        //     {
+        //         email: 'joe@example.com',
+        //         phone: '123-456-7890',
+        //         firstName: 'Joe',
+        //         lastName: 'Doe',
+        //         address: '123 Street, City',
+        //         Address2: 'Address2',
+        //         state: 'State1',
+        //         zip: '12345',
+        //         product: 'Product1',
+        //         quantity: 2,
+        //         orderTotal: '₹123.45',
+        //         orderId: 'Order1'
+        //     },
+        //     {
+        //         email: 'shop@example.com',
+        //         phone: '987-654-3210',
+        //         firstName: 'Shop',
+        //         lastName: 'Two',
+        //         address: '789 Road, City',
+        //         Address2: 'Address2',
+        //         state: 'State2',
+        //         zip: '67890',
+        //         product: 'Product2',
+        //         quantity: 1,
+        //         orderTotal: '₹67.89',
+        //         orderId: 'Order2'
+        //     }
+        //     // Add more orders as needed
+        // ];
+
+
+        let orders = []; // Initialize an empty array to hold the fetched orders
+
+// Function to fetch orders from the API // Declare orders globally
+
+// Function to fetch orders from the API
+const fetchOrders = async () => {
+    try {
+        // Replace with your actual API URL
+        const response = await fetch('http://localhost:3000/api/checkouts/getOrders');
+        
+        // Check if the response is OK (status code 200-299)
+        if (response.ok) {
+            const data = await response.json();  // Parse JSON data from the response
+            orders = data.orders; // Update the orders array with the fetched data
+            console.log('Orders fetched:', orders);
+            
+            // After fetching the orders, populate the table
+            populateTable();
+        } else {
+            console.error('Failed to fetch orders', response.status);
+        }
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+    }
+};
+
+// Function to populate the table with the fetched orders
+function populateTable() {
+    const tableBody = document.getElementById('ordersTableBody');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Loop through each order and create a row
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+        
+
+        row.innerHTML = `
+            <td>${order.email}</td>
+            <td>${order.phone}</td>
+            <td>${order.firstName}</td>
+            <td>${order.lastName}</td>
+            <td>${order.address}</td>
+            <td>${order.address2 || ''}</td>  <!-- Make sure this matches the schema field -->
+            <td>${order.state}</td>
+            <td>${order.zip}</td>
+            <td>${order.product}</td>
+            <td>${order.quantity}</td>
+            <td>${order.orderTotal}</td>
+            <td>${order.status}</td>
+            <td class="actions">
+                <button class="btn-check-details" onclick="location.href='InvoicePage.html?orderId=${order._id}'">Create Invoice</button>
+                <button class="btn-edit">Edit</button>
+                <button class="btn-delete">Delete</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row); // Append the row to the table body
+    });
+}
+
+// Function to search through orders in the table
+function searchOrders() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('ordersTable');
+    const tr = table.getElementsByTagName('tr');
+
+    // Loop through all table rows (starting from index 1 to skip the header row)
+    for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName('td');
+        let txtValue = '';
+        for (let j = 0; j < td.length - 1; j++) {
+            txtValue += td[j].textContent || td[j].innerText; // Concatenate all text content
+        }
+        // If the text value contains the filter text, show the row; otherwise, hide it
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            tr[i].style.display = '';
+        } else {
+            tr[i].style.display = 'none';
+        }
+    }
+}
+
+// Initial fetch and table population
+fetchOrders(); // Call fetchOrders to get data from the API when the page loads
+
+    </script>
+</body>
+</html>

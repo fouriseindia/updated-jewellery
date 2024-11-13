@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashirwaad Jewelry</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+    <link rel="stylesheet" href="checkout.css">
+      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+    <style>
+/* Common styling */
+* {
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 26px; /* Increased from 24px */
+  font-size: 16px; /* Increased from 14px */
+  font-style: normal;
+ 
+  visibility: visible;
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  
+  margin-top: 10px;
+  font-family: "Baloo 2", cursive;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 52px; /* Increased from 48px */
+  line-height: 1;
+  font-weight: normal;
+}
+h2 {
+  font-size: 40px; /* Increased from 36px */
+  line-height: 40px; /* Increased from 36px */
+  margin-top: 20px;
+  font-weight: normal;
+}
+h3 {
+  font-size: 34px; /* Increased from 30px */
+  line-height: 34px; /* Increased from 30px */
+}
+h4 {
+  font-size: 18px; /* Increased from 16px */
+  line-height: 21px; /* Increased from 19px */
+  font-weight: 700;
+}
+h5 {
+  font-size: 16px; /* Increased from 14px */
+  line-height: 20px; /* Increased from 18px */
+}
+h6 {
+  font-size: 14px; /* Increased from 12px */
+  line-height: 16px; /* Increased from 14px */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+a,
+button {
+  color: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+a,
+button,
+img,
+input,
+span {
+  transition: all 0.3s ease 0s;
+}
+
+*:focus {
+  outline: none !important;
+}
+a:focus {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+}
+
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: aliceblue;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+
+/* Headings */
+h1{
+  color: #0056b3;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 2.5em;
+}
+
+
+
+/* Cards */
+.card-header h5 {
+  color: #57aaf3;
+  font-weight: 600;
+}
+
+.card-body {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 22px; /* Increased from 20px */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
+  border: none;
+  padding: 1.2rem 1.5rem; /* Increased from 1rem 1.25rem */
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.list-group-item:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Custom styles for product cards */
+.card-img-container {
+  position: relative;
+}
+
+.card-img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-img-container:hover .card-img-hover {
+  opacity: 1;
+}
+
+.rating {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 16px; /* Increased from 14px */
+  display: flex;
+  align-items: center;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  stroke: #ff0000;
+  fill: none;
+  transition: fill 0.3s ease;
+}
+
+.wishlist-icon:hover {
+  fill: #ff0000;
+}
+
+.pricing {
+  display: flex;
+  align-items: baseline;
+}
+
+.sale-price {
+  color: #28a745;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.regular-price {
+  color: #6c757d;
+  text-decoration: line-through;
+}
+/* Suggested Products Section */
+.suggested-products-section {
+    background-color: #ffffff; /* Light Blue background */
+    padding: 30px; /* Padding around the section */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 30px; /* Margin on top */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow around the section */
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Soft shadow */
+    overflow: hidden; /* Hide overflow for rounded corners */ /* Fade-in and slide-up animation */
+    margin-top: 30px;
+}
+
+
+
+.card-img-container {
+    position: relative;
+}
+
+.card-img-top,
+.card-img-hover {
+    width: 100%;
+    height: 200px; /* Height of the image */
+    object-fit: cover; /* Maintain aspect ratio */
+    transition: opacity 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+.card-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Initially hidden */
+}
+
+.card-img-container:hover .card-img-hover {
+    opacity: 1; /* Show on hover */
+}
+
+.card-img-container:hover .card-img-top {
+    opacity: 0; /* Hide on hover */
+}
+
+.card-body {
+    padding: 15px; /* Padding inside the card */
+}
+
+.card-title {
+    font-size: 1.1rem; /* Font size for the title */
+    margin-bottom: 10px; /* Margin below the title */
+    animation: fadeIn 1s ease-out; /* Fade-in animation */
+}
+
+.pricing {
+    font-size: 1rem; /* Font size for pricing */
+    margin-bottom: 10px; /* Margin below pricing */
+}
+
+.sale-price {
+    color: #000000; /* Color for sale price */
+    font-weight: bold; /* Bold text */
+    margin-right: 10px; /* Space between prices */
+}
+
+.regular-price {
+    color: #b71c1c; /* Color for regular price */
+    text-decoration: line-through; /* Strike-through effect */
+}
+
+.btn-primary {
+    background-color: #b6d7f4; /* Button background color */
+    border-color: #b6d7f4; /* Button border color */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary:hover {
+    background-color: #57aaf3; /* Button background color on hover */
+    border-color: #57aaf3; /* Button border color on hover */
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    cursor: pointer;
+    fill: rgba(0, 0, 0, 0.6); /* Default color */
+    transition: fill 0.2s ease, transform 0.2s ease; /* Smooth transition */
+    border-radius: 50%; /* Circular shape */
+    padding: 5px; /* Space around the icon */
+    background: rgba(192, 192, 192, 0.4); /* Semi-transparent background */
+}
+
+.wishlist-icon.red {
+    fill: #d32f2f; /* Color when clicked */
+    transform: scale(1.1); /* Slightly enlarge when clicked */
+}
+
+.rating {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly darker for better contrast */
+    color: #ffffff; /* White text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    z-index: 10; /* Ensure it stays on top of other elements */
+}
+
+.rating img {
+    width: 20px; /* Width of rating icon */
+    height: 20px; /* Height of rating icon */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745; /* Green background */
+    color: #ffffff; /* White text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's above other content */
+}
+.social1 ul li:hover {
+        transform: translate(80px, 0);
+        background: rgba(232, 8, 8, 0.4);
+    }
+
+    .fa-snapchat-ghost:before, .fa-snapchat:before {
+    content: "\f2ab";
+    color: black;
+    }
+    @media (max-width: 765px) {
+        .social1 {
+            width: 30px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="home_black_version">
+        <header class="header_area header_black">
+            <!-- header top starts -->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+            
+                                  <div class="col-lg-6 col-md-6 st">
+                            <div class="image-container">
+                                <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid" 
+                                     alt="Shiny Diamond Jewelry Logo">
+                                <p>Shankh Jewels</p>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                   <ul>
+                                        <li class="top_links">
+                                            <a href="#"><span id="user-email">My Account</span> <i class="ion-chevron-down"></i></a>
+                                            <ul class="dropdown_links">
+                                                <li><a href="login_popup.html">Login</a></li>
+                                                <li><a href="acc.html">Account dashboard</a></li>
+                                                <li><a href="Cart.html">Shopping Cart</a></li>
+                                                <li><a href="wishlist1.html">Wishlist</a></li>
+                                                <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- header top ends -->
+    
+    
+            <!-- header bottom starts -->
+<div class="header_bottom sticky-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-6 col-md-6 col-6">
+                <!-- Toggle Button for Mobile -->
+                <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+                
+                <!-- Main Menu (Desktop Only) -->
+                <div class="main_menu_inner">
+                    <div class="main_menu">
+                        <nav>
+                            <ul>
+                                <li class="active">
+                                    <a href="index.html">Home </a>
+                                    <!-- <ul class="sub_menu">
+                                        <li><a href="#">Banner</a></li>
+                                        <li><a href="#">Featured</a></li>
+                                        <li><a href="#">Collection</a></li>
+                                        <li><a href="#">Best Selling</a></li>
+                                        <li><a href="#">News</a></li>
+                                    </ul> -->
+                                </li>
+                                <li>
+                                    <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                    <ul class="mega_menu">
+                                        <li>
+                                            <a href="women.html">Women</a>
+                                            <ul>
+                                                <li><a href="earing.html">Earring</a></li>
+                                                <li><a href="pendant&necklace.html">Pendant&Necklace</a></li>
+                                                <li><a href="rings.html">Rings</a></li>
+                                                <li><a href="anklets.html">Anklets</a></li>
+                                                <li><a href="braclet.html">Bracelets</a></li>
+                                                <li class="has-submenu">
+                                                    <a href="#">Other Category</a>
+                                                    <ul class="submenu-inline">
+                                                        <li><a href="jewelleryset.html">Jewellry Set</a></li>
+                                                        <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                                                        <li><a href="nosepins.html">Nose pins & Rings</a></li>
+                                                        <li><a href="toerings.html">Toe rings</a></li>
+                                                        <li><a href="bangals.html">Bangles</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="men.html">Men</a>
+                                            <ul>
+                                                <li><a href="men_ring.html">Ring</a></li>
+                                                <li><a href="men_pendant.html">Pendant&Chains</a></li>
+                                                <li><a href="men_braclet.html">Bracelet</a></li>
+                                                <li><a href="men_earing.html">Earing</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                  <li>
+                                        <a href="latestcollection.html">Latest Collections <i class="ion-chevron-down"></i></a>
+                                        <ul class="sub_menu pages">
+                                            <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+                                            <li><a href="cherryontop.html">Cherry on Pop</a></li>
+                                            <li><a href="loveinparis.html">Love in paris</a></li>
+                                            <li><a href="justarrived.html">Just Arrived</a></li>
+                                            <li><a href="everydaywear.html">Every Day Wear</a></li>
+                                            <li><a href="officewear.html">Office Wear</a></li>
+                                            <li><a href="partywear.html">Party Wear</a></li>
+                                            <li><a href="weddingwear.html">Wedding Wear</a></li>
+                                            <li><a href="oxidised.html">Oxidised </a></li>
+                                            <li><a href="silver.html">Silver</a></li>
+                                        </ul>
+                                    </li>  
+                                <li><a href="offer.html">Offer</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-6">
+                <div class="middel_right">
+                    <div class="search_btn">
+                        <form action="#">
+                            <input type="text" placeholder="Search Product ....">
+                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+                    </div>
+                    
+                    <!-- <div class="wishlist_btn">
+                        <a href="#"><i class="ion-heart"></i></a>
+                    </div> -->
+                    <!-- <div class="cart_link">
+                        <a href="#"><i class="ion-android-cart"></i>
+                            <span class="cart_text_quantity">Rs.67,598</span> -->
+                            <!-- <i class="ion-chevron-down"></i>
+                        </a>
+                        <span class="cart_quantity">2</span>
+  
+                        mini cart
+                        <div class="mini_cart">
+                            <div class="cart_close">
+                                <div class="cart_text">
+                                    <h3>cart</h3>
+                                </div>
+                                <div class="mini_cart_close">
+                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Earings</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 54,599</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Bracelet</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 12,999</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_total">
+                                <span>Subtotal : </span>
+                                <span>Rs. 67,598</span>
+                            </div>
+                            <div class="mini_cart_footer">
+                                <div class="cart_button view_cart">
+                                    <a href="#">View Cart</a>
+                                </div>
+                                <div class="cart_button checkout">
+                                    <a href="#" class="active">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mini cart ends  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- header bottom ends -->
+  
+  <!-- Sidebar Structure -->
+  <!-- Sidebar Structure -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+  
+    <!-- Category Dropdown -->
+    <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="mega_menu">
+        <li>
+          <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="earing.html">Earring</a></li>
+            <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+            <li><a href="rings.html">Rings</a></li>
+            <li><a href="anklets.html">Anklets</a></li>
+            <li><a href="braclet.html">Bracelets</a></li>
+            <li class="has-submenu">
+              <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+              <ul class="submenu-inline">
+                <li><a href="jewelleryset.html">Jewellery Set</a></li>
+                <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+                <li><a href="toerings.html">Toe Rings</a></li>
+                <li><a href="bangals.html">Bangles</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="men_ring.html">Ring</a></li>
+            <li><a href="men_pendant.html">Pendant & Chains</a></li>
+            <li><a href="men_braclet.html">Bracelet</a></li>
+            <li><a href="men_earing.html">Earring</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Latest Collections Link with Dropdown -->
+    <a href="javascript:void(0)"  class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="sub_menu pages">
+        <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+        <li><a href="cherryontop.html">Cherry on Top</a></li>
+        <li><a href="loveinparis.html">Love in Paris</a></li>
+        <li><a href="justarrived.html">Just Arrived</a></li>
+        <li><a href="everydaywear.html">Every Day Wear</a></li>
+        <li><a href="officewear.html">Office Wear</a></li>
+        <li><a href="partywear.html">Party Wear</a></li>
+        <li><a href="weddingwear.html">Wedding Wear</a></li>
+        <li><a href="oxidised.html">Oxidised </a></li>
+        <li><a href="silver.html">Silver</a></li>
+      </ul>
+    </div>
+  
+    <a href="offer.html">Offer</a>
+    <a href="about.html">About Us</a>
+  </div>
+  
+        </header>
+
+        <!-- slider section starts -->
+        <div class="slider_area slider_black owl-carousel">
+            <div class="single_slider" data-bgimg="images/slider/1.png">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -20% off this week</p>
+                                <h1>Necklace</h1>
+                                <span>22 Carat gold necklace for wedding</span>
+                                <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/2.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -40% off this week</p>
+                                <h1>Earings and Pendant</h1>
+                                <span>Complete bridal set with white pearls</span>
+                                <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/3.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -10% off this week</p>
+                                <h1>Wedding Rings</h1>
+                                <span>Shankh Jewels Special wedding rings for couples.</span>
+                                <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- slider section ends -->
+
+
+
+
+
+        <!-- Header Section -->
+        <div class="text-center mb-4">
+            <h1 class="mb-3">Thank You for Your Order!</h1>
+            <p class="lead">Your order has been successfully placed.</p>
+            <p class="order-number">Order Number: <strong>#123456</strong></p>
+        </div>
+
+        <div class="container my-4 p-4 single-box">
+          <!-- Order Summary Section -->
+          <div class="card mb-4">
+              <div class="card-header">
+                  <h5>Order Summary</h5>
+              </div>
+              <div class="card-body">
+                  <ul class="list-group mb-3">
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                              <h6 class="my-0">Product name</h6>
+                              <small class="text-muted">Brief description</small>
+                          </div>
+                          <span class="text-muted">₹10000.00</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                              <h6 class="my-0">Second product</h6>
+                              <small class="text-muted">Brief description</small>
+                          </div>
+                          <span class="text-muted">₹5000.00</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                          <div>
+                              <h6 class="my-0">Third item</h6>
+                              <small class="text-muted">Brief description</small>
+                          </div>
+                          <span class="text-muted">₹3000.00</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Subtotal</span>
+                          <strong>₹18000.00</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Shipping</span>
+                          <strong>₹50.00</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Taxes</span>
+                          <strong>₹100.00</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Grand Total</span>
+                          <strong>₹19500.00</strong>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      
+          <!-- Shipping Information Section -->
+          <div class="card mb-4">
+              <div class="card-header">
+                  <h5>Shipping Information</h5>
+              </div>
+              <div class="card-body">
+                  <p>Name: John Doe</p>
+                  <p>Address: 1234 Main St, Apt 101, Springfield, IL 62701</p>
+                  <p>Shipping Method: Standard Shipping (5-7 business days)</p>
+              </div>
+          </div>
+      
+          <!-- Billing Information Section -->
+          <div class="card mb-4">
+              <div class="card-header">
+                  <h5>Billing Information</h5>
+              </div>
+              <div class="card-body">
+                  <p>Billing Address: 1234 Main St, Apt 101, Springfield, IL 62701</p>
+                  <p>Payment Method: Credit Card (**** **** **** 1234)</p>
+              </div>
+          </div>
+      
+          <!-- Customer Information Section -->
+          <div class="card mb-4">
+              <div class="card-header">
+                  <h5>Customer Information</h5>
+              </div>
+              <div class="card-body">
+                  <p>Email: johndoe@example.com</p>
+                  <p>Phone: (123) 456-7890</p>
+                  <p>Estimated Delivery: 5-7 business days</p>
+              </div>
+          </div>
+      
+          <!-- Next Steps Section -->
+          <div class="card mb-4">
+              <div class="card-header">
+                  <h5>Next Steps</h5>
+              </div>
+              <div class="card-body">
+                  <p>Track your order: 
+                      <a href="my orders.html">Track Order</a>
+                  </p>
+                  <p>View your order history by creating an account or signing in: 
+                      <a href="acc.html">My Account</a>
+                  </p>
+                  <p>Need further assistance? Visit our 
+                      <a href="help.html">Customer Support</a> or check our 
+                      <a href="help.html">FAQs</a>.
+                  </p>
+              </div>
+          </div>
+          
+          <!-- Promotions and Offers Section -->
+
+
+<!-- footer section starts -->
+<footer class="footer_widgets footer_black">
+   <div class="container">
+       <div class="footer_top">
+           <div class="row">
+               <div class="col-lg-4 col-md-6 col-sm-8">
+                   <div class="widgets_container contact_us">
+                       <h3>About Shankh Jewels</h3>
+                       <div class="footer_contact">
+                           <p>Address : Shop No 43\3b,<br> Vitthal Mangal Office Below,<br> Somnath Nagar,  Vadgaon Sheri, Pune (411014)</p>
+                           <p>Phone : <a href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                           <p>Email : Shankh Jewelsjewlers@gmail.com</p>
+                           <ul>
+                               <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                               <li><a href="#"><i class="ion-social-snapchat"></i></a></li>
+                               <li><a href="#"><i class="ion-social-whatsapp"></i></a></li>
+                               <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                               <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-2 col-md-6 col-sm-4 col-6">
+                   <div class="widgets_container widget_menu">
+                       <h3>Information</h3>
+                       <div class="footer_menu">
+                           <ul>
+                               <li><a href="about.html">About Us</a></li>
+                               <li><a href="blog.html">Blog</a></li>
+                               <li><a href="Contact.html">Contact</a></li>
+                               <li><a href="#">Services</a></li>
+                               <li><a href="category.html">Collection</a></li>
+                               
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-2 col-md-6 col-sm-5 col-6">
+                   <div class="widgets_container widget_menu">
+                       <h3>My Account</h3>
+                       <div class="footer_menu">
+                           <ul>
+                               <li><a href="account.html">My Account</a></li>
+                               <li><a href="Contact.html">Contact</a></li>
+                               <li><a href="wishlist1.html">Wishlist</a></li>
+                               
+                               <li><a href="checkout.html">Checkout</a></li>
+                               <li><a href="help.html">Frequently Questions</a></li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-4 col-md-6 col-sm-7">
+                   <div class="widgets_container product_widget">
+                       <h3>Top Rated Products</h3>
+                       <div class="simple_product">
+                           <div class="simple_product_items">
+                               <div class="simple_product_thumb">
+                                   <a href="#"><img src="images/product/14.jpg" alt=""></a>
+                               </div>
+                               <div class="simple_product_content">
+                                   <div class="tag_cate">
+                                       <a href="#">Women,</a>
+                                       <a href="#">Earrings</a>
+                                   </div>
+                                   <div class="product_name">
+                                       <h3><a href="#">Bracelet</a></h3>
+                                   </div>
+                                   <div class="product_price">
+                                       <span class="old_price">Rs. 45612.54</span>
+                                       <span class="current_price">Rs. 41612.54</span>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="simple_product_items">
+                               <div class="simple_product_thumb">
+                                   <a href="#"><img src="images/product/28.jpg" alt=""></a>
+                               </div>
+                               <div class="simple_product_content">
+                                   <div class="tag_cate">
+                                       <a href="#">Women,</a>
+                                       <a href="#">Earrings</a>
+                                   </div>
+                                   <div class="product_name">
+                                       <h3><a href="#">Ring</a></h3>
+                                   </div>
+                                   <div class="product_price">
+                                       <span class="old_price">Rs. 75612.54</span>
+                                       <span class="current_price">Rs. 71612.54</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="footer_bottom">
+           <div class="row">
+               <div class="col-12">
+                   <div class="copyright_area">
+                       <p>Copyright &copy; 2020 <a href="#">Shankh Jewels</a> All rights Reserved.<br> Designed by <a href="https://fouriseindia.com">Fourise Software Solutions Pvt. Ltd.</a></p>
+                       <img src="images/icon/papyel2.png" alt="">
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   </div>
+</footer>
+<!-- footer section ends -->
+</div>
+
+
+    <script>
+        
+    // Toggle the search bar
+    document.querySelector('.search_btn a').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.querySelector('.dropdown_search').classList.toggle('show');
+    });
+
+    // Handle dropdown toggles
+    document.querySelectorAll('.dropdown_language > li > a, .dropdown_currency > li > a, .dropdown_links > li > a').forEach(function(dropdownToggle) {
+        dropdownToggle.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.target.nextElementSibling.classList.toggle('show');
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.language, .currency, .top_links, .search_btn')) {
+            document.querySelectorAll('.dropdown_language, .dropdown_currency, .dropdown_links, .dropdown_search').forEach(function(dropdown) {
+                dropdown.classList.remove('show');
+            });
+        }
+    });
+
+
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- JavaScript Bundle with Popper.js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<!-- Add additional sections here -->
+<script> function openNav() {
+  document.getElementById("sidebar").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("sidebar").style.width = "0";
+}
+
+// Dropdown toggle functionality
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+      } else {
+          dropdownContent.style.display = "block";
+      }
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+var items = document.querySelectorAll('.instagram__item.set-bg');
+items.forEach(function(item) {
+  var bgImg = item.getAttribute('data-bgimg');
+  if (bgImg) {
+    item.style.backgroundImage = 'url(' + bgImg + ')';
+  }
+});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Details</title>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details, .images, .wallet, .payment-history, .category-wise, .shop-stats {
+            margin-bottom: 20px;
+        }
+        .details p, .wallet p, .shop-stats p {
+            margin: 0;
+        }
+        .images img {
+            max-width: 200px;
+            margin: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shop Details</h1>
+    </header>
+    <main>
+        <h2 id="shopName">Shop Name</h2>
+        <div class="details">
+            <h3>Details</h3>
+            <p>Address: <span id="shopAddress">123 Street, City</span></p>
+            <p>Owner: <span id="shopOwner">Owner Name</span></p>
+        </div>
+        <div class="images">
+            <h3>Registration Images</h3>
+            <img src="shop.jpg" alt="Shop Photo">
+            <img src="pan.jpg" alt="PAN Card">
+            <img src="aadhar.jpg" alt="Aadhar Card">
+            <img src="payment.jpg" alt="Payment Proof">
+        </div>
+        <div class="wallet">
+            <h3>Wallet</h3>
+            <p>Current Balance: ₹<span id="walletBalance">1000.00</span></p>
+            <p>Total Orders: <span id="totalOrders">10</span></p>
+            <p>Total Wallet Payments: ₹<span id="totalWalletPayments">5000.00</span></p>
+        </div>
+        <div class="payment-history">
+            <h3>Payment History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Transaction ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/01/2024</td>
+                        <td>₹500.00</td>
+                        <td>TXN12345</td>
+                    </tr>
+                    <tr>
+                        <td>01/02/2024</td>
+                        <td>₹500.00</td>
+                        <td>TXN12346</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-wise">
+            <h3>Category-wise Product Count and Order Money</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product Count</th>
+                        <th>Order Money</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Electronics</td>
+                        <td>5</td>
+                        <td>₹5000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Clothing</td>
+                        <td>3</td>
+                        <td>₹3000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Home & Kitchen</td>
+                        <td>2</td>
+                        <td>₹2000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="shop-stats">
+            <h3>Shop Statistics</h3>
+            <p>Shop Revenue: ₹<span id="shopRevenue">10000.00</span></p>
+            <p>Customer Count: <span id="customerCount">100</span></p>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const shopName = params.get('shopName');
+            if (shopName) {
+                document.getElementById('shopName').innerText = shopName;
+                // Fetch and display the actual shop details using shopName
+                // Replace the dummy data below with actual data fetched from your backend
+
+                document.getElementById('shopAddress').innerText = '123 Street, City';
+                document.getElementById('shopOwner').innerText = 'Owner Name';
+                document.getElementById('walletBalance').innerText = '1000.00';
+                document.getElementById('totalOrders').innerText = '10';
+                document.getElementById('totalWalletPayments').innerText = '5000.00';
+
+                // Populate transaction history table
+                const transactionHistory = [
+                    { date: '01/01/2024', amount: '500.00', transactionId: 'TXN12345' },
+                    { date: '01/02/2024', amount: '500.00', transactionId: 'TXN12346' },
+                ];
+                const transactionHistoryTable = document.querySelector('.payment-history tbody');
+                transactionHistoryTable.innerHTML = transactionHistory.map(txn => `
+                    <tr>
+                        <td>${txn.date}</td>
+                        <td>₹${txn.amount}</td>
+                        <td>${txn.transactionId}</td>
+                    </tr>
+                `).join('');
+
+                // Populate category-wise product count and order money table
+                const categoryWiseData = [
+                    { category: 'Electronics', count: 5, money: '5000.00' },
+                    { category: 'Clothing', count: 3, money: '3000.00' },
+                    { category: 'Home & Kitchen', count: 2, money: '2000.00' },
+                ];
+                const categoryWiseTable = document.querySelector('.category-wise tbody');
+                categoryWiseTable.innerHTML = categoryWiseData.map(cat => `
+                    <tr>
+                        <td>${cat.category}</td>
+                        <td>${cat.count}</td>
+                        <td>₹${cat.money}</td>
+                    </tr>
+                `).join('');
+
+                document.getElementById('shopRevenue').innerText = '10000.00';
+                document.getElementById('customerCount').innerText = '100';
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Details</title>
+    <script></script>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details, .images, .wallet, .payment-history, .category-wise, .shop-stats {
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .details p, .wallet p, .shop-stats p {
+            margin: 0 0 10px;
+        }
+        .images img {
+            max-width: 200px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .wallet p, .shop-stats p {
+            font-size: 1.1em;
+        }
+        .wallet p span, .shop-stats p span {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        th, td {
+            border-radius: 4px;
+        }
+        .box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .box div {
+            flex: 1;
+            min-width: 150px;
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .box div span {
+            display: block;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 600px) {
+            .box div {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shop Details</h1>
+    </header>
+    <main>
+        <h2 id="shopName">Shop Name</h2>
+        <div class="details">
+            <h3>Details</h3>
+            <p>Address: <span id="shopAddress">123 Street, City</span></p>
+            <p>Owner: <span id="shopOwner">Owner Name</span></p>
+        </div>
+        <div class="images">
+            <h3>Registration Images</h3>
+            <img src="shop.jpg" alt="Shop Photo">
+            <img src="pan.jpg" alt="PAN Card">
+            <img src="aadhar.jpg" alt="Aadhar Card">
+            <img src="payment.jpg" alt="Payment Proof">
+        </div>
+        <div class="wallet">
+            <h3>Wallet</h3>
+            <div class="box">
+                <div>
+                    <span id="walletBalance">1000.00</span>
+                    Current Balance
+                </div>
+                <div>
+                    <span id="totalOrders">10</span>
+                    Total Orders
+                </div>
+                <div>
+                    <span id="totalWalletPayments">5000.00</span>
+                    Total Wallet Payments
+                </div>
+            </div>
+        </div>
+        <div class="payment-history">
+            <h3>Payment History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Transaction ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/01/2024</td>
+                        <td>₹500.00</td>
+                        <td>TXN12345</td>
+                    </tr>
+                    <tr>
+                        <td>01/02/2024</td>
+                        <td>₹500.00</td>
+                        <td>TXN12346</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-wise">
+            <h3>Category-wise Product Count and Order Money</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Product Count</th>
+                        <th>Order Money</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Electronics</td>
+                        <td>5</td>
+                        <td>₹5000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Clothing</td>
+                        <td>3</td>
+                        <td>₹3000.00</td>
+                    </tr>
+                    <tr>
+                        <td>Home & Kitchen</td>
+                        <td>2</td>
+                        <td>₹2000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="shop-stats">
+            <h3>Shop Statistics</h3>
+            <div class="box">
+                <div>
+                    <span id="shopRevenue">10000.00</span>
+                    Shop Revenue
+                </div>
+                <div>
+                    <span id="customerCount">100</span>
+                    Customer Count
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const shopName = params.get('shopName');
+            if (shopName) {
+                document.getElementById('shopName').innerText = shopName;
+                // Fetch and display the actual shop details using shopName
+                // Replace the dummy data below with actual data fetched from your backend
+
+                document.getElementById('shopAddress').innerText = '123 Street, City';
+                document.getElementById('shopOwner').innerText = 'Owner Name';
+                document.getElementById('walletBalance').innerText = '1000.00';
+                document.getElementById('totalOrders').innerText = '10';
+                document.getElementById('totalWalletPayments').innerText = '5000.00';
+
+                // Populate transaction history table
+                const transactionHistory = [
+                    { date: '01/01/2024', amount: '500.00', transactionId: 'TXN12345' },
+                    { date: '01/02/2024', amount: '500.00', transactionId: 'TXN12346' },
+                ];
+                const transactionHistoryTable = document.querySelector('.payment-history tbody');
+                transactionHistoryTable.innerHTML = transactionHistory.map(txn => `
+                    <tr>
+                        <td>${txn.date}</td>
+                        <td>₹${txn.amount}</td>
+                        <td>${txn.transactionId}</td>
+                    </tr>
+                `).join('');
+
+                // Populate category-wise product count and order money table
+                const categoryWiseData = [
+                    { category: 'Electronics', count: 5, money: '5000.00' },
+                    { category: 'Clothing', count: 3, money: '3000.00' },
+                    { category: 'Home & Kitchen', count: 2, money: '2000.00' },
+                ];
+                const categoryWiseTable = document.querySelector('.category-wise tbody');
+                categoryWiseTable.innerHTML = categoryWiseData.map(cat => `
+                    <tr>
+                        <td>${cat.category}</td>
+                        <td>${cat.count}</td>
+                        <td>₹${cat.money}</td>
+                    </tr>
+                `).join('');
+
+                document.getElementById('shopRevenue').innerText = '10000.00';
+                document.getElementById('customerCount').innerText = '100';
+            }
+        });
+    </script>
+</body>
+</html>
+

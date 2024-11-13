@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
+      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/f101be23f6.js" crossorigin="anonymous"></script>
+    <script src="js/navigation.js"></script>
+</head>
+<style>
+body{
+    font-family: sans-serif;
+}
+
+/* Who We Are Section */
+.who-we-are {
+    padding: 60px 20px; /* Padding for spacing inside the section */
+    text-align: center; /* Center-align text */
+    opacity: 0; /* Hidden opacity for animation */
+    transform: translateY(20px); /* Slight downward shift */
+    animation: fadeInUp 1s ease-out forwards; /* Apply animation */
+}
+
+.who-we-are h2 {
+    font-size: 1.8rem; /* Font size for heading */
+    margin-bottom: 15px; /* Margin below heading */
+    position: relative; /* Positioning for underline effect */
+    display: inline-block; /* Inline block for underline positioning */
+    padding-bottom: 8px; /* Padding below heading */
+    font-weight: 700; /* Bold text */
+    color: #000; /* Black color for heading */
+}
+
+.who-we-are p {
+    font-size: 1rem; /* Font size for paragraphs */
+    line-height: 1.5; /* Line height for readability */
+    color: #003e89; /* Black color for text */
+    max-width: 800px; /* Maximum width for alignment */
+    margin: 0 auto; /* Center align paragraphs */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mission and Promise Section */
+.mission-promise {
+    padding: 60px 20px; /* Padding for spacing */
+    opacity: 0; /* Hidden opacity for animation */
+    transform: translateY(20px); /* Slight downward shift */
+    animation: fadeInUp 1s ease-out forwards; /* Apply animation */
+}
+@media only screen and  (max-width:360px) and (max-width:756px){
+    .mission-promise {
+        margin-top: -80px;
+    }
+    .why-choose-us {
+    background: aliceblue;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+    margin-top: -100px;
+}
+}
+
+.mission-promise h2 {
+    font-size: 1.8rem; /* Font size for heading */
+    margin-bottom: 15px; /* Margin below heading */
+    position: relative; /* Positioning for underline effect */
+    display: inline-block; /* Inline block for underline positioning */
+    padding-bottom: 8px; /* Padding below heading */
+    font-weight: 700; /* Bold text */
+    color: #000; /* Black color for heading */
+}
+
+.mission-promise p {
+    font-size: 1rem; /* Font size for paragraphs */
+    line-height: 1.5; /* Line height for readability */
+    color: #003e89; /* Black color for text */
+    max-width: 800px; /* Maximum width for alignment */
+    margin: 0 auto; /* Center align paragraphs */
+}
+
+.mission-promise ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+}
+
+.mission-promise li {
+    font-size: 1rem; /* Font size for list items */
+    line-height: 1.6; /* Line height for readability */
+    color: #003e89; /* Black color for list items */
+    margin-bottom: 10px; /* Margin below each item */
+    position: relative; /* Relative positioning for checkmark alignment */
+    padding-left: 30px; /* Add padding to the left for space */
+}
+
+.mission-promise ul li::before {
+    content: '✓';
+    position: absolute; /* Absolute positioning for checkmark */
+    left: 0; /* Position at left of item */
+    top: 50%; /* Center vertically in list item */
+    transform: translateY(-50%); /* Center checkmark vertically */
+    color: #000000; /* Black color for checkmark */
+    font-weight: bold;
+}
+
+/* Separate boxes for Mission and Promise */
+.mission-box, .promise-box {
+    border: 1px solid #ddd; /* Light border */
+    padding: 20px; /* Padding inside the box */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 10px; /* Margin around boxes */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color for boxes */
+    flex: 1; /* Flexbox property to allow growing/shrinking */
+    max-width: 450px; /* Maximum width for each box */
+}
+
+/* Flexbox container */
+.mission-promise .row {
+    display: flex;
+    justify-content: center; /* Center the boxes horizontally */
+    align-items: center; /* Center the boxes vertically */
+}
+
+
+/* Our Team Section */
+.our-team {
+    padding: 60px 20px; /* Padding for spacing */
+    text-align: center; /* Center-align text */
+}
+
+.our-team h2 {
+    font-size: 1.8rem; /* Font size for the heading */
+    margin-bottom: 30px; /* Margin below the heading */
+    color: #000; /* Black color for heading */
+    font-weight: 700; /* Bold text */
+}
+
+.our-team .row {
+    display: flex; /* Flexbox for layout */
+    flex-wrap: wrap; /* Wrap items to the next line */
+    justify-content: center; /* Center items horizontally */
+}
+
+.our-team .col-md-3 {
+    margin-bottom: 30px; /* Margin below each team member */
+}
+
+.our-team img {
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Cover the image within the circle */
+    border-radius: 50%; /* Circular shape */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.our-team img:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.our-team h4 {
+    margin-top: 10px; /* Margin above name */
+    font-size: 1.1rem; /* Font size for names */
+    font-weight: 700; /* Bold text */
+    color: #333; /* Dark gray color for names */
+}
+
+.our-team p {
+    font-size: 0.9rem; /* Font size for roles */
+    color: #666; /* Lighter gray color for roles */
+}
+
+
+/* Why Choose Us Section */
+.why-choose-us {
+    background:aliceblue;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.why-choose-us h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #000;
+}
+
+.why-choose-item {
+    margin-bottom: 40px;
+}
+
+.why-choose-img {
+    width: 300px;
+    height: 300px;
+    border: 5px solid #ffffff; /* White frame around the image */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.why-choose-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.why-choose-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+    margin-bottom: 0;
+}
+
+/* Contact Us Section */
+.contact-us {
+    background-color: aliceblue;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.contact-us h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #000;
+}
+
+.contact-us p.lead {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+.contact-info .contact-item {
+    margin-bottom: 40px;
+   
+}
+
+
+.contact-info .contact-icon {
+    margin-bottom: 10px;
+    
+}
+.contact-info .contact-icon img {
+    width: 40px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+}
+.contact-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+    margin-bottom: 0;
+}
+/*features**/
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #1C0C29; /* Ensure this matches your existing body background */
+    color: #FFFFFF;
+    margin: 0; /* Zero margin */
+    padding: 40px 20px; /* Add some padding for better spacing */
+    padding-left: 10%; /* Add left padding for the whole section */
+    box-sizing: border-box; /* Include padding in the width and height */
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    width: 45%; /* Adjust the width as needed */
+    margin: 20px 0; /* Add some margin for spacing */
+}
+
+.feature img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px; /* Space between icon and text */
+}
+
+.feature-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 0; /* Ensure no extra margin */
+}
+
+/* Example Layout Adjustment */
+.collage-item:nth-child(1) {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+.collage-item:nth-child(2) {
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 2;
+}
+
+.collage-item:nth-child(3) {
+    grid-column: 5 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.collage-item:nth-child(4) {
+    grid-column: 6 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.collage-item:nth-child(5) {
+    grid-column: 7 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.collage-item:nth-child(6) {
+    grid-column: 5 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.collage-item:nth-child(7) {
+    grid-column: 6 / span 1;
+    grid-row: 2 / span 1;
+}
+
+
+.social1 ul li:hover {
+            transform: translate(80px, 0);
+            background: rgba(232, 8, 8, 0.4);
+        }
+
+        .fa-snapchat-ghost:before, .fa-snapchat:before {
+        content: "\f2ab";
+        color: black;
+        }
+        @media (max-width: 765px) {
+            .social1 {
+                width: 30px;
+            }
+        }
+    
+   
+</style>
+</head>
+
+<body>
+
+    <div class="home_black_version">
+        <header class="header_area header_black">
+            <!-- header top starts -->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+            
+                                  <div class="col-lg-6 col-md-6 st">
+                            <div class="image-container">
+                                <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid" 
+                                     alt="Shiny Diamond Jewelry Logo">
+                                <p>Shankh Jewels</p>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li class="top_links">
+                                        <a href="#"><span id="user-email">My Account</span> <i
+                                                class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li id="login"><a href="login.html">Login</a></li>
+                                            <li><a href="acc.html">Account dashboard</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
+                                            <li><a href="wishlist1.html">Wishlist</a></li>
+                                            <li id="logout"><a  onclick="logout()">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- header top ends -->
+    
+    
+            <!-- header bottom starts -->
+<div class="header_bottom sticky-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-6 col-md-6 col-6">
+                <!-- Toggle Button for Mobile -->
+                <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+                
+                <!-- Main Menu (Desktop Only) -->
+                <div class="main_menu_inner">
+                    <div class="main_menu">
+                        <nav>
+                            <ul>
+                                <li class="active">
+                                    <a href="index.html">Home </a>
+                                    <!-- <ul class="sub_menu">
+                                        <li><a href="#">Banner</a></li>
+                                        <li><a href="#">Featured</a></li>
+                                        <li><a href="#">Collection</a></li>
+                                        <li><a href="#">Best Selling</a></li>
+                                        <li><a href="#">News</a></li>
+                                    </ul> -->
+                                </li>
+                                <li>
+                                    <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                    <ul class="mega_menu" id="main_menu">
+                                        <!-- Dynamic categories will be injected here -->
+                                    </ul>
+
+                                    <script>
+                                        const fetchAndDisplayCategories = async () => {
+                                            try {
+                                                const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
+                                                if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                const categories = await response.json();
+                                                const mainMenu = document.getElementById('main_menu');
+                                                mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                // Organize categories into a map by main category
+                                                const categoryMap = {};
+
+                                                categories.forEach(category => {
+                                                    const mainCategory = category.mainCategory;
+                                                    const subCategory = category.name;
+
+                                                    if (mainCategory === "Men" || mainCategory === "Women") {
+                                                        if (!categoryMap[mainCategory]) {
+                                                            categoryMap[mainCategory] = [];
+                                                        }
+                                                        categoryMap[mainCategory].push(subCategory);
+                                                    }
+                                                });
+
+                                                for (const mainCategory in categoryMap) {
+                                                    const mainCategoryItem = document.createElement('li');
+                                                    const subCategories = categoryMap[mainCategory];
+
+
+                                                    mainCategoryItem.innerHTML = `
+                                                      <a href="${mainCategory.toLowerCase()}.html">${mainCategory} <i class="ion-chevron-down"></i></a>
+                                                      <ul>
+                                                          ${subCategories.map(sub => `<li><a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">${sub}</a></li>`).join('')}
+                                                      </ul>
+                                                  `;
+
+                                                    mainMenu.appendChild(mainCategoryItem);
+                                                }
+                                            } catch (error) {
+                                                console.error('Error fetching categories:', error);
+                                            }
+                                        };
+
+                                        fetchAndDisplayCategories();
+                                    </script>
+
+
+
+                                <li>
+                                    <a href="latestcollection.html">Latest Collections <i
+                                            class="ion-chevron-down"></i></a>
+                                    <ul class="mega_menu" id="main_menu1">
+                                        <!-- Dynamic categories will be injected here -->
+                                    </ul>
+
+                                    <script>
+                                        const fetchAndDisplayCategories1 = async () => {
+                                            try {
+                                                const response = await fetch('http://localhost:3000/api/categories');
+                                                if (!response.ok) throw new Error('Failed to fetch categories.');
+
+                                                const categories = await response.json();
+                                                const mainMenu = document.getElementById('main_menu1');
+                                                mainMenu.innerHTML = ''; // Clear existing categories
+
+                                                // Organize categories into a map by main category
+                                                const categoryMap = {};
+
+                                                categories.forEach(category => {
+                                                    const mainCategory = category.mainCategory; // e.g., "Men", "Women", or "Latest Collection"
+                                                    const subCategory = category.name; // e.g., "Diamond Ring", "Ring", etc.
+
+                                                    // Filter for "Latest Collection" main category
+                                                    if (mainCategory === "Latest Collection") {
+                                                        if (!categoryMap[mainCategory]) {
+                                                            categoryMap[mainCategory] = [];
+                                                        }
+
+                                                        // Add subcategory to the main category
+                                                        categoryMap[mainCategory].push(subCategory);
+                                                    }
+                                                });
+
+                                                // Create the "Latest Collection" list
+                                                for (const mainCategory in categoryMap) {
+                                                    const mainCategoryItem = document.createElement('li');
+                                                    const subCategories = categoryMap[mainCategory];
+
+                                                    // Render main category with subcategories linking to category-post.html
+                                                    mainCategoryItem.innerHTML = `
+                                                        <ul>
+                                                            ${subCategories.length ? subCategories.map(sub => `
+                                                                <li>
+                                                                    <a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">
+                                                                        ${sub}
+                                                                    </a>
+                                                                </li>`).join('') : '<li>No items available</li>'}
+                                                        </ul>
+                                                    `;
+
+                                                    mainMenu.appendChild(mainCategoryItem);
+                                                }
+                                            } catch (error) {
+                                                console.error('Error fetching categories:', error);
+                                            }
+                                        };
+
+                                        // Call the function to load categories
+                                        fetchAndDisplayCategories1();
+                                    </script>
+
+                                </li>
+                                <li><a href="offer.html">Offer</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-6">
+                <div class="middel_right">
+                    <div class="search_btn">
+                        <form action="#">
+                            <input type="text" placeholder="Search Product ....">
+                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+                    </div>
+                    
+                    <!-- <div class="wishlist_btn">
+                        <a href="#"><i class="ion-heart"></i></a>
+                    </div> -->
+                    <!-- <div class="cart_link">
+                        <a href="#"><i class="ion-android-cart"></i>
+                            <span class="cart_text_quantity">Rs.67,598</span> -->
+                            <!-- <i class="ion-chevron-down"></i>
+                        </a>
+                        <span class="cart_quantity">2</span>
+  
+                        mini cart
+                        <div class="mini_cart">
+                            <div class="cart_close">
+                                <div class="cart_text">
+                                    <h3>cart</h3>
+                                </div>
+                                <div class="mini_cart_close">
+                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Earings</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 54,599</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Bracelet</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 12,999</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_total">
+                                <span>Subtotal : </span>
+                                <span>Rs. 67,598</span>
+                            </div>
+                            <div class="mini_cart_footer">
+                                <div class="cart_button view_cart">
+                                    <a href="#">View Cart</a>
+                                </div>
+                                <div class="cart_button checkout">
+                                    <a href="#" class="active">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mini cart ends  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- header bottom ends -->
+  
+  <!-- Sidebar Structure -->
+  <!-- Sidebar Structure -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+  
+    <!-- Category Dropdown -->
+    <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="mega_menu">
+        <li>
+          <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="earing.html">Earring</a></li>
+            <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+            <li><a href="rings.html">Rings</a></li>
+            <li><a href="anklets.html">Anklets</a></li>
+            <li><a href="braclet.html">Bracelets</a></li>
+            <li class="has-submenu">
+              <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+              <ul class="submenu-inline">
+                <li><a href="jewelleryset.html">Jewellery Set</a></li>
+                <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+                <li><a href="toerings.html">Toe Rings</a></li>
+                <li><a href="bangals.html">Bangles</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="men_ring.html">Ring</a></li>
+            <li><a href="men_pendant.html">Pendant & Chains</a></li>
+            <li><a href="men_braclet.html">Bracelet</a></li>
+            <li><a href="men_earing.html">Earring</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Latest Collections Link with Dropdown -->
+    <a href="javascript:void(0)"  class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="sub_menu pages">
+        <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+        <li><a href="cherryontop.html">Cherry on Top</a></li>
+        <li><a href="loveinparis.html">Love in Paris</a></li>
+        <li><a href="justarrived.html">Just Arrived</a></li>
+        <li><a href="everydaywear.html">Every Day Wear</a></li>
+        <li><a href="officewear.html">Office Wear</a></li>
+        <li><a href="partywear.html">Party Wear</a></li>
+        <li><a href="weddingwear.html">Wedding Wear</a></li>
+        <li><a href="oxidised.html">Oxidised </a></li>
+        <li><a href="silver.html">Silver</a></li>
+      </ul>
+    </div>
+  
+    <a href="offer.html">Offer</a>
+    <a href="about.html">About Us</a>
+  </div>
+  
+        </header>
+
+        <!-- slider section starts -->
+        <div class="slider_area slider_black owl-carousel">
+            <div class="single_slider" data-bgimg="images/slider/1.png">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -20% off this week</p>
+                                <h1>Necklace</h1>
+                                <span>22 Carat gold necklace for wedding</span>
+                                <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/2.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -40% off this week</p>
+                                <h1>Earings and Pendant</h1>
+                                <span>Complete bridal set with white pearls</span>
+                                <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/3.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -10% off this week</p>
+                                <h1>Wedding Rings</h1>
+                                <span>Shankh Jewels Special wedding rings for couples.</span>
+                                <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- slider section ends -->
+  <!-- Header Section -->
+
+<main>
+        <!-- Combined Container -->
+        <div class="combined-container">
+            <!-- Who We Are Section -->
+            <section class="who-we-are py-5">
+                <div class="text-center">
+                    <h2 class="mb-4">Who We Are</h2>
+                    <p>"Our journey began with a simple idea: to revolutionize the jewellery market by making elegant and modern pieces accessible for everyone. We recognized a gap in finding high-quality, stylish jewellery that suits both everyday wear and special moments without breaking the bank.
+
+                        Shankh Jewels was born to bridge this gap, offering a curated selection of contemporary jewellery that blends affordability with sophistication. Our mission is to provide exceptional designs that fit seamlessly into your daily life and personal style.
+                        
+                        Today, Shankh Jewels is a vibrant, growing startup committed to delivering innovation and elegance. We proudly serve a diverse customer base through our online platform and expanding retail presence, striving to make beautiful jewellery accessible to all."</div>
+                    </p> </section>
+    
+            <!-- Our Mission and Our Promise Section -->
+            <section class="mission-promise py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="mission-box text-center">
+                                <h2>Our Mission</h2>
+                                <p>Our mission is to democratize elegance by making exquisite jewellery accessible to everyone. We strive to craft pieces that not only adorn but also uplift, empowering each woman to feel both radiant and valued.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="promise-box text-center">
+                                <h2>Our Promise</h2>
+                                <p>We started our company on three simple premises:</p>
+                                <ul>
+                                    <li>Our designs are innovative and contemporary, while honoring timeless elegance and craftsmanship.</li>
+                                    <li>We continually seek fresh and creative approaches, from our unique jewellery designs to the exceptional service we provide</li>
+                                    <li>We believe in clear and honest communication with our customers, ensuring transparency in pricing and policies.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+
+
+    <!-- Our Team Section -->
+    <section class="our-team py-5 text-center">
+        <h2>Our Team</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="images/mithun.png" class="img-fluid rounded-circle" alt="Team Member 1">
+                <h4>Mithun Sacheti</h4>
+                <p>Founder and MD</p>
+            </div>
+            <div class="col-md-3">
+                <img src="images/guru.png" class="img-fluid rounded-circle" alt="Team Member 2">
+                <h4>Gurukeerthi</h4>
+                <p>Co-Founder and SVP Technology</p>
+            </div>
+            <div class="col-md-3">
+                <img src="images/avnish.png" class="img-fluid rounded-circle" alt="Team Member 3">
+                <h4>Avnish Anand</h4>
+                <p>Chief Operating Officer</p>
+            </div>
+            <div class="col-md-3">
+                <img src="images/atul.png" class="img-fluid rounded-circle" alt="Team Member 4">
+                <h4>Atul Sinha</h4>
+                <p>SVP Retail</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!----why choose us -->
+<section class="why-choose-us py-5">
+    <div class="container text-center">
+        <h2>Why Choose Us</h2>
+        <div class="why-choose-item">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="images/innovative.jpg" alt="Innovative Designs" class="why-choose-img">
+                </div>
+                <div class="col-md-8 text-left">
+                    <h3>Innovative Designs</h3>
+                    <p>We bring you unique and contemporary jewelry designs that stand out. Our pieces are crafted with precision and attention to detail, ensuring that you always have something special to wear.</p>
+                </div>
+            </div>
+        </div>
+        <div class="why-choose-item">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="images/material.jpg" alt="High-Quality Materials" class="why-choose-img">
+                </div>
+                <div class="col-md-8 text-left">
+                    <h3>High-Quality Materials</h3>
+                    <p>Our jewelry is made from the finest materials, ensuring durability and longevity. We use ethically sourced gemstones and precious metals to create beautiful pieces you can cherish forever.</p>
+                </div>
+            </div>
+        </div>
+        <div class="why-choose-item">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="images/customerservice.jpg" alt="Exceptional Customer Service" class="why-choose-img">
+                </div>
+                <div class="col-md-8 text-left">
+                    <h3>Exceptional Customer Service</h3>
+                    <p>We are committed to providing an exceptional shopping experience. Our customer service team is always ready to assist you with any queries or concerns, ensuring a seamless and enjoyable experience.</p>
+                </div>
+            </div>
+        </div>
+        <div class="why-choose-item">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="images/price.jpg" alt="Transparent Pricing" class="why-choose-img">
+                </div>
+                <div class="col-md-8 text-left">
+                    <h3>Transparent Pricing</h3>
+                    <p>At Silver Story, we believe in transparency. Our pricing is straightforward, with no hidden costs. We aim to provide the best value for your money, ensuring that you always get what you pay for.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--features-->
+
+<div class="features-container">
+    <div class="feature">
+        <img src="icons/shipping.png" alt="Icon 1">
+        <div class="feature-text">
+            <h3>100% Certified & Free Shipping</h3>
+            <p>Our jewellery always comes with a certificate of authentication.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <img src="icons/refund.png" alt="Icon 2">
+        <div class="feature-text">
+            <h3>15 Day Money-Back</h3>
+            <p>Get 100% refund if you don't like your jewellery.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <img src="icons/exchange.png" alt="Icon 3">
+        <div class="feature-text">
+            <h3>Easy Exchange</h3>
+            <p>Effortless exchanges with a simple process.</p>
+        </div>
+    </div>
+    <div class="feature">
+        <img src="icons/warranty.png" alt="Icon 4">
+        <div class="feature-text">
+            <h3>One Year Warranty*</h3>
+            <p>If your jewellery has a defect, we will fix it.</p>
+        </div>
+    </div>
+</div>
+
+<!--contact us-->
+<section class="contact-us py-5">
+    <div class="container text-center">
+        <h2>Contact Us</h2>
+        <p class="lead">We'd love to hear from you! Whether you have a question about our products, need assistance with your order, or just want to share your feedback, our team is here to help.</p>
+        
+        <div class="contact-info">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Add your icon image here -->
+                            <img src="icons/phone.png" alt="Phone Icon">
+                        </div>
+                        <h3>Phone</h3>
+                        <p>Call us anytime at:</p>
+                        <p><strong>(+91)8329566392</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Add your icon image here -->
+                            <img src="icons/email.png" alt="Email Icon">
+                        </div>
+                        <h3>Email</h3>
+                        <p>Send us an email at:</p>
+                        <p><strong>Shankh Jewelsjewlers@gmail.com</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Add your icon image here -->
+                            <img src="icons/location.png" alt="Location Icon">
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Come visit our office at:</p>
+                        <p><strong>Shop No 43\3b, Vitthal Mangal Office Below, Somnath Nagar,  Vadgaon Sheri, Pune (411014)</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Add your icon image here -->
+                            <img src="icons/working.png" alt="Working Hours Icon">
+                        </div>
+                        <h3>Working Hours</h3>
+                        <p>Our customer service team is available 24/7 to assist you:</p>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Add your icon image here -->
+                            <img src="icons/social.png" alt="Social Media Icon">
+                        </div>
+                        <h3>Follow Us</h3>
+                        <p>Stay connected and follow us on our social media channels for the latest updates and promotions:</p>
+                        <div class="social-icons">
+                            <a href="https://facebook.com" target="_blank">
+                                <img src="icons/facebook.png" alt="Facebook" width="24" height="24">
+                            </a>
+                            <a href="https://youtube.com" target="_blank">
+                                <img src="icons/youtube.png" alt="YouTube" width="24" height="24">
+                            </a>
+                            <a href="https://twitter.com" target="_blank">
+                                <img src="icons/twitter.png" alt="Twitter" width="24" height="24">
+                            </a>
+                            <a href="https://instagram.com" target="_blank">
+                                <img href="https://www.instagram.com/jewelsshankh?utm_source=qr&igsh=ZnZjbXVldnFpdmJ3" src="icons/instagram.png" alt="Instagram" width="24" height="24">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</section>
+<!--Social Icons-->
+<div class="social1" style="position: fixed; bottom: 20px; width:35px; z-index: 1;">
+  <ul style="padding: 0px; transform: translate(-270px, 0);">
+      <li class="youtube" style="background-color: #FF0000; display: block; margin: 5px; width: 302px; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="#" target="_blank" style="color: #fff; text-decoration: none;">YouTube <i class="fa fa-youtube" style="margin-left: 2px; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 17px; background-color: #fff; color: #FF0000;"></i></a>
+      </li>
+      <li style="display: block; margin: 5px; background: #25d366; width: 302px; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="https://wa.me/8329566392" target="_blank" style="color: #fff; text-decoration: none;">WhatsApp <i class="fa fa-whatsapp" style="margin-left: 0px; color: #25d366; background: #fff; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 20px; transform: rotate(0deg);"></i></a>
+      </li>
+      <li style="display: block; margin: 5px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); width: 302px;; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="#" target="_blank" style="color: #fff; text-decoration: none;">Instagram <i class="fa fa-instagram" style="margin-left: 2px; color: #000; background: #fff; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 20px; transform: rotate(0deg);"></i></a>
+      </li>
+      <!-- <li style="display: block; margin: 5px; background: #0077b5; width: 302px; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="#" target="_blank" style="color: #fff; text-decoration: none;">LinkedIn <i class="fa fa-linkedin" style="margin-left: 2px; color: #0077b5; background: #fff; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 20px; transform: rotate(0deg);"></i></a>
+      </li> -->
+      <li style="display: block; margin: 5px; background: #3b5998; width: 302px; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="#" target="_blank" style="color: #fff; text-decoration: none;">Facebook <i class="fa fa-facebook" style="margin-left: 2px; color: #3b5998; background: #fff; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 20px; transform: rotate(0deg);"></i></a>
+      </li>
+      <li class="snapchat" style="background-color: #FFFC00; display: block; margin: 5px; width: 302px; text-align: right; padding: 8px; border-radius: 0 30px 30px 0; transition: all 1s;">
+          <a href="#" target="_blank" style="color: black; text-decoration: none;">Snapchat <i class="fa fa-snapchat-ghost" style="margin-left: 2px; padding: 4px; border-radius: 50%; width: 25px; height: 25px; font-size: 20px; background-color: #fff; color: #FFFC00;"></i></a>
+      </li>
+  </ul>
+</div>
+
+
+</div>
+
+   
+</main>
+    <!-- Add additional sections here -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+     <!-- Add additional sections here -->
+<script> function openNav() {
+  document.getElementById("sidebar").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("sidebar").style.width = "0";
+}
+
+// Dropdown toggle functionality
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+      } else {
+          dropdownContent.style.display = "block";
+      }
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+var items = document.querySelectorAll('.instagram__item.set-bg');
+items.forEach(function(item) {
+  var bgImg = item.getAttribute('data-bgimg');
+  if (bgImg) {
+    item.style.backgroundImage = 'url(' + bgImg + ')';
+  }
+});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* Container adjustments */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Form container (align left) */
+.form-left {
+    width: 100%; /* or a custom width like 70% if you prefer */
+}
+
+/* Order summary container (align right) */
+.order-summary-right {
+    width: 100%; /* or a custom width like 30% if you prefer */
+}
+
+.card-header h5 {
+    text-align: center;
+}
+
+/* Additional styling if needed */
+input, select {
+    margin-bottom: 10px;
+}
+
+button.btn-secondary {
+    margin-left: auto;
+}

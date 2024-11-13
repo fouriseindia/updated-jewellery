@@ -1,0 +1,883 @@
+
+/********************************************************************************/
+
+/*************************************over***************************************************/
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll on the entire page */
+}
+
+.horizontal-scroll-wrapper {
+  overflow-x: auto; /* Enable horizontal scrolling only inside this container */
+  white-space: nowrap; /* Prevent wrapping of content */
+  width: 100%; /* Full width of the container */
+  padding: 20px 20px; /* Optional padding for spacing */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+  overflow-y: hidden; /* Hide vertical scrollbar, if any */
+}
+
+/* Hide horizontal scrollbar */
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.horizontal-scroll-wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.horizontal-scroll-container {
+  display: flex; /* Use flexbox to align cards horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+.card {
+  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+  width: 200px; /* Fixed width for all cards */
+  margin-right: 15px; /* Space between cards */
+  background: #fff; /* Background color for the card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card */
+  overflow: hidden; /* Hide overflow for clean edges */
+  display: flex; /* Use flexbox for the card layout */
+  flex-direction: column; /* Arrange contents in a column */
+}
+
+.card img {
+  width: 100%; /* Ensure image fills the card width */
+  height: 200px; /* Fixed height for all images */
+  object-fit: cover; /* Ensure images are uniformly sized */
+  display: block; /* Remove extra space below image */
+}
+
+.card-content {
+  padding: 20px; /* Adjust padding inside the card */
+  flex: 1; /* Allow content to grow and fill the space */
+  display: flex; /* Use flexbox for the content layout */
+  flex-direction: column; /* Arrange contents in a column */
+  justify-content: center; /* Center content vertically */
+
+}
+
+.card-content h2 {
+  margin: 0; /* Remove default margin */
+  font-size: 16px; /* Adjust font size for card title */
+  color: #333; /* Text color */
+}
+
+.card-content p {
+  margin: 8px 0 0; /* Adjust margin for description text */
+  font-size: 12px; /* Adjust font size for description */
+  color: #666; /* Text color */
+}
+
+.shop-by-colour {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 80px; /* Full viewport height for vertical centering */
+}
+
+.shop-by-colour h2 {
+  font-size: 24px; /* Font size for the heading */
+  color: #000000; /* Text color */
+  margin: 0; /* Remove default margin */
+}
+
+.shop-content {
+  text-align: center; /* Center text and image within the content */
+}
+
+.silver-image {
+  width: 70%; /* Set image width to be a significant portion of the container */
+  max-width: 1000px; /* Maximum width of the image */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure it is treated as a block element */
+  margin: 0 auto 20px auto; /* Center the image horizontally and add space below it */
+}
+
+/* Very Small Devices (max-width: 360px) */
+@media (max-width: 360px) {
+  .horizontal-scroll-wrapper {
+    padding: 5px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .card {
+    width: 130px; /* Further decreased width for very small devices */
+    height: auto;
+    margin: 0 10px 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 100px; /* Further decreased height for images */
+  }
+
+  .card-content {
+    padding: 5px;
+  }
+
+  .card-content h2 {
+    font-size: 12px;
+  }
+
+  .shop-by-colour {
+    height: 40px; /* Reduced height for very small screens */
+  }
+
+  .shop-by-colour h2 {
+    font-size: 12px;
+  }
+
+  .silver-image {
+    width: 85%;
+  }
+}
+
+/* Small Devices (max-width: 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+  .horizontal-scroll-wrapper {
+    padding: 5px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .card {
+    width: 140px;
+    height: auto;
+    margin-right: 0 10px 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 120px;
+  }
+
+  .card-content {
+    padding: 5px;
+  }
+
+  .card-content h2 {
+    font-size: 12px;
+  }
+
+  .shop-by-colour {
+    height: 50px;
+  }
+
+  .shop-by-colour h2 {
+    font-size: 14px;
+  }
+
+  .silver-image {
+    width: 90%;
+  }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .horizontal-scroll-wrapper {
+    padding: 10px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card {
+    width: 150px;
+    height: auto;
+    margin-right: 0 10px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-content h2 {
+    font-size: 14px;
+  }
+
+  .shop-by-colour {
+    height: 60px;
+  }
+
+  .shop-by-colour h2 {
+    font-size: 18px;
+  }
+
+  .silver-image {
+    width: 80%;
+  }
+}
+
+/* Tablet Styles (max-width: 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+  .horizontal-scroll-wrapper {
+    padding: 15px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .card {
+    width: 220px;
+    height: auto;
+    margin-right: 0 15px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 160px;
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-content h2 {
+    font-size: 16px;
+  }
+
+  .shop-by-colour {
+    height: 70px;
+  }
+
+  .shop-by-colour h2 {
+    font-size: 20px;
+  }
+
+  .silver-image {
+    width: 85%;
+  }
+}
+
+/* Desktop Styles (min-width: 993px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .horizontal-scroll-wrapper {
+    padding: 20px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .card {
+    width: 200px;
+    height: auto;
+    margin-right: 0 20px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 170px;
+  }
+
+  .card-content {
+    padding: 15px;
+  }
+
+  .card-content h2 {
+    font-size: 17px;
+  }
+
+  .shop-by-colour {
+    height: 80px;
+  }
+
+  .shop-by-colour h2 {
+    font-size: 22px;
+  }
+
+  .silver-image {
+    width: 90%;
+  }
+}
+
+/* Large Screens (min-width: 1201px) */
+@media (min-width: 1201px) {
+  .horizontal-scroll-wrapper {
+    padding: 20px;
+  }
+
+  .horizontal-scroll-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .card {
+    width: 220px;
+    margin-right: 0 20px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .card-content {
+    padding: 15px;
+  }
+
+  .card-content h2 {
+    font-size: 18px;
+  }
+
+  .shop-by-colour {
+    height: 90px;
+  }
+
+  .shop-by-colour h2 {
+    font-size: 24px;
+  }
+
+  .silver-image {
+    width: 95%;
+  }
+}
+
+
+/******** General Styles ********/
+
+/* Center "Shop Now" section */
+.Recommended-for-You {
+  text-align: center;
+  margin: 20px 0; /* Adjust margin as needed */
+  color: #000000;
+}
+
+.Recommended-for-You h2 {
+  font-size: 2rem; /* Adjust font size as needed */
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  .Recommended-for-You {
+    margin: 15px 0; /* Adjust margin for smaller screens */
+  }
+
+  .Recommended-for-You h2 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Extra Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .Recommended-for-You {
+    margin: 10px 0; /* Further adjust margin for very small screens */
+  }
+
+  .Recommended-for-You h2 {
+    font-size: 1.2rem; /* Further adjust font size for very small screens */
+  }
+}
+
+/*****************banner************/
+/* Banner Styles */
+.banner_area {
+  width: 100%;
+  height: 500px; /* Adjust height as needed */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+  display: block;
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  .banner_area {
+    height: 250px; /* Reduced height for smaller screens */
+    padding-top: 5px; /* Adjust padding as needed */
+    padding-bottom: 5px; /* Adjust padding as needed */
+  }
+
+  .banner-image img {
+    object-fit: cover; /* Ensure the image covers the container */
+  }
+}
+
+/* Extra Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .banner_area {
+    height: 150px; /* Further reduced height for very small screens */
+    padding-top: 0; /* Reduce or remove padding for very small screens */
+    padding-bottom: 0; /* Reduce or remove padding for very small screens */
+  }
+
+  .banner-image img {
+    object-fit: cover; /* Ensure the image covers the container */
+  }
+}
+
+/***************************************over*************************/
+/****************************************************************/
+/* Essentials For You Section Styles */
+.essentials-for-you {
+  text-align: center;
+  padding: 40px 0;
+  background-color: transparent; /* Remove background color */
+}
+
+.essentials-for-you h2 {
+  font-size: 2rem; /* Font size for section title */
+  font-weight: bold;
+  margin-bottom: -20px; /* Space below the title */
+  color: #060606; /* Dark color for readability */
+}
+
+.essentials-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between cards */
+}
+
+.card-essentials {
+  width: 300px; /* Set card width */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for cards */
+  background-color: transparent; /* Ensure card background is transparent */
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+/* Extra Large Screens (min-width: 1301px and max-width: 1600px) */
+@media (max-width: 1301px)  {
+  .essentials-for-you {
+    padding: 35px;
+    box-sizing: border-box;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 2.25rem;
+    margin-bottom: 30px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns layout */
+    gap: 25px;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 300px; /* Max width adjusted for extra large screens */
+    min-width: 280px; /* Min width added for consistency */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Large Screens (min-width: 1025px and max-width: 1300px) */
+@media (min-width: 1025px) and (max-width: 1300px) {
+  .essentials-for-you {
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns layout */
+    gap: 20px;
+    justify-content: center;
+    padding: 0 15px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 280px; /* Max width adjusted for large screens */
+    min-width: 250px; /* Min width added for consistency */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Tablet Screens (min-width: 769px and max-width: 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .essentials-for-you {
+    padding: 25px;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 columns layout */
+    gap: 20px;
+    justify-content: center;
+    padding: 0 100px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 270px; /* Max width adjusted for tablet screens */
+    min-width: 220px; /* Min width added for consistency */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Mobile Screens (min-width: 481px and max-width: 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .essentials-for-you {
+    padding: 20px;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+    gap: 20px;
+    justify-content: center;
+    padding: 0 80px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 240px; /* Max width adjusted for mobile screens */
+    min-width: 180px; /* Min width added for consistency */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Small Devices (min-width: 361px and max-width: 480px) */
+@media (min-width: 361px) and (max-width: 480px) {
+  .essentials-for-you {
+    padding: 15px;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+    gap: 15px;
+    justify-content: center;
+    padding: 0 8px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 160px; /* Max width adjusted for small screens */
+    min-width: 150px; /* Min width added for consistency */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra Small Devices (max-width: 360px) */
+@media (max-width: 360px) {
+  .essentials-for-you {
+    padding: 10px;
+  }
+
+  .essentials-for-you h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .essentials-row {
+    display: grid;
+    grid-template-columns: repeat(2,1fr); /* 1 column layout */
+    gap: 6px;
+    justify-content: center;
+    padding: 0 5px;
+  }
+
+  .card-essentials {
+    width: 100%;
+    max-width: 100px; /* Max width adjusted for extra small screens */
+    min-width: 120px; /* Min width added for consistency */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+/*******************************************************************************/
+/* Container for the section */
+.centered-offers-i {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px; /* Full viewport height */
+  text-align: center;
+  padding: 20px; /* Padding to add space around the text */
+  box-sizing: border-box;
+}
+
+/* Title styling */
+.centered-offers-i h2 {
+  font-size: 2em; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Space below the title */
+  font-weight: bold;
+  color: #000000; /* Adjust color as needed */
+}
+
+/* Subtitle styling */
+.centered-offers-i p {
+  font-size: 1.2em; /* Adjust font size as needed */
+  color: #000000; /* Adjust color as needed */
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  .centered-offers-i {
+    height: auto; /* Adjust height to fit content */
+    padding: 10px; /* Reduced padding for smaller screens */
+  }
+
+  /* Title styling */
+  .centered-offers-i h2 {
+    font-size: 1.5em; /* Smaller font size for mobile */
+    margin-bottom: 5px; /* Reduced space below the title */
+  }
+
+  /* Subtitle styling */
+  .centered-offers-i p {
+    font-size: 1em; /* Smaller font size for subtitle */
+  }
+}
+
+/* Extra Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .centered-offers-i {
+    padding: 5px; /* Further reduced padding for very small screens */
+  }
+
+  /* Title styling */
+  .centered-offers-i h2 {
+    font-size: 1.25em; /* Even smaller font size for very small screens */
+    margin-bottom: 3px; /* Further reduced space below the title */
+  }
+
+  /* Subtitle styling */
+  .centered-offers-i p {
+    font-size: 0.9em; /* Smaller font size for subtitle on very small screens */
+  }
+}
+
+
+/*********************over*************************/
+/* Container for the entire favorites section */
+.favorites-container {
+  padding: 20px; /* Padding around the section */
+  box-sizing: border-box; /* Include padding in the total width and height */
+}
+
+/* Row styling for favorites */
+.favorites-row {
+  display: flex; /* Use flexbox to align boxes side by side */
+  gap: 20px; /* Space between boxes */
+  margin-bottom: 20px; /* Space between rows */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Box styling for favorites */
+.favorite-box {
+  flex: 1; /* Each box takes up equal space */
+  display: flex; /* Use flexbox inside the box */
+  border: 1px solid #ddd; /* Border for the box */
+  border-radius: 30px; /* Rounded corners for the box */
+  background-color: #f9f9f9; /* Background color for the box */
+  overflow: hidden; /* Ensure content does not overflow */
+  min-width: 300px; /* Minimum width for each box */
+}
+
+/* Content inside each favorite box */
+.favorite-content {
+  display: flex; /* Align image and text side by side */
+  width: 100%;
+}
+
+/* Image container styling for favorites */
+.favorite-image {
+  flex: 1; /* Image takes up 1 part of the box */
+}
+
+.favorite-image img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
+  border-radius: 10px; /* Rounded corners for the image */
+}
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  .favorites-container {
+    padding: 10px; /* Reduced padding around the section */
+  }
+
+  .favorites-row {
+    gap: 15px; /* Reduced space between boxes */
+  }
+
+  .favorite-box {
+    flex: 1 1 calc(50% - 15px); /* Two boxes per row with space for gap */
+    margin-bottom: 15px; /* Space below each box */
+    min-width: 0; /* Allow the box to shrink */
+  }
+
+  .favorite-image img {
+    border-radius: 5px; /* Smaller rounded corners for the image */
+  }
+}
+
+/* Extra Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .favorites-container {
+    padding: 5px; /* Further reduced padding for very small screens */
+  }
+
+  .favorites-row {
+    gap: 10px; /* Further reduced space between boxes */
+  }
+
+  .favorite-box {
+    flex: 1 1 calc(100% - 10px); /* Full-width boxes with space for gap */
+    margin-bottom: 10px; /* Space below each box */
+  }
+
+  .favorite-image img {
+    border-radius: 3px; /* Even smaller rounded corners for the image */
+  }
+}
+
+
+
+
+

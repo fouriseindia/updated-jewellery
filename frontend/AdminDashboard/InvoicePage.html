@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.invoice {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+.billing-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.billing-address, .delivery-address {
+    width: 45%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+
+.totals {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 600px) {
+    .billing-info {
+        flex-direction: column; /* Stack addresses vertically */
+    }
+
+    .billing-address, .delivery-address {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 20px; /* Space between stacked sections */
+    }
+
+    table {
+        font-size: 14px; /* Adjust table font size */
+    }
+
+    th, td {
+        padding: 8px; /* Smaller padding for table cells */
+    }
+
+    .totals {
+        font-size: 16px; /* Adjust font size for totals */
+    }
+}
+</style>
+
+</head>
+<body>
+    <div class="invoice">
+        <h1>Your Company Name</h1>
+        <p>Your Company Address</p>
+        
+        <div class="billing-info">
+            <div class="billing-address">
+                <h3>Billing Address</h3>
+                <p>Name: <span id="billingName">John Doe</span></p>
+                <p>Company: <span id="billingCompany">Example Co.</span></p>
+                <p>Address: <span id="billingAddress">123 Main St</span></p>
+                <p>Town: <span id="billingTown">Anytown</span></p>
+                <p>Country: <span id="billingCountry">Country</span></p>
+                <p>Postal Code: <span id="billingPostalCode">12345</span></p>
+                <p>Phone: <span id="billingPhone">123-456-7890</span></p>
+            </div>
+            <div class="delivery-address">
+                <h3>Delivery Address</h3>
+                <p>Address: <span id="deliveryAddress">456 Delivery Rd</span></p>
+                <p>Town: <span id="deliveryTown">Anytown</span></p>
+                <p>Country: <span id="deliveryCountry">Country</span></p>
+                <p>Postal Code: <span id="deliveryPostalCode">54321</span></p>
+                <p>Phone: <span id="deliveryPhone">098-765-4321</span></p>
+            </div>
+        </div>
+
+        <table id="invoiceTable">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Unit Price ($)</th>
+                    <th>Amount ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" class="quantity" value="1" min="1" /></td>
+                    <td><input type="text" class="description" value="Product 1" /></td>
+                    <td><input type="number" class="unit-price" value="10.00" /></td>
+                    <td class="amount">$<span>10.00</span></td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="quantity" value="1" min="1" /></td>
+                    <td><input type="text" class="description" value="Product 2" /></td>
+                    <td><input type="number" class="unit-price" value="15.00" /></td>
+                    <td class="amount">$<span>15.00</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <div>
+                <p>Subtotal: $<span id="subtotal">25.00</span></p>
+                <p>Sales Tax (10%): $<span id="salesTax">2.50</span></p>
+                <p>Postage & Packaging: $<span id="pnp">5.00</span></p>
+                <h3>Total Due: $<span id="totalDue">32.50</span></h3>
+            </div>
+            <button id="calculateTotal" class="btn">Calculate Total</button>
+        </div>
+        <p>Make all cheques payable to [your Company Name]</p>
+        <p>If you have any questions conceming this invoice contact [Name, Phone Number, E-mail]</p>
+
+
+
+        <p>THANK YOU FOR YOUR BUSINESS!!</p>
+    </div>
+
+    <script>
+        document.getElementById('calculateTotal').addEventListener('click', function() {
+    let subtotal = 0;
+    const rows = document.querySelectorAll('#invoiceTable tbody tr');
+
+    rows.forEach(row => {
+        const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+        const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
+        const amount = quantity * unitPrice;
+
+        row.querySelector('.amount span').innerText = amount.toFixed(2);
+        subtotal += amount;
+    });
+
+    const salesTax = subtotal * 0.10; // 10% sales tax
+    const pnp = 5.00; // Fixed postage & packaging
+    const totalDue = subtotal + salesTax + pnp;
+
+    document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+    document.getElementById('salesTax').innerText = salesTax.toFixed(2);
+    document.getElementById('pnp').innerText = pnp.toFixed(2);
+    document.getElementById('totalDue').innerText = totalDue.toFixed(2);
+});
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashirwaad Jewelry</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+      <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer/dist/photo-sphere-viewer.min.css">
+<script src="https://unpkg.com/photo-sphere-viewer/dist/photo-sphere-viewer.min.js"></script>
+
+    <style>
+
+
+        /* Main Container */
+
+/* Main Image Container */
+.main-image-container {
+    max-height: 100vh; /* Limit height to avoid cutting */
+    overflow: hidden;
+    margin-bottom: 15px; /* Space between main image and thumbnails */
+    position: relative;
+}
+
+.main-image-container img,
+.main-image-container video {
+    width: 100%; /* Ensure image/video fits within the container */
+    height: auto;
+    object-fit: contain; /* Ensures content fits without being cut */
+}
+
+/* Thumbnails Container */
+.thumbnails-container {
+    margin-top: 10px;
+    margin-bottom: 20px; /* Space between thumbnails and other sections */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of thumbnails */
+    display: flex; /* Make sure container is flex container */
+    padding: 0 10px; /* Optional: padding for container edges */
+}
+
+.thumbnails {
+    display: flex; /* Align thumbnails horizontally */
+    align-items: center; /* Center thumbnails vertically if needed */
+}
+
+.thumbnails img {
+    width: 80px; /* Thumbnail size */
+    height: auto;
+    cursor: pointer;
+    margin: 5px; /* Spacing between thumbnails */
+    transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+}
+
+.thumbnails img:hover {
+    opacity: 0.7;
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Video Thumbnail */
+.video-thumbnail {
+    position: relative;
+    cursor: pointer;
+}
+
+.video-thumbnail img {
+    width: 80px; /* Thumbnail size */
+    height: auto;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: rgb(45, 43, 43);
+    pointer-events: none; /* Ensure play icon does not interfere with clicks */
+}
+
+/* Product Details */
+.product-details {
+    max-height: calc(150vh - 80px); /* Adjust height for scrolling */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    padding: 20px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    color:  #333; 
+}
+
+.product-details::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+/* Details Section */
+.details-section {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.details-section .details-column {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Spacing between rows */
+}
+
+.details-section .details-column img {
+    width: 40px !important; /* Increased logo size */
+    height: auto !important;
+    margin-right: 10px; /* Space between image and text */
+}
+
+/* Special Offers */
+.special-offers {
+    margin-top: 20px;
+    
+}
+
+.special-offer-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative; /* To position the copied message */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    background-color: aliceblue;
+}
+
+.special-offer-box:hover {
+    background-color: #57aaf3; /* Light background on hover */
+}
+
+.copied-message {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d4edda;
+    color: #155724;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.text-muted {
+    font-size: 0.9rem; /* Slightly smaller text for the muted message */
+    color: #333; 
+}
+
+/* Shop By Category */
+.shop-by-category-container {
+    position: relative; /* Normal flow positioning */
+    width: 100%; /* Full width to ensure it fits within the column */
+    background: aliceblue;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 15px; /* Space between items */
+}
+
+.category-item {
+    text-align: center;
+}
+
+.category-item img {
+    width: 100px; /* Fixed size */
+    height: 100px; /* Fixed size */
+    object-fit: cover;
+    border-radius: 50%; /* Make the image circular */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.category-item p {
+    margin: 0;
+}
+
+/* Accordion Section */
+.accordion-container {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff; /* White background */
+    margin-bottom: 20px; /* Space below the section */
+}
+
+.accordion-header {
+    padding: 8px 12px; /* Smaller padding */
+    border-bottom: 1px solid #ddd; /* Border below the header */
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accordion-content {
+    padding: 10px 15px; /* Padding for the content */
+    display: none; /* Hidden by default */
+}
+
+.accordion-content.show {
+    display: block; /* Show content when active */
+}
+
+.accordion-header:hover {
+    background-color: #f8f9fa; /* Light grey background on hover */
+}
+
+.accordion-content p {
+    margin: 0; /* Remove margin around paragraphs */
+    line-height: 1.3; /* Decrease line height for tighter spacing */
+}
+/* Button Sizes */
+.button-container {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    justify-content: center; /* Center buttons horizontally */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.btn-lg {
+    font-size: 1rem; /* Larger text size */
+    padding: 0.5rem 1rem; /* Larger padding */
+    border-radius: 0.25rem; /* Adjust border-radius if needed */
+    border: 1px solid transparent; /* Border for consistency */
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s, color 0.3s; /* Smooth transitions */
+    background-color: #a5c3dd;
+    color: #000000; /* Black text color */
+    text-align: center; /* Center text horizontally */
+    display: inline-block; /* Ensure the button size is appropriate */
+    width: auto; /* Let button size adjust to text */
+}
+
+.btn-lg:hover {
+    background-color: #57aaf3; /* Background color on hover */
+    color: #000000; /* Keep text color black on hover */
+    border-color: #57aaf3; /* Border color on hover */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.btn-lg:active {
+    background-color: #57aaf3; /* Darker background on click */
+    color: #000000; /* Keep text color black on click */
+    border-color: #57aaf3; /* Darker border on click */
+    transform: scale(1.02); /* Slightly reduces the scale on click */
+}
+
+@media (min-width: 500px) {
+    .btn-lg {
+        font-size: 1.125rem; /* Larger text size on larger screens */
+        padding: 0.75rem 1.25rem; /* Larger padding on larger screens */
+    }
+}
+
+/* Pricing Container */
+.pricing-container {
+    display: flex;
+    justify-content: space-between; /* Space between pricing and icons */
+    align-items: center; /* Center align items vertically */
+    width: 100%;
+}
+
+.pricing {
+    display: flex;
+    align-items: center; /* Center align prices vertically */
+}
+
+.sale-price {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin-right: 15px; /* Space between sale price and regular price */
+}
+
+.regular-price {
+    font-size: 20px;
+    color: #999;
+}
+
+.regular-price del {
+    color: #999; /* Color of the struck-through regular price */
+}
+
+.icons {
+    display: flex;
+    align-items: center; /* Center align icons vertically */
+}
+
+.icon {
+    margin-left: 10px; /* Space between icons */
+    vertical-align: middle; /* Align icons with text */
+}
+  .social1 ul li:hover {
+      transform: translate(80px, 0);
+      background: rgba(232, 8, 8, 0.4);
+  }
+
+  .fa-snapchat-ghost:before, .fa-snapchat:before {
+  content: "\f2ab";
+  color: black;
+  }
+  @media (max-width: 765px) {
+      .social1 {
+          width: 30px;
+      }
+  }
+</style>
+
+</head>
+
+<body>
+
+    
+        <div class="card1">
+            <div class="container mt-4">
+                <div class="row detail-section" id="detail1">
+                    <div class="col-md-6">
+                        <!-- Left side with main image and thumbnails -->
+                        <div class="main-image-container" id="mainImageContainer">
+                            <div id="viewer" style="width: 100%; height: 400px; display: none;"></div>
+                            <img id="mainImage" src="images/rings/ring1/ring1.jpg" class="img-fluid" alt="Main Image">
+                        </div>
+                        <div class="thumbnails-container">
+                            <div class="thumbnails d-flex flex-wrap justify-content-center">
+                                <img src="images/rings/ring1/ring1.jpg" onclick="changeImage('images/rings/ring1/ring1.jpg')" alt="Thumbnail 1">
+                                <img src="images/rings/ring1/ring1_hover.jpg" onclick="changeImage('images/rings/ring1/ring1_hover.jpg')" alt="Thumbnail 2">
+                                <img src="images/rings/ring1/ring12.jpg" onclick="changeImage('images/rings/ring1/ring12.jpg')" alt="Thumbnail 3">
+                                <!-- Video thumbnail with play icon -->
+                                <div class="video-thumbnail" onclick="changeVideo('images/rings/ring1/rings13.mp4')">
+                                    <img src="images/rings/ring1/rings_thumnail.png" alt="Video Thumbnail"> <!-- Thumbnail image of the video -->
+                                    <div class="play-icon">&#9658;</div> <!-- Play icon -->
+                                </div>
+                                <img src="images/rings/ring1/ring14.jpg" onclick="changeImage('images/rings/ring1/ring14.jpg')" alt="Thumbnail 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 product-details">
+                        <h2 id="productTitle">Silver Jewelry 1</h2>
+                        <div class="pricing-container">
+                            <div class="pricing">
+                                <span class="sale-price">₹1,499</span>
+                                <span class="regular-price"><del>₹2,799</del></span>
+                            </div>
+                            <div class="icons">
+                                <!-- Wishlist logo -->
+                                <svg class="wishlist-icon" id="wishlist1" onclick="toggleWishlist(this)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                                <!-- Share logo -->
+                                <img src="share.png" alt="Share" class="icon">
+                            </div>
+                        </div>
+                        <p class="text-muted">Incl. of all taxes</p>
+        
+                        <div class="container mt-4">
+                            <!-- Details Section -->
+                            <div class="details-section">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="details-column">
+                                            <img src="images/easy_return.png" alt="Easy Return Logo">
+                                            <p>Easy 30 Day Return</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="details-column">
+                                            <img src="images/lifetime.png" alt="Lifetime Plating Logo">
+                                            <p>Lifetime Plating</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="details-column">
+                                            <img src="images/warranty.png" alt="Warranty Logo">
+                                            <p>6-Month Warranty</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="details-column">
+                                            <img src="images/925_silver.png" alt="Estimated Delivery Time Logo">
+                                            <p>Silver</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="container mt-4">
+                            <div class="button-container mt-3">
+                                <button class="btn btn-outline-primary btn-lg" id="addToCart">Add to Cart</button>
+                                <button class="btn btn-outline-primary btn-lg" id="buyNow">Buy Now</button>
+                            </div>
+                        </div>
+        
+                       
+                        
+                        
+                        <div class="accordion-container mt-4" id="descriptionAccordion">
+                            <div class="accordion-header" onclick="toggleAccordionContent('descriptionContent')">
+                                DESCRIPTION
+                            </div>
+                            <div id="descriptionContent" class="accordion-content">
+                                <p><strong>The Inspiration:</strong></p>
+                                <p>Make a toast to the classy, beachy, summer days of happiness. What a perfect pick would this be for a beach-lovers!</p>
+                                <p><strong>The Design:</strong></p>
+                                <ul><p>This silver ring features a circular zircon, flanked by wave motifs on both sides.</p>
+                                    <p>925 Silver</p>
+                                    <p>Perfect for sensitive skin</p>
+                                    <p>Adjustable size to ensure no fitting issues</p>
+                                    <p>Ring Diameter: 1.59 cm + Adjustable</p>
+                                    <p>Comes with the Shankh Jewels Jewellery kit and authenticity certificate</p>
+                                    <p>Content: Ring</p>
+                                    <p>Net Qty - 1 unit</p>
+                                    <p>Styling Tip:</p>
+                                    <p>Pair this ring with a yellow strap dress.</p>
+                                </ul>
+                                
+                            </div>
+                        </div>
+        
+                        <div class="accordion-container mt-4" id="shippingAccordion">
+                            <div class="accordion-header" onclick="toggleAccordionContent('shippingContent')">
+                                SHIPPING
+                            </div>
+                            <div id="shippingContent" class="accordion-content">
+                                <ul>
+                                    <li>Free express shipping</li>
+                                    <li>No questions asked 30 days return policy</li>
+                                    <li>6 month warranty</li>
+                                    <li>Shipping internationally to 20+ countries</li>
+                                    <li>Brand owned and marketed by:</li>
+                                    <ul>
+                                        <li>Indiejewel Fashions Private Limited</li>
+                                        <li>3rd floor, Magnum Vista, Raghuvanahalli, Bangalore, Karnataka - 560062</li>
+                                    </ul>
+                                </ul>
+                            </div>
+                        </div>
+        
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <script>
+        const viewer = new PhotoSphereViewer({
+            container: document.getElementById('viewer'),
+            panorama: 'images/rings/ring1/360-image.jpg', // Replace with your 360 image path
+            caption: '360° View of the Product'
+        });
+    
+        function changeImage(imageSrc) {
+            document.getElementById('mainImage').src = imageSrc;
+            document.getElementById('viewer').style.display = 'none'; // Hide viewer when changing main image
+        }
+    
+        function changeVideo(videoSrc) {
+            // Logic to change video source or display video
+            // Implement your video handling here
+        }
+    
+        // Show the viewer for the 360-degree image
+        function show360Viewer() {
+            document.getElementById('mainImage').style.display = 'none'; // Hide the main image
+            document.getElementById('viewer').style.display = 'block'; // Show the 360 viewer
+        }
+    
+        // Optionally, you can add event listeners to your thumbnails to trigger the 360 viewer
+        document.querySelectorAll('.thumbnails img').forEach(img => {
+            img.addEventListener('click', () => {
+                if (img.src.includes('360-image.jpg')) { // Assuming one of your thumbnails is a 360 image
+                    show360Viewer();
+                }
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+     <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script src="main.js"></script>
+    <script>
+document.getElementById('addToCart').addEventListener('click', function() {
+    // Function to add product to cart
+    function addToCart(product) {
+       const  urlParams = new URLSearchParams(window.location.search);
+       const productId = urlParams.get('id');
+    //    console.log(searchQuery);
+       
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(product);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        alert("Product added to cart!");
+        
+        // Redirect to cart page
+        window.location.href = `cart.html?id=${productId}`;  // Assuming you have a cart.html page
+    }
+
+    // Call the addToCart function
+    fetchProductDetailsAndAddToCart();
+
+
+// Function to fetch product details and add to cart
+function fetchProductDetailsAndAddToCart() {
+    // Get product ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    // Fetch product details using the product ID
+    if (productId) {
+        fetch(`http://localhost:3000/api/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                // Add the product to the cart
+                addToCart(product);
+            })
+            .catch(err => console.error('Error fetching product details:', err));
+    } else {
+        console.error('Product ID not found in URL.');
+    }
+}
+});
+        let videoUrl = '';
+    
+        // Function to fetch the product details based on the product ID from the URL
+        function loadProductDetails() {
+            // Get product ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+    
+            // Fetch product details using the product ID
+            if (productId) {
+                fetch(`http://localhost:3000/api/products/${productId}`)
+                    .then(response => response.json())
+                    .then(product => {
+                        // Populate the main image and thumbnails
+                        document.getElementById('mainImage').src = `http://localhost:3000/${product.mainImage}`;
+                        document.getElementById('productTitle').textContent = product.productTitle;
+                        
+                        document.querySelector('.sale-price').textContent = `₹${product.productPrice}`;
+                        document.querySelector('.regular-price').innerHTML = `<del>₹${product.regularPrice}</del>`;
+    
+                        // Populate description and other details
+                        document.getElementById('descriptionContent').innerHTML = `
+                            <p><strong>The Inspiration:</strong></p>
+                            <p>${product.productDescription}</p>
+                        `;
+    
+                        // Populate shipping details
+                        document.getElementById('shippingContent').innerHTML = `
+                            <ul>
+                                <li>${product.shippingDetails}</li>
+                            </ul>
+                        `;
+    
+                        // Update the thumbnails
+                        const thumbnailsContainer = document.querySelector('.thumbnails');
+                        thumbnailsContainer.innerHTML = ''; // Clear existing thumbnails
+                        product.thumbnailImages.forEach(image => {
+                            thumbnailsContainer.innerHTML += `
+                                <img src="http://localhost:3000/${image}" onclick="changeImage('http://localhost:3000/${image}')" alt="Thumbnail">
+                            `;
+                        });
+    
+                        // Fetch and display video URL
+                        videoUrl = ` product.videoUrl`; // Use product.productVideo
+                        if (videoUrl) {
+                            document.getElementById('videoThumbnailContainer').style.display = 'block';
+                            document.getElementById('videoThumbnail').onclick = () => changeVideo(videoUrl); // Attach click event
+                        }
+                    })
+                    .catch(err => console.error('Error fetching product details:', err));
+            } else {
+                console.error('Product ID not found in URL.');
+            }
+        }
+    
+        // Function to change the main image when a thumbnail is clicked
+        function changeImage(imageUrl) {
+            document.getElementById('mainImage').src = imageUrl;
+        }
+    
+        // Function to change the video when the thumbnail is clicked
+        function changeVideo(videoUrl) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoUrl;
+            videoPlayer.play(); // Play the video
+    
+            // Optional: Open in a modal if you have a modal setup
+            // OpenModal(videoUrl);
+        }
+    
+        // Function to handle the wishlist toggle (optional)
+        function toggleWishlist(icon) {
+            icon.classList.toggle('active'); // Add or remove 'active' class to toggle wishlist
+        }
+    
+        // Load the product details when the page is loaded
+        window.onload = loadProductDetails;
+
+    </script>
+    
+    
+    
+</body>
+
+</html>

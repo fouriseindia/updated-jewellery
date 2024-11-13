@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Ashirwaad Jewellers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: aliceblue;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .profile-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #024dbc;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-right: 15px;
+        }
+
+        .profile-details span {
+            display: block;
+            color: #024dbc;
+            font-size: 20px;
+        }
+
+        .toggle-btn {
+            background: #fff;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #024dbc;
+            margin-left: auto;
+            display: none;
+        }
+
+        .sidebar {
+            width: 350px;
+            background-color: #fff;
+            padding: 10px;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 1000;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #024dbc;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px;
+            background-color: #fff;
+            margin-left: 350px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h1 {
+            font-size: 24px;
+            color: #024dbc;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-info,
+        .password-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-info h2,
+        .password-section h2 {
+            font-size: 20px;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #57aaf3;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #bfc5cd;
+        }
+
+        .edit-profile {
+            float: right;
+            margin-top: -30px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .close-btn {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            float: right;
+            border-radius: 4px;
+        }
+
+        /* Media Queries for smaller devices */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 90%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .toggle-btn {
+                display: block;
+            }
+
+            .sidebar {
+                width: 350px;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <div class="profile-section">
+            <div class="profile-icon">P</div>
+            <div class="profile-details">
+                <span id="profile-name">Hi, <span id="full-name"></span></span>
+                <span id="profile-email"></span>
+            </div>
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li><a href="My-Order.html">My Orders</a></li>
+                <li><a href="wishlist1.html">My Wishlist</a></li>
+                <li><a href="shopping_cart.html">Shopping Cart</a></li>
+                <!-- <li><a href="acc.html">Profile</a></li> -->
+                <!-- <li><a href="Add_Address.html">Manage Addresses</a></li> -->
+                <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>Profile</h1>
+            <div class="profile-info">
+                <h2>Personal Information</h2>
+                <button class="edit-profile" onclick="openEditDialog()">Edit Profile</button>
+                <table>
+                    <tr>
+                        <td>Full Name</td>
+                        <td><span id="full-name-info"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td><span id="email-info"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td><span id="phone-number-info"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><span id="address-info"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="password-section">
+                <h2>Password</h2>
+                <button class="change-password" onclick="changePassword()">Change Password</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Edit Profile -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Profile</h2>
+            <input type="text" id="edit-full-name" placeholder="Full Name">
+            <input type="email" id="edit-email" placeholder="Email Address">
+            <input type="text" id="edit-phone-number" placeholder="Phone Number">
+            <input type="text" id="edit-address" placeholder="Address">
+            <button onclick="saveChanges()">Save Changes</button>
+            <button class="close-btn" onclick="closeEditDialog()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            if(!sessionStorage.getItem('userdata')){
+                window.location.href='login.html';
+            }
+            const api_uri = 'http://localhost:3000/api'; // Ensure this is the correct API base URL
+    
+            // Fetch the user ID from local storage
+            const userId = localStorage.getItem('userId');
+            console.log('User ID:', userId); // Debugging
+    
+            if (userId) {
+                try {
+                    // Fetch the profile data using the user ID
+                    const response = await fetch(`${api_uri}/profiles/${userId}`);
+    
+                    if (response.ok) {
+                        const profile = await response.json();
+    
+                        // Display the profile data
+                        document.getElementById('full-name-info').textContent = profile.fullName;
+                        document.getElementById('email-info').textContent = profile.email;
+                        document.getElementById('phone-number-info').textContent = profile.phoneNumber;
+                        document.getElementById('address-info').textContent = profile.address;
+    
+                        document.getElementById('full-name').textContent = profile.fullName;
+                        document.getElementById('profile-email').textContent = profile.email;
+    
+                    } else {
+                        console.error('Error fetching profile:', response.status);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            } else {
+                console.error('User ID not found in local storage.');
+                // Optionally, redirect to login if user ID is missing
+                // window.location.href = 'login_popup.html';
+            }   
+        });
+    
+        function openEditDialog() {
+            document.getElementById('editModal').style.display = 'flex';
+    
+            // Populate the dialog with existing profile information
+            document.getElementById('edit-full-name').value = document.getElementById('full-name-info').textContent;
+            document.getElementById('edit-email').value = document.getElementById('email-info').textContent;
+            document.getElementById('edit-phone-number').value = document.getElementById('phone-number-info').textContent;
+            document.getElementById('edit-address').value = document.getElementById('address-info').textContent;
+        }
+    
+        function closeEditDialog() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    
+        async function saveChanges() {
+            const userId = localStorage.getItem('userId');
+            const fullName = document.getElementById('edit-full-name').value;
+            const email = document.getElementById('edit-email').value;
+            const phoneNumber = document.getElementById('edit-phone-number').value;
+            const address = document.getElementById('edit-address').value;
+    
+            try {
+                const response = await fetch(`http://localhost:3000/api/profiles/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fullName,
+                        email,
+                        phoneNumber,
+                        address
+                    })
+                });
+    
+                if (response.ok) {
+                    // Close the modal and refresh the page to reflect changes
+                    closeEditDialog();
+                    location.reload();
+                } else {
+                    console.error('Error saving profile:', response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    
+        function logout() {
+            // Clear session and local storage
+            localStorage.removeItem('userId');
+            window.location.href = 'login_popup.html';
+        }
+    
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('show');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    /* Your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .login-form {
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .input-field {
+      width: 92%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: darkred;
+    }
+
+    a {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-form">
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="input-field">
+
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" class="input-field">
+                    <span id="togglePassword" class="toggle-icon">Show</span>
+                </div>
+                <a href="./forgotten-password.html">forgotten password</a>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p style="text-align: center;">Don't have an account? <a href="./signup.html">Sign Up</a></p>
+        </div>
+    </div>
+    <script type="module">
+   
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const user=  await fetch('http://localhost:3000/api/users/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({email})
+          });
+
+          const display_name=await user.json()
+          console.log(display_name)
+          sessionStorage.setItem("userdata",display_name.firstName)
+  
+          sessionStorage.setItem("loggedInEmail",display_name.email)
+          localStorage.setItem("token",display_name.firstName)
+
+
+            const response = await fetch('http://localhost:3000/api/users/login', {
+
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+            console.log(data)
+            if (response.ok) {
+                localStorage.setItem('token', data.token);
+                alert('Login successful');
+                const login='Login successful';
+                sessionStorage.setItem('Login_successful',login)
+                window.location.href = 'index.html';
+                // fetch('http://localhost:3000/api/users')
+            } else {
+                alert(data.message);
+            }
+      });
+
+
+      
+    </script>
+    <script src="js/showPassword.js"></script>
+</body>
+</html>

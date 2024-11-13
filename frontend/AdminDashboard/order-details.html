@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .section p {
+            margin: 5px 0;
+        }
+        .section p span {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #e0e0e0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+            table, th, td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order Details</h1>
+    </header>
+    <main>
+        <h2 id="orderId">Order ID</h2>
+        <div class="section details">
+            <h3>Customer Details</h3>
+            <p>Name: <span id="customerName">John Doe</span></p>
+            <p>Address: <span id="customerAddress">456 Avenue, City</span></p>
+        </div>
+        <div class="section product">
+            <h3>Product Details</h3>
+            <p>Product: <span id="productName">Product1</span></p>
+            <p>Quantity: <span id="productQuantity">2</span></p>
+            <p>Total: ₹<span id="orderTotal">123.45</span></p>
+        </div>
+        <div class="section wallet">
+            <h3>Wallet</h3>
+            <p>Total Orders: <span id="totalOrders">10</span></p>
+            <p>Total Wallet Amount: ₹<span id="totalWalletAmount">1000.00</span></p>
+        </div>
+        <div class="section transaction-history">
+            <h3>Transaction History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Transaction ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/01/2024</td>
+                        <td>₹123.45</td>
+                        <td>TXN12345</td>
+                    </tr>
+                    <!-- Additional rows for transaction history -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('orderId');
+            if (orderId) {
+                document.getElementById('orderId').innerText = orderId;
+                // Fetch and display the actual order details using orderId
+                // You would replace the dummy data below with actual data fetched from your backend
+
+                // Example of fetching data and populating fields
+                // This part should be replaced with actual data fetching logic
+                document.getElementById('customerName').innerText = 'John Doe';
+                document.getElementById('customerAddress').innerText = '456 Avenue, City';
+                document.getElementById('productName').innerText = 'Product1';
+                document.getElementById('productQuantity').innerText = '2';
+                document.getElementById('orderTotal').innerText = '123.45';
+                document.getElementById('totalOrders').innerText = '10';
+                document.getElementById('totalWalletAmount').innerText = '1000.00';
+                
+                // Populate transaction history table
+                const transactionHistory = [
+                    { date: '01/01/2024', amount: '123.45', transactionId: 'TXN12345' },
+                    // Add more transactions here
+                ];
+                const transactionHistoryTable = document.querySelector('.transaction-history tbody');
+                transactionHistoryTable.innerHTML = transactionHistory.map(txn => `
+                    <tr>
+                        <td>${txn.date}</td>
+                        <td>₹${txn.amount}</td>
+                        <td>${txn.transactionId}</td>
+                    </tr>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>

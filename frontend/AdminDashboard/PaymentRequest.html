@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <script></script>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #searchBar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-details {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-pay {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="customers.html">Customers</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="manage-shops.html">Manage Shops</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <main>
+        <h2>Payments</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchPayments()" placeholder="Search for payments..">
+        </div>
+        <table id="paymentsTable">
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Shop Name</th>
+                    <th>Shop Phone</th>
+                    <th>Shop Address</th>
+                    <th>Verification Status</th>
+                    <th>Requested Amount</th>
+                    <th>Remaining Amount</th>
+                    <th>Bank Name</th>
+                    <th>IFSC Code</th>
+                    <th>Holder Name</th>
+                    <th>Branch Name</th>
+                    <th>Passbook Photo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dummy data for shop payments -->
+                <tr data-type="shop">
+                    <td>1</td>
+                    <td>₹100.00</td>
+                    <td>Shop Payment</td>
+                    <td>Shop A</td>
+                    <td>9876543210</td>
+                    <td>Shop Address 1, City, Country</td>
+                    <td>Verified</td>
+                    <td>₹100.00</td>
+                    <td>₹0.00</td>
+                    <td>Shop Bank</td>
+                    <td>ABC12345</td>
+                    <td>Shop Owner</td>
+                    <td>Main Branch</td>
+                    <td><a href="#">View Photo</a></td>
+                    <td class="actions">
+                        <button class="btn-details" onclick="viewShopDetails(1)">Shop Details</button>
+                        <button class="btn-delete">Delete</button>
+                        <button class="btn-pay" onclick="openPaymentForm(1)">Pay</button>
+                        <button class="btn-approve">Approve</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for more shop payments -->
+                <tr data-type="shop">
+                    <td>2</td>
+                    <td>₹50.00</td>
+                    <td>Shop Payment</td>
+                    <td>Shop B</td>
+                    <td>9876543211</td>
+                    <td>Shop Address 2, City, Country</td>
+                    <td>Not Verified</td>
+                    <td>₹50.00</td>
+                    <td>₹0.00</td>
+                    <td>Shop Bank</td>
+                    <td>XYZ54321</td>
+                    <td>Shop Owner 2</td>
+                    <td>Main Branch</td>
+                    <td><a href="#">View Photo</a></td>
+                    <td class="actions">
+                        <button class="btn-details" onclick="viewShopDetails(2)">Shop Details</button>
+                        <button class="btn-delete">Delete</button>
+                        <button class="btn-pay" onclick="openPaymentForm(2)">Pay</button>
+                        <button class="btn-approve">Approve</button>
+                    </td>
+                </tr>
+                <!-- Dummy data for farmer payments -->
+                <tr data-type="farmer">
+                    <td>21</td>
+                    <td>₹500.00</td>
+                    <td>Farmer Payment</td>
+                    <td>Farmer A</td>
+                    <td>9876543221</td>
+                    <td>Farmer Address 1, City, Country</td>
+                    <td>Verified</td>
+                    <td>₹500.00</td>
+                    <td>₹0.00</td>
+                    <td>Farmer Bank</td>
+                    <td>DEF67890</td>
+                    <td>Farmer Owner</td>
+                    <td>Main Branch</td>
+                    <td><a href="#">View Photo</a></td>
+                    <td class="actions">
+                        <button class="btn-details">Farmer Details</button>
+                        <button class="btn-delete">Delete</button>
+                        <button class="btn-pay">Pay</button>
+                        <button class="btn-approve">Approve</button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows for more farmer payments -->
+                <tr data-type="farmer">
+                    <td>22</td>
+                    <td>₹250.00</td>
+                    <td>Farmer Payment</td>
+                    <td>Farmer B</td>
+                    <td>9876543222</td>
+                    <td>Farmer Address 2, City, Country</td>
+                    <td>Verified</td>
+                    <td>₹250.00</td>
+                    <td>₹0.00</td>
+                    <td>Farmer Bank</td>
+                    <td>GHI24680</td>
+                    <td>Farmer Owner 2</td>
+                    <td>Main Branch</td>
+                    <td><a href="#">View Photo</a></td>
+                    <td class="actions">
+                        <button class="btn-details">Farmer Details</button>
+                        <button class="btn-delete">Delete</button>
+                        <button class="btn-pay">Pay</button>
+                        <button class="btn-approve">Approve</button>
+                    </td>
+                </tr>
+                <!-- Add more dummy data here -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function searchPayments() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('paymentsTable');
+            const tr = table.getElementsByTagName('tr');
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let txtValue = '';
+                for (let j = 0; j < td.length - 1; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+    
+        function viewShopDetails(paymentId) {
+            // Redirect to shop-details.html with paymentId
+            window.location.href = `shop-details.html?paymentId=${paymentId}`;
+        }
+    
+        function farmerDetails() {
+            const paymentId = this.parentElement.parentElement.cells[0].innerText;
+            alert(`Redirecting to farmer details for payment ID: ${paymentId}`);
+            // Redirect to farmer-details.html with paymentId
+            window.location.href = `Farmer-details.html?paymentId=${paymentId}`;
+        }
+    
+        function deletePayment() {
+            const paymentId = this.parentElement.parentElement.cells[0].innerText;
+            alert(`Deleting payment ID: ${paymentId}`);
+            // Implement deletion logic here
+        }
+    
+        function openPaymentForm(paymentId) {
+            // Redirect to payment-form.html with paymentId
+            window.location.href = `payment-form.html?paymentId=${paymentId}`;
+        }
+    
+        function approvePayment() {
+            const paymentId = this.parentElement.parentElement.cells[0].innerText;
+            alert(`Approving payment ID: ${paymentId}`);
+            // Redirect to Paymenthis.html with payment details
+            const paymentDetails = {
+                paymentId: paymentId,
+                amount: this.parentElement.parentElement.cells[1].innerText,
+                type: this.parentElement.parentElement.cells[2].innerText,
+                shopName: this.parentElement.parentElement.cells[3].innerText,
+                shopPhone: this.parentElement.parentElement.cells[4].innerText,
+                shopAddress: this.parentElement.parentElement.cells[5].innerText,
+                verificationStatus: this.parentElement.parentElement.cells[6].innerText,
+                requestedAmount: this.parentElement.parentElement.cells[7].innerText,
+                remainingAmount: this.parentElement.parentElement.cells[8].innerText,
+                bankName: this.parentElement.parentElement.cells[9].innerText,
+                ifscCode: this.parentElement.parentElement.cells[10].innerText,
+                holderName: this.parentElement.parentElement.cells[11].innerText,
+                branchName: this.parentElement.parentElement.cells[12].innerText,
+                passbookPhoto: this.parentElement.parentElement.cells[13].innerText // Replace with actual passbook photo logic
+            };
+            localStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
+            window.location.href = 'Paymenthis.html';
+        }
+    
+        document.querySelectorAll('.btn-details').forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.parentElement.parentElement.getAttribute('data-type');
+                if (type === 'shop') {
+                    viewShopDetails(this.parentElement.parentElement.cells[0].innerText);
+                } else if (type === 'farmer') {
+                    farmerDetails.call(this);
+                }
+            });
+        });
+    
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', deletePayment);
+        });
+    
+        document.querySelectorAll('.btn-pay').forEach(button => {
+            button.addEventListener('click', function() {
+                const paymentId = this.parentElement.parentElement.cells[0].innerText;
+                openPaymentForm(paymentId);
+            });
+        });
+    
+        document.querySelectorAll('.btn-approve').forEach(button => {
+            button.addEventListener('click', approvePayment);
+        });
+    </script>
+    
+</body>
+</html>

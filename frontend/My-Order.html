@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Order</title>
+    <link href="Images/Logo.jpg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #6fb3f0;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #searchBar input {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c5ddf2;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            gap: 3px;
+        }
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .canceled-order {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Customers History</h1>
+    </header>
+
+    <main>
+        <h2>Orders</h2>
+
+        <!-- Search Bar -->
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchOrders()" placeholder="Search for orders..">
+        </div>
+
+        <!-- Orders Table -->
+        <table id="ordersTable">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Address2 (Optional)</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Order Total</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+                <!-- Orders rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        let orders = [];
+
+        // Fetch orders from the API and populate the table
+        async function fetchAndDisplayOrders() {
+            try {
+                const response = await fetch('http://localhost:3000/api/checkouts/getOrders');
+                const data = await response.json();
+                orders = data.orders;
+                populateTable();
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        }
+
+        // Populate the orders table
+        function populateTable() {
+            const tableBody = document.getElementById('ordersTableBody');
+            tableBody.innerHTML = '';
+
+            orders.forEach(order => {
+                if (order.email === sessionStorage.getItem('loggedInEmail')) {
+                    const row = document.createElement('tr');
+
+                    // Apply red color if the order status is canceled
+                    if (order.status === 'canceled') {
+                        row.classList.add('canceled-order');
+                    }
+
+                    row.innerHTML = `
+                        <td>${order.email}</td>
+                        <td>${order.phone}</td>
+                        <td>${order.firstName}</td>
+                        <td>${order.lastName}</td>
+                        <td>${order.address}</td>
+                        <td>${order.address2 || ''}</td>
+                        <td>${order.state}</td>
+                        <td>${order.zip}</td>
+                        <td>${order.product}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.orderTotal}</td>
+                        <td>${order.status}</td>
+                        <td class="actions">
+                            <button class="btn-edit" onclick="cancelOrder('${order._id}')">Cancel</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                }
+            });
+        }
+
+        // Search orders in the table
+        function searchOrders() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#ordersTable tbody tr');
+
+            rows.forEach(row => {
+                const txtValue = row.textContent.toLowerCase();
+                row.style.display = txtValue.includes(input) ? '' : 'none';
+            });
+        }
+
+        // Cancel an order
+        async function cancelOrder(orderId) {
+            const confirmed = confirm('Are you sure you want to cancel this order?');
+            if (!confirmed) return;
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/checkouts/cancelOrders/${orderId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Order canceled successfully.');
+                    fetchAndDisplayOrders();
+                } else {
+                    alert('Failed to cancel order.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error canceling the order.');
+            }
+        }
+
+        // Initial fetch of orders when the page loads
+        fetchAndDisplayOrders();
+    </script>
+</body>
+</html>

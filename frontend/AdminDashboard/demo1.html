@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disable Right Click on Image</title>
+</head>
+<body>
+
+  <img src="./Images/Logo.jpg" alt="Example Image" id="image" width="300">
+
+  <script>
+    document.getElementById('image').addEventListener('contextmenu', function(event) {
+      event.preventDefault();  // Prevents the context menu
+    });
+  </script>
+
+</body>
+</html>

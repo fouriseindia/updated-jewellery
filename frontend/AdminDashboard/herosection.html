@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Slider Management</title>
+    <link rel="stylesheet" href="herosection.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hero Slider Management</h1>
+
+        <!-- Error message container -->
+        <div id="error-message" style="color: red; display: none;"></div>
+
+        <!-- Swiper Form and Management -->
+        <div id="swiper" class="tab-content active">
+            <h2>Manage Swiper</h2>
+            <form id="addSliderForm" enctype="multipart/form-data">
+                <label for="image">Select Images (Multiple):</label>
+                <input type="file" id="image" name="image" accept="image/*" multiple required><br>
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required><br>
+
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required><br>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" required><br>
+
+                <label for="discount">Discount:</label>
+                <input type="text" id="discount" name="discount"><br>
+
+                <label for="swiperName">Swiper Name:</label>
+                <input type="text" id="swiperName" name="swiperName" required><br>
+
+                <label for="swiperSelect">Select Swiper:</label>
+                <select id="swiperSelect" onchange="changeSwiper()">
+                    <option value="swiper1">Swiper 1</option>
+                    <option value="swiper2">Swiper 2</option>
+                    <option value="swiper3">Swiper 3</option>
+                </select><br>
+
+                <button type="submit">Add Slider</button>
+            </form>
+
+            <!-- Table to Manage Sliders -->
+            <table id="sliderList">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Swiper Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic Rows Will Be Inserted Here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Function to show error message
+        function showError(message) {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        // Function to change the swiper visibility
+        function changeSwiper() {
+            const selectedSwiper = document.getElementById('swiperSelect').value;
+            const allSwipers = document.querySelectorAll('.swiper-container'); // Assuming you have multiple swiper containers
+            
+            // Hide all swiper containers
+            allSwipers.forEach(swiper => swiper.classList.remove('active'));
+
+            // Show the selected swiper container
+            document.getElementById(selectedSwiper).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch sliders from the backend dynamically
+            async function fetchSliders() {
+                try {
+                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch sliders');
+                    }
+
+                    const sliders = await response.json();
+                    const tableBody = document.querySelector('#sliderList tbody');
+
+                    sliders.forEach(slider => {
+                        const newRow = document.createElement('tr');
+                        newRow.setAttribute('data-id', slider._id);
+                        newRow.innerHTML = `
+                            <td><img src="http://localhost:3000/${slider.image[0] || slider.image}" width="100"></td>
+                            <td>${slider.title}</td>
+                            <td>${slider.description}</td>
+                            <td>${slider.price}</td>
+                            <td>${slider.discount}</td>
+                            <td>${slider.swiper}</td>
+                            <td>
+                                <button onclick="editSlider('${slider._id}')">Edit</button>
+                                <button onclick="deleteSlider('${slider._id}')">Delete</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(newRow);
+                    });
+                } catch (error) {
+                    showError(error.message);
+                }
+            }
+
+            // Fetch sliders when the page loads
+            fetchSliders();
+
+            // Function to handle form submissions for swiper
+            function handleSubmit(formId, tableId) {
+                const form = document.getElementById(formId);
+                const tableBody = document.querySelector(`#${tableId} tbody`);
+                const swiperSelect = document.getElementById('swiperSelect');
+                const swiperName = document.getElementById('swiperName');
+
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(form);
+
+                    // Get the selected swiper value and add it to formData
+                    formData.append('swiper', swiperSelect.value);
+                    formData.append('swiperName', swiperName.value);
+
+                    // Send data to the backend
+                    const response = await fetch('http://localhost:3000/api/sliders/add', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // Append new slider row to the table
+                        const newRow = document.createElement('tr');
+                        newRow.setAttribute('data-id', result.slider._id); // Set the slider ID to the row
+                        newRow.innerHTML = `
+                            <td><img src="/uploads/${result.slider.image[0] || result.slider.image}" width="100"></td>
+                            <td>${result.slider.title}</td>
+                            <td>${result.slider.description}</td>
+                            <td>${result.slider.price}</td>
+                            <td>${result.slider.discount}</td>
+                            <td>${result.slider.swiperName}</td>
+                            <td>
+                                <button onclick="editSlider('${result.slider._id}')">Edit</button>
+                                <button onclick="deleteSlider('${result.slider._id}')">Delete</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(newRow);
+                        form.reset();
+                    } else {
+                        showError('Failed to add slider');
+                    }
+                });
+            }
+
+            // Initialize form handling for the swiper
+            handleSubmit('addSliderForm', 'sliderList');
+
+            // Function to delete slider
+            async function deleteSlider(id) {
+                const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    // Remove the row from the table without reloading the page
+                    const row = document.querySelector(`#sliderList tbody tr[data-id="${id}"]`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    showError('Failed to delete slider');
+                }
+            }
+
+            // Function to edit slider (this should open an edit form or handle editing in a different way)
+            function editSlider(id) {
+                alert(`Implement editing for slider with ID: ${id}`);
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Shop Payment History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-details {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-approve {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px; /* Adjust font size for readability */
+            }
+            th, td {
+                padding: 8px; /* Adjust padding for smaller screens */
+            }
+            .actions {
+                flex-direction: column; /* Stack action buttons vertically */
+                align-items: center;
+            }
+            button {
+                margin-bottom: 5px; /* Add spacing between action buttons */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Jewelry Shop Payment History</h1>
+    <table id="paymentDetails">
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Shop Name</th>
+                <th>Shop Phone</th>
+                <th>Shop Address</th>
+                <th>Verification Status</th>
+                <th>Requested Amount</th>
+                <th>Remaining Amount</th>
+                <th>Approved</th> <!-- Column for approval status -->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Payment details rows will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentDetails = JSON.parse(localStorage.getItem('paymentDetails'));
+            if (paymentDetails) {
+                const tableBody = document.querySelector('#paymentDetails tbody');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${paymentDetails.paymentId}</td>
+                    <td>${paymentDetails.amount}</td>
+                    <td>${paymentDetails.type}</td>
+                    <td>${paymentDetails.status}</td>
+                    <td>${paymentDetails.shopName}</td>
+                    <td>${paymentDetails.shopPhone}</td>
+                    <td>${paymentDetails.shopAddress}</td>
+                    <td>${paymentDetails.verificationStatus}</td>
+                    <td>${paymentDetails.requestedAmount}</td>
+                    <td>${paymentDetails.remainingAmount}</td>
+                    <td>${paymentDetails.status === 'Completed' ? 'Done' : ''}</td> <!-- Conditionally display 'Done' -->
+                    <td class="actions">
+                        <button class="btn-details">Details</button>
+                        <button class="btn-delete">Delete</button>
+                        <button class="btn-approve" onclick="approvePayment()">Approve</button>
+                    </td>
+                `;
+                tableBody.appendChild(newRow);
+            } else {
+                alert('No payment details found.');
+                window.history.back(); // Go back to the previous page if no details found
+            }
+        });
+
+        // Example approvePayment function (can be adjusted based on actual implementation)
+        function approvePayment() {
+            const paymentDetails = JSON.parse(localStorage.getItem('paymentDetails'));
+            if (paymentDetails) {
+                paymentDetails.status = 'Completed'; // Assume approval changes status to Completed
+                localStorage.setItem('paymentDetails', JSON.stringify(paymentDetails));
+                location.reload(); // Reload the page to reflect changes
+            }
+        }
+    </script>
+</body>
+</html>

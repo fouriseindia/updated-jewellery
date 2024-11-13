@@ -1,0 +1,492 @@
+
+
+
+/* **********Slider Section *************** */
+.single_slider {
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+.slider_area {
+  margin-bottom: 35px;
+}
+
+.slider_area.owl-carousel .owl-dots {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.slider_area.owl-carousel .owl-dots .owl-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  background: aliceblue;
+  margin: 0 5px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.slider_area.owl-carousel .owl-dots .owl-dot.active {
+  transition: 0.3s;
+}
+
+.slider_area.owl-carousel .owl-dots .owl-dot.active::before {
+  position: absolute;
+  content: "";
+  background: #57aaf3;
+  width: 13px;
+  height: 13px;
+  left: -3px;
+  top: -3px;
+  border-radius: 50%;
+}
+
+.slider_area .single_slider .row {
+  height: 500px;
+}
+
+.slider_area .slider_content {
+  margin-left: 20px;
+  overflow: hidden;
+}
+.slider_black .slider_content p {
+  color: #57aaf3;
+  font-size: 18px;
+  margin-bottom: 0;
+  line-height: 22px;
+}
+
+.slider_black .slider_content p.slider_price {
+  color: #e2cd29;
+}
+.slider_black .slider_content p.slider_price span {
+  color: #57aaf3;
+  margin-bottom: 0;
+}
+
+.slider_black .slider_content h1 {
+  color: #e2cd29;
+  font-weight: 400;
+  margin-bottom: 10px;
+  font-family: "Baloo 2", serif;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  .slider_black .slider_content h1 {
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 8px;
+  }
+}
+
+.slider_black .slider_content span {
+  font-size: 24px;
+  color: #cccccc;
+  margin-bottom: 35px;
+  display: inline-block;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  .slider_black .slider_content span {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+}
+
+.slider_black .slider_content a {
+  background: #57aaf3;
+  margin-top: 30px;
+}
+
+.slider_black .slider_content a:hover {
+  background: #212121;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+  .slider_black .slider_content a {
+    margin-top: 43px;
+  }
+}
+
+.active .slider_content > span {
+  animation-fill-mode: both;
+  animation-duration: 1s;
+  animation-name: fadeInLeft;
+  animation-delay: 0.7s;
+}
+
+.active .slider_content p,
+.active .slider_content h1,
+.active .slider_content a {
+  animation-fill-mode: both;
+  animation-duration: 1s;
+  animation-name: fadeInLeft;
+  animation-delay: 0.3s;
+}
+
+.active .slider_content h1 {
+  animation-delay: 0.6s;
+}
+
+.active .slider_content a {
+  animation-delay: 0.9s;
+}
+
+.slider_content p {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  color: aliceblue;
+  margin-bottom: 11px;
+  text-transform: capitalize;
+}
+
+.slider_content h1 {
+  font-size: 60px;
+  line-height: 60px;
+  font-weight: 700;
+  color: #212121;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+.slider_content p.slider_price {
+  color: black;
+  font-size: 18px;
+}
+
+.slider_content p.slider_price span {
+  font-size: 22px;
+  font-weight: 500;
+  margin-left: 8px;
+  color: #57aaf3;
+  margin-bottom: 0;
+}
+
+.slider_content a {
+  font-weight: 500;
+  margin-top: 25px;
+  color: black;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 35px;
+}
+
+.slider_content a:hover {
+  background: #212121;
+}
+.button {
+  background: #57aaf3;
+  box-shadow: none;
+  color: black;
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 22px;
+  text-transform: uppercase;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+/***********************************************************************/  
+
+ /**************discount*******************/
+.centered-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px; /* Added padding to prevent text from touching the edges */
+  /* margin-top: 70px; */
+}
+
+.promo {
+  display: flex; /* Flexbox to align items in a column */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.promo-text {
+  display: flex; /* Align text items in a column */
+  flex-direction: column; /* Stack text items vertically */
+  align-items: center; /* Center align items horizontally */
+}
+
+.promo h1 {
+  font-size: 1.5em; /* Adjust font size as needed */
+  color: #000000; /* Color for the "DISCOVER JEWELLERY" text */
+  margin: 0; /* Remove default margin */
+}
+
+.discount {
+  font-size: 1.5em; /* Adjust font size as needed */
+  color: #000000; /* Color for the "Save Up To 50% OFF" text */
+  margin: 10px 0; /* Margin to space out the lines */
+}
+
+/**************************************************************/
+.image-section {
+  display: flex; /* Align images side-by-side */
+  flex-wrap: wrap; /* Allow wrapping to create new rows if necessary */
+  gap: 20px; /* Space between columns */
+  margin: 20px 20px; /* Add space around the entire section (top/bottom and left/right) */
+  padding: 0; /* You can adjust this if needed */
+  box-sizing: border-box;
+}
+
+.image-section a {
+  flex: 1 1 calc(50% - 20px); /* Each image takes up approximately half of the container width minus the gap */
+  display: block;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.image-section img {
+  width: 100%;
+  height: auto; /* Adjust height automatically to maintain aspect ratio */
+  object-fit: cover; /* Ensure images cover the full space */
+  display: block; /* Remove default inline spacing */
+}
+
+@media (max-width: 768px) {
+  .image-section a {
+    flex: 1 1 100%; /* Stack images vertically on smaller screens */
+  }
+}
+
+
+/****************************************************************************/
+
+.single_slider {
+background-repeat: no-repeat;
+background-attachment: scroll;
+background-position: center center;
+background-size: cover;
+height: 600px; /* Adjust the height as needed */
+margin-bottom: 20px; /* Adjust the margin as needed */
+}
+
+.slider_area {
+margin-top: 30px; /* Adjust the space as needed */
+margin-bottom: 35px;
+/* margin-top: 20px; Uncomment if you need additional space above the slider_area */
+}
+
+.slider_area.owl-carousel .owl-dots {
+display: none; /* Hide the dots if you don't want them */
+}
+
+/***********************************over*********************************************/
+/************** *******************/
+.centered-section {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+height: 100px; /* Full viewport height */
+padding: 20px; /* Padding to prevent text from touching the edges */
+box-sizing: border-box;
+}
+
+.promo-content {
+display: flex;
+flex-direction: column; /* Stack text items vertically */
+align-items: center; /* Center align items horizontally */
+}
+
+.promo-content h1,
+.promo-content .discount {
+font-size: 1.5em; /* Adjust font size as needed */
+color: #000000; /* Color for the text */
+margin: 10px 0; /* Margin to space out the lines */
+}
+
+.promo-content h1 {
+font-size: 2em; /* Larger font size for "SHOP BY LOOK" */
+color: #000000; /* Change color for "SHOP BY LOOK" */
+}
+/****************************************over***********************************************/
+/* Container for the section */
+.shop-by-look {
+padding: 20px; /* Add padding around the section */
+}
+
+/* Title styling */
+.shop-by-look h2 {
+font-size: 2em; /* Adjust font size as needed */
+text-align: center; /* Center align the title */
+margin-bottom: 20px; /* Margin below the title */
+}
+
+/* Row container styling */
+.look-row {
+display: flex;
+justify-content: center; /* Center items in the row */
+flex-wrap: wrap; /* Wrap items to the next line if necessary */
+gap: 20px; /* Space between items */
+}
+
+/* Card styling */
+.card-look {
+width: 300px; /* Adjust width as needed */
+height: 400px; /* Adjust height as needed */
+border-radius: 35px; /* Rounded corners */
+overflow: hidden; /* Hide overflow */
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Image styling */
+.card-look img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Ensure the image covers the rounded container */
+display: block; /* Remove default inline spacing */
+}
+
+/******************************************************************************************/
+/*******************************************************************************/
+/* Container for the section */
+.centered-offers-i {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100px; /* Full viewport height */
+text-align: center;
+padding: 20px; /* Padding to add space around the text */
+box-sizing: border-box;
+}
+
+/* Title styling */
+.centered-offers-i h2 {
+font-size: 2em; /* Adjust font size as needed */
+margin-bottom: 10px; /* Space below the title */
+color: #000000; /* Adjust color as needed */
+}
+
+/* Subtitle styling */
+.centered-offers-i p {
+font-size: 1.2em; /* Adjust font size as needed */
+color: #000000; /* Adjust color as needed */
+}
+
+/**********************************************************************************************/
+/* Container for the entire favorites section */
+.favorites-container {
+  padding: 20px; /* Padding around the section */
+  box-sizing: border-box; /* Include padding in the total width and height */
+}
+
+/* Row styling for favorites */
+.favorites-row {
+  display: flex; /* Use flexbox to align boxes side by side */
+  gap: 20px; /* Space between boxes */
+  margin-bottom: 20px; /* Space between rows */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Box styling for favorites */
+.favorite-box {
+  flex: 1; /* Each box takes up equal space */
+  display: flex; /* Use flexbox inside the box */
+  border: 1px solid #ddd; /* Border for the box */
+  border-radius: 10px; /* Rounded corners for the box */
+  background-color: #f9f9f9; /* Background color for the box */
+  overflow: hidden; /* Ensure content does not overflow */
+  min-width: 300px; /* Minimum width for each box */
+}
+
+/* Content inside each favorite box */
+.favorite-content {
+  display: flex; /* Align image and text side by side */
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold; /* Bold text */
+}
+
+/* Image container styling for favorites */
+.favorite-image {
+  flex: 1; /* Image takes up 1 part of the box */
+}
+
+.favorite-image img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
+  border-radius: 10px; /* Rounded corners for the image */
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px (tablets and mobile devices) */
+@media (max-width: 768px) {
+  .image-section {
+    height: 40vh; /* Adjust height for smaller screens */
+  }
+
+  .single_slider {
+    height: 400px; /* Adjust height for smaller screens */
+  }
+
+  .favorites-row {
+    flex-direction: column; /* Stack boxes vertically on small screens */
+  }
+
+  .favorite-box {
+    min-width: 100%; /* Make each box full width on small screens */
+  }
+
+  .card-look {
+    width: 100%; /* Make cards full width on small screens */
+    height: auto; /* Adjust height to maintain aspect ratio */
+  }
+}
+
+/* For screens smaller than 480px (mobile devices) */
+@media (max-width: 480px) {
+  .promo h1 {
+    font-size: 1.2em; /* Smaller font size for mobile screens */
+    font-weight: bold; /* Bold text */
+  }
+
+  .discount {
+    font-size: 1.2em; /* Smaller font size for mobile screens */
+    font-weight: bold; /* Bold text */
+  }
+
+  .shop-by-look h2 {
+    font-size: 1.5em; /* Smaller font size for mobile screens */
+    font-weight: bold; /* Bold text */
+  }
+
+  .centered-offers-i h2 {
+    font-size: 1.5em; /* Smaller font size for mobile screens */
+    font-weight: bold; /* Bold text */
+  }
+
+  .centered-offers-i p {
+    font-size: 1em; /* Smaller font size for mobile screens */
+    font-weight: bold; /* Bold text */
+  }
+  .centered-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100px; /* Full viewport height */
+    padding: 20px; /* Padding to prevent text from touching the edges */
+    box-sizing: border-box;
+    margin-top: -45px;
+    }
+}

@@ -1,0 +1,242 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        /* Add your CSS styling here */
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form">
+            <h2>Admin Login</h2>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p id="error-message" style="color: red;"></p>
+        </form>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            try {
+                const response = await fetch('http://localhost:3000/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    sessionStorage.setItem('authenticated', 'true');
+                    window.location.href = '/frontend/AdminDashboard';
+                } else {
+                    errorMessage.textContent = 'Invalid username or password.';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Error logging in.';
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        .login-container {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 2rem;
+                background-color: aliceblue;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+    
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 1rem;
+                color: #333;
+            }
+    
+            .login-container div {
+                margin-bottom: 1rem;
+            }
+    
+            .login-container label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: #555;
+            }
+    
+            .login-container input {
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+    
+            .login-container button {
+                width: 100%;
+                padding: 0.75rem;
+                border: none;
+                border-radius: 4px;
+                background-color: #007bff;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+    
+            .login-container button:hover {
+                background-color: #0056b3;
+            }
+    
+            .login-container .links {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 1rem;
+            }
+    
+            .login-container .links a {
+                color: #007bff;
+                text-decoration: none;
+            }
+    
+            .login-container .links a:hover {
+                text-decoration: underline;
+            }
+    
+            .profile-logo {
+                display: block;
+                margin: 0 auto 1rem;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                background-color: #e0e0e0;
+            }
+        </style>
+    </head>
+    <body style="background-color: #b9d4ec;">
+        <div class="login-container">
+            <img id="profile-logo" class="profile-logo" src="../images/logo1.png" alt="Profile Logo">
+            <form id="login-form">
+                <h2>Shankh Jewellery</h2>
+                <h2>Admin Login</h2>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p id="error-message"></p>
+                <div class="links">
+                    <!-- <a href="forget.html">Forgot Password?</a> -->
+                    <a href="#">Create Account</a>
+                </div>
+            </form>
+        </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    sessionStorage.setItem('loggedInID',username)
+                    sessionStorage.setItem('AdminAuth', 'true');
+                    sessionStorage.setItem('authenticated', 'true');
+                    
+                    window.location.href = '/AdminDashboard/index.html';
+                } else {
+                    document.getElementById('error-message').textContent = result.message;
+                }
+            } catch (error) {
+                document.getElementById('error-message').textContent = 'Error logging in';
+            }
+        });
+    </script>
+</body>
+</html>
+

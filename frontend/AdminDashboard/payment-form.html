@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <script></script>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+           background: aliceblue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"], input[type="email"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Payment Form</h2>
+    <form id="paymentForm" action="process-payment.php" method="POST">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required>
+
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" maxlength="3" required>
+
+        <label for="cardHolderName">Cardholder Name:</label>
+        <input type="text" id="cardHolderName" name="cardHolderName" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="address">Billing Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <button type="submit">Submit Payment</button>
+    </form>
+</body>
+</html>

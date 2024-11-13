@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Wallet Setup</title>
+    <script></script>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #6fb3f0;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-details {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-pay {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Responsive styles */
+        @media only screen and (max-width: 1190px) {
+            table {
+                font-size: 14px;
+            }
+        }
+
+        @media only screen and (max-width: 756px) {
+            table {
+                font-size: 12px;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            table {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Wallet Setup</h1>
+       
+    </header>
+    <main>
+        <h2>Wallet Overview</h2>
+        <div>
+            <h3>Shop Wallets</h3>
+            <table id="shopWalletsTable">
+                <thead>
+                    <tr>
+                        <th>Shop Name</th>
+                        <th>Current Balance</th>
+                        <th>Total Paid Amount</th>
+                        <th>Total Orders Delivered</th>
+                        <th>Total Revenue</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate with shop wallet data -->
+                    <tr>
+                        <td><a href="shop-details.html?shopName=Shop%20A">Shop A</a></td>
+                        <td>₹500.00</td>
+                        <td>₹3000.00</td>
+                        <td>25</td>
+                        <td>₹7500.00</td>
+                        <td>
+                            <button class="btn-details" onclick="viewShopDetails('Shop A')">Details</button>
+                            <button class="btn-pay" onclick="openPaymentForm('Shop A')">Pay</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="shop-details.html?shopName=Shop%20B">Shop B</a></td>
+                        <td>₹300.00</td>
+                        <td>₹1500.00</td>
+                        <td>12</td>
+                        <td>₹4000.00</td>
+                        <td>
+                            <button class="btn-details" onclick="viewShopDetails('Shop B')">Details</button>
+                            <button class="btn-pay" onclick="openPaymentForm('Shop B')">Pay</button>
+                        </td>
+                    </tr>
+                    <!-- Add more shop wallet rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Farmer Wallets</h3>
+            <table id="farmerWalletsTable">
+                <thead>
+                    <tr>
+                        <th>Farmer Name</th>
+                        <th>Current Balance</th>
+                        <th>Total Paid Amount</th>
+                        <th>Total Orders Delivered</th>
+                        <th>Total Revenue</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate with farmer wallet data -->
+                    <tr>
+                        <td><a href="farmer-details.html?farmerName=Farmer%20X">Farmer X</a></td>
+                        <td>₹700.00</td>
+                        <td>₹5000.00</td>
+                        <td>40</td>
+                        <td>₹12000.00</td>
+                        <td>
+                            <button class="btn-details" onclick="viewFarmerDetails('Farmer X')">Details</button>
+                            <button class="btn-pay" onclick="openPaymentForm('Farmer X')">Pay</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="farmer-details.html?farmerName=Farmer%20Y">Farmer Y</a></td>
+                        <td>₹400.00</td>
+                        <td>₹2500.00</td>
+                        <td>20</td>
+                        <td>₹6000.00</td>
+                        <td>
+                            <button class="btn-details" onclick="viewFarmerDetails('Farmer Y')">Details</button>
+                            <button class="btn-pay" onclick="openPaymentForm('Farmer Y')">Pay</button>
+                        </td>
+                    </tr>
+                    <!-- Add more farmer wallet rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        
+        <h2>Transaction History</h2>
+        <table id="transactionHistoryTable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount Ask</th>
+                    <th>Amount Pay</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Method</th>
+                    <th>Bank Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populate with transaction history data -->
+                <tr>
+                    <td>Shop</td>
+                    <td>₹1000.00</td>
+                    <td>₹1000.00</td>
+                    <td>2024-06-13</td>
+                    <td>10:00 AM</td>
+                    <td>Credit Card</td>
+                    <td>Bank X, XXX-XXX-1234</td>
+                </tr>
+                <tr>
+                    <td>Farmer</td>
+                    <td>₹800.00</td>
+                    <td>₹800.00</td>
+                    <td>2024-06-12</td>
+                    <td>09:30 AM</td>
+                    <td>Bank Transfer</td>
+                    <td>Bank Y, XXX-XXX-5678</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function viewShopDetails(shopName) {
+            // Redirect to shop details page with shopName
+            window.location.href = `shop-details.html?shopName=${encodeURIComponent(shopName)}`;
+        }
+
+        function viewFarmerDetails(farmerName) {
+            // Redirect to farmer details page with farmerName
+            window.location.href = `farmer-details.html?farmerName=${encodeURIComponent(farmerName)}`;
+        }
+
+        function openPaymentForm(entityName) {
+            // Redirect to payment form with entityName (shop or farmer)
+            window.location.href = `payment-form.html?entityName=${encodeURIComponent(entityName)}`;
+        }
+    </script>
+</body>
+</html>

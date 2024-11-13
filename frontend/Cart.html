@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashirwaad Jewelry</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <head>
+        <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <script src="js/navigation.js"></script>
+      <style>
+
+.about-header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #000000 !important; /* Force black color */
+    margin-bottom: 20px;
+}
+/* Shopping Cart Container */
+.shopping-cart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1500px;
+    margin: 20px auto;
+    height: auto; /* Adjusted height */
+}
+
+/* Cart Items and Order Summary */
+.cart-items, .order-summary {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(3, 3, 3, 0.389);
+}
+.estimated-total{
+    color: #000000;
+}
+.shipping-info{
+    color: #000000;
+}
+/* Cart Items */
+.cart-items {
+    flex: 2;
+    margin-right: 20px;
+}
+
+/* Order Summary */
+.order-summary {
+    flex: 1;
+    background-color: aliceblue; /* Light Blue 2 */
+}
+
+/* Cart Item Styling */
+.cart-item {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+/* Increase Product Image Size */
+.product-image {
+    max-width: 200px; /* Increased size */
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+/* Item Details */
+.item-details {
+    flex: 1;
+}
+
+/* Increase Title Size */
+h2 {
+    margin-left: 30px;
+    margin-bottom:10px;
+    font-size: 30px; /* Increased size */
+}
+
+/* Cart Item Title */
+h3 {
+    margin: 0;
+    font-size: 16px;
+    color:black;
+}
+
+.price {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.discounted-price {
+    color: #e74c3c; /* Red */
+    font-weight: bold;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #7f8c8d; /* Grey */
+    margin-left: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.quantity-btn {
+    background-color: #b6d7f4; /* Light Blue 3 */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000000;
+}
+
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Update Remove and Wishlist Buttons */
+.remove-btn, .wishlist-btn .remove-btn1 {
+    background-color: white; /* Changed to white */
+    border: 1px solid #000000; /* Black border */
+    color: #000000; /* Black text */
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    width: 150px; /* Increased width */
+}
+
+/* Button Hover Effect */
+.remove-btn:hover, .wishlist-btn:hover, .remove-btn1 {
+    background-color: #57aaf3; /* Light Blue 4 */
+}
+
+/* Additional Options */
+.additional-options {
+    margin-top: 20px;
+}
+
+
+/* Order Summary */
+.order-summary h2, .cart-items h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #000000;
+}
+
+.estimated-total, .total-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.promo-codes {
+    margin-top: 20px;
+}
+
+.promo-code {
+    background-color: #b6d7f4; /* Light Blue 4 */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: center;
+    color: #000000;
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background-color: #b6d7f4; /* Light Blue 4 */
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 20px;
+
+}/* Suggested Products Section */
+.suggested-products-section {
+    background-color: aliceblue; /* Light Blue background */
+    padding: 30px; /* Padding around the section */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: -30px; /* Margin on top */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow around the section */
+}
+
+/* Title Style */
+.suggested-products-section h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.75rem; /* Font size */
+    font-weight: bold; /* Font weight */
+    color: #000000; /* Black color for the text */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Margin below the title */
+    animation: fadeIn 1s ease-out; /* Fade-in animation */
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Soft shadow */
+    overflow: hidden; /* Hide overflow for rounded corners */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effect */
+    animation: fadeInUp 1s ease-out; /* Fade-in and slide-up animation */
+    margin-top: 30px;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3); /* Increased shadow on hover */
+}
+
+.card-img-container {
+    position: relative;
+}
+
+.card-img-top,
+.card-img-hover {
+    width: 100%;
+    height: 200px; /* Height of the image */
+    object-fit: cover; /* Maintain aspect ratio */
+    transition: opacity 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+.card-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Initially hidden */
+}
+
+.card-img-container:hover .card-img-hover {
+    opacity: 1; /* Show on hover */
+}
+
+.card-img-container:hover .card-img-top {
+    opacity: 0; /* Hide on hover */
+}
+
+.card-body {
+    padding: 15px; /* Padding inside the card */
+}
+
+.card-title {
+    font-size: 1.1rem; /* Font size for the title */
+    margin-bottom: 10px; /* Margin below the title */
+    animation: fadeIn 1s ease-out; /* Fade-in animation */
+}
+
+.pricing {
+    font-size: 1rem; /* Font size for pricing */
+    margin-bottom: 10px; /* Margin below pricing */
+}
+
+.sale-price {
+    color: #000000; /* Color for sale price */
+    font-weight: bold; /* Bold text */
+    margin-right: 10px; /* Space between prices */
+}
+
+.regular-price {
+    color: #b71c1c; /* Color for regular price */
+    text-decoration: line-through; /* Strike-through effect */
+}
+
+.btn-primary {
+    background-color: #b6d7f4; /* Button background color */
+    border-color: #b6d7f4; /* Button border color */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+    font-style: #000000;
+}
+
+.btn-primary:hover {
+    background-color: #57aaf3; /* Button background color on hover */
+    border-color: #57aaf3; /* Button border color on hover */
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    cursor: pointer;
+    fill: rgba(0, 0, 0, 0.6); /* Default color */
+    transition: fill 0.2s ease, transform 0.2s ease; /* Smooth transition */
+    border-radius: 50%; /* Circular shape */
+    padding: 5px; /* Space around the icon */
+    background: rgba(192, 192, 192, 0.4); /* Semi-transparent background */
+}
+
+.wishlist-icon.red {
+    fill: #d32f2f; /* Color when clicked */
+    transform: scale(1.1); /* Slightly enlarge when clicked */
+}
+
+.rating {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff; /* White text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.rating img {
+    width: 20px; /* Width of rating icon */
+    height: 20px; /* Height of rating icon */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Keyframe Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #28a745; /* Green background */
+    color: #000000; /* White text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.banner {
+    background-image: url('image/collection_banner-web_7_-min_f1995baa-3a05-4132-ab84-1ffb90d839fb.jpg'); /* Replace with the path to your photo */
+    background-size: cover; /* Scale the photo to cover the banner */
+    background-position: center; /* Center the photo in the banner */
+    height: 280px ;/* Adjust height as needed */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.additional-options{
+    color: #000000;
+}
+.social1 ul li:hover {
+        transform: translate(80px, 0);
+        background: rgba(232, 8, 8, 0.4);
+    }
+
+    .fa-snapchat-ghost:before, .fa-snapchat:before {
+    content: "\f2ab";
+    color: black;
+    }
+    @media (max-width: 765px) {
+        .social1 {
+            width: 30px;
+        }
+    }
+
+
+    /* General Mobile View for Samsung Galaxy S8 (360px width) */
+@media (max-width: 360px) {
+    .shopping-cart-container {
+        flex-direction: column;
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    .cart-items, .order-summary {
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    .product-image {
+        max-width: 120px;
+        margin-right: 15px;
+    }
+
+    .item-details h2, .order-summary h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 14px;
+    }
+
+    .quantity-input {
+        width: 40px;
+    }
+
+    .remove-btn, .wishlist-btn, .remove-btn1 {
+        width: 120px;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .checkout-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .card {
+        margin-top: 20px;
+    }
+
+    .card-img-top,
+    .card-img-hover {
+        height: 150px; /* Reduce height for smaller screens */
+    }
+}
+
+/* Mobile View for 600px width */
+@media (max-width: 600px) {
+    .shopping-cart-container {
+        flex-direction: column;
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .cart-items, .order-summary {
+        margin: 15px 0;
+        padding: 20px;
+    }
+
+    .product-image {
+        max-width: 150px;
+        margin-right: 20px;
+    }
+
+    .item-details h2, .order-summary h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .quantity-input {
+        width: 45px;
+    }
+
+    .remove-btn, .wishlist-btn, .remove-btn1{
+        width: 130px;
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .checkout-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .card {
+        margin-top: 25px;
+    }
+
+    .card-img-top,
+    .card-img-hover {
+        height: 175px; /* Adjust height for 600px width */
+    }
+}
+
+</style>
+
+<script>
+    if(!sessionStorage.getItem('userdata')){
+        window.location.href='login.html';
+    }
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // Retrieve cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Filter out any invalid items (null or undefined)
+    cartItems = cartItems.filter(item => item && item._id);
+
+    const cartContainer = document.querySelector('.cart-items');
+
+    // Check if the cart is empty
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        // Loop through cart items and render them
+        cartItems.forEach(item => {
+            if (item && item.mainImage && item.productTitle && item.productPrice && item.regularPrice) {
+                const cartItem = `
+                    <div class="cart-item" id="cart-item-${item._id}">
+                        <img src="http://localhost:3000/${item.mainImage}" alt="${item.productTitle}" class="product-image">
+                        <div class="item-details">
+                            <h3>${item.productTitle}</h3>
+                            <p class="price">
+                                <span class="discounted-price">₹${item.productPrice}</span> 
+                                <span class="original-price"><del>₹${item.regularPrice}</del></span>
+                            </p>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('${item._id}', -1)">-</button>
+                                <input type="number" value="1" class="quantity-input" id="quantity-${item._id}" readonly>
+                                <button class="quantity-btn" onclick="updateQuantity('${item._id}', 1)">+</button>
+                            </div>
+                            <button class="remove-btn" onclick="removeItemFromCart('${item._id}')">Remove</button>
+                            <a  href="checkout.html?id=${item._id}&price=${item.productPrice}&name=${item.productTitle}&des=${item.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                            <!-- Pass productTitle (product name) to checkout -->
+                            
+                        </div>
+                    </div>
+                    
+                    `;
+                    
+                cartContainer.innerHTML += cartItem;
+                
+            } else {
+                console.error("Invalid cart item data:", item);  // Log any invalid item data
+            }
+        });
+    }
+});
+
+// Function to handle Buy Now action
+function buyNow(productId, productPrice, productTitle) {
+    // Get the specific quantity input for this product
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    const quantity = Number(quantityInput.value);
+
+    // Calculate the total price based on the quantity
+    const totalPrice = productPrice * quantity;
+
+    // Redirect to the checkout page with product id, total price, and product name
+    window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}`;
+}
+// Function to remove item from cart
+function removeItemFromCart(productId) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+    // Filter out any invalid items (null or undefined) again
+    cartItems = cartItems.filter(item => item && item._id);
+
+    console.log('Cart items before removal:', cartItems);  // Debugging log
+
+    // Filter out the item with the matching productId
+    const updatedCartItems = cartItems.filter(item => item._id !== productId);
+
+    // Update localStorage after removal
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+    // Debugging log to check the updated cart items
+    console.log('Cart items after removal:', updatedCartItems);
+
+    // Remove the item from the DOM without reloading the page
+    const itemElement = document.getElementById(`cart-item-${productId}`);
+    if (itemElement) {
+        itemElement.remove();
+    } else {
+        console.error("Could not find cart item element to remove:", productId);
+    }
+
+    // Optional: Show message if the cart becomes empty after removal
+    if (updatedCartItems.length === 0) {
+        const cartContainer = document.querySelector('.cart-items');
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+    }
+}
+
+// Function to update the quantity of items in the cart
+function updateQuantity(productId, change) {
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    let currentQuantity = parseInt(quantityInput.value);
+    const newQuantity = currentQuantity + change;
+
+    // Ensure the new quantity is not less than 1
+    if (newQuantity >= 1) {
+        quantityInput.value = newQuantity;
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+    <div class="home_black_version">
+        <header class="header_area header_black">
+            <!-- header top starts -->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+            
+                                  <div class="col-lg-6 col-md-6 st">
+                            <div class="image-container">
+                                <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid" 
+                                     alt="Shiny Diamond Jewelry Logo">
+                                <p>Shankh Jewels</p>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li class="top_links">
+                                        <a href="#"><span id="user-email">My Account</span> <i
+                                                class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li id="login"><a href="login.html">Login</a></li>
+                                            <li><a href="acc.html">Account dashboard</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
+                                            <li><a href="wishlist1.html">Wishlist</a></li>
+                                            <li id="logout"><a  onclick="logout()">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- header top ends -->
+    
+    
+            <!-- header bottom starts -->
+<div class="header_bottom sticky-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-6 col-md-6 col-6">
+                <!-- Toggle Button for Mobile -->
+                <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+                
+                <!-- Main Menu (Desktop Only) -->
+                <div class="main_menu_inner">
+                    <div class="main_menu">
+                        <nav>
+                            <ul>
+                                <li class="active">
+                                    <a href="index.html">Home </a>
+                                    <!-- <ul class="sub_menu">
+                                        <li><a href="#">Banner</a></li>
+                                        <li><a href="#">Featured</a></li>
+                                        <li><a href="#">Collection</a></li>
+                                        <li><a href="#">Best Selling</a></li>
+                                        <li><a href="#">News</a></li>
+                                    </ul> -->
+                                </li>
+                                <li>
+                                    <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                    <ul class="mega_menu">
+                                        <li>
+                                            <a href="women.html">Women</a>
+                                            <ul>
+                                                <li><a href="earing.html">Earring</a></li>
+                                                <li><a href="pendant&necklace.html">Pendant&Necklace</a></li>
+                                                <li><a href="rings.html">Rings</a></li>
+                                                <li><a href="anklets.html">Anklets</a></li>
+                                                <li><a href="braclet.html">Bracelets</a></li>
+                                                <li class="has-submenu">
+                                                    <a href="#">Other Category</a>
+                                                    <ul class="submenu-inline">
+                                                        <li><a href="jewelleryset.html">Jewellry Set</a></li>
+                                                        <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                                                        <li><a href="nosepins.html">Nose pins & Rings</a></li>
+                                                        <li><a href="toerings.html">Toe rings</a></li>
+                                                        <li><a href="bangals.html">Bangles</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="men.html">Men</a>
+                                            <ul>
+                                                <li><a href="men_ring.html">Ring</a></li>
+                                                <li><a href="men_pendant.html">Pendant&Chains</a></li>
+                                                <li><a href="men_braclet.html">Bracelet</a></li>
+                                                <li><a href="men_earing.html">Earing</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                  <li>
+                                        <a href="latestcollection.html">Latest Collections <i class="ion-chevron-down"></i></a>
+                                        <ul class="sub_menu pages">
+                                            <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+                                            <li><a href="cherryontop.html">Cherry on Pop</a></li>
+                                            <li><a href="loveinparis.html">Love in paris</a></li>
+                                            <li><a href="justarrived.html">Just Arrived</a></li>
+                                            <li><a href="everydaywear.html">Every Day Wear</a></li>
+                                            <li><a href="officewear.html">Office Wear</a></li>
+                                            <li><a href="partywear.html">Party Wear</a></li>
+                                            <li><a href="weddingwear.html">Wedding Wear</a></li>
+                                            <li><a href="oxidised.html">Oxidised </a></li>
+                                            <li><a href="silver.html">Silver</a></li>
+                                        </ul>
+                                    </li>  
+                                <li><a href="offer.html">Offer</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-6">
+                <div class="middel_right">
+                    <div class="search_btn">
+                        <form action="#">
+                            <input type="text" placeholder="Search Product ....">
+                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+                    </div>
+                    
+                    <!-- <div class="wishlist_btn">
+                        <a href="#"><i class="ion-heart"></i></a>
+                    </div> -->
+                    <!-- <div class="cart_link">
+                        <a href="#"><i class="ion-android-cart"></i>
+                            <span class="cart_text_quantity">Rs.67,598</span> -->
+                            <!-- <i class="ion-chevron-down"></i>
+                        </a>
+                        <span class="cart_quantity">2</span>
+  
+                        mini cart
+                        <div class="mini_cart">
+                            <div class="cart_close">
+                                <div class="cart_text">
+                                    <h3>cart</h3>
+                                </div>
+                                <div class="mini_cart_close">
+                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Earings</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 54,599</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_item">
+                                <div class="cart_img">
+                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                                </div>
+                                <div class="cart_info">
+                                    <a href="#">Bracelet</a>
+                                    <span class="quantity">Qty : 1</span>
+                                    <span class="price_cart">Rs. 12,999</span>
+                                </div>
+                                <div class="cart_remove">
+                                    <a href="#"><i class="ion-android-close"></i></a>
+                                </div>
+                            </div>
+                            <div class="cart_total">
+                                <span>Subtotal : </span>
+                                <span>Rs. 67,598</span>
+                            </div>
+                            <div class="mini_cart_footer">
+                                <div class="cart_button view_cart">
+                                    <a href="#">View Cart</a>
+                                </div>
+                                <div class="cart_button checkout">
+                                    <a href="#" class="active">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mini cart ends  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- header bottom ends -->
+  
+  <!-- Sidebar Structure -->
+  <!-- Sidebar Structure -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+  
+    <!-- Category Dropdown -->
+    <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="mega_menu">
+        <li>
+          <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="earing.html">Earring</a></li>
+            <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+            <li><a href="rings.html">Rings</a></li>
+            <li><a href="anklets.html">Anklets</a></li>
+            <li><a href="braclet.html">Bracelets</a></li>
+            <li class="has-submenu">
+              <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+              <ul class="submenu-inline">
+                <li><a href="jewelleryset.html">Jewellery Set</a></li>
+                <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+                <li><a href="toerings.html">Toe Rings</a></li>
+                <li><a href="bangals.html">Bangles</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+          <ul>
+            <li><a href="men_ring.html">Ring</a></li>
+            <li><a href="men_pendant.html">Pendant & Chains</a></li>
+            <li><a href="men_braclet.html">Bracelet</a></li>
+            <li><a href="men_earing.html">Earring</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Latest Collections Link with Dropdown -->
+    <a href="javascript:void(0)"  class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+    <div class="dropdown-container">
+      <ul class="sub_menu pages">
+        <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+        <li><a href="cherryontop.html">Cherry on Top</a></li>
+        <li><a href="loveinparis.html">Love in Paris</a></li>
+        <li><a href="justarrived.html">Just Arrived</a></li>
+        <li><a href="everydaywear.html">Every Day Wear</a></li>
+        <li><a href="officewear.html">Office Wear</a></li>
+        <li><a href="partywear.html">Party Wear</a></li>
+        <li><a href="weddingwear.html">Wedding Wear</a></li>
+        <li><a href="oxidised.html">Oxidised </a></li>
+        <li><a href="silver.html">Silver</a></li>
+      </ul>
+    </div>
+  
+    <a href="offer.html">Offer</a>
+    <a href="about.html">About Us</a>
+  </div>
+  
+        </header>
+
+        <!-- slider section starts -->
+        <div class="slider_area slider_black owl-carousel">
+            <div class="single_slider" data-bgimg="images/slider/1.png">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -20% off this week</p>
+                                <h1>Necklace</h1>
+                                <span>22 Carat gold necklace for wedding</span>
+                                <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/2.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -40% off this week</p>
+                                <h1>Earings and Pendant</h1>
+                                <span>Complete bridal set with white pearls</span>
+                                <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="images/slider/3.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -10% off this week</p>
+                                <h1>Wedding Rings</h1>
+                                <span>Shankh Jewels Special wedding rings for couples.</span>
+                                <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- slider section ends -->
+
+    <section>
+        <div class="shopping-cart-container">
+            <div class="cart-items" id="cart-items-container">
+                <!-- Product details will be dynamically rendered here -->
+                
+            </div>
+            <!-- <button style="width: 150px;
+            margin: auto;
+            background: white;
+            color: black;
+            border-radius: 10%;
+            padding: 10px;" onclick="buyNow('${item._id}', '${encodeURIComponent(item.productTitle)}')">Buy NOw</button> -->
+        </div>
+        
+    </section>
+<section>
+    <!-- <div class="shopping-cart-container">
+        <div class="cart-items">
+            
+            <div class="cart-item">
+                <img src="image/J.jpg" alt="Silver Infinity Heart Necklace" class="product-image">
+                <div class="item-details">
+                    <h3>Silver Infinity Ring</h3>
+                    <p class="price"><span class="discounted-price">₹1,999.00</span> <span class="original-price">₹3,599.00</span></p>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn">-</button>
+                        <input type="number" value="1" class="quantity-input">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <button class="remove-btn">Remove</button>
+                    <button class="wishlist-btn" href="checkout.html">Buy Now</button>
+                </div>
+            </div>
+            <div class="additional-options">
+                <label>
+                    <input type="checkbox" name="gift-wrap" value="50">
+                    Add a gift wrap and a message with this item (+ ₹50)
+                </label>
+            </div>
+        </div>
+    </div> -->
+  </section>
+    <div class="suggested-products-section">
+      <h2>Don’t Miss Out!</h2>
+
+      <div class="banner"></div>
+      <!-- Card Options -->
+      <div class="container mt-4">
+        
+    </div>
+</div>
+
+
+           <!-- footer section starts -->
+      <footer class="footer_widgets footer_black">
+        <div class="container">
+            <div class="footer_top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <div class="widgets_container contact_us">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer_contact">
+                                <p><i class="fas fa-map-marker-alt"></i> Address: Shop No 43\3b,<br> Vitthal Mangal Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
+                                <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ShankhJewelsjewlers@gmail.com">ShankhJewelsjewlers@gmail.com</a></p>
+                                
+                                <ul>
+                                   <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-snapchat"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                   <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                             </div>
+                             
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-4 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Information</h3>
+                            <div class="footer_menu">
+                                <ul>
+                                    <li><a href="about.html"> <i class="fas fa-chevron-right"></i>&nbsp;About Us </a></li>
+                                    <li><a href="category.html"> <i class="fas fa-chevron-right"></i>&nbsp;Category </a></li>
+                                    <li><a href="women.html"> <i class="fas fa-chevron-right"></i>&nbsp;Womens </a></li>
+                                    <li><a href="men.html"> <i class="fas fa-chevron-right"></i>&nbsp;Mens </a></li>
+                                    <li><a href="latestcollection.html"> <i class="fas fa-chevron-right"></i>&nbsp;Latest Collection </a></li>
+                                    <li><a href="offer.html"><i class="fas fa-chevron-right"></i>&nbsp; Offer </a></li>
+                                 </ul>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 ">
+                        <div class="widgets_container widget_menu">
+                            <h3>Help</h3>
+                             <div class="footer_menu">
+                                <ul>
+                                    <li><a href="shipping.html"> <i class="fas fa-chevron-right"></i>&nbsp;Shipping/&nbsp;Returns & Exchange Information</a></li>
+                                    <!-- <li><a href=".html"><i class="fas fa-chevron-right"></i>&nbsp;Returns & Exchange</a></li> -->
+                                    <li><a href="term.html"><i class="fas fa-chevron-right"></i>&nbsp;Terms & Conditions</a></li>
+                                    <li><a href="Privacy.html"> <i class="fas fa-chevron-right"></i>&nbsp;Privacy Policy</a></li>
+                                    <li><a href="faq.html"> <i class="fas fa-chevron-right"></i>&nbsp;FAQs</a></li>
+                                    <li><a href="Contact.html"> <i class="fas fa-chevron-right"></i>&nbsp;Contact</a></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7">
+                        <div class="widgets_container product_widget">
+                            <h3>About Shankh Jewels</h3>
+                            <div class="footer-content" >
+                           <p style=" color: #a0a0a0;"> <i class="fas fa-chevron-right"></i>&nbsp;"Our mission is to provide exceptional designs that fit seamlessly into your daily life and personal style. Today, Shankh Jewels is a vibrant, growing startup committed to delivering innovation and elegance. We proudly serve a diverse customer base through our online platform and expanding retail presence, striving to make beautiful jewellery accessible to all."</p>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copyright_area">
+                            <p>Copyright &copy; 2020 <a href="#">Shankh Jewels</a> All rights Reserved.<br> Designed by <a href="https://fouriseindia.com">Fourise Software Solutions Pvt. Ltd.</a></p>
+                            <img src="images/icon/papyel2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- footer section ends -->
+<!-- footer section ends -->
+</div>
+</div>
+
+</body>
+</html>
+<script>
+//   document.addEventListener('DOMContentLoaded', () => {
+// JavaScript to make the page interactive
+// const removeButtons = document.querySelectorAll('.btn-outline-danger');
+// removeButtons.forEach(button => {
+// button.addEventListener('click', (event) => {
+//     event.target.closest('.cart-item').remove();
+//     // Update subtotal logic here
+// });
+// });
+// });
+$(document).ready(function(){
+$('.product-carousel').slick({
+infinite: true,
+slidesToShow: 3,
+slidesToScroll: 1,
+dots: true,
+arrows: true,
+responsive: [
+    {
+        breakpoint: 768,
+        settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+        }
+    },
+    {
+        breakpoint: 480,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+    }
+]
+});
+});
+(function ($) {
+"use strict";
+
+new WOW().init();
+
+// //navbar cart
+// $(".cart_link > a").on("click", function () {
+// $(".mini_cart").addClass("active");
+// });
+
+// $(".mini_cart_close > a").on("click", function () {
+// $(".mini_cart").removeClass("active");
+// });
+
+//sticky navbar
+$(window).on("scroll", function () {
+var scroll = $(window).scrollTop();
+if (scroll < 100) {
+$(".sticky-header").removeClass("sticky");
+} else {
+$(".sticky-header").addClass("sticky");
+}
+});
+
+// background image
+function dataBackgroundImage() {
+$("[data-bgimg]").each(function () {
+var bgImgUrl = $(this).data("bgimg");
+$(this).css({
+  "background-image": "url(" + bgImgUrl + ")", // concatenation
+});
+});
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+var collapsibles = document.querySelectorAll('.collapsible');
+
+collapsibles.forEach(function(collapsible) {
+  collapsible.addEventListener('click', function() {
+      var content = this.querySelector('.content');
+      if (content.style.display === 'block') {
+          content.style.display = 'none';
+      } else {
+          content.style.display = 'block';
+      }
+  });
+});
+});
+
+$(window).on("load", function () {
+dataBackgroundImage();
+});
+
+//for carousel slider of the slider section
+$(".slider_area").owlCarousel({
+animateOut: "fadeOut",
+autoplay: true,
+loop: true,
+nav: false,
+autoplayTimeout: 6000,
+items: 1,
+dots: true,
+});
+
+//product column responsive
+$(".product_column3").slick({
+centerMode: true,
+centerPadding: "0",
+slidesToShow: 5,
+arrows: true,
+rows: 2,
+prevArrow:
+'<button class="prev_arrow"><i class="ion-chevron-left"></i></button>',
+nextArrow:
+'<button class="next_arrow"><i class="ion-chevron-right"></i></button>',
+responsive: [
+{
+  breakpoints: 400,
+  settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  },
+},
+{
+  breakpoints: 768,
+  settings: {
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  },
+},
+{
+  breakpoints: 992,
+  settings: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+},
+{
+  breakpoints: 1200,
+  settings: {
+    slidesToShow: 4,
+    slidesToScroll: 4,
+  },
+},
+],
+});
+
+//for tooltip
+$('[data-toggle="tooltip"]').tooltip();
+
+//tooltip active
+$(".action_links ul li a, .quick_button a").tooltip({
+animated: "fade",
+placement: "top",
+container: "body",
+});
+
+//product row activation responsive
+$(".product_row1").slick({
+centerMode: true,
+centerPadding: "0",
+slidesToShow: 5,
+arrows: true,
+prevArrow:
+'<button class="prev_arrow"><i class="ion-chevron-left"></i></button>',
+nextArrow:
+'<button class="next_arrow"><i class="ion-chevron-right"></i></button>',
+responsive: [
+{
+  breakpoints: 400,
+  settings: {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  },
+},
+{
+  breakpoints: 768,
+  settings: {
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  },
+},
+{
+  breakpoints: 992,
+  settings: {
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  },
+},
+{
+  breakpoints: 1200,
+  settings: {
+    slidesToShow: 4,
+    slidesToScroll: 4,
+  },
+},
+],
+});
+
+// blog section
+$(".blog_column3").owlCarousel({
+autoplay: true,
+loop: true,
+nav: true,
+autoplayTimeout: 5000,
+items: 3,
+dots: false,
+margin: 30,
+navText: [
+'<i class="ion-chevron-left"></i>',
+'<i class="ion-chevron-right"></i>',
+],
+responsiveClass: true,
+responsive: {
+0: {
+  items: 1,
+},
+768: {
+  items: 2,
+},
+992: {
+  items: 3,
+},
+},
+});
+
+//navactive responsive
+$(".product_navactive").owlCarousel({
+autoplay: false,
+loop: true,
+nav: true,
+items: 4,
+dots: false,
+navText: [
+'<i class="ion-chevron-left arrow-left"></i>',
+'<i class="ion-chevron-right arrow-right"></i>',
+],
+responsiveClass: true,
+responsive: {
+0: {
+  items: 1,
+},
+250: {
+  items: 2,
+},
+480: {
+  items: 3,
+},
+768: {
+  items: 4,
+},
+},
+});
+
+$(".modal").on("shown.bs.modal", function (e) {
+$(".product_navactive").resize();
+});
+
+$(".product_navactive a").on("click", function (e) {
+e.preventDefault();
+var $href = $(this).attr("href");
+$(".product_navactive a").removeClass("active");
+$(this).addClass("active");
+$(".product-details-large .tab-pane").removeClass("active show");
+$(".product-details-large " + $href).addClass("active show");
+});
+})(jQuery);
+
+/***********slider***********************/
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+let i;
+let slides = document.getElementsByClassName("mySlides");
+for (i = 0; i < slides.length; i++) {
+slides[i].style.display = "none";
+}
+slideIndex++;
+if (slideIndex > slides.length) {slideIndex = 1}
+slides[slideIndex-1].style.display = "block";
+setTimeout(showSlides, 1000); // Change image every 2 seconds
+}
+/*****************************************/
+
+$(document).ready(function () {
+// Filter function on dropdown item click
+$('.dropdown-menu a.dropdown-item').on('click', function (e) {
+e.preventDefault();
+var filterValue = $(this).data('filter');
+applyFilter(filterValue);
+});
+
+// Function to apply filter (replace with your actual filter logic)
+function applyFilter(filterValue) {
+// Example: Log the filter value
+console.log('Applying filter for:', filterValue);
+// Implement your filtering logic here
+// Example: Show/hide items based on the filter value
+// Replace this with your actual implementation
+$('.main_content .item').hide(); // Hide all items
+$('.' + filterValue).show(); // Show items matching the filter value
+}
+});
+/**************************** */
+
+/********************cart images ******************** */
+function changeImage(imagePath) {
+document.getElementById('image1').src = imagePath;
+}
+
+function toggleWishlist(element) {
+element.classList.toggle('red');
+showNotification('Product added to wishlist successfully!');
+}
+
+function showNotification(message) {
+const notification = document.getElementById('notification');
+notification.textContent = message;
+notification.style.display = 'block';
+setTimeout(() => {
+notification.style.display = 'none';
+}, 3000); // Hide notification after 3 seconds
+}
+
+document.getElementById('showMoreBtn').addEventListener('click', function() {
+var row3 = document.getElementById('row3');
+if (row3.style.display === 'none') {
+row3.style.display = 'flex'; // Or 'block' if you prefer
+this.textContent = 'Show Less'; // Change button text
+} else {
+row3.style.display = 'none';
+this.textContent = 'Show More';
+}
+});
+
+
+/*********************************************************** */
+
+
+
+</script>
+ <!-- Add additional sections here -->
+<script> function openNav() {
+    document.getElementById("sidebar").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("sidebar").style.width = "0";
+  }
+  
+  // Dropdown toggle functionality
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    });
+  }
+  
+  
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.instagram__item.set-bg');
+  items.forEach(function(item) {
+    var bgImg = item.getAttribute('data-bgimg');
+    if (bgImg) {
+      item.style.backgroundImage = 'url(' + bgImg + ')';
+    }
+  });
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
+

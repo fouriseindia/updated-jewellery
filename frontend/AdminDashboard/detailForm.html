@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        header {
+            background-color: #6fb3f0;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .product-management-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #c2ddf5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            margin-left: 2px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            margin-right: 30px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control-file {
+            margin-top: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* Mobile View */
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 0;
+                font-size: 20px;
+            }
+
+            .product-management-form {
+                padding: 15px;
+                margin: 10px;
+                max-width: 100%;
+            }
+
+            .form-control {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            label {
+                font-size: 16px;
+            }
+
+            .btn-primary {
+                padding: 10px 15px;
+                font-size: 16px;
+                width: 100%;
+            }
+        }
+
+        /* Style for the table in general */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* Mobile view adjustments */
+        @media screen and (max-width: 768px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+
+            td {
+                display: block;
+                text-align: right;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Manage Products</h1>
+    </header>
+
+    <div class="product-management-form">
+        <h2 style="text-align: center;">Manage Product Details</h2>
+        <form id="productForm" enctype="multipart/form-data">
+            <!-- Hidden field for product ID (only for edit) -->
+            <input type="hidden" id="productIdInput" name="productId">
+
+            <!-- Product Title -->
+            <div class="form-group">
+                <label for="productTitleInput">Product Title</label>
+                <input type="text" id="productTitleInput" name="productTitle" class="form-control"
+                    placeholder="Enter Product Title" required>
+            </div>
+
+            <!-- Main Image -->
+            <div class="form-group">
+                <label for="mainImageInput">Main Image</label>
+                <input type="file" id="mainImageInput" name="mainImage" class="form-control-file" accept="image/*">
+            </div>
+
+            <!-- Thumbnail Images -->
+            <div class="form-group">
+                <label for="thumbnailImagesInput">Thumbnail Images</label>
+                <input type="file" id="thumbnailImagesInput" name="thumbnails" class="form-control-file"
+                    accept="image/*" multiple>
+            </div>
+
+            <!-- Video Upload -->
+            <div class="form-group">
+                <label for="videoInput">Product Video</label>
+                <input type="file" id="videoInput" name="productVideo" class="form-control-file" accept="video/*">
+            </div>
+
+            <!-- Product Price -->
+            <div class="form-group">
+                <label for="productPrice">Price</label>
+                <input type="number" id="productPrice" name="productPrice" class="form-control"
+                    placeholder="Enter Price" required>
+            </div>
+
+            <!-- Regular Price -->
+            <div class="form-group">
+                <label for="regularPrice">Regular Price (Optional)</label>
+                <input type="number" id="regularPrice" name="regularPrice" class="form-control"
+                    placeholder="Enter Regular Price">
+            </div>
+
+            <!-- Product Description -->
+            <div class="form-group">
+                <label for="productDescription">Product Description</label>
+                <textarea id="productDescription" name="productDescription" class="form-control" rows="5"
+                    placeholder="Enter Product Description" required></textarea>
+            </div>
+
+            <!-- Main Category -->
+            <div class="form-group">
+                <label for="main-category">Main Category</label>
+                <select id="main-category" name="category" class="form-control" required>
+                    <option value="">Select Main Category</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    <option value="Latest Collection">Latest Collection</option>
+                </select>
+            </div>
+
+            <!-- Sub Category -->
+            <div class="form-group">
+                <label for="subcategory">Sub Category</label>
+                <select id="subcategory" name="subcategory" class="form-control" required>
+                    <option value="">Select Sub Category</option>
+                </select>
+            </div>
+
+
+            <!-- Shipping Details -->
+            <div class="form-group">
+                <label for="shippingDetails">Shipping Information</label>
+                <textarea id="shippingDetails" name="shippingDetails" class="form-control" rows="4"
+                    placeholder="Enter Shipping Information"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Save Product Details</button>
+        </form>
+    </div>
+
+    <!-- Table to Display Product Details -->
+    <section id="manage-posts">
+        <h2>Manage Products</h2>
+        <table id="productTable" class="table" border="1">
+            <thead>
+                <tr>
+                    <th>Product Title</th>
+                    <th>Main Image</th>
+                    <th>Thumbnails</th>
+                    <th>Product Video</th>
+                    <th>Price</th>
+                    <th>Regular Price</th>
+                    <th>Description</th>
+                    <th>Shipping Info</th>
+                    <th>Category</th>
+                    <th>SubCategory</th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody"></tbody>
+        </table>
+    </section>
+    <script>
+        const apiUrl = 'http://localhost:3000/api';
+
+        // Fetch and populate subcategories based on selected main category
+        document.getElementById('main-category').addEventListener('change', async function () {
+            const mainCategory = this.value; // This is the ObjectId, not the name
+            const subcategorySelect = document.getElementById('subcategory');
+
+            // Clear current subcategory options
+            subcategorySelect.innerHTML = '<option value="">Select Sub Category</option>';
+
+            if (mainCategory) {
+                try {
+                    const response = await fetch(`${apiUrl}/categories`);
+                    const data = await response.json();
+
+                    data.forEach(category => {
+                        if (category.mainCategory === mainCategory) {
+                            const option = document.createElement('option');
+                            option.value = category._id; // Use ObjectId
+                            option.textContent = category.name;
+                            subcategorySelect.appendChild(option);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error fetching subcategories:', error);
+                }
+            }
+        });
+
+
+        // Add or Edit product
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target); // Collect all form data, including files
+            const productId = document.getElementById('productIdInput').value;
+            const endpoint = productId ? `${apiUrl}/products/edit/${productId}` : `${apiUrl}/products/add`;
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: productId ? 'PUT' : 'POST',
+                    body: formData, // Send the form data with images and other fields
+                });
+
+                if (response.ok) {
+                    const result = await response.json(); // Get the response data
+                    alert(result.message); // Display success message
+                    fetchProducts(); // Refresh the product list
+                    e.target.reset(); // Clear the form
+                } else {
+                    const errorResponse = await response.json();
+                    throw new Error(errorResponse.message || 'Failed to save product.');
+                }
+            } catch (error) {
+                console.error('Error saving product:', error);
+                alert('Error saving product: ' + error.message);
+            }
+        });
+
+        // Fetch and display products
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch(`${apiUrl}/products/all`);
+                const products = await response.json();
+                const productTableBody = document.getElementById('productTableBody');
+                productTableBody.innerHTML = ''; // Clear the table body
+
+                products.forEach(product => {
+                    const row = document.createElement('tr');
+                    const imagePath = product.mainImage ? `http://localhost:3000/${product.mainImage.replace(/\\/g, '/')}` : '';
+                    const thumbnailPath = product.thumbnailImages && product.thumbnailImages.length > 0
+                        ? `http://localhost:3000/${product.thumbnailImages[0].replace(/\\/g, '/')}`
+                        : '';
+                    const videoPath = product.productVideo ? `http://localhost:3000/${product.productVideo.replace(/\\/g, '/')}` : '';
+
+
+                    row.innerHTML = `
+                <td>${product.productTitle}</td>
+                <td>${imagePath ? `<img src="${imagePath}" width="50" alt="Main Image">` : 'No Main Image'}</td>
+                <td>${thumbnailPath ? `<img src="${thumbnailPath}" width="50" alt="Thumbnail">` : 'No Thumbnail'}</td>
+                <td>${videoPath ? `<video width="100" controls><source src="${videoPath}" type="video/mp4">Your browser does not support the video tag.</video>` : 'No Video'}</td>
+                <td>${product.productPrice}</td>
+                <td>${product.regularPrice || 'N/A'}</td>
+                <td>${product.productDescription}</td>
+                <td>${product.shippingDetails || 'N/A'}</td>
+                <td>${product.category?.mainCategory || 'N/A'}</td>
+                <td>${product.subcategory?.name || 'N/A'}</td>
+                <td>
+                    <button style="background-color: blue; color: white;" onclick="editProduct('${product._id}')">Edit</button>
+                    <button style="background-color: red; color: white;" onclick="deleteProduct('${product._id}')">Delete</button>
+                </td>`;
+
+                    productTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+
+
+        // Edit product (pre-fill the form)
+        const editProduct = async (productId) => {
+            try {
+                const response = await fetch(`${apiUrl}/products/${productId}`);
+                const product = await response.json();
+
+                document.getElementById('productIdInput').value = product._id;
+                document.getElementById('productTitleInput').value = product.productTitle;
+                document.getElementById('productPrice').value = product.productPrice;
+                document.getElementById('regularPrice').value = product.regularPrice || '';
+                document.getElementById('productDescription').value = product.productDescription;
+                document.getElementById('shippingDetails').value = product.shippingDetails || '';
+                document.getElementById('main-category').value = product.category?._id || '';
+
+                // Fetch subcategories based on the selected main category
+                fetchSubcategories(product.category?._id);
+                document.getElementById('subcategory').value = product.subcategory?._id || '';
+
+                // Scroll to form for editing
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error editing product:', error);
+            }
+        };
+
+        // Delete product
+        const deleteProduct = async (productId) => {
+            if (confirm('Are you sure you want to delete this product?')) {
+                try {
+                    const response = await fetch(`${apiUrl}/products/delete/${productId}`, { method: 'DELETE' });
+
+                    if (response.ok) {
+                        alert('Product deleted successfully!');
+                        fetchProducts(); // Refresh the product list
+                    } else {
+                        const errorResponse = await response.json();
+                        throw new Error(errorResponse.message || 'Failed to delete product.');
+                    }
+                } catch (error) {
+                    console.error('Error deleting product:', error);
+                    alert('Error deleting product: ' + error.message);
+                }
+            }
+        };
+
+        // Fetch subcategories based on the selected main category
+        const fetchSubcategories = async (mainCategoryId) => {
+            try {
+                const response = await fetch(`${apiUrl}/categories`);
+                const subcategories = await response.json();
+                const subcategorySelect = document.getElementById('subcategory');
+                subcategorySelect.innerHTML = '';
+
+                subcategories.forEach(subcategory => {
+                    if (subcategory.mainCategory === mainCategoryId) {
+                        const option = document.createElement('option');
+                        option.value = subcategory._id; // Use ObjectId for subcategories
+                        option.textContent = subcategory.name;
+                        subcategorySelect.appendChild(option);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching subcategories:', error);
+            }
+        };
+
+        // Initial fetch of products
+        fetchProducts();
+
+    </script>
+</body>
+
+</html>

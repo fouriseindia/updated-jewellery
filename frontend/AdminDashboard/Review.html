@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <script></script>
+    <link href="/images/logo1.jpeg" rel="icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #6fb3f0;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            background-color: aliceblue;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #searchBar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #searchBar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-reply {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+        .rating span {
+            margin-left: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1190px) {
+            nav ul li {
+                margin: 10px; /* Adjust margin for smaller screens */
+            }
+        }
+
+        @media (max-width: 756px) {
+            nav ul {
+                flex-direction: column; /* Stack links vertically */
+                align-items: center;
+            }
+            #searchBar input {
+                width: 100%; /* Full width for search input on smaller screens */
+                max-width: 300px; /* Limit maximum width for readability */
+            }
+            .rating {
+                font-size: 14px; /* Decrease font size for smaller screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            table {
+                font-size: 12px; /* Decrease font size for smaller screens */
+            }
+            th, td {
+                padding: 8px; /* Adjust padding for smaller content */
+            }
+            .actions {
+                flex-direction: column; /* Stack action buttons vertically */
+                align-items: center;
+            }
+            button {
+                margin-bottom: 5px; /* Add spacing between action buttons */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <!-- <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="customers.html">Customers</a></li>
+                <li><a href="orders.html">Orders</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="manage-shops.html">Manage Shops</a></li>
+            </ul>
+        </nav> -->
+    </header>
+    <main>
+        <h2>Messages</h2>
+        <div id="searchBar">
+            <input type="text" id="searchInput" onkeyup="searchMessages()" placeholder="Search for messages..">
+        </div>
+        <table id="messagesTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Messages will be loaded here -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        const apiUrl = 'http://localhost:3000/api';
+
+        document.addEventListener('DOMContentLoaded', loadMessages);
+
+        async function loadMessages() {
+            try {
+                const response = await fetch(`${apiUrl}/messages`);
+                const result = await response.json();
+
+                const tbody = document.getElementById('messagesTable').getElementsByTagName('tbody')[0];
+                tbody.innerHTML = '';
+
+                result.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).forEach(msg => {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).innerText = msg.name;
+                    row.insertCell(1).innerText = msg.email;
+                    row.insertCell(2).innerText = msg.subject;
+                    row.insertCell(3).innerText = msg.message;
+                    row.insertCell(4).innerText = new Date(msg.createdAt).toLocaleString();
+                    const actionsCell = row.insertCell(5);
+                    actionsCell.innerHTML = `
+                        <button class="btn-reply" onclick="replyMessage('${msg._id}')">Reply</button>
+                        <button class="btn-delete" onclick="deleteMessage('${msg._id}')">Delete</button>`;
+                });
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        function searchMessages() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('messagesTable');
+            const tr = table.getElementsByTagName('tr');
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td');
+                let txtValue = '';
+                for (let j = 0; j < td.length - 1; j++) {
+                    txtValue += td[j].textContent || td[j].innerText;
+                }
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+
+        async function replyMessage(id) {
+            alert('Reply to message functionality is not implemented.');
+        }
+
+        async function deleteMessage(id) {
+            const confirmDelete = confirm('Are you sure you want to delete this message?');
+            if (confirmDelete) {
+                try {
+                    await fetch(`${apiUrl}/messages/${id}`, { method: 'DELETE' });
+                    loadMessages();
+                } catch (error) {
+                    console.error('Error deleting message:', error);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

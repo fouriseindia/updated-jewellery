@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile OTP Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .otp-form {
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="otp-form">
+      <form id="mobileOtpForm">
+        <label for="mobileOtp">Enter OTP sent to your mobile</label>
+        <input type="text" id="mobileOtp" name="mobileOtp" class="input-field">
+        <button type="submit" class="submit-btn">Verify</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileOtpForm = document.getElementById('mobileOtpForm');
+
+      mobileOtpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const mobile = localStorage.getItem('mobile');
+        const mobileOtp = document.getElementById('mobileOtp').value;
+        const response = await fetch('http://yourserverdomain.com/verify-mobile-otp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ mobile, otp: mobileOtp })
+        });
+        const result = await response.json();
+        if (result.success) {
+          alert('Mobile number verified successfully');
+          window.location.href = 'signup.html';
+        } else {
+          alert('Invalid OTP');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashirwaad Jewelry</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+
+    <link rel="stylesheet" href="help.css">
+</head>
+<style>
+   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap");
+
+/* common styling */
+
+* {
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 24px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  visibility: visible;
+  font-family: "Poppins", sans-serif;
+  color: aliceblue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin-top: 0;
+  font-family: "Baloo 2", cursive;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 700;
+}
+h2 {
+  font-size: 36px;
+  line-height: 36px;
+}
+h3 {
+  font-size: 30px;
+  line-height: 30px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+}
+h5 {
+  font-size: 14px;
+  line-height: 18px;
+}
+h6 {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+a,
+button {
+  color: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+a,
+button,
+img,
+input,
+span {
+  transition: all 0.3s ease 0s;
+}
+
+*:focus {
+  outline: none !important;
+}
+a:focus {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+  /* width: 120%; */
+}
+
+.home_black_version {
+  background: aliceblue;
+}
+
+.header_black .header_top {
+  border-bottom: 1px solid #a5c3dd;
+}
+
+.header_black .social_icone ul li a {
+  background: #b6d7f4;
+  color: black;
+}
+
+.header_black .social_icone ul li a:hover {
+  background: #57aaf3;
+}
+
+.header_black .top_right > ul > li::before {
+  background: aliceblue;
+}
+
+.header_black .top_right > ul > li:hover > a {
+  color: #57aaf3;
+}
+
+.header_black .top_right > ul > li > a {
+  color: black;
+  font-size: large;
+}
+
+.header_black .top_right > ul > li > a:not([href]):not([tabindex]) {
+  color: black;
+}
+.header_black .top_right > ul > li > a:not([href]):not([tabindex]):hover {
+  color: #57aaf3;
+}
+
+.header_black .dropdown_language li,
+.header_black .dropdown_currency li,
+.header_black .dropdown_links li {
+   border-bottom: 1px solid #a5c3dd;   
+}
+
+.header_black .dropdown_language li a:hover,
+.header_black .dropdown_currency li a:hover,
+.header_black .dropdown_links li a:hover {
+  color: #57aaf3;
+}
+
+.header_black .dropdown_links {
+  left: -98%;
+}
+
+.social_icone ul li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.social_icone ul li:first-child {
+  margin-left: 0;
+}
+
+.social_icone ul li a {
+  background:  #a5c3dd   ;
+  color: #aaaaaa;
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.social_icone ul li a:hover {
+  background: #57aaf3;
+  color: black;
+}
+
+.top_right > ul > li {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  margin-left: 20px;
+}
+
+.top_right > ul > li:hover ul.dropdown_currency {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.top_right > ul > li:hover ul.dropdown_language,
+.top_right > ul > li:hover .header_black ul.dropdown_currency,
+.header_black .top_right > ul > li:hover ul.dropdown_currency,
+.top_right > ul > li:hover .header_black ul.dropdown_links,
+.header_black .top_right > ul > li:hover ul.dropdown_links {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.top_right > ul > li:hover ul.dropdown_links {
+  top: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.top_right > ul > li:first-child {
+  padding-left: 0;
+  margin-left: 0;
+}
+.top_right > ul > li::before {
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 15px;
+  background:  #a5c3dd   ;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+}
+
+.top_right > ul > li:first-child::before {
+  display: none;
+}
+
+.top_right > ul > li > a {
+  color: aliceblue;
+  text-transform: capitalize;
+  line-height: 26px;
+  font-size: 12px;
+  cursor: pointer;
+  display: block;
+  font-weight: 400;
+  padding: 9px 0;
+}
+
+.top_right > ul > li > a i {
+  margin-left: 3px;
+  font-size: 10px;
+}
+
+.dropdown_currency,
+.dropdown_language,
+.dropdown_links,
+.header_black .dropdown_currency,
+.header_black .dropdown_links {
+  position: absolute;
+ background: aliceblue;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  text-align: center;
+  top: 125%;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+  left: -154%;
+  z-index: 9999;
+  padding: 0 15px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.header_black .dropdown_language,
+.header_black .dropdown_currency,
+.header_black .dropdown_links {
+  background: aliceblue;
+}
+.dropdown_language li a,
+.header_black .dropdown_currency li a,
+.header_black .dropdown_links li a {
+  text-transform: capitalize;
+  display: block;
+  font-size: 12px;
+  color: aliceblue;
+  text-align: center;
+}
+
+.dropdown_language li a:hover,
+.header_black .dropdown_currency li a:hover,
+.header_black .dropdown_links li a:hover {
+  color: #57aaf3;
+}
+
+.header_black .dropdown_language li:last-child,
+.header_black .dropdown_currency li:last-child,
+.header_black .dropdown_links li:last-child {
+  border-bottom: 0;
+}
+.header_black .dropdown_language li a,
+.header_black .dropdown_currency li a,
+.header_black .dropdown_links li a {
+  color: black;
+}
+
+.header_black .dropdown_links {
+  left: -98%;
+}
+
+.dropdown_language li,
+.header_black .dropdown_currency li,
+.header_black .dropdown_links li {
+   border-bottom: 1px solid #a5c3dd;   
+  line-height: 36px;
+  padding: 5px 0;
+}
+
+.dropdown_language li:last-child,
+.header_black .dropdown_currency li:last-child,
+.header_black .dropdown_links li:last-child {
+  border-bottom: 0;
+}
+.dropdown_language li a:hover,
+.header_black .dropdown_currency li a:hover,
+.header_black .dropdown_links li a:hover {
+  color: #57aaf3;
+}
+
+/* *****************Middle Header******************** */
+
+.header_middel {
+  padding: 40px 0;
+  border-bottom: 1px solid  #a5c3dd   ;
+}
+
+.header_black .header_middel {
+  border-bottom: 1px solid #a5c3dd;
+}
+
+.home_contact {
+  display: flex;
+}
+
+.home_contact .contact_box {
+  padding-right: 25px;
+  margin-right: 25px;
+  border-right: 2px solid #a5c3dd;
+}
+.header_black .home_contact {
+  align-items: center;
+}
+.header_black .contact_box {
+  margin-left: 15px;
+}
+
+.header_black .contact_box p {
+  color: #57aaf3;
+  font-size: 14px;
+}
+
+.logo {
+  padding: 0 20px;
+}
+
+.middel_right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.search_btn {
+  position: relative;
+}
+
+.search_btn:hover .dropdown_search {
+  opacity: 1;
+  visibility: visible;
+  top: 100%;
+}
+
+.search_btn a {
+  width: 45px;
+  height: 45px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 45px;
+  border: 1px solid #a5c3dd;
+  color: black;
+  font-size: 20px;
+  display: block;
+}
+
+.search_btn a:hover {
+  color: #57aaf3;
+}
+.header_black .search_btn form button {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  border: 0;
+  background: inherit;
+  color: black;
+  font-size: 20px;
+  height: 100%;
+}
+
+.header_black .search_btn form button:hover {
+  color: #57aaf3;
+}
+
+.dropdown_search {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  top: 120%;
+  transition: 0.3s;
+}
+
+.dropdown_search form {
+  position: relative;
+  width: 280px;
+  border: 1px solid #a5c3dd;
+ background: aliceblue;
+  z-index: 9;
+}
+
+.dropdown_search form input {
+  border: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 67px 0 10px;
+  background: inherit;
+  font-size: 12px;
+  color: #a4a4a4;
+}
+.dropdown_search form button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background:  #a5c3dd   ;
+  width: 59px;
+  height: 100%;
+  border: 0;
+  border-left: 1px solid #a5c3dd;
+  padding: 0;
+  font-size: 20px;
+  background: none;
+  color: black;
+}
+
+.header_black .dropdown_search form {
+  background: aliceblue;
+  border: 1px solid #a5c3dd;
+}
+
+.header_black .wishlist_btn {
+  margin-left: 18px;
+}
+
+.header_black .wishlist_btn a {
+  width: 45px;
+  height: 45px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 20px;
+  display: block;
+  blackborder: 1px solid #a5c3dd;
+  color: black;
+}
+
+.header_black .wishlist_btn a:hover {
+  color: #57aaf3;
+}
+
+.cart_link {
+  margin-left: 25px;
+  position: relative;
+}
+
+.cart_link span.cart_quantity {
+  position: absolute;
+  left: -11px;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  background: #57aaf3;
+  color: black;
+  border-radius: 50%;
+  top: 12px;
+}
+
+.cart_link > a {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #212121;
+  border: 1px solid  #a5c3dd   ;
+  padding: 11px 10px 13px 18px;
+  line-height: 15px;
+  border-radius: 3px;
+  display: block;
+}
+.cart_link > a:hover {
+  color: #57aaf3;
+}
+
+.cart_link > a i.ion-android-cart {
+  font-size: 19px;
+  margin-right: 10px;
+  border-right: 1px solid  #a5c3dd   ;
+  position: relative;
+  top: 3px;
+  padding-right: 10px;
+}
+
+.cart_link > a i.ion-chevron-down {
+  font-size: 17px;
+  margin-left: 3px;
+}
+.header_black .cart_link span.cart_quantity {
+  background: #57aaf3;
+}
+
+.header_black .cart_link > a {
+  color: black;
+  blackborder: 1px solid #a5c3dd;
+}
+
+.header_black .cart_link > a:hover {
+  color: #57aaf3;
+}
+
+.header_black .cart_link > a i.ion-android-cart {
+  border-right: 1px solid aliceblue;
+}
+
+.mini_cart {
+  position: fixed;
+  min-width: 355px;
+  height: 100%;
+  padding: 18px 20px 33px;
+ background: aliceblue;
+  z-index: 999;
+  right: 0;
+  top: 0;
+  transition: 0.5s;
+  transform: translateX(100%);
+}
+
+.mini_cart.active {
+  transform: translateX(0);
+  transition: 0.5s;
+}
+
+.header_black .mini_cart {
+  background: aliceblue;
+  blackborder: 1px solid #a5c3dd;
+}
+
+.cart_close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid  #a5c3dd   ;
+  padding-bottom: 10px;
+}
+
+.header_black .cart_close {
+   border-bottom: 1px solid #a5c3dd;   
+}
+
+.cart_text h3 {
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: black;
+}
+
+.mini_cart_close > a {
+  font-size: 25px;
+  color: black;
+}
+
+.mini_cart_close > a:hover {
+  color: #57aaf3;
+}
+
+.cart_item {
+  padding: 20px 0;
+   border-bottom: 1px solid #a5c3dd;   
+  display: flex;
+  overflow: hidden;
+}
+
+.cart_img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.cart_info {
+  width: 58%;
+}
+
+.cart_info a {
+  font-weight: 400;
+  color: black;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.cart_info a:hover {
+  color: #57aaf3;
+}
+
+.cart_info span {
+  display: block;
+}
+
+.cart_info span.price_cart {
+  color: #57aaf3;
+  font-weight: 500;
+}
+
+.header_black .cart_info span.quantity {
+  color: #a0a0a0;
+}
+
+.cart_remove {
+  width: 10%;
+  text-align: right;
+}
+
+.cart_remove a {
+  color: #eaeaea;
+  font-size: 18px;
+}
+
+.cart_remove a:hover {
+  color: #57aaf3;
+}
+
+.cart_total {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.cart_total span {
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.mini_cart_footer {
+  padding: 0 25px 25px;
+  background: aliceblue;
+}
+
+.cart_button a {
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-weight: 400;
+  color: black;
+  background: #57aaf3;
+  display: block;
+  text-align: center;
+  line-height: 20px;
+  margin-bottom: 0;
+  padding: 13px 0 11px;
+}
+
+.cart_button a:hover {
+  background: #57aaf3;
+}
+
+.cart_button.view_cart {
+  padding-bottom: 15px;
+}
+
+.cart_button a.active {
+  background: #57aaf3;
+}
+
+.cart_button a.active:hover {
+  background: #e9c88f;
+  color: #000000;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .header_black .mini_cart {
+      min-width: 100%; /* Full width on mobile */
+      height: 100%; /* Full height on mobile */
+      padding: 10px; /* Adjust padding for mobile view */
+      transform: translateX(100%); /* Initially hidden off-screen on mobile */
+      /* Optional: Adjust other styles for better mobile view */
+  }
+
+  .header_black .mini_cart.active {
+      transform: translateX(0); /* Make it visible when active on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .cart_button a {
+      text-transform: uppercase;
+      border-radius: 5px;
+      font-weight: 400;
+      color: black;
+      background: #2e2e2e;
+      display: block;
+      text-align: center;
+      line-height: 18px; /* Adjust line-height for better fit on smaller screens */
+      margin-bottom: 10px; /* Add margin at the bottom for better spacing */
+      padding: 10px 0; /* Adjust padding for a more compact button on mobile */
+      font-size: 14px; /* Adjust font size for readability on mobile */
+      width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+  .dropdown_search {
+      position: absolute;
+      right: 0;
+      opacity: 1; /* Make it visible on mobile view */
+      visibility: hidden; /* Ensure it's visible on mobile view */
+      top: 100%; /* Adjust position to fit better on mobile screens */
+      width: 100%; /* Make it take full width for better usability */
+      max-width: 360px; /* Optional: limit max-width if needed */
+      background: aliceblue; /* Ensure background color is visible */
+      border: 1px solid #a5c3dd; /* Ensure border is visible */
+      /* Adjust padding or margin if needed */
+
+      margin-right: 100px;
+        margin-top: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .middel_right {
+      display: flex;
+      justify-content: center; /* Center items on mobile view */
+      align-items: center;
+      /* Adjust padding or margin if necessary */
+
+      margin-left: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .row {
+      --bs-gutter-x: 0.75rem; /* Adjust gutter for mobile view */
+      --bs-gutter-y: 0;
+      margin-right: calc(var(--bs-gutter-x) / -2);
+      margin-left: calc(var(--bs-gutter-x) / -2);
+  }
+}
+
+@media (max-width: 600px) {
+  .header_black .header_middel {
+      border-bottom: 1px solid #a5c3dd;
+      /* Add any additional mobile-specific styles here */
+      padding: 10px 0; /* Example adjustment for better fit on mobile screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .header_black .cart_link > a {
+      color: black;
+      border: 1px solid #a5c3dd;
+      /* Add any additional mobile-specific styles here if needed */
+      padding: 8px; /* Example adjustment for better fit on mobile screens */
+      font-size: 14px; /* Example adjustment for better readability on mobile screens */
+  }
+}
+
+
+
+/* ************************ Header Down ( 3rd ) ******************** */
+
+.header_bottom.sticky-header.sticky .main_menu_inner {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_bottom.sticky-header.sticky .logo_sticky {
+  display: block;
+}
+
+.header_black .header_bottom {
+   border-bottom: 1px solid #a5c3dd;   
+}
+
+.sticky-header.sticky {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  top: 0;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.11);
+  animation-name: fadeInDown;
+  animation-duration: 900ms;
+  animation-timing-function: cubic-bezier(0.2, 1, 0.22, 1);
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+.header_bottom.sticky-header.sticky .main_menu_inner {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_black .sticky-header.sticky {
+  background: #b6d7f4;
+  box-shadow: 0 1px 3px Black;
+}
+
+.main_menu_inner {
+  text-align: center;
+}
+
+.logo_sticky {
+  display: none;
+  margin-right: 35px;
+}
+
+.logo_sticky a img {
+  max-width: 120px;
+}
+
+.main_menu nav > ul > li {
+  display: inline-block;
+  position: relative;
+}
+
+.main_menu nav > ul > li > a i {
+  margin-left: 2px;
+}
+.main_menu nav > ul > li:hover > a {
+  color: #57aaf3;
+}
+
+.main_menu nav > ul > li.active > a {
+  color: #57aaf3;
+}
+
+.main_menu nav > ul > li:first-child a {
+  padding-left: 0;
+}
+
+.main_menu nav > ul > li:last-child a {
+  padding-right: 0;
+}
+
+.main_menu nav > ul > li ul.sub_menu {
+  position: absolute;
+  min-width: 200px;
+  padding: 30px 25px;
+ background: aliceblue;
+  border: 1px solid  #a5c3dd   ;
+  transform: perspective(600px) rotateX(-90deg);
+  transform-origin: 0 0 0;
+  left: 0;
+  right: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+  z-index: 9;
+  top: 100%;
+  text-align: left;
+}
+
+.main_menu nav > ul > li ul.sub_menu > li > a {
+  font-size: 15px;
+}
+
+.main_menu nav ul li:hover .sub_menu,
+.main_menu nav ul li:hover .mega_menu {
+  opacity: 1;
+  visibility: visible;
+  transform: perspective(600px) rotateX(0deg);
+}
+
+.main_menu nav ul li ul li.active a,
+.main_menu nav ul li ul li a:hover {
+  color: #c09578;
+}
+
+.main_menu nav > ul > li > ul > li > a {
+  color: #808080;
+  font-size: 13px;
+  text-transform: capitalize;
+  line-height: 18px;
+  margin-bottom: 15px;
+  display: block;
+  font-weight: 400;
+}
+
+.main_menu nav > ul > li > ul.sub_menu > li:last-child > a {
+  margin-bottom: 0;
+}
+.main_menu nav > ul > li > ul.mega_menu li ul li:last-child a {
+  margin-bottom: 0;
+}
+
+.main_menu nav ul li ul.mega_menu {
+  position: absolute;
+  min-width: 380px;
+  padding: 30px 25px 35px;
+ background: aliceblue;
+  border: 1px solid  #a5c3dd   ;
+  transform: perspective(600px) rotateX(-90deg);
+  transform-origin: 0 0 0;
+  left: 0;
+  right: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+  z-index: 9;
+  top: 100%;
+  text-align: left;
+}
+
+.main_menu nav > ul > li > ul.mega_menu > li {
+  width: 50%;
+  float: left;
+}
+
+.main_menu nav > ul > li > ul.mega_menu > li > a {
+  text-transform: uppercase;
+  color: aliceblue;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.main_menu nav > ul > li > ul.maga_menu > li > a:hover {
+  color: #c09578;
+}
+
+.main_menu nav > ul > li > ul.maga_menu li ul li a {
+  color: #808080;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 11px;
+  display: block;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+.main_menu nav > ul > li > ul.maga_menu li ul li a:hover {
+  color: #c09578;
+}
+
+.main_menu nav ul li ul.sub_menu.pages {
+  left: inherit;
+  right: inherit;
+}
+
+.header_black .main_menu nav > ul > li.active > a {
+  color: #57aaf3;
+}
+
+.header_black .main_menu nav > ul > li:hover > a {
+  color: #57aaf3;
+}
+
+.header_black .main_menu nav > ul > li > a {
+  color: black;
+  font-family: serif;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.header_black .main_menu nav > ul > li ul.sub_menu {
+  background: aliceblue;
+  blackborder: 1px solid #a5c3dd;
+}
+.header_black .main_menu nav > ul > li ul.sub_menu li a {
+  color: black;
+  font-family: serif;
+}
+
+.header_black .main_menu nav > ul > li ul.sub_menu li a:hover {
+  color: #57aaf3;
+}
+
+.header_black .main_menu nav > ul > li ul.mega_menu {
+  background: aliceblue;
+  blackborder: 1px solid #a5c3dd;
+}
+.header_black .main_menu nav > ul > li ul.mega_menu > li > a {
+  color: black;
+  font-family: serif;
+}
+.header_black .main_menu nav > ul > li ul.mega_menu > li > a:hover {
+  color: #57aaf3;
+}
+.header_black .main_menu nav > ul > li ul.mega_menu > li ul li a {
+  color: black;
+}
+
+.header_black .main_menu nav > ul > li ul.mega_menu > li ul li a:hover {
+  color: #57aaf3;
+}
+.ion-chevron-down {
+  font-size: 14px;
+  padding-left: 3px;
+}
+
+.main_menu nav > ul > li > a {
+  display: block;
+  padding: 19px 20px;
+  color: #212121;
+  font-size: 13px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.has-submenu {
+  position: relative;
+}
+
+.has-submenu .submenu-inline {
+  display: none; /* Hidden by default */
+  padding: 0;
+  border: none;
+  background: aliceblue; /* Set to match the main menu background */
+  position: absolute;
+  top: 10%; /* Adjust top position to be slightly higher */
+  left: calc(100% - 50px); /* Position to the right of the parent */
+  min-width: 200px;
+  z-index: 10;
+  transform: translateY(-80%); /* Adjust vertical alignment */
+  flex-direction: column; /* Ensure vertical alignment */
+}
+
+.has-submenu:hover .submenu-inline,
+.has-submenu:focus-within .submenu-inline {
+  display: block; /* Show on hover or when focused */
+}
+
+.has-submenu .submenu-inline li {
+  border-bottom: 0; /* Remove border-bottom */
+}
+
+.has-submenu .submenu-inline li a {
+  padding: 8px 13px; /* Match the padding of the parent menu */
+  white-space: nowrap; /* Prevent text wrapping */
+  color: #212121; /* Default text color */
+  font-size: 14px; /* Match the font size of the parent menu */
+  line-height: 26px; /* Match the line height */
+  text-transform: capitalize; /* Match the text transformation */
+  font-weight: 500; /* Match the font weight */
+}
+
+.header_black .has-submenu .submenu-inline {
+  background: aliceblue ; /* Background for black header submenu */
+  border: 1px solid #a5c3dd; /* Border for submenu */
+}
+
+.header_black .has-submenu .submenu-inline li a {
+  color: #000000; /* Text color for submenu links in black header */
+}
+
+.header_black .has-submenu .submenu-inline li a:hover {
+  color: #57aaf3; /* Consistent hover color for submenu links */
+}
+
+
+@media (max-width: 600px) {
+  .header_bottom.sticky-header.sticky .main_menu_inner {
+      flex-direction: column; /* Stack items vertically */
+      text-align: center;
+  }
+
+  /* Additional styles for better mobile experience */
+  .header_bottom.sticky-header.sticky .main_menu_inner a {
+      padding: 10px 0; /* Increase padding for better touch interaction */
+  }
+
+  .header_bottom.sticky-header.sticky {
+      padding: 10px; /* Adjust padding for the header on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .header_black .main_menu nav > ul > li ul.mega_menu {
+      background: aliceblue;
+      border: 1px solid #a5c3dd;
+      width: 80vw; /* Set the width to 80% of the viewport width */
+      position: absolute; /* Position it absolutely to avoid overlap */
+      left: 10vw; /* Center the menu by moving it 10% from the left */
+      right: 10vw; /* Ensures the menu doesn't extend beyond the viewport */
+      top: auto; /* Adjust as needed to position the menu properly */
+      z-index: 1000; /* Ensure it is on top of other elements */
+  }
+
+  .header_black .main_menu nav > ul > li ul.mega_menu li {
+      width: 100%; /* Make each item full width */
+      text-align: left; /* Align text to the left */
+      padding: 10px 20px; /* Add padding for better touch interaction */
+  }
+
+  .header_black .main_menu nav > ul > li ul.mega_menu li a {
+      display: block; /* Ensure links are block level for better touch area */
+      width: 100%; /* Make links full width */
+  }
+}
+
+/* footer section */
+.footer_black {
+  blackborder: 1px solid #a5c3dd;
+      padding-top: 67px;
+    }
+    
+    .footer_top {
+      padding-bottom: 61px;
+    }
+    .footer_black .widgets_container > h3 {
+      color: black;
+      font-family: serif;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 26px;
+      text-transform: capitalize;
+      margin-bottom: 24px;
+    }
+    
+    .footer_contact p {
+      margin-bottom: 0;
+      line-height: 30px;
+      color: #a0a0a0;
+    }
+    
+    .footer_contact p a:hover {
+      color: #57aaf3;
+    }
+    
+    .footer_contact ul {
+      margin-top: 10px;
+    }
+    .footer_contact ul li {
+      display: inline-block;
+      margin-right: 7px;
+    }
+    
+    .footer_contact ul li:last-child {
+      margin-right: 0;
+    }
+      .footer_contact ul li a {
+      color: black;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border: 0;
+      background: #a5c3dd;
+      text-align: center;
+      border-radius: 50%;
+      display: block;
+    }                                                                                             
+    
+    .footer_contact ul li a:hover {
+      background: #57aaf3;
+    }
+    
+    .footer_menu ul li a {
+      display: block;
+      font-weight: 400;
+      line-height: 30px;
+      font-size: 14px;
+      color: #a0a0a0;
+    }
+    
+    .footer_menu ul li a:hover {
+      color: #57aaf3;
+    }
+    
+    /* ***************** */
+    .simple_product_items {
+      display: flex;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid 2d2d2d;
+    }
+    
+    .simple_product_items:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+    
+    .simple_product_thumb {
+      width: 22%;
+    }
+    
+    .simple_product_content {
+      width: 70%;
+      margin-left: 17px;
+    }
+    
+    .simple_product_content .tag_cate {
+      margin-bottom: 0;
+    }
+    .simple_product_content .product_name h3 {
+      font-size: 16px;
+      line-height: 26px;
+      margin-bottom: 10px;
+    }
+    
+    .simple_product_content .product_name h3 a {
+      color: black;
+      font-size: 23px;
+    }
+    
+    .simple_product_content .product_name h3 a:hover {
+      color: #57aaf3;
+    }
+    
+    .simple_product_content .product_price span {
+      color: #5a5a5a;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    
+    .simple_product_content .product_price span.old_price {
+      text-decoration: line-through;
+      padding-right: 8px;
+    }
+    
+    .simple_product_content .product_price span.current_price {
+      color: #57aaf3;
+      font-weight: 500;
+    }
+    
+    /* *********footer bottom ******* */
+    .footer_bottom {
+      padding: 38px 0 46px;
+    }
+    
+    .copyright_area {
+      text-align: center;
+    }
+    .copyright_area p {
+      text-transform: capitalize;
+      line-height: 26px;
+      color: #a0a0a0;
+    }
+    
+    .copyright_area p a {
+      color: #57aaf3;
+    }
+    .copyright_area p a:hover {
+      text-decoration: underline;
+    }
+
+
+    
+
+
+
+
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    color: #333;
+}
+
+header {
+    background-color: aliceblue; /* Light Blue */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #000000;
+}
+
+main {
+    padding: 20px;
+}
+
+.support-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.support-section h1 {
+    font-size: 1.5em;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.support-section p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.video-tutorials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.video-tutorials iframe {
+    width: 300px;
+    height: 200px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section {
+    text-align: center;
+}
+
+.faq-section h2 {
+    font-size: 1.5em;
+    color: #000000;
+    margin-bottom: 20px;
+}
+.search-bar {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.search-bar input {
+    width: 50%;
+    padding: 10px 10px 10px 40px; /* Add padding to the left to make space for the icon */
+    font-size: 1em;
+    border: 2px solid #57aaf3;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #57aaf3;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    left: 15px; /* Adjust to align the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Adjust the size of the icon */
+    height: 20px; /* Adjust the size of the icon */
+    pointer-events: none; /* Prevent the icon from being clickable */
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease; /* Add ease for smooth transition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item:hover {
+    background-color: #b6d7f4; /* Change to a different color on hover */
+    transform: scale(1.05); /* Zoom in effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.faq-item a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.1em;
+    margin-top: 0px;
+    transition: color 0.3s;
+}
+.faq-item img.faq-icon {
+    width: 50px; /* Set the width of the icons */
+    height: 50px; /* Set the height of the icons */
+    object-fit: contain; /* Ensure the image fits within the set dimensions */
+}
+/* Popup Styling */
+#popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+}
+
+.popup-content {
+    margin-top: 20px;
+}
+
+.popup h3 {
+    margin-top: 0;
+}
+
+.popup p {
+    margin: 10px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.social1 ul li:hover {
+        transform: translate(80px, 0);
+        background: rgba(232, 8, 8, 0.4);
+    }
+
+    .fa-snapchat-ghost:before, .fa-snapchat:before {
+    content: "\f2ab";
+    color: black;
+    }
+    @media (max-width: 765px) {
+        .social1 {
+            width: 30px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+  <div class="home_black_version">
+    <header class="header_area header_black">
+        <!-- header top starts -->
+        <div class="header_top">
+            <div class="container">
+                <div class="row align-items-center">
+        
+                    <div class="col-lg-6 col-md-6">
+                        <div class="image-container">
+                            <img src="https://img.freepik.com/free-vector/shiny-diamond-jewelry-logo-vector-design-with-tagline-space_1017-44515.jpg?semt=ais_hybrid" 
+                                 alt="Shiny Diamond Jewelry Logo">
+                            <p>Shankh Jewels</p>
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-6 col-md-6">
+                        <div class="top_right text-right">
+                            <ul>
+                                <li class="top_links">
+                                    <a href="#"><span id="user-email">My Account</span> <i class="ion-chevron-down"></i></a>
+                                    <ul class="dropdown_links">
+                                        <li><a href="login_popup.html">Login</a></li>
+                                        <li><a href="acc.html">Account dashboard</a></li>
+                                        <li><a href="edit.html">Shopping Cart</a></li>
+                                        <li><a href="wishlist1.html">Wishlist</a></li>
+                                        <li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- header top ends -->
+
+
+        <!-- header bottom starts -->
+<div class="header_bottom sticky-header">
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-6 col-md-6 col-6">
+            <!-- Toggle Button for Mobile -->
+            <span class="toggle-btn" onclick="openNav()">&#9776; </span>
+            
+            <!-- Main Menu (Desktop Only) -->
+            <div class="main_menu_inner">
+                <div class="main_menu">
+                    <nav>
+                        <ul>
+                            <li class="active">
+                                <a href="index.html">Home </a>
+                                <!-- <ul class="sub_menu">
+                                    <li><a href="#">Banner</a></li>
+                                    <li><a href="#">Featured</a></li>
+                                    <li><a href="#">Collection</a></li>
+                                    <li><a href="#">Best Selling</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul> -->
+                            </li>
+                            <li>
+                                <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                <ul class="mega_menu">
+                                    <li>
+                                        <a href="women.html">Women</a>
+                                        <ul>
+                                            <li><a href="earing.html">Earring</a></li>
+                                            <li><a href="pendant&necklace.html">Pendant&Necklace</a></li>
+                                            <li><a href="rings.html">Rings</a></li>
+                                            <li><a href="anklets.html">Anklets</a></li>
+                                            <li><a href="braclet.html">Bracelets</a></li>
+                                            <li class="has-submenu">
+                                                <a href="#">Other Category</a>
+                                                <ul class="submenu-inline">
+                                                    <li><a href="jewelleryset.html">Jewellry Set</a></li>
+                                                    <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+                                                    <li><a href="nosepins.html">Nose pins & Rings</a></li>
+                                                    <li><a href="toerings.html">Toe rings</a></li>
+                                                    <li><a href="bangals.html">Bangles</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="men.html">Men</a>
+                                        <ul>
+                                            <li><a href="men_ring.html">Ring</a></li>
+                                            <li><a href="men_pendant.html">Pendant&Chains</a></li>
+                                            <li><a href="men_braclet.html">Bracelet</a></li>
+                                            <li><a href="men_earing.html">Earing</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                              <li>
+                                    <a href="latestcollection.html">Latest Collections <i class="ion-chevron-down"></i></a>
+                                    <ul class="sub_menu pages">
+                                        <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+                                        <li><a href="cherryontop.html">Cherry on Pop</a></li>
+                                        <li><a href="loveinparis.html">Love in paris</a></li>
+                                        <li><a href="justarrived.html">Just Arrived</a></li>
+                                        <li><a href="everydaywear.html">Every Day Wear</a></li>
+                                        <li><a href="officewear.html">Office Wear</a></li>
+                                        <li><a href="partywear.html">Party Wear</a></li>
+                                        <li><a href="weddingwear.html">Wedding Wear</a></li>
+                                        <li><a href="oxidised.html">Oxidised </a></li>
+                                        <li><a href="silver.html">Silver</a></li>
+                                    </ul>
+                                </li>  
+                            <li><a href="offer.html">Offer</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-6">
+            <div class="middel_right">
+                <div class="search_btn">
+                    <form action="#">
+                        <input type="text" placeholder="Search Product ....">
+                        <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                    </form>
+                </div>
+                
+                <!-- <div class="wishlist_btn">
+                    <a href="#"><i class="ion-heart"></i></a>
+                </div> -->
+                <!-- <div class="cart_link">
+                    <a href="#"><i class="ion-android-cart"></i>
+                        <span class="cart_text_quantity">Rs.67,598</span> -->
+                        <!-- <i class="ion-chevron-down"></i>
+                    </a>
+                    <span class="cart_quantity">2</span>
+
+                    mini cart
+                    <div class="mini_cart">
+                        <div class="cart_close">
+                            <div class="cart_text">
+                                <h3>cart</h3>
+                            </div>
+                            <div class="mini_cart_close">
+                                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart_item">
+                            <div class="cart_img">
+                                <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
+                            </div>
+                            <div class="cart_info">
+                                <a href="#">Earings</a>
+                                <span class="quantity">Qty : 1</span>
+                                <span class="price_cart">Rs. 54,599</span>
+                            </div>
+                            <div class="cart_remove">
+                                <a href="#"><i class="ion-android-close"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart_item">
+                            <div class="cart_img">
+                                <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
+                            </div>
+                            <div class="cart_info">
+                                <a href="#">Bracelet</a>
+                                <span class="quantity">Qty : 1</span>
+                                <span class="price_cart">Rs. 12,999</span>
+                            </div>
+                            <div class="cart_remove">
+                                <a href="#"><i class="ion-android-close"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart_total">
+                            <span>Subtotal : </span>
+                            <span>Rs. 67,598</span>
+                        </div>
+                        <div class="mini_cart_footer">
+                            <div class="cart_button view_cart">
+                                <a href="#">View Cart</a>
+                            </div>
+                            <div class="cart_button checkout">
+                                <a href="#" class="active">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- mini cart ends  -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- header bottom ends -->
+
+<!-- Sidebar Structure -->
+<!-- Sidebar Structure -->
+<div id="sidebar" class="sidebar">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<a href="index.html">Home</a>
+
+<!-- Category Dropdown -->
+<a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
+<div class="dropdown-container">
+  <ul class="mega_menu">
+    <li>
+      <a href="women.html" style="color: #57aaf3;">Women <i class="ion-chevron-down"></i></a>
+      <ul>
+        <li><a href="earing.html">Earring</a></li>
+        <li><a href="pendant&necklace.html">Pendant & Necklace</a></li>
+        <li><a href="rings.html">Rings</a></li>
+        <li><a href="anklets.html">Anklets</a></li>
+        <li><a href="braclet.html">Bracelets</a></li>
+        <li class="has-submenu">
+          <a href="#" style="color: #57aaf3;">Other Category <i class="ion-chevron-down"></i></a>
+          <ul class="submenu-inline">
+            <li><a href="jewelleryset.html">Jewellery Set</a></li>
+            <li><a href="chains&mangalsutra.html">Chains & Mangalsutra</a></li>
+            <li><a href="nosepins.html">Nose Pins & Rings</a></li>
+            <li><a href="toerings.html">Toe Rings</a></li>
+            <li><a href="bangals.html">Bangles</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+      <ul>
+        <li><a href="men_ring.html">Ring</a></li>
+        <li><a href="men_pendant.html">Pendant & Chains</a></li>
+        <li><a href="men_braclet.html">Bracelet</a></li>
+        <li><a href="men_earing.html">Earring</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<!-- Latest Collections Link with Dropdown -->
+<a href="javascript:void(0)"  class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+<div class="dropdown-container">
+  <ul class="sub_menu pages">
+    <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+    <li><a href="cherryontop.html">Cherry on Top</a></li>
+    <li><a href="loveinparis.html">Love in Paris</a></li>
+    <li><a href="justarrived.html">Just Arrived</a></li>
+    <li><a href="everydaywear.html">Every Day Wear</a></li>
+    <li><a href="officewear.html">Office Wear</a></li>
+    <li><a href="partywear.html">Party Wear</a></li>
+    <li><a href="weddingwear.html">Wedding Wear</a></li>
+    <li><a href="oxidised.html">Oxidised </a></li>
+    <li><a href="silver.html">Silver</a></li>
+  </ul>
+</div>
+
+<a href="offer.html">Offer</a>
+<a href="about.html">About Us</a>
+</div>
+
+    </header>
+
+    <!-- slider section starts -->
+    <div class="slider_area slider_black owl-carousel">
+        <div class="single_slider" data-bgimg="images/slider/1.png">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -20% off this week</p>
+                            <h1>Necklace</h1>
+                            <span>22 Carat gold necklace for wedding</span>
+                            <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/2.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -40% off this week</p>
+                            <h1>Earings and Pendant</h1>
+                            <span>Complete bridal set with white pearls</span>
+                            <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="single_slider" data-bgimg="images/slider/3.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="slider_content">
+                            <p>exclusive offer -10% off this week</p>
+                            <h1>Wedding Rings</h1>
+                            <span>Shankh Jewels Special wedding rings for couples.</span>
+                            <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                            <a href="#" class="button">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- slider section ends -->
+
+  
+    
+        <main>
+            <section class="support-section">
+                <h1>Need Help?</h1>
+                <p>We're here to help you with any queries</p>
+                <div class="video-tutorials">
+                    <!-- Embed YouTube videos here -->
+                    <iframe src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </section>
+    
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="search-bar">
+                    <img src="image/search.icon.png" alt="Search Icon" class="search-icon">
+                    <input type="text" placeholder="Search for answers">
+                </div>
+                
+               
+                
+            </section>
+            
+            <!-- Popups -->
+            <div id="popup-container">
+                <div class="popup" id="shipping">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Shipping, Order Tracking & Delivery</h3>
+                        <p><strong>Q: What is the shipping policy?</strong></p>
+                        <p>A: We offer free shipping on all orders above $50. Orders are usually delivered within 5-7 business days.</p>
+                        <p><strong>Q: How can I track my order?</strong></p>
+                        <p>A: You can track your order using the tracking number sent to your email or by logging into your account.</p>
+                        <p><strong>Q: What should I do if my order is delayed?</strong></p>
+                        <p>A: If your order is delayed, please contact our customer service team for assistance.</p>
+                    </div>
+                </div>
+                <div class="popup" id="return">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Return, Replacement & Exchange</h3>
+                        <p><strong>Q: How can I return an item?</strong></p>
+                        <p>A: To return an item, please contact our customer service within 30 days of receiving your order.</p>
+                        <p><strong>Q: Can I exchange an item?</strong></p>
+                        <p>A: Yes, you can exchange items within 30 days. Please follow the instructions provided in our return policy.</p>
+                        <p><strong>Q: What is the process for getting a replacement?</strong></p>
+                        <p>A: If you receive a defective or incorrect item, please contact us to arrange a replacement.</p>
+                    </div>
+                </div>
+                <div class="popup" id="cancellations">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Cancellations & Modifications</h3>
+                        <p><strong>Q: Can I cancel my order?</strong></p>
+                        <p>A: Orders can be canceled within 1 hour of placing them. After that, we may not be able to process cancellations.</p>
+                        <p><strong>Q: How can I modify my order?</strong></p>
+                        <p>A: You can modify your order within 1 hour of placing it by contacting our customer support team.</p>
+                        <p><strong>Q: What if my order has already been shipped?</strong></p>
+                        <p>A: Once an order has been shipped, it cannot be modified or canceled. You can return it after receiving it.</p>
+                    </div>
+                </div>
+                <div class="popup" id="payments">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Payments & Refunds</h3>
+                        <p><strong>Q: What payment methods do you accept?</strong></p>
+                        <p>A: We accept credit/debit cards, PayPal, and other secure payment methods.</p>
+                        <p><strong>Q: How can I get a refund?</strong></p>
+                        <p>A: Refunds are processed to the original payment method. Please contact customer service for more details.</p>
+                        <p><strong>Q: My payment failed. What should I do?</strong></p>
+                        <p>A: If your payment fails, please check your payment details and try again. Contact support if the issue persists.</p>
+                    </div>
+                </div>
+                <div class="popup" id="warranty">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Warranty</h3>
+                        <p><strong>Q: What does the warranty cover?</strong></p>
+                        <p>A: Our warranty covers manufacturing defects and workmanship issues. It does not cover damage from misuse.</p>
+                        <p><strong>Q: How long is the warranty period?</strong></p>
+                        <p>A: The warranty period is 1 year from the date of purchase. Please check your warranty card for details.</p>
+                        <p><strong>Q: How can I claim a warranty?</strong></p>
+                        <p>A: To claim a warranty, please contact customer service with your proof of purchase and details of the issue.</p>
+                    </div>
+                </div>
+                <div class="popup" id="coupons">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Coupons & Discounts</h3>
+                        <p><strong>Q: How can I use a coupon code?</strong></p>
+                        <p>A: Enter your coupon code at checkout to apply the discount. Make sure the code is valid and not expired.</p>
+                        <p><strong>Q: Are there any restrictions on using coupons?</strong></p>
+                        <p>A: Some coupons may have restrictions or minimum purchase requirements. Please check the terms and conditions.</p>
+                        <p><strong>Q: Can I use multiple coupons on one order?</strong></p>
+                        <p>A: Generally, only one coupon code can be used per order. Check the specific offer for any exceptions.</p>
+                    </div>
+                </div>
+                <div class="popup" id="product">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Product</h3>
+                        <p><strong>Q: What materials are used in your products?</strong></p>
+                        <p>A: We use high-quality materials such as sterling silver, gold, and precious stones in our jewelry.</p>
+                        <p><strong>Q: How should I care for my jewelry?</strong></p>
+                        <p>A: To keep your jewelry looking its best, store it in a dry place and clean it regularly with a soft cloth.</p>
+                        <p><strong>Q: Are your products hypoallergenic?</strong></p>
+                        <p>A: Many of our products are hypoallergenic. Please check the product description for more information.</p>
+                    </div>
+                </div>
+                <div class="popup" id="wallets">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Wallets & Coins</h3>
+                        <p><strong>Q: What types of wallets do you offer?</strong></p>
+                        <p>A: We offer a variety of wallets, including leather wallets, coin purses, and cardholders.</p>
+                        <p><strong>Q: Are your wallets available in different colors?</strong></p>
+                        <p>A: Yes, our wallets come in various colors and styles. Check the product page for available options.</p>
+                        <p><strong>Q: How should I clean my wallet?</strong></p>
+                        <p>A: Clean your wallet with a damp cloth and mild soap. Avoid soaking it or using harsh chemicals.</p>
+                    </div>
+                </div>
+                <div class="popup" id="profile">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Profile & Account</h3>
+                        <p><strong>Q: How can I update my account information?</strong></p>
+                        <p>A: Log into your account and navigate to the profile settings to update your information.</p>
+                        <p><strong>Q: What should I do if I forget my password?</strong></p>
+                        <p>A: Use the "Forgot Password" option on the login page to reset your password.</p>
+                        <p><strong>Q: How can I close my account?</strong></p>
+                        <p>A: To close your account, please contact our customer service team for assistance.</p>
+                    </div>
+                </div>
+                <div class="popup" id="vouchers">
+                    <div class="popup-content">
+                        <span class="close-btn">&times;</span>
+                        <h3>Gift Vouchers</h3>
+                        <p><strong>Q: How can I use a gift voucher?</strong></p>
+                        <p>A: Enter your gift voucher code at checkout to apply the value to your order.</p>
+                        <p><strong>Q: Can I combine gift vouchers with other discounts?</strong></p>
+                        <p>A: Gift vouchers can be combined with other discounts unless otherwise specified.</p>
+                        <p><strong>Q: What if my gift voucher is not working?</strong></p>
+                        <p>A: If your voucher is not working, please check the code and expiration date, or contact customer service for help.</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+            </section>
+        </main>
+    
+      
+
+      <!-- footer section starts -->
+      <footer class="footer_widgets footer_black">
+          <div class="container">
+              <div class="footer_top">
+                  <div class="row">
+                      <div class="col-lg-4 col-md-6 col-sm-8">
+                          <div class="widgets_container contact_us">
+                              <h3>About Shankh Jewels</h3>
+                              <div class="footer_contact">
+                                  <p>Address : Shop No 43\3b,<br> Vitthal Mangal Office Below,<br> Somnath Nagar,  Vadgaon Sheri, Pune (411014)</p>
+                                  <p>Phone : <a href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                                  <p>Email : Shankh Jewelsjewlers@gmail.com</p>
+                                  <ul>
+                                      <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                      <li><a href="#"><i class="ion-social-snapchat"></i></a></li>
+                                      <li><a href="#"><i class="ion-social-whatsapp"></i></a></li>
+                                      <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                                      <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-4 col-6">
+                          <div class="widgets_container widget_menu">
+                              <h3>Information</h3>
+                              <div class="footer_menu">
+                                  <ul>
+                                      <li><a href="about.html">About Us</a></li>
+                                      <li><a href="blog.html">Blog</a></li>
+                                      <li><a href="Contact.html">Contact</a></li>
+                                      <li><a href="#">Services</a></li>
+                                      <li><a href="category.html">Collection</a></li>
+                                      
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-5 col-6">
+                          <div class="widgets_container widget_menu">
+                              <h3>My Account</h3>
+                              <div class="footer_menu">
+                                  <ul>
+                                      <li><a href="account.html">My Account</a></li>
+                                      <li><a href="Contact.html">Contact</a></li>
+                                      <li><a href="wishlist1.html">Wishlist</a></li>
+                                      
+                                      <li><a href="checkout.html">Checkout</a></li>
+                                      <li><a href="help.html">Frequently Questions</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 col-sm-7">
+                          <div class="widgets_container product_widget">
+                              <h3>Top Rated Products</h3>
+                              <div class="simple_product">
+                                  <div class="simple_product_items">
+                                      <div class="simple_product_thumb">
+                                          <a href="#"><img src="images/product/14.jpg" alt=""></a>
+                                      </div>
+                                      <div class="simple_product_content">
+                                          <div class="tag_cate">
+                                              <a href="#">Women,</a>
+                                              <a href="#">Earrings</a>
+                                          </div>
+                                          <div class="product_name">
+                                              <h3><a href="#">Bracelet</a></h3>
+                                          </div>
+                                          <div class="product_price">
+                                              <span class="old_price">Rs. 45612.54</span>
+                                              <span class="current_price">Rs. 41612.54</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="simple_product_items">
+                                      <div class="simple_product_thumb">
+                                          <a href="#"><img src="images/product/28.jpg" alt=""></a>
+                                      </div>
+                                      <div class="simple_product_content">
+                                          <div class="tag_cate">
+                                              <a href="#">Women,</a>
+                                              <a href="#">Earrings</a>
+                                          </div>
+                                          <div class="product_name">
+                                              <h3><a href="#">Ring</a></h3>
+                                          </div>
+                                          <div class="product_price">
+                                              <span class="old_price">Rs. 75612.54</span>
+                                              <span class="current_price">Rs. 71612.54</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="footer_bottom">
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="copyright_area">
+                              <p>Copyright &copy; 2020 <a href="#">Shankh Jewels</a> All rights Reserved.<br> Designed by <a href="https://fouriseindia.com">Fourise Software Solutions Pvt. Ltd.</a></p>
+                              <img src="images/icon/papyel2.png" alt="">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </footer>
+      <!-- footer section ends -->
+  </div>
+    </body>
+    </html>
+    
+
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+</body>
+</html>
+
+<script>
+    
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+        const faqItems = document.querySelectorAll('.faq-item');
+        const popups = document.querySelectorAll('.popup');
+        const popupContainer = document.getElementById('popup-container');
+    
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const popupId = item.getAttribute('data-popup');
+                const popup = document.getElementById(popupId);
+                popupContainer.style.display = 'flex';
+                popup.style.display = 'block';
+            });
+        });
+    
+        const closeButtons = document.querySelectorAll('.close-btn');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                popupContainer.style.display = 'none';
+                popups.forEach(popup => popup.style.display = 'none');
+            });
+        });
+    
+        popupContainer.addEventListener('click', (e) => {
+            if (e.target === popupContainer) {
+                popupContainer.style.display = 'none';
+                popups.forEach(popup => popup.style.display = 'none');
+            }
+        });
+    });</script>
+</body>
+
+</html>

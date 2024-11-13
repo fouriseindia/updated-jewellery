@@ -1,0 +1,531 @@
+
+  
+  
+  /*************************************over***************************************************/
+  /******************************horizontal scroll card***************************************/
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll on the entire page */
+  }
+
+  .custom-horizontal-scroll-wrapper {
+    display: flex; /* Use flexbox to center cards */
+    justify-content: center; /* Center cards horizontally */
+    padding: 30px 0; /* Optional padding for spacing */
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+/* Container holding the cards */
+.custom-horizontal-scroll-container {
+    display: flex; /* Use flexbox to align cards horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+.custom-card {
+    flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+    width: 200px; /* Card width */
+    margin: 0 15px; /* Space between cards */
+    background: #fff; /* Background color for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for card */
+    overflow: hidden; /* Hide overflow for clean edges */
+    position: relative; /* For positioning content inside the card */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.custom-card img {
+    width: 100%; /* Ensure image fills the card width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+}
+
+.custom-card-content {
+    padding: 10px; /* Adjust padding inside the card */
+}
+
+.custom-card-content h2 {
+    margin-top: 0; /* Remove top margin */
+    font-size: 16px; /* Adjust font size for card title */
+    color: #333; /* Text color */
+}
+
+/* Shop By Colour Section */
+.shop-by-colour {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 80px; /* Full viewport height for vertical centering */
+}
+
+.shop-by-colour h2 {
+    font-size: 24px; /* Font size for the heading */
+    color: #fefefe; /* Text color */
+    margin: 0; /* Remove default margin */
+}
+
+.shop-content {
+    text-align: center; /* Center text and image within the content */
+}
+
+.silver-image {
+    width: 70%; /* Set image width to be a significant portion of the container */
+    max-width: 1000px; /* Maximum width of the image */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure it is treated as a block element */
+    margin: 0 auto 20px auto; /* Center the image horizontally and add space below it */
+}
+/*************************************************************************************************/
+/***************card******************/
+/******** General Styles ********/
+
+.card-custom {
+    width: 100%; /* Full width of the parent column */
+    max-width: 18rem; /* Or adjust to match the card width */
+    margin: 0 auto;
+  }
+  
+/* Horizontal Scroll Container for Cards */
+.horizontal-scroll-container-card {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px; /* Space between cards */
+  padding: 10px 0; /* Vertical padding */
+  width: 100%; /* Match parent width */
+  margin-left: -20px; /* Adjust margin to align with container padding */
+  margin-right: -20px; /* Adjust margin to align with container padding */
+}
+
+/* Hide horizontal scrollbar */
+.horizontal-scroll-container-card::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.horizontal-scroll-container-card {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Card Styles */
+.card-img-top,
+.card-img-hover {
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-img-container {
+  position: relative;
+  width: 100%;
+}
+
+.card-img-container:hover .card-img-hover {
+  opacity: 1;
+}
+
+.card-img-container:hover .card-img-top {
+  opacity: 0;
+}
+
+.card {
+  border: 1px solid #ddd;
+  margin-bottom: 30px; /* Margin between rows */
+  position: relative;
+  flex: 0 0 auto; /* Prevent card from shrinking or growing */
+  width: 200px; /* Fixed width for cards */
+}
+
+/* Card Body Styles */
+.card-body {
+  min-height: 150px; /* Ensure consistent card height */
+}
+
+/* Row Styles */
+.row {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  margin-right: -10px; /* Adjust negative margin for row alignment */
+  margin-left: -10px; /* Adjust negative margin for row alignment */
+}
+
+/* Truncated Text for Card Description */
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Show only one line */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds "..." */
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Column Padding Adjustment */
+.row > .col-md-3 {
+  padding-right: 5px; /* Adjust to match reduced padding */
+  padding-left: 5px; /* Adjust to match reduced padding */
+}
+
+/* Button Styles */
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+  background-color: #a5c3dd; /* Primary color */
+  color: #000000; /* White text */
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background-color: #57aaf3; /* Darker shade of primary color */
+  transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+/* Show More Button Styles */
+.show-more-button {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Vertical spacing */
+}
+
+/* Pricing Styles */
+.pricing {
+  font-size: 1rem;
+}
+
+.sale-price {
+  color: rgb(2, 2, 2);
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.regular-price {
+  color: rgb(58, 19, 19);
+}
+
+/* Wishlist Icon Styles */
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  fill: rgb(245, 185, 185); /* Default color */
+  transition: fill 0.2s ease;
+  border-radius: 45%;
+  padding: 7px;
+  background: rgba(192, 189, 189, 0.4); /* Semi-transparent background */
+}
+
+.wishlist-icon.red {
+  fill: rgb(221, 85, 85); /* Color when clicked */
+}
+
+/* Rating Styles */
+.rating {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(180, 174, 174, 0.7);
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.rating img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+/* Center "Shop Now" Section */
+.Recommended-for-You {
+  text-align: center;
+  margin: 40px 0; /* Adjust margin as needed */
+  color: #000000;
+}
+
+.Recommended-for-You h2 {
+  font-size: 2rem; /* Adjust font size as needed */
+  font-weight: bold;
+  margin: 0;
+}
+
+
+/*****************banner************/
+/* Banner Styles */
+.banner_area {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container */
+    display: block;
+  }
+  /*****************************************/
+  .guide-for-jewellery {
+    text-align: center;
+    margin: 40px 0px; /* Adjust margin as needed */
+    color: #000000;
+  }
+  
+  .guide-for-jewellery h2 {
+    font-size: 2rem; /* Adjust font size as needed */
+    margin: 0;
+  }
+
+/**********************************************************************/
+/* Latest Collection Section Styles */
+
+.latest-collection {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.latest-collection h2 {
+  font-size: 2rem; /* Font size for section title */
+  font-weight: bold;
+  margin-bottom: 30px; /* Space below the title */
+  color: #040404; /* Dark color for readability */
+}
+
+/* Latest Collection Section Styles */
+
+.collection-row {
+  display: flex; /* Flexbox to arrange items in a row */
+  justify-content: space-between; /* Space between items */
+  max-width: 1400px; /* Adjust to fit your design */
+  margin: 0 auto; /* Center the content */
+  position: relative; /* Relative positioning for overlapping thumbnails */
+  flex-wrap: wrap; /* Allow wrapping if there isn't enough space */
+}
+
+.collection-item {
+  width: 30%; /* Adjust width to accommodate spacing */
+  margin-bottom: 40px; /* Space below each collection item */
+  position: relative; /* Relative positioning for thumbnail placement */
+  padding: 0 10px; /* Padding around each collection item */
+}
+
+.collection-img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional rounded corners */
+}
+
+.thumbnail-grid {
+  display: flex; /* Flexbox for thumbnail layout */
+  justify-content: space-between; /* Space between thumbnails */
+  position: absolute; /* Absolute positioning for overlapping */
+  bottom: -40px; /* Adjust to position thumbnails */
+  width: calc(100% - 20px); /* Full width of the collection item minus padding */
+  left: 10px; /* Align with padding of collection item */
+  padding: 0 10px; /* Padding to ensure thumbnails are inside the collection item */
+}
+
+.thumbnail-item {
+  border-bottom: 2px solid #ddd; /* Bottom border for each thumbnail */
+  flex: 1; /* Allow equal space for thumbnails */
+  margin-right: 10px; /* Space between thumbnails */
+}
+
+.thumbnail-item:last-child {
+  margin-right: 0; /* Remove margin for the last thumbnail */
+}
+
+.thumbnail-img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px; /* Optional rounded corners */
+}
+
+/***************************************over************************/
+/****************************************************************/
+/* Essentials For You Section Styles */
+.essentials-for-you {
+    text-align: center;
+    padding: 50px 0;
+    background-color: transparent; /* Remove background color */
+}
+
+.essentials-for-you h2 {
+    font-size: 2rem; /* Font size for section title */
+    font-weight: bold;
+    margin-bottom: 30px; /* Space below the title */
+    color: #000000; /* Dark color for readability */
+}
+
+.essentials-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between cards */
+}
+
+.card-essentials {
+    width: 300px; /* Set card width */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Hide overflow for rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for cards */
+    background-color: transparent; /* Ensure card background is transparent */
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+}
+/*******************************************************************************/
+/* Container for the section */
+.centered-offers-i {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px; /* Full viewport height */
+  text-align: center;
+  padding: 20px; /* Padding to add space around the text */
+  box-sizing: border-box;
+  }
+  
+  /* Title styling */
+  .centered-offers-i h2 {
+  font-size: 2em; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Space below the title */
+  color: #000000; /* Adjust color as needed */
+  }
+  
+  /* Subtitle styling */
+  .centered-offers-i p {
+  font-size: 1.2em; /* Adjust font size as needed */
+  color: #000000; /* Adjust color as needed */
+  }
+
+/*********************over*************************/
+/* Container for the entire favorites section */
+.favorites-container {
+  padding: 20px; /* Padding around the section */
+  box-sizing: border-box; /* Include padding in the total width and height */
+  }
+  
+  /* Row styling for favorites */
+  .favorites-row {
+  display: flex; /* Use flexbox to align boxes side by side */
+  gap: 20px; /* Space between boxes */
+  margin-bottom: 20px; /* Space between rows */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  }
+  
+  /* Box styling for favorites */
+  .favorite-box {
+  flex: 1; /* Each box takes up equal space */
+  display: flex; /* Use flexbox inside the box */
+  border: 1px solid #ddd; /* Border for the box */
+  border-radius: 10px; /* Rounded corners for the box */
+  background-color: #f9f9f9; /* Background color for the box */
+  overflow: hidden; /* Ensure content does not overflow */
+  min-width: 300px; /* Minimum width for each box */
+  }
+  
+  /* Content inside each favorite box */
+  .favorite-content {
+  display: flex; /* Align image and text side by side */
+  width: 100%;
+  }
+  
+  /* Image container styling for favorites */
+  .favorite-image {
+  flex: 1; /* Image takes up 1 part of the box */
+  }
+  
+  .favorite-image img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container */
+  border-radius: 10px; /* Rounded corners for the image */
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* For screens smaller than 768px (tablets and mobile devices) */
+  @media (max-width: 768px) {
+  .image-section {
+    height: 40vh; /* Adjust height for smaller screens */
+  }
+  
+  .single_slider {
+    height: 100px; /* Adjust height for smaller screens */
+  }
+  
+  .favorites-row {
+    flex-direction: column; /* Stack boxes vertically on small screens */
+  }
+  
+  .favorite-box {
+    min-width: 100%; /* Make each box full width on small screens */
+  }
+  
+  .card-look {
+    width: 100%; /* Make cards full width on small screens */
+    height: auto; /* Adjust height to maintain aspect ratio */
+  }
+  }
+  
+  /* For screens smaller than 480px (mobile devices) */
+  @media (max-width: 480px) {
+  .promo h1 {
+    font-size: 1.2em; /* Smaller font size for mobile screens */
+  }
+  
+  .discount {
+    font-size: 1.2em; /* Smaller font size for mobile screens */
+  }
+  
+  .shop-by-look h2 {
+    font-size: 1.5em; /* Smaller font size for mobile screens */
+  }
+  
+  .centered-offers-i h2 {
+    font-size: 1.5em; /* Smaller font size for mobile screens */
+  }
+  
+  .centered-offers-i p {
+    font-size: 1em; /* Smaller font size for mobile screens */
+  }
+  }
+  /***********************************************************************************/
+  /**********************************************************************/
+
