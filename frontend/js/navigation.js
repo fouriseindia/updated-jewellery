@@ -9,7 +9,7 @@
 
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const api_uri = 'http://localhost:3000/api'; // Ensure this is the correct API base URL
+            const api_uri = 'https://api.shankhjewels.com/api'; // Ensure this is the correct API base URL
 
             // Fetch the user ID from local storage
             const userId = localStorage.getItem('userId');

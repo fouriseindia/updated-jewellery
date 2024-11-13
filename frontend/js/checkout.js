@@ -114,7 +114,7 @@ document.getElementById("checkoutForm").addEventListener("submit", async functio
 
         try {
             // Send a POST request to the server for each product
-            const response = await fetch("http://localhost:3000/api/checkouts", {
+            const response = await fetch("https://api.shankhjewels.com/api/checkouts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

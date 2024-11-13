@@ -95,7 +95,7 @@ async function submitExclusiveDiscount() {
         console.log('Submitting data:', data); // Debugging line
     
         // Send data to the server using fetch
-        fetch('http://localhost:3000/api/offers/exclusive-discount', {
+        fetch('https://api.shankhjewels.com/api/offers/exclusive-discount', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ async function submitDiscoverJewellery() {
     const formData = new FormData(form);
     
     try {
-        const response = await fetch('http://localhost:3000/api/offers/discover-jewellery', {
+        const response = await fetch('https://api.shankhjewels.com/api/offers/discover-jewellery', {
             method: 'POST',
             body: formData,
         });
@@ -143,7 +143,7 @@ async function submitShopByLook() {
     const formData = new FormData(form);
     
     try {
-        const response = await fetch('http://localhost:3000/api/offers/shop-by-look', {
+        const response = await fetch('https://api.shankhjewels.com/api/offers/shop-by-look', {
             method: 'POST',
             body: formData,
         });

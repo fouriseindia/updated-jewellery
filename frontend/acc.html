@@ -299,7 +299,7 @@
             if(!sessionStorage.getItem('userdata')){
                 window.location.href='login.html';
             }
-            const api_uri = 'http://localhost:3000/api'; // Ensure this is the correct API base URL
+            const api_uri = 'https://api.shankhjewels.com/api'; // Ensure this is the correct API base URL
     
             // Fetch the user ID from local storage
             const userId = localStorage.getItem('userId');
@@ -357,7 +357,7 @@
             const address = document.getElementById('edit-address').value;
     
             try {
-                const response = await fetch(`http://localhost:3000/api/profiles/${userId}`, {
+                const response = await fetch(`https://api.shankhjewels.com/api/profiles/${userId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

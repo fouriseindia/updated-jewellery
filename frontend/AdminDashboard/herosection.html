@@ -89,7 +89,7 @@
             // Fetch sliders from the backend dynamically
             async function fetchSliders() {
                 try {
-                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                    const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
                     if (!response.ok) {
                         throw new Error('Failed to fetch sliders');
                     }
@@ -101,7 +101,7 @@
                         const newRow = document.createElement('tr');
                         newRow.setAttribute('data-id', slider._id);
                         newRow.innerHTML = `
-                            <td><img src="http://localhost:3000/${slider.image[0] || slider.image}" width="100"></td>
+                            <td><img src="https://api.shankhjewels.com/${slider.image[0] || slider.image}" width="100"></td>
                             <td>${slider.title}</td>
                             <td>${slider.description}</td>
                             <td>${slider.price}</td>
@@ -139,7 +139,7 @@
                     formData.append('swiperName', swiperName.value);
 
                     // Send data to the backend
-                    const response = await fetch('http://localhost:3000/api/sliders/add', {
+                    const response = await fetch('https://api.shankhjewels.com/api/sliders/add', {
                         method: 'POST',
                         body: formData
                     });
@@ -175,7 +175,7 @@
 
             // Function to delete slider
             async function deleteSlider(id) {
-                const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
+                const response = await fetch(`https://api.shankhjewels.com/api/sliders/delete/${id}`, {
                     method: 'DELETE'
                 });
 
