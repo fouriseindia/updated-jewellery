@@ -3873,10 +3873,7 @@ margin: 0 auto;
 .row {
 display: flex;
 flex-wrap: wrap; /* Allows cards to wrap onto the next line if there’s not enough space */
-margin-right: -10px; /* Adjust to match the padding in .col-md-3 */
-margin-left: -10px; /* Adjust to match the padding in .col-md-3 */
-MARGIN-TOP: 5px;
-    margin-bottom: 5px;
+margin: auto;
 }
 
 /* Truncated Text */
@@ -5110,6 +5107,12 @@ s
     width: 100%;
     object-fit: contain;
   }
+  #product-list{
+    padding: 0px;
+  }
+  .container-fluid{
+    width: 100%;
+  }
  }
 
  @media (min-width: 765px) and (max-width: 1250px) {
@@ -5121,6 +5124,9 @@ s
   .col-md-3 {
       flex: 1 1 45%; /* 3 cards per row */
   }
+}
+.container-fluid{
+  width: 95%;
 }
 
 
