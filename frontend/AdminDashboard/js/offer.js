@@ -40,7 +40,7 @@ async function submitExclusiveDiscount() {
     console.log('Submitting data:', data); // Debugging line
 
     // Send data to the server using fetch
-    fetch('http://localhost:3000/api/offers/exclusive-discount', {
+    fetch('https://api.shankhjewels.com/api/offers/exclusive-discount', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const form = document.getElementById('discoverJewelleryForm');
 const formData = new FormData(form);
 
 try {
-    const response = await fetch('http://localhost:3000/api/offers/discover-jewellery', {
+    const response = await fetch('https://api.shankhjewels.com/api/offers/discover-jewellery', {
         method: 'POST',
         body: formData,
     });
@@ -88,7 +88,7 @@ const form = document.getElementById('shopByLookForm');
 const formData = new FormData(form);
 
 try {
-    const response = await fetch('http://localhost:3000/api/offers/shop-by-look', {
+    const response = await fetch('https://api.shankhjewels.com/api/offers/shop-by-look', {
         method: 'POST',
         body: formData,
     });
@@ -127,7 +127,7 @@ function showCategory(category) {
 // Function to fetch products based on the selected category
 async function fetchProductsByCategory(category) {
     try {
-        const response = await fetch(`http://localhost:3000/api/offers/discoverJewellery`);
+        const response = await fetch(`https://api.shankhjewels.com/api/offers/discoverJewellery`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

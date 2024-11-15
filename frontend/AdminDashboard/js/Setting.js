@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/admin/')
+fetch('https://api.shankhjewels.com/admin/')
       .then(res => res.json())
       .then(data => {
         data.forEach(item => {
@@ -28,7 +28,7 @@ document.getElementById('changePasswordForm').addEventListener('submit', functio
     }
   
     // Send the current password and new password to the backend
-    fetch('http://localhost:3000/admin/update', {
+    fetch('https://api.shankhjewels.com/admin/update', {
       method: 'PUT', // Use the correct method
       headers: {
         'Content-Type': 'application/json'
