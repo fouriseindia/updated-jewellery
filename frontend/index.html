@@ -224,7 +224,7 @@
         // Fetch products from the backend
         // 
 
-        const apiUrl = 'https://api.shankhjewels.com/api';
+        const apiUrl = 'http://localhost:3000/api';
 
        
         // Function to add product to cart
@@ -256,7 +256,7 @@
             window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}&description=${productDescription}`;
         }
 
-        fetch('https://api.shankhjewels.com/api/products/all')
+        fetch('http://localhost:3000/api/products/all')
             .then(response => response.json())
             .then(products => {
                 const productList = document.getElementById('product-list');
@@ -265,8 +265,8 @@
                 <div class="col-md-3">
                     <div class="card" style="width: 18rem;">
                         <div class="card-img-container">
-                            <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
-                            <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                            <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
+                            <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
                             <div class="rating">
                                 <img src="images/12.png" alt="Rating Icon"> 5.0
                             </div>
@@ -321,7 +321,7 @@
                                         <ul class="dropdown_links">
                                             <li id="login"><a href="login.html">Login</a></li>
                                             <li><a href="acc.html">Account dashboard</a></li>
-                                            <li><a href="Cart.html">Shopping Cart</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
                                             <li><a href="wishlist1.html">Wishlist</a></li>
                                             <li id="logout"><a  onclick="logout()">Logout</a></li>
                                         </ul>
@@ -351,9 +351,11 @@
                                         <ul>
                                             <li class="active">
                                                 <a href="index.html">Home </a>
+
                                             </li>
                                             <li>
-                                                <a href="category.html">Category <i class="ion-chevron-down"></i></a>
+                                                <a href="category.html">Category <i
+                                                        class="ion-chevron-down"></i></a>
                                                 <ul class="mega_menu" id="main_menu">
                                                     <!-- Dynamic categories will be injected here -->
                                                 </ul>
@@ -361,7 +363,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories = async () => {
                                                         try {
-                                                            const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
+                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -387,14 +389,12 @@
                                                                 const mainCategoryItem = document.createElement('li');
                                                                 const subCategories = categoryMap[mainCategory];
 
-
                                                                 mainCategoryItem.innerHTML = `
-                                                                  <a href="${mainCategory.toLowerCase()}.html">${mainCategory} <i class="ion-chevron-down"></i></a>
-                                                                  <ul>
-                                                                      ${subCategories.map(sub => `<li><a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">${sub}</a></li>`).join('')}
-                                                                  </ul>
-                                                              `;
-
+                                                              <a href="${mainCategory.toLowerCase()}.html">${mainCategory} <i class="ion-chevron-down"></i></a>
+                                                              <ul>
+                                                                  ${subCategories.map(sub => `<li><a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">${sub}</a></li>`).join('')}
+                                                              </ul>
+                                                          `;
                                                                 mainMenu.appendChild(mainCategoryItem);
                                                             }
                                                         } catch (error) {
@@ -417,7 +417,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories1 = async () => {
                                                         try {
-                                                            const response = await fetch('https://api.shankhjewels.com/api/categories');
+                                                            const response = await fetch('http://localhost:3000/api/categories');
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -447,17 +447,12 @@
                                                                 const mainCategoryItem = document.createElement('li');
                                                                 const subCategories = categoryMap[mainCategory];
 
-                                                                // Render main category with subcategories linking to category-post.html
+                                                                // Render main category with or without subcategories
                                                                 mainCategoryItem.innerHTML = `
-                                                                    <ul>
-                                                                        ${subCategories.length ? subCategories.map(sub => `
-                                                                            <li>
-                                                                                <a href="category-post.html?mainCategory=${encodeURIComponent(mainCategory)}&subCategory=${encodeURIComponent(sub)}">
-                                                                                    ${sub}
-                                                                                </a>
-                                                                            </li>`).join('') : '<li>No items available</li>'}
-                                                                    </ul>
-                                                                `;
+                                                <ul>
+                                                    ${subCategories.length ? subCategories.map(sub => `<li><a href="${sub.toLowerCase().replace(/ & /g, '-and-').replace(/ /g, '-')}.html">${sub}</a></li>`).join('') : '<li>No items available</li>'}
+                                                </ul>
+                                            `;
 
                                                                 mainMenu.appendChild(mainCategoryItem);
                                                             }
@@ -487,66 +482,7 @@
                                     </form>
                                 </div>
 
-                                <!-- <div class="wishlist_btn">
-                        <a href="#"><i class="ion-heart"></i></a>
-                    </div> -->
-                                <!-- <div class="cart_link">
-                        <a href="#"><i class="ion-android-cart"></i>
-                            <span class="cart_text_quantity">Rs.67,598</span> -->
-                                <!-- <i class="ion-chevron-down"></i>
-                        </a>
-                        <span class="cart_quantity">2</span>
-  
-                        mini cart
-                        <div class="mini_cart">
-                            <div class="cart_close">
-                                <div class="cart_text">
-                                    <h3>cart</h3>
-                                </div>
-                                <div class="mini_cart_close">
-                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
-                                </div>
-                                <div class="cart_info">
-                                    <a href="#">Earings</a>
-                                    <span class="quantity">Qty : 1</span>
-                                    <span class="price_cart">Rs. 54,599</span>
-                                </div>
-                                <div class="cart_remove">
-                                    <a href="#"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
-                                </div>
-                                <div class="cart_info">
-                                    <a href="#">Bracelet</a>
-                                    <span class="quantity">Qty : 1</span>
-                                    <span class="price_cart">Rs. 12,999</span>
-                                </div>
-                                <div class="cart_remove">
-                                    <a href="#"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_total">
-                                <span>Subtotal : </span>
-                                <span>Rs. 67,598</span>
-                            </div>
-                            <div class="mini_cart_footer">
-                                <div class="cart_button view_cart">
-                                    <a href="#">View Cart</a>
-                                </div>
-                                <div class="cart_button checkout">
-                                    <a href="#" class="active">Checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- mini cart ends  -->
+                                <!--  -->
                             </div>
                         </div>
                     </div>
@@ -556,11 +492,9 @@
     <!-- header bottom ends -->
 
     <!-- Sidebar Structure -->
-    <!-- Sidebar Structure -->
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">Home</a>
-
 
         <!-- Category Dropdown -->
         <a href="javascript:void(0)" class="dropdown-btn">Category <i class="ion-chevron-down"></i></a>
@@ -585,39 +519,38 @@
                             </ul>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="men.html" style="color: #57aaf3;">Men <i class="ion-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="men_ring.html">Ring</a></li>
+                        <li><a href="men_pendant.html">Pendant & Chains</a></li>
+                        <li><a href="men_braclet.html">Bracelet</a></li>
+                        <li><a href="men_earing.html">Earring</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="single_slider" data-bgimg="images/slider/2.jpg">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="slider_content">
-                            <p>exclusive offer -40% off this week</p>
-                            <h1>Earings and Pendant</h1>
-                            <span>Complete bridal set with white pearls</span>
-                            <p class="slider_price">starting at <span>Rs. 89,499</span></p>
-                            <a href="#" class="button">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+        <!-- Latest Collections Link with Dropdown -->
+        <a href="javascript:void(0)" class="dropdown-btn">Latest Collections <i class="ion-chevron-down"></i></a>
+        <div class="dropdown-container">
+            <ul class="sub_menu pages">
+                <li><a href="wingsofwonder.html">Wings On Wonder</a></li>
+                <li><a href="cherryontop.html">Cherry on Top</a></li>
+                <li><a href="loveinparis.html">Love in Paris</a></li>
+                <li><a href="justarrived.html">Just Arrived</a></li>
+                <li><a href="everydaywear.html">Every Day Wear</a></li>
+                <li><a href="officewear.html">Office Wear</a></li>
+                <li><a href="partywear.html">Party Wear</a></li>
+                <li><a href="weddingwear.html">Wedding Wear</a></li>
+                <li><a href="oxidised.html">Oxidised </a></li>
+                <li><a href="silver.html">Silver</a></li>
+            </ul>
         </div>
-        <div class="single_slider" data-bgimg="images/slider/3.jpg">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="slider_content">
-                            <p>exclusive offer -10% off this week</p>
-                            <h1>Wedding Rings</h1>
-                            <span>Shankh Jewels Special wedding rings for couples.</span>
-                            <p class="slider_price">starting at <span>Rs. 14,999</span></p>
-                            <a href="#" class="button">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
+        <a href="offer.html">Offer</a>
+        <a href="about.html">About Us</a>
     </div>
 
     <!-- slider section starts -->

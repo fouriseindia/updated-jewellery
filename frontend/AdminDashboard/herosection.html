@@ -84,12 +84,29 @@
             // Show the selected swiper container
             document.getElementById(selectedSwiper).classList.add('active');
         }
+        async function deleteSlider(id) {
+                const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
+                    method: 'DELETE'
+                });
 
+                if (response.ok) {
+                    // Remove the row from the table without reloading the page
+                    const row = document.querySelector(`#sliderList tbody tr[data-id="${id}"]`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    showError('Failed to delete slider');
+                }
+            }
+            
         document.addEventListener('DOMContentLoaded', function () {
             // Fetch sliders from the backend dynamically
             async function fetchSliders() {
                 try {
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
+                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                    console.log(response);
+                    
                     if (!response.ok) {
                         throw new Error('Failed to fetch sliders');
                     }
@@ -101,7 +118,7 @@
                         const newRow = document.createElement('tr');
                         newRow.setAttribute('data-id', slider._id);
                         newRow.innerHTML = `
-                            <td><img src="https://api.shankhjewels.com/${slider.image[0] || slider.image}" width="100"></td>
+                            <td><img src="http://localhost:3000/uploads/${slider.image || slider.image}" width="100"></td>
                             <td>${slider.title}</td>
                             <td>${slider.description}</td>
                             <td>${slider.price}</td>
@@ -139,7 +156,7 @@
                     formData.append('swiperName', swiperName.value);
 
                     // Send data to the backend
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/add', {
+                    const response = await fetch('http://localhost:3000/api/sliders/add', {
                         method: 'POST',
                         body: formData
                     });
@@ -174,26 +191,7 @@
             handleSubmit('addSliderForm', 'sliderList');
 
             // Function to delete slider
-            async function deleteSlider(id) {
-                const response = await fetch(`https://api.shankhjewels.com/api/sliders/delete/${id}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    // Remove the row from the table without reloading the page
-                    const row = document.querySelector(`#sliderList tbody tr[data-id="${id}"]`);
-                    if (row) {
-                        row.remove();
-                    }
-                } else {
-                    showError('Failed to delete slider');
-                }
-            }
-
-            // Function to edit slider (this should open an edit form or handle editing in a different way)
-            function editSlider(id) {
-                alert(`Implement editing for slider with ID: ${id}`);
-            }
+           
         });
     </script>
 

@@ -18,6 +18,7 @@ const sliderRoutes = require ('./src/routes/sliderRoutes');
 const CheckoutRoutes=require('./src/routes/checkoutRoutes')
 const offerRoutes = require('./src/routes/offerRoutes');
 const exclusiveRoute = require('./src/routes/exclusiveRoute');
+const ImageRoutes = require('./src/routes/uploadRoutes');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -45,6 +46,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Serve static files
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static('src/uploads'));
 // app.use(imageMiddleware); // Use image middleware
 // app.use(express.json());
 // app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -71,6 +73,7 @@ app.use("/api", CheckoutRoutes);
 
 app.use('/api/offers', offerRoutes);
 app.use('/api/exdiscount', exclusiveRoute);
+app.use('/', ImageRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 9000;

@@ -35,5 +35,6 @@ router.put('/edit/:id', upload, sliderController.editSlider);
 
 // Route to delete a slider
 router.delete('/delete/:id', sliderController.deleteSlider);
+router.get('/all/slider/:id', sliderController.getSliderById);
 
 module.exports = router;

@@ -46,7 +46,7 @@ exports.getSliders = async (req, res) => {
     try {
         // Fetch all sliders without any condition
         const sliders = await Slider.find();
-        console.log('Sliders fetched:', sliders);  // Log the sliders fetched to check
+        
 
         if (sliders.length === 0) {
             return res.status(404).json({ message: 'No sliders found' });
@@ -60,69 +60,77 @@ exports.getSliders = async (req, res) => {
 };
 
 
-// Edit Slider
-exports.editSlider = async (req, res) => {
-    upload(req, res, async (err) => {
-        if (err) {
-            return res.status(500).json({ message: 'File upload failed', error: err.message });
-        }
-
-        const { title, description, price, discount } = req.body;
-        const slider = await Slider.findById(req.params.id);
-
-        if (!slider) {
-            return res.status(404).json({ message: 'Slider not found' });
-        }
-
-        slider.title = title;
-        slider.description = description;
-        slider.price = price;
-        slider.discount = discount;
-
-        if (req.files && req.files.length > 0) {
-            // Remove old images from filesystem if needed
-            const oldImages = slider.image.split(',');
-            oldImages.forEach(image => {
-                const imagePath = path.join(__dirname, '../uploads', image);
-                if (fs.existsSync(imagePath)) {
-                    fs.unlinkSync(imagePath);
-                }
-            });
-
-            // Add new images
-            const imageNames = req.files.map(file => file.filename);
-            slider.image = imageNames.join(',');
-        }
-
-        try {
-            await slider.save();
-            res.status(200).json({ message: 'Slider updated successfully', slider });
-        } catch (error) {
-            res.status(500).json({ message: 'Error updating slider', error: error.message });
-        }
-    });
-};
-
-// Delete Slider
+// Delete a slider by ID
 exports.deleteSlider = async (req, res) => {
     try {
-        const slider = await Slider.findById(req.params.id);
+        const sliderId = req.params.id;
+        const slider = await Slider.findByIdAndDelete(sliderId);
+        if (!slider) {
+            return res.status(404).json({ message: 'Slider not found' });
+        }
+        res.json({ message: 'Slider deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
 
+// Edit a slider
+exports.editSlider = async (req, res) => {
+    try {
+        const sliderId = req.params.id;
+        const { title, description, price, discount, swiper } = req.body;
+
+        // Collect the uploaded image filenames if new images are uploaded
+        let images = req.files ? req.files.map(file => file.filename) : [];
+
+        // Find the slider by its ID to get the current slider data
+        const slider = await Slider.findById(sliderId);
         if (!slider) {
             return res.status(404).json({ message: 'Slider not found' });
         }
 
-        const imagePaths = slider.image.split(',');
-        imagePaths.forEach(image => {
-            const imagePath = path.join(__dirname, '../uploads', image);
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
-            }
-        });
+        // If no new images are uploaded, retain the old images
+        if (images.length === 0) {
+            images = slider.image.split(','); // Retain the existing images
+        }
 
-        await slider.deleteOne();
-        res.status(200).json({ message: 'Slider deleted successfully' });
+        // Prepare the data to update the slider
+        const updatedSlider = await Slider.findByIdAndUpdate(sliderId, {
+            title,
+            description,
+            price,
+            discount,
+            swiper,
+            image: images.join(',') // Update the image field with the new or retained images
+        }, { new: true });
+
+        // Check if the slider was updated successfully
+        if (!updatedSlider) {
+            return res.status(404).json({ message: 'Slider update failed' });
+        }
+
+        // Return the updated slider as a response
+        res.json({ slider: updatedSlider });
     } catch (err) {
-        res.status(500).json({ message: 'Error deleting slider', error: err.message });
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
     }
 };
+// Get a slider by ID
+exports.getSliderById = async (req, res) => {
+    try {
+      const sliderId = req.params.id;
+      const slider = await Slider.findById(sliderId); // Use your ORM/ODM (e.g., Mongoose for MongoDB)
+      
+      if (!slider) {
+        return res.status(404).json({ message: 'Slider not found' });
+      }
+  
+      res.status(200).json(slider); // Send the slider data as JSON response
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  

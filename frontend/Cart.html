@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (item && item.mainImage && item.productTitle && item.productPrice && item.regularPrice) {
                 const cartItem = `
                     <div class="cart-item" id="cart-item-${item._id}">
-                        <img src="https://api.shankhjewels.com/${item.mainImage}" alt="${item.productTitle}" class="product-image">
+                        <img src="http://localhost:3000/${item.mainImage}" alt="${item.productTitle}" class="product-image">
                         <div class="item-details">
                             <h3>${item.productTitle}</h3>
                             <p class="price">
@@ -650,7 +650,7 @@ function updateQuantity(productId, change) {
                                         <ul class="dropdown_links">
                                             <li id="login"><a href="login.html">Login</a></li>
                                             <li><a href="acc.html">Account dashboard</a></li>
-                                            <li><a href="Cart.html">Shopping Cart</a></li>
+                                            <li><a href="cart.html">Shopping Cart</a></li>
                                             <li><a href="wishlist1.html">Wishlist</a></li>
                                             <li id="logout"><a  onclick="logout()">Logout</a></li>
                                         </ul>
