@@ -85,7 +85,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories = async () => {
                                                         try {
-                                                            const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
+                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -141,7 +141,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories1 = async () => {
                                                         try {
-                                                            const response = await fetch('https://api.shankhjewels.com/api/categories');
+                                                            const response = await fetch('http://localhost:3000/api/categories');
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();

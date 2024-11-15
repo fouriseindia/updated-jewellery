@@ -1,8 +1,9 @@
+// src/middlewares/imageMiddleware.js
 
 const multer = require('multer');
 const path = require('path');
 
-// Set storage engine
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './public/product-images'); // Path to store images
@@ -12,8 +13,9 @@ const storage = multer.diskStorage({
     }
 });
 
-// Initialize upload
-const upload = multer({
+
+// Configure storage with dynamic filename generation
+const upload = multer.diskStorage({
     storage: storage,
     limits: { fileSize: 5000000 }, // Limit to 5MB
     fileFilter: (req, file, cb) => {
@@ -30,5 +32,6 @@ const upload = multer({
 });
 
 
-// Export the upload middleware for use in routes
+
+// Export the multer upload middleware
 module.exports = upload;

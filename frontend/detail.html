@@ -530,7 +530,7 @@ function fetchProductDetailsAndAddToCart() {
 
     // Fetch product details using the product ID
     if (productId) {
-        fetch(`https://api.shankhjewels.com/api/products/${productId}`)
+        fetch(`http://localhost:3000/api/products/${productId}`)
             .then(response => response.json())
             .then(product => {
                 // Add the product to the cart
@@ -552,7 +552,7 @@ function fetchProductDetailsAndAddToCart() {
     
             // Fetch product details using the product ID
             if (productId) {
-                fetch(`https://api.shankhjewels.com/api/products/${productId}`)
+                fetch(`http://localhost:3000/api/products/${productId}`)
                     .then(response => response.json())
                     .then(product => {
                         // Populate the main image and thumbnails

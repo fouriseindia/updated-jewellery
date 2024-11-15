@@ -89,7 +89,7 @@
             // Fetch sliders from the backend dynamically
             async function fetchSliders() {
                 try {
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
+                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
                     if (!response.ok) {
                         throw new Error('Failed to fetch sliders');
                     }
@@ -97,23 +97,31 @@
                     const sliders = await response.json();
                     const tableBody = document.querySelector('#sliderList tbody');
 
-                    sliders.forEach(slider => {
-                        const newRow = document.createElement('tr');
-                        newRow.setAttribute('data-id', slider._id);
-                        newRow.innerHTML = `
-                            <td><img src="https://api.shankhjewels.com/${slider.image[0] || slider.image}" width="100"></td>
-                            <td>${slider.title}</td>
-                            <td>${slider.description}</td>
-                            <td>${slider.price}</td>
-                            <td>${slider.discount}</td>
-                            <td>${slider.swiper}</td>
-                            <td>
-                                <button onclick="editSlider('${slider._id}')">Edit</button>
-                                <button onclick="deleteSlider('${slider._id}')">Delete</button>
-                            </td>
-                        `;
-                        tableBody.appendChild(newRow);
-                    });
+                   // Update the code inside fetchSliders function
+sliders.forEach(slider => {
+    const newRow = document.createElement('tr');
+    newRow.setAttribute('data-id', slider._id);
+
+    // Check if image is a comma-separated string and split it into an array
+    const images = slider.image.split(',');
+
+    // Generate image tags for each image in the array
+    const imageTags = images.map(imagePath => `<img src="http://localhost:3000/${imagePath.trim()}" width="100">`).join(' ');
+
+    newRow.innerHTML = `
+        <td>${imageTags}</td>
+        <td>${slider.title}</td>
+        <td>${slider.description}</td>
+        <td>${slider.price}</td>
+        <td>${slider.discount}</td>
+        <td>${slider.swiper}</td>
+        <td>
+            <button onclick="editSlider('${slider._id}')">Edit</button>
+            <button onclick="deleteSlider('${slider._id}')">Delete</button>
+        </td>
+    `;
+    tableBody.appendChild(newRow);
+});
                 } catch (error) {
                     showError(error.message);
                 }
@@ -139,7 +147,7 @@
                     formData.append('swiperName', swiperName.value);
 
                     // Send data to the backend
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/add', {
+                    const response = await fetch('http://localhost:3000/api/sliders/add', {
                         method: 'POST',
                         body: formData
                     });
@@ -175,7 +183,7 @@
 
             // Function to delete slider
             async function deleteSlider(id) {
-                const response = await fetch(`https://api.shankhjewels.com/api/sliders/delete/${id}`, {
+                const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
                     method: 'DELETE'
                 });
 

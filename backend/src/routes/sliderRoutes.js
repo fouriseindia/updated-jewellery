@@ -5,26 +5,29 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Configure multer for file uploads
-const uploadsDir = path.join(__dirname, '../uploads');
+// Define the directory for uploads
+const uploadsDir = path.join(__dirname, '../public/product-images');
 
 // Check if the uploads directory exists; if not, create it
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
+// Configure storage with dynamic filename generation
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, uploadsDir);
+        cb(null, uploadsDir); // Set the upload directory
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+        const uniqueName = Date.now() + path.extname(file.originalname); // Create a unique name with timestamp
+        cb(null, uniqueName);
     }
 });
 
+// Initialize multer for handling multiple images (up to 10)
 const upload = multer({ storage: storage }).array('image', 10);  // Accept up to 10 images
 
-// Route to add a new slider
+// Route to add a new slider with uploaded images
 router.post('/add', upload, sliderController.addSlider);
 
 // Route to get all sliders (no filtering by swiper)

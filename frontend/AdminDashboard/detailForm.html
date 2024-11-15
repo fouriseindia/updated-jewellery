@@ -259,7 +259,7 @@
         </table>
     </section>
     <script>
-        const apiUrl = 'https://api.shankhjewels.com/api';
+        const apiUrl = 'http://localhost:3000/api';
 
         // Fetch and populate subcategories based on selected main category
         document.getElementById('main-category').addEventListener('change', async function () {
@@ -328,11 +328,11 @@
 
                 products.forEach(product => {
                     const row = document.createElement('tr');
-                    const imagePath = product.mainImage ? `https://api.shankhjewels.com/${product.mainImage.replace(/\\/g, '/')}` : '';
+                    const imagePath = product.mainImage ? `http://localhost:3000/${product.mainImage.replace(/\\/g, '/')}` : '';
                     const thumbnailPath = product.thumbnailImages && product.thumbnailImages.length > 0
-                        ? `https://api.shankhjewels.com/${product.thumbnailImages[0].replace(/\\/g, '/')}`
+                        ? `http://localhost:3000/${product.thumbnailImages[0].replace(/\\/g, '/')}`
                         : '';
-                    const videoPath = product.productVideo ? `https://api.shankhjewels.com/${product.productVideo.replace(/\\/g, '/')}` : '';
+                    const videoPath = product.productVideo ? `http://localhost:3000/${product.productVideo.replace(/\\/g, '/')}` : '';
 
 
                     row.innerHTML = `

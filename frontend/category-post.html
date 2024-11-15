@@ -66,7 +66,7 @@
                                             <ul class="dropdown_links">
                                                 <li id="login"><a href="login.html">Login</a></li>
                                                 <li><a href="acc.html">Account dashboard</a></li>
-                                                <li><a href="Cart.html">Shopping Cart</a></li>
+                                                <li><a href="cart.html">Shopping Cart</a></li>
                                                 <li><a href="wishlist1.html">Wishlist</a></li>
                                                 <li id="logout"><a  onclick="logout()">Logout</a></li>
                                             </ul>
@@ -108,7 +108,7 @@
                                                     <script>
                                                         const fetchAndDisplayCategories = async () => {
                                                             try {
-                                                                const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
+                                                                const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
                                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                                 const categories = await response.json();
@@ -162,7 +162,7 @@
                                                     <script>
                                                         const fetchAndDisplayCategories1 = async () => {
                                                             try {
-                                                                const response = await fetch('https://api.shankhjewels.com/api/categories');
+                                                                const response = await fetch('http://localhost:3000/api/categories');
                                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                                 const categories = await response.json();
@@ -430,86 +430,53 @@
                 </a>
             </div>
         </div>
-        <section class="horizontal_filters">
-            <div class="container">
-                <div class="row">
-                    <!-- Product Type filter -->
-
-
-                    <!-- Price filter -->
-                    <div class="col">
-                        <div class="filter_item">
-                            <div class="filter_options">
-                                <div class="dropdown" style="    width: 100%; ">
-                                    <button class="btn dropdown-toggle" type="button" id="priceDropdown"
-                                        data-toggle="dropdown" aria-expanded="false">
-                                        Price
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="priceDropdown">
-                                        <li><label><input type="checkbox" name="price_range" value="0-100"> Rs. 0 - Rs.
-                                                100</label></li>
-                                        <li><label><input type="checkbox" name="price_range" value="100-500"> Rs. 100 -
-                                                Rs. 500</label></li>
-                                        <li><label><input type="checkbox" name="price_range" value="500-1000"> Rs. 500 -
-                                                Rs. 1000</label></li>
-                                        <li><label><input type="checkbox" name="price_range" value="500-1000"> Rs. 1000
-                                                - Rs. 5000</label></li>
-                                        <!-- Add more price ranges as needed -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Shop For filter -->
-
-                    <!-- Sort by filter -->
-                    <div class="col">
-                        <div class="filter_item">
-                            <div class="filter_options">
-                                <div class="dropdown" style="    width: 100%; ">
-                                    <button class="btn dropdown-toggle" type="button" id="sortByDropdown"
-                                        data-toggle="dropdown" aria-expanded="false">
-                                        Sort by: Featured
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
-                                        <li><label><input type="radio" name="sort_by" value="featured" checked>
-                                                Featured</label></li>
-                                        <li><label><input type="radio" name="sort_by" value="price_asc"> Price: Low to
-                                                High</label></li>
-                                        <li><label><input type="radio" name="sort_by" value="price_desc"> Price: High to
-                                                Low</label></li>
-                                        <li><label><input type="radio" name="sort_by" value="newest"> Newest</label>
-                                        </li>
-                                        <li><label><input type="radio" name="sort_by" value="newest"> Oldest</label>
-                                        </li>
-                                        <!-- Add more sort by options here -->
-                                    </ul>
-                                </div>
-                            </div>
+        <!-- Filters Section -->
+<section class="horizontal_filters">
+    <div class="container">
+        <div class="row">
+            <!-- Price filter -->
+            <div class="col">
+                <div class="filter_item">
+                    <div class="filter_options">
+                        <div class="dropdown" style="width: 100%;">
+                            <button class="btn dropdown-toggle" type="button" id="priceDropdown" data-toggle="dropdown" aria-expanded="false">
+                                Price
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="priceDropdown">
+                                <li><label><input type="checkbox" name="price_range" value="0-100"> Rs. 0 - Rs. 100</label></li>
+                                <li><label><input type="checkbox" name="price_range" value="100-500"> Rs. 100 - Rs. 500</label></li>
+                                <li><label><input type="checkbox" name="price_range" value="500-1000"> Rs. 500 - Rs. 1000</label></li>
+                                <li><label><input type="checkbox" name="price_range" value="1000-5000"> Rs. 1000 - Rs. 5000</label></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Empty -->
             </div>
-        </section>
 
-<!--card options -->
-<div class="container-fluid" style="width: 95%;">
-    <!-- Row 1 -->
-    <div class="row" id="ringCardsSection">
-        <div class="col-12">
-            <div class="section_title">
-                <h2>Bestselling Products</h2>
+            <!-- Sort by filter -->
+            <div class="col">
+                <div class="filter_item">
+                    <div class="filter_options">
+                        <div class="dropdown" style="width: 100%;">
+                            <button class="btn dropdown-toggle" type="button" id="sortByDropdown" data-toggle="dropdown" aria-expanded="false">
+                                Sort by: Featured
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="sortByDropdown">
+                                <li><label><input type="radio" name="sort_by" value="featured" checked> Featured</label></li>
+                                <li><label><input type="radio" name="sort_by" value="price_asc"> Price: Low to High</label></li>
+                                <li><label><input type="radio" name="sort_by" value="price_desc"> Price: High to Low</label></li>
+                                <li><label><input type="radio" name="sort_by" value="newest"> Newest</label></li>
+                                <li><label><input type="radio" name="sort_by" value="oldest"> Oldest</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        <div id="product-list" class="row"></div>
-
-
     </div>
-</div>
+</section>
+
+<!--card options -->
 
 
 <!-- product section area sends -->
@@ -779,89 +746,118 @@
             </footer>
         </div>
         <script>
-            const fetchAndDisplayCategoryProducts = async () => {
-                // Get the mainCategory and subCategory from the URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const mainCategory = urlParams.get('mainCategory'); // Get main category from URL
-                const subCategory = urlParams.get('subCategory'); // Get subcategory from URL
-                
-                console.log("Main Category from URL:", mainCategory);
-                console.log("Sub Category from URL:", subCategory);
-            
-                if (!mainCategory || !subCategory) {
-                    console.error("Main Category or Sub Category is missing in the URL.");
-                    document.getElementById('productList').innerHTML = '<p>Please check the URL for valid category parameters.</p>';
-                    return;
-                }
-            
-                try {
-                    // Fetch all products from the API
-                    const productResponse = await fetch("https://api.shankhjewels.com/api/products/all");
-                    
-                    if (!productResponse.ok) throw new Error('Failed to fetch products');
-                    
-                    const products = await productResponse.json();
-                    const productList = document.getElementById('productList');
-                    productList.innerHTML = ''; // Clear any previous products
-            
-                    // Filter products based on mainCategory and subCategory
-                    const filteredProducts = products.filter(product => 
-                        product.category && 
-                        product.category.mainCategory === mainCategory &&
-                        product.subcategory && 
-                        product.subcategory.name === subCategory
-                    );
-        
-                    // Log the filtered products for the particular category and subcategory
-                    console.log("Filtered Products for category:", mainCategory, "and subcategory:", subCategory);
-                    console.log(filteredProducts);
-            
-                    if (filteredProducts.length === 0) {
-                        productList.innerHTML = '<p>No products found for this category and subcategory.</p>';
-                        return;
-                    }
-            
-                    // Display each filtered product
-                    filteredProducts.forEach(product => {
-                        const productCard = document.createElement('div');
-                        productCard.className = 'col-md-3';
-                        productCard.innerHTML = `
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-img-container">
-                                    <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
-                                    <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
-                                    <div class="rating">
-                                        <img src="images/12.png" alt="Rating Icon"> ${product.rating || '5.0'}
-                                    </div>
-                                    <button class="view-btn" onclick="window.location.href='detail.html?id=${product._id}'" 
-                                        style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #b6d7f4; color: black; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
-                                        View
-                                    </button>
-                                </div>
-                                <div class="card-body">
-                                    <div class="pricing">
-                                        <span class="sale-price">₹${product.productPrice}</span>
-                                        <span class="regular-price"><del>₹${product.regularPrice}</del></span>
-                                    </div>
-                                    <p class="card-text">${product.productDescription}</p>
-                                    <div class="show-more-button">
-                                        <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
-                                        <a href="checkout.html?id=${product._id}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        productList.appendChild(productCard);
-                    });
-                } catch (error) {
-                    console.error('Error fetching category products:', error);
-                    const productList = document.getElementById('productList');
-                    productList.innerHTML = '<p>Error loading products. Please try again later.</p>';
-                }
-            };
-            
-            // Call the function to load products for the specified category
-            fetchAndDisplayCategoryProducts();
+           let allProducts = []; // Store fetched products globally
+
+const fetchAndDisplayCategoryProducts = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mainCategory = urlParams.get('mainCategory');
+    const subCategory = urlParams.get('subCategory');
+
+    if (!mainCategory || !subCategory) {
+        document.getElementById('productList').innerHTML = '<p>Please check the URL for valid category parameters.</p>';
+        return;
+    }
+
+    try {
+        // Fetch products only if allProducts is empty
+        if (allProducts.length === 0) {
+            const productResponse = await fetch("http://localhost:3000/api/products/all");
+            if (!productResponse.ok) throw new Error('Failed to fetch products');
+            allProducts = await productResponse.json();
+        }
+
+        displayFilteredProducts(); // Initial display
+    } catch (error) {
+        console.error('Error fetching category products:', error);
+        document.getElementById('productList').innerHTML = '<p>Error loading products. Please try again later.</p>';
+    }
+};
+
+const displayFilteredProducts = () => {
+    let products = [...allProducts];
+
+    // Apply category and subcategory filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const mainCategory = urlParams.get('mainCategory');
+    const subCategory = urlParams.get('subCategory');
+
+    products = products.filter(product => 
+        product.category?.mainCategory === mainCategory &&
+        product.subcategory?.name === subCategory
+    );
+
+    // Apply price filter
+    const priceRanges = Array.from(document.querySelectorAll('input[name="price_range"]:checked')).map(input => input.value);
+    if (priceRanges.length > 0) {
+        products = products.filter(product => {
+            return priceRanges.some(range => {
+                const [min, max] = range.split('-').map(Number);
+                return product.productPrice >= min && product.productPrice <= max;
+            });
+        });
+    }
+
+    // Apply sort filter
+    const sortBy = document.querySelector('input[name="sort_by"]:checked').value;
+    if (sortBy === 'price_asc') {
+        products.sort((a, b) => a.productPrice - b.productPrice);
+    } else if (sortBy === 'price_desc') {
+        products.sort((a, b) => b.productPrice - a.productPrice);
+    } else if (sortBy === 'newest') {
+        products.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+    } else if (sortBy === 'oldest') {
+        products.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
+    }
+
+    // Render the filtered and sorted products
+    const productList = document.getElementById('productList');
+    productList.innerHTML = '';
+
+    if (products.length === 0) {
+        productList.innerHTML = '<p>No products found for this category and subcategory.</p>';
+        return;
+    }
+
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'col-md-3';
+        productCard.innerHTML = `
+            <div class="card" style="width: 18rem;">
+                <div class="card-img-container">
+                    <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
+                    <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                    <div class="rating">
+                        <img src="images/12.png" alt="Rating Icon"> ${product.rating || '5.0'}
+                    </div>
+                    <button class="view-btn" onclick="window.location.href='detail.html?id=${product._id}'"
+                        style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #b6d7f4; color: black; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+                        View
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="pricing">
+                        <span class="sale-price">₹${product.productPrice}</span>
+                        <span class="regular-price"><del>₹${product.regularPrice}</del></span>
+                    </div>
+                    <p class="card-text">${product.productDescription}</p>
+                    <div class="show-more-button">
+                        <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
+                        <a href="checkout.html?id=${product._id}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                    </div>
+                </div>
+            </div>
+        `;
+        productList.appendChild(productCard);
+    });
+};
+
+// Initialize filters once data is fetched
+fetchAndDisplayCategoryProducts();
+
+// Attach event listeners for filters
+document.querySelectorAll('input[name="price_range"]').forEach(input => input.addEventListener('change', displayFilteredProducts));
+document.querySelectorAll('input[name="sort_by"]').forEach(input => input.addEventListener('change', displayFilteredProducts));
+
         </script>
         
         

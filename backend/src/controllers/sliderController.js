@@ -18,15 +18,16 @@ exports.addSlider = (req, res) => {
         return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    const imageNames = req.files.map(file => file.filename);
-    console.log('Uploaded Images:', imageNames);
+    // Create full paths for the images
+    const imagePaths = req.files.map(file => `public/product-images/${file.filename}`);
+    console.log('Uploaded Images:', imagePaths);
 
     const newSlider = new Slider({
         title,
         description,
         price,
         discount,
-        image: imageNames.join(','),
+        image: imagePaths.join(','),  // Store the paths as a comma-separated string
         swiper
     });
 
@@ -40,6 +41,7 @@ exports.addSlider = (req, res) => {
             res.status(500).json({ message: 'Error adding slider', error: error.message });
         });
 };
+
 
 // Get Sliders
 exports.getSliders = async (req, res) => {
