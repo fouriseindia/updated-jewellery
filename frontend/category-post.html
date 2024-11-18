@@ -805,15 +805,11 @@ const displayFilteredProducts = () => {
         productCard.innerHTML = `
             <div class="card" style="width: 18rem;">
                 <div class="card-img-container">
-                    <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
+                    <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" onclick="window.location.href='detail.html?id=${product._id}'">
                     <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
                     <div class="rating">
                         <img src="images/12.png" alt="Rating Icon"> ${product.rating || '5.0'}
                     </div>
-                    <button class="view-btn" onclick="window.location.href='detail.html?id=${product._id}'"
-                        style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #b6d7f4; color: black; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
-                        View
-                    </button>
                 </div>
                 <div class="card-body">
                     <div class="pricing">
