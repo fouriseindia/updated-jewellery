@@ -14,223 +14,245 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
 
     <script src="https://kit.fontawesome.com/f101be23f6.js" crossorigin="anonymous"></script>
      <script src="js/navigation.js"></script>
+ <!-- Owl Carousel CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
-    <style>
+ <style>
+    .social1 {
+        position: fixed;
+        bottom: 20px;
+        z-index: 1;
+        width: 35px;
+        /* Default width for the icon only */
+        left: 0;
+        /* Align to the left side of the screen */
+    }
+
+    .social1 ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .social1 ul li {
+        display: block;
+        margin: 5px 0;
+        /* Adjusted margin for better spacing */
+        width: 35px;
+        /* Default width for the icon only */
+        text-align: right;
+        padding: 8px;
+        border-radius: 0 30px 30px 0;
+        transition: width 0.5s ease, background-color 0.5s ease;
+        /* Smooth transition for width and background color */
+        white-space: nowrap;
+        /* Prevents text from wrapping */
+        overflow: hidden;
+        /* Ensures the text is hidden by default */
+    }
+
+    .social1 ul li a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .social1 ul li i {
+        margin-left: 10px;
+        padding: 4px;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        font-size: 17px;
+        background-color: #fff;
+    }
+
+    /* Specific styles for each social icon */
+    .social1 ul li.youtube {
+        background-color: #FF0000;
+    }
+
+    .social1 ul li.youtube i {
+        color: #FF0000;
+    }
+
+    .social1 ul li.whatsapp {
+        background-color: #25d366;
+    }
+
+    .social1 ul li.whatsapp i {
+        color: #25d366;
+    }
+
+    .social1 ul li.instagram {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .social1 ul li.instagram i {
+        color: #000;
+    }
+
+    .social1 ul li.facebook {
+        background-color: #3b5998;
+    }
+
+    .social1 ul li.facebook i {
+        color: #3b5998;
+    }
+
+    .social1 ul li.snapchat {
+        background-color: #FFFC00;
+        color: black;
+    }
+
+    .social1 ul li.snapchat i {
+        color: #FFFC00;
+    }
+
+    /* Hover effect to expand the icons */
+    .social1 ul li:hover {
+        width: 230px;
+        /* Expanded width */
+        background: rgba(232, 8, 8, 0.4);
+        /* Optional background change on hover */
+    }
+
+    .social1 ul li:hover a {
+        color: #fff;
+        /* Ensure text color remains visible */
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 765px) {
         .social1 {
-            position: fixed;
-            bottom: 20px;
-            z-index: 1;
-            width: 35px;
-            /* Default width for the icon only */
-            left: 0;
-            /* Align to the left side of the screen */
+            width: 70px;
         }
 
-        .social1 ul {
-            padding: 0;
-            margin: 0;
+        .social1 ul li:hover {
+            width: 150px;
+            /* Adjust the expanded width for smaller screens */
+        }
+    }
+
+
+
+
+    /* Show the toggle button and hide the main menu on mobile */
+    @media (max-width: 765px) {
+        .social1 {
+            width: 70px;
         }
 
-        .social1 ul li {
-            display: block;
-            margin: 5px 0;
-            /* Adjusted margin for better spacing */
-            width: 35px;
-            /* Default width for the icon only */
-            text-align: right;
-            padding: 8px;
-            border-radius: 0 30px 30px 0;
-            transition: width 0.5s ease, background-color 0.5s ease;
-            /* Smooth transition for width and background color */
-            white-space: nowrap;
-            /* Prevents text from wrapping */
-            overflow: hidden;
-            /* Ensures the text is hidden by default */
+        .social1 ul li:hover {
+            width: 150px;
+            /* Adjust the expanded width for smaller screens */
         }
 
-        .social1 ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        .social1 ul li i {
+        /* Ensure search bar stays inside the page */
+        .search-bar {
+            width: 95%;
+            /* Reduce width slightly to avoid going outside the page */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width */
+            padding: 10px;
+            /* Optional: Add padding for better appearance */
+            border-radius: 10px;
+            /* Make the corners rounded */
             margin-left: 10px;
-            padding: 4px;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 17px;
-            background-color: #fff;
+            /* Decrease margin on the left side */
+            padding-left: 20px;
+        }
+    }
+
+    /* Adjustments for small screens */
+    @media screen and (max-height: 450px) {
+        .sidebar {
+            padding-top: 15px;
         }
 
-        /* Specific styles for each social icon */
-        .social1 ul li.youtube {
-            background-color: #FF0000;
+        .sidebar a {
+            font-size: 1px;
+        }
+    }
+
+    .social1 ul li:hover {
+        transform: translate(80px, 0);
+        background: rgba(232, 8, 8, 0.4);
+    }
+
+    .fa-snapchat-ghost:before,
+    .fa-snapchat:before {
+        content: "\f2ab";
+        color: black;
+    }
+
+    @media (max-width: 600px) {
+        .custom-col-5 {
+            height: 200px;
+            width: 45%;
         }
 
-        .social1 ul li.youtube i {
-            color: #FF0000;
+        /* Ensure search bar stays inside the page */
+        .search-bar {
+            width: 90%;
+            /* Adjust the width for very small screens */
+            margin-left: 5px;
+            /* Reduce left margin to keep it inside the page */
+            margin-right: auto;
+            /* Keep it centered horizontally */
+            border-radius: 10px;
+            /* Rounded corners */
         }
-
-        .social1 ul li.whatsapp {
-            background-color: #25d366;
-        }
-
-        .social1 ul li.whatsapp i {
-            color: #25d366;
-        }
-
-        .social1 ul li.instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-        }
-
-        .social1 ul li.instagram i {
-            color: #000;
-        }
-
-        .social1 ul li.facebook {
-            background-color: #3b5998;
-        }
-
-        .social1 ul li.facebook i {
-            color: #3b5998;
-        }
-
-        .social1 ul li.snapchat {
-            background-color: #FFFC00;
-            color: black;
-        }
-
-        .social1 ul li.snapchat i {
-            color: #FFFC00;
-        }
-
-        /* Hover effect to expand the icons */
-        .social1 ul li:hover {
-            width: 230px;
-            /* Expanded width */
-            background: rgba(232, 8, 8, 0.4);
-            /* Optional background change on hover */
-        }
-
-        .social1 ul li:hover a {
-            color: #fff;
-            /* Ensure text color remains visible */
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 765px) {
-            .social1 {
-                width: 70px;
-            }
-
-            .social1 ul li:hover {
-                width: 150px;
-                /* Adjust the expanded width for smaller screens */
-            }
-        }
-
-
-
-
-        /* Show the toggle button and hide the main menu on mobile */
-        @media (max-width: 765px) {
-            .social1 {
-                width: 70px;
-            }
-
-            .social1 ul li:hover {
-                width: 150px;
-                /* Adjust the expanded width for smaller screens */
-            }
-
-            /* Ensure search bar stays inside the page */
-            .search-bar {
-                width: 95%;
-                /* Reduce width slightly to avoid going outside the page */
-                box-sizing: border-box;
-                /* Include padding and border in the element's total width */
-                padding: 10px;
-                /* Optional: Add padding for better appearance */
-                border-radius: 10px;
-                /* Make the corners rounded */
-                margin-left: 10px;
-                /* Decrease margin on the left side */
-                padding-left: 20px;
-            }
-        }
-
-        /* Adjustments for small screens */
-        @media screen and (max-height: 450px) {
-            .sidebar {
-                padding-top: 15px;
-            }
-
-            .sidebar a {
-                font-size: 1px;
-            }
-        }
-
-        .social1 ul li:hover {
-            transform: translate(80px, 0);
-            background: rgba(232, 8, 8, 0.4);
-        }
-
-        .fa-snapchat-ghost:before,
-        .fa-snapchat:before {
-            content: "\f2ab";
-            color: black;
-        }
-
-        @media (max-width: 600px) {
-            .custom-col-5 {
-                height: 200px;
-                width: 45%;
-            }
-
-            /* Ensure search bar stays inside the page */
-            .search-bar {
-                width: 90%;
-                /* Adjust the width for very small screens */
-                margin-left: 5px;
-                /* Reduce left margin to keep it inside the page */
-                margin-right: auto;
-                /* Keep it centered horizontally */
-                border-radius: 10px;
-                /* Rounded corners */
-            }
-        }
-    </style>
+    }
+    .slider_area {
+        position: relative;
+    }
+    .single_slider {
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        color: white;
+    }
+    .slider_content {
+        text-align: center;
+        max-width: 600px;
+    }
+    .slider_content h1 {
+        font-size: 36px;
+    }
+    .slider_content p {
+        font-size: 18px;
+    }
+    .slider_price {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .button {
+        padding: 10px 20px;
+        background-color: #f76c6c;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
     
 
     <script>
         // Function to add product to cart
         function addToCart(product) {
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartItems.push(product);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            alert("Product added to cart!");
-        }
-
-        // Fetch products from the backend
-        // 
-
-        const apiUrl = 'https://api.shankhjewels.com/api';
-
-       
-        // Function to add product to cart
-        function addToCart(product) {
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
+    
             // Check if the product already exists in the cart
             let existingProduct = cartItems.find(item => item._id === product._id);
             if (existingProduct) {
@@ -241,58 +263,53 @@
                 alert("Product added to cart!");
             }
         }
-
-
+    
         // Function to handle Buy Now action
         function buyNow(productId, productPrice, productTitle, productDescription) {
             // Get the specific quantity input for this product
             const quantityInput = document.getElementById(`quantity-${productId}`);
             const quantity = Number(quantityInput.value);
-
+    
             // Calculate the total price based on the quantity
             const totalPrice = productPrice * quantity;
-
+    
             // Redirect to the checkout page with product id, total price, and product name
             window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}&description=${productDescription}`;
         }
-
-        fetch('https://api.shankhjewels.com/api/products/all')
+    
+        fetch('http://localhost:3000/api/products/all')
             .then(response => response.json())
             .then(products => {
                 const productList = document.getElementById('product-list');
                 products.forEach(product => {
                     const productCard = `
-                <div class="col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-img-container">
-                            <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
-                            <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
-                            <div class="rating">
-                                <img src="images/12.png" alt="Rating Icon"> 5.0
+                        <div class="col-md-3">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-img-container">
+                                    <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
+                                        onclick="window.location.href='detail.html?id=${product._id}'" style="cursor: pointer;">
+                                    <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                                    <div class="rating">
+                                        <img src="images/12.png" alt="Rating Icon"> 5.0
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="pricing">
+                                        <span class="sale-price">₹${product.productPrice}</span>
+                                        <span class="regular-price"><del>₹${product.regularPrice}</del></span>
+                                    </div>
+                                    <p class="card-text">${product.productDescription}</p>
+                                    <div class="show-more-button">
+                                        <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
+                                        <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                                    </div>
+                                </div>
                             </div>
-                            <button class="view-btn" onclick="window.location.href='detail.html?id=${product._id}'" 
-                                style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #b6d7f4; color: black; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
-                                View
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="pricing">
-                                <span class="sale-price">₹${product.productPrice}</span>
-                                <span class="regular-price"><del>₹${product.regularPrice}</del></span>
-                            </div>
-                            <p class="card-text">${product.productDescription}</p>
-                            <div class="show-more-button">
-                                <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
-                                <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+                        </div>`;
                     productList.innerHTML += productCard;
                 });
             })
             .catch(err => console.log('Error: ', err));
-
     </script>
 </head>
 
@@ -626,56 +643,72 @@
   </div>
 
     <!-- slider section starts -->
-    <div class="slider_area slider_black owl-carousel">
-        <div class="single_slider" data-bgimg="images/slider/1.png">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="slider_content">
-                            <p>exclusive offer -20% off this week</p>
-                            <h1>Necklace</h1>
-                            <span>22 Carat gold necklace for wedding</span>
-                            <p class="slider_price">starting at <span>Rs. 75,999</span></p>
-                            <a href="#" class="button">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="slider_area1 owl-carousel" id="dynamicSliderCarousel"></div>
 
-        </div>
-        <div class="single_slider" data-bgimg="images/slider/2.jpg">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="slider_content">
-                            <p>exclusive offer -40% off this week</p>
-                            <h1>Earings and Pendant</h1>
-                            <span>Complete bridal set with white pearls</span>
-                            <p class="slider_price">starting at <span>Rs. 89,499</span></p>
-                            <a href="#" class="button">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Owl Carousel JS and jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-        </div>
-        <div class="single_slider" data-bgimg="images/slider/3.jpg">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="slider_content">
-                            <p>exclusive offer -10% off this week</p>
-                            <h1>Wedding Rings</h1>
-                            <span>Shankh Jewels Special wedding rings for couples.</span>
-                            <p class="slider_price">starting at <span>Rs. 14,999</span></p>
-                            <a href="#" class="button">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <script>
+        async function fetchSliders() {
+            try {
+                const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch sliders');
+                }
 
-        </div>
-    </div>
+                const sliders = await response.json();
+
+                // Filter sliders for swiper1
+                const filteredSliders = sliders.filter(slider => slider.swiper === 'swiper1');
+
+                if (filteredSliders.length > 0) {
+                    const sliderContainer = document.getElementById('dynamicSliderCarousel');
+
+                    // Get the first slider only
+                    const firstSlider = filteredSliders[0];
+
+                    // Split images if they are comma-separated
+                    const images = firstSlider.image.includes(',')
+                        ? firstSlider.image.split(',').map(img => img.trim())
+                        : [firstSlider.image];
+
+                    // Generate HTML for each image in the carousel
+                    images.forEach(img => {
+                        const slideHTML = `
+                            <div class="single_slider1" style="background-image: url('http://localhost:3000/uploads/${img}')">
+                                <div class="slider_content1" style="height:500px">
+                                    <p>Exclusive Offer - ${firstSlider.discount}% off this week</p>
+                                    <h1>${firstSlider.title}</h1>
+                                    <span>${firstSlider.description}</span>
+                                    <p class="slider_price">Starting at <span>Rs. ${firstSlider.price}</span></p>
+                                    <a href="#" class="button1">Shop Now</a>
+                                </div>
+                            </div>
+                        `;
+                        sliderContainer.innerHTML += slideHTML;
+                    });
+
+                    // Initialize the Owl Carousel after populating the slides
+                    $('.slider_area1').owlCarousel({
+                        items: 1,  // Show one image at a time
+                        loop: true,  // Infinite looping
+                        autoplay: true,  // Auto-slide
+                        autoplayTimeout: 3000,  // 3 seconds per slide
+                        nav: true,  // Show navigation arrows
+                        dots: true,  // Show pagination dots
+                        navText: ["<", ">"],  // Customize arrows
+                    });
+                } else {
+                    console.error('No sliders found for swiper1');
+                }
+            } catch (error) {
+                console.error('Error fetching sliders:', error.message);
+            }
+        }
+
+        fetchSliders();
+    </script>
     <!-- slider section ends -->
     <!-- slider section ends -->
     <!-- banner section starts -->

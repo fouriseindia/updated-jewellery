@@ -72,53 +72,48 @@
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
         }
-
-        // Function to change the swiper visibility
-        function changeSwiper() {
-            const selectedSwiper = document.getElementById('swiperSelect').value;
-            const allSwipers = document.querySelectorAll('.swiper-container'); // Assuming you have multiple swiper containers
-            
-            // Hide all swiper containers
-            allSwipers.forEach(swiper => swiper.classList.remove('active'));
-
-            // Show the selected swiper container
-            document.getElementById(selectedSwiper).classList.add('active');
-        }
+    
         async function deleteSlider(id) {
-                const response = await fetch(`https://api.shankhjewels.com/api/sliders/delete/${id}`, {
-                    method: 'DELETE'
-                });
-
-                if (response.ok) {
-                    // Remove the row from the table without reloading the page
-                    const row = document.querySelector(`#sliderList tbody tr[data-id="${id}"]`);
-                    if (row) {
-                        row.remove();
-                    }
-                } else {
-                    showError('Failed to delete slider');
+            const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
+                method: 'DELETE'
+            });
+    
+            if (response.ok) {
+                const row = document.querySelector(`#sliderList tbody tr[data-id="${id}"]`);
+                if (row) {
+                    row.remove();
                 }
+            } else {
+                showError('Failed to delete slider');
             }
-            
+        }
+    
         document.addEventListener('DOMContentLoaded', function () {
-            // Fetch sliders from the backend dynamically
             async function fetchSliders() {
                 try {
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
-                    console.log(response);
-                    
+                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
                     if (!response.ok) {
                         throw new Error('Failed to fetch sliders');
                     }
-
+    
                     const sliders = await response.json();
                     const tableBody = document.querySelector('#sliderList tbody');
-
+    
                     sliders.forEach(slider => {
                         const newRow = document.createElement('tr');
                         newRow.setAttribute('data-id', slider._id);
+                        
+                        // Split the comma-separated image string into an array and map each to an <img> tag
+                        const images = slider.image.includes(',')
+                            ? slider.image.split(',').map(img => img.trim())
+                            : [slider.image]; // If no comma, just use the single image
+    
+                        const imagesHTML = images
+                            .map(img => `<img src="http://localhost:3000/uploads/${img}" width="100">`)
+                            .join('');
+    
                         newRow.innerHTML = `
-                            <td><img src="https://api.shankhjewels.com/uploads/${slider.image || slider.image}" width="100"></td>
+                            <td>${imagesHTML}</td>
                             <td>${slider.title}</td>
                             <td>${slider.description}</td>
                             <td>${slider.price}</td>
@@ -129,46 +124,49 @@
                                 <button onclick="deleteSlider('${slider._id}')">Delete</button>
                             </td>
                         `;
+                        
                         tableBody.appendChild(newRow);
                     });
                 } catch (error) {
                     showError(error.message);
                 }
             }
-
-            // Fetch sliders when the page loads
+    
             fetchSliders();
-
-            // Function to handle form submissions for swiper
+    
             function handleSubmit(formId, tableId) {
                 const form = document.getElementById(formId);
                 const tableBody = document.querySelector(`#${tableId} tbody`);
                 const swiperSelect = document.getElementById('swiperSelect');
                 const swiperName = document.getElementById('swiperName');
-
+    
                 form.addEventListener('submit', async function (e) {
                     e.preventDefault();
-
+    
                     const formData = new FormData(form);
-
-                    // Get the selected swiper value and add it to formData
                     formData.append('swiper', swiperSelect.value);
                     formData.append('swiperName', swiperName.value);
-
-                    // Send data to the backend
-                    const response = await fetch('https://api.shankhjewels.com/api/sliders/add', {
+    
+                    const response = await fetch('http://localhost:3000/api/sliders/add', {
                         method: 'POST',
                         body: formData
                     });
-
+    
                     const result = await response.json();
-
+    
                     if (response.ok) {
-                        // Append new slider row to the table
+                        const images = result.slider.image.includes(',')
+                            ? result.slider.image.split(',').map(img => img.trim())
+                            : [result.slider.image];
+    
+                        const imagesHTML = images
+                            .map(img => `<img src="/uploads/${img}" width="100">`)
+                            .join('');
+    
                         const newRow = document.createElement('tr');
-                        newRow.setAttribute('data-id', result.slider._id); // Set the slider ID to the row
+                        newRow.setAttribute('data-id', result.slider._id);
                         newRow.innerHTML = `
-                            <td><img src="/uploads/${result.slider.image[0] || result.slider.image}" width="100"></td>
+                            <td>${imagesHTML}</td>
                             <td>${result.slider.title}</td>
                             <td>${result.slider.description}</td>
                             <td>${result.slider.price}</td>
@@ -186,14 +184,12 @@
                     }
                 });
             }
-
-            // Initialize form handling for the swiper
+    
             handleSubmit('addSliderForm', 'sliderList');
-
-            // Function to delete slider
-           
         });
     </script>
+    
+    
 
 </body>
 </html>
