@@ -245,72 +245,44 @@
         border: none;
         cursor: pointer;
     }
+    .highlight {
+    animation: highlight-effect 0.5s ease-in-out; /* Smooth animation */
+}
+
+@keyframes highlight-effect {
+    0% {
+        transform: scale(1); /* Original size */
+        background-color: #fffbe6; /* Highlight background */
+    }
+    50% {
+        transform: scale(1.05); /* Slight zoom effect */
+        background-color: #ffecb3; /* Light yellow highlight */
+    }
+    100% {
+        transform: scale(1); /* Back to original size */
+        background-color: #fffbe6; /* Reset background */
+    }
+}
+
+/* Smooth fade-out effect for non-matching cards */
+.fade-out {
+    animation: fade-out-effect 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-out-effect {
+    from {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* No movement */
+    }
+    to {
+        opacity: 0; /* Fully invisible */
+        transform: translateY(10px); /* Move slightly down */
+    }
+}
 </style>
     
 
-    <script>
-        // Function to add product to cart
-        function addToCart(product) {
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     
-            // Check if the product already exists in the cart
-            let existingProduct = cartItems.find(item => item._id === product._id);
-            if (existingProduct) {
-                alert('Product is already in the cart!');
-            } else {
-                cartItems.push(product);
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                alert("Product added to cart!");
-            }
-        }
-    
-        // Function to handle Buy Now action
-        function buyNow(productId, productPrice, productTitle, productDescription) {
-            // Get the specific quantity input for this product
-            const quantityInput = document.getElementById(`quantity-${productId}`);
-            const quantity = Number(quantityInput.value);
-    
-            // Calculate the total price based on the quantity
-            const totalPrice = productPrice * quantity;
-    
-            // Redirect to the checkout page with product id, total price, and product name
-            window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}&description=${productDescription}`;
-        }
-    
-        fetch('https://api.shankhjewels.com/api/products/all')
-            .then(response => response.json())
-            .then(products => {
-                const productList = document.getElementById('product-list');
-                products.forEach(product => {
-                    const productCard = `
-                        <div class="col-md-3">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-img-container">
-                                    <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
-                                        onclick="window.location.href='detail.html?id=${product._id}'" style="cursor: pointer;">
-                                    <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
-                                    <div class="rating">
-                                        <img src="images/12.png" alt="Rating Icon"> 5.0
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="pricing">
-                                        <span class="sale-price">₹${product.productPrice}</span>
-                                        <span class="regular-price"><del>₹${product.regularPrice}</del></span>
-                                    </div>
-                                    <p class="card-text">${product.productDescription}</p>
-                                    <div class="show-more-button">
-                                        <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
-                                        <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
-                    productList.innerHTML += productCard;
-                });
-            })
-            .catch(err => console.log('Error: ', err));
-    </script>
 </head>
 
 <body>
@@ -505,8 +477,8 @@
             <div class="col-lg-6 col-md-6 col-6">
                 <div class="middel_right">
                     <div class="search_btn">
-                        <form action="#">
-                            <input type="text" placeholder="Search Product ....">
+                        <form id="search-form">
+                            <input type="text" id="search-input" placeholder="Search Product ....">
                             <button type="submit"><i class="ion-ios-search-strong"></i></button>
                         </form>
                     </div>
@@ -1268,7 +1240,103 @@
 
 
     </script>
+    <script>
+        // Function to add product to cart
+        function addToCart(product) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let existingProduct = cartItems.find(item => item._id === product._id);
     
+            if (existingProduct) {
+                alert('Product is already in the cart!');
+            } else {
+                cartItems.push(product);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                alert("Product added to cart!");
+            }
+        }
+    
+        // Function to handle Buy Now action
+        function buyNow(productId, productPrice, productTitle, productDescription) {
+            const quantityInput = document.getElementById(`quantity-${productId}`);
+            const quantity = Number(quantityInput.value);
+            const totalPrice = productPrice * quantity;
+            window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}&description=${productDescription}`;
+        }
+    
+        // Function to display products
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear existing products
+    
+            products.forEach(product => {
+                const productCard = `
+                    <div class="col-md-3 product-card" id="product-${product._id}">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-img-container">
+                                <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
+                                    onclick="window.location.href='detail.html?id=${product._id}'" style="cursor: pointer;">
+                                <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                                <div class="rating">
+                                    <img src="images/12.png" alt="Rating Icon"> 5.0
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="pricing">
+                                    <span class="sale-price">₹${product.productPrice}</span>
+                                    <span class="regular-price"><del>₹${product.regularPrice}</del></span>
+                                </div>
+                                <p class="card-text">${product.productDescription}</p>
+                                <div class="show-more-button">
+                                    <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
+                                    <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                productList.innerHTML += productCard;
+            });
+        }
+    
+        // Fetch and display all products initially
+        let allProducts = [];
+        fetch('http://localhost:3000/api/products/all')
+            .then(response => response.json())
+            .then(products => {
+                allProducts = products;
+                displayProducts(allProducts); // Display all products initially
+            })
+            .catch(err => console.log('Error: ', err));
+    
+        // Search functionality with animations and highlighting
+        document.getElementById('search-input').addEventListener('input', function () {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+    
+            productCards.forEach(card => {
+                const productTitle = card.querySelector('.card-img-top').alt.toLowerCase();
+                const productDescription = card.querySelector('.card-text').textContent.toLowerCase();
+    
+                if (productTitle.includes(searchInput) || productDescription.includes(searchInput)) {
+                    card.classList.add('highlight'); // Add highlight animation
+                    card.classList.remove('fade-out'); // Remove fade-out animation
+                } else {
+                    card.classList.remove('highlight'); // Remove highlight
+                    card.classList.add('fade-out'); // Add fade-out animation
+                }
+            });
+        });
+    
+        // Search form submit functionality
+        document.getElementById('search-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = allProducts.filter(product =>
+                product.productTitle.toLowerCase().includes(searchInput) ||
+                product.productDescription.toLowerCase().includes(searchInput)
+            );
+            displayProducts(filteredProducts); // Display filtered products
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!-- JavaScript Bundle with Popper.js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
