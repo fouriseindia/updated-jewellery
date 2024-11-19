@@ -415,65 +415,76 @@
         fetchSliders();
     </script>
 
-        <main class="centered-content">
-            <section class="promo">
-                <div class="promo-text">
-                    <h1>DISCOVER JEWELLERY</h1>
-                    <p class="discount">Save Up To 50% OFF</p>
-                </div>
-            </section>
-        </main>
-        
-        
-        <div class="container mt-4">
-            <!-- Row 1 -->
-            <div class="row" id="ringCardsSection">
-                <!-- Column 1 -->
-                <div class="col-md-3">
-                    <a href="braclet.html" class="card-link">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-img-container">
-                                <img src="images/offer/offerbraclet.jpg" class="card-img-top circular-img" alt="Silver Jewelry 1">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-    
-                <!-- Column 2 -->
-                <div class="col-md-3">
-                    <a href="earing.html" class="card-link">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-img-container">
-                                <img src="images/offer/offerearing.jpg" class="card-img-top circular-img" alt="Silver Jewelry 2">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-    
-                <!-- Column 3 -->
-                <div class="col-md-3">
-                    <a href="pendant&necklace.html" class="card-link">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-img-container">
-                                <img src="images/offer/offerpendant.jpg" class="card-img-top circular-img" alt="Silver Jewelry 3">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-    
-                <!-- Column 4 -->
-                <div class="col-md-3">
-                    <a href="rings.html" class="card-link">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-img-container">
-                                <img src="images/offer/offerring.jpg" class="card-img-top circular-img" alt="Silver Jewelry 4">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
+<main class="centered-content1">
+    <section class="promo">
+        <div class="promo-text">
+            <h1>DISCOVER JEWELLERY</h1>
+            <p class="discount">Save Up To 50% OFF</p>
         </div>
+    </section>
+</main>
+
+<div class="container1 mt-4">
+    <!-- Row to dynamically render products -->
+    <div class="row" id="productCardsSection">
+        <!-- Cards will be dynamically inserted here -->
+    </div>
+</div>
+<script>
+    async function fetchAndShowCategory(categoryId) {
+        const productSection = document.getElementById('productCardsSection');
+        productSection.innerHTML = ''; // Clear existing content
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/offers/discoverJewellery`);
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert(`Error fetching products: ${errorData.message}`);
+                return;
+            }
+
+            const data = await response.json();
+            console.log(data); // Log API response to debug
+
+            if (data.length === 0) {
+                productSection.innerHTML = '<p>No products available for this category.</p>';
+                return;
+            }
+
+            renderProducts(data);
+        } catch (error) {
+            console.error('Error fetching category:', error);
+            alert('An error occurred. Please try again.');
+        }
+    }
+
+    function renderProducts(products) {
+        const productSection = document.getElementById('productCardsSection');
+
+        products.forEach(product => {
+            const cardHTML = `
+                <div class="col-md-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-img-container">
+                            ${product.images
+                                .map(image => `<img src="http://localhost:3000/${image}" class="card-img-top" alt="${product.productName}" />`)
+                                .join('')}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title1">${product.productName}</h5>
+                            <p class="card-text1">Discount: ${product.discount}%</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productSection.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
+
+    // Example usage (fetch products for "discoverJewellery" category)
+    fetchAndShowCategory('discoverJewellery');
+</script>
 
         <!-- <section class="image-section">
             <a href="women.html">
@@ -567,35 +578,74 @@
                 <div class="discount">Save Up To 60%</div>
             </div>
         </div>
-
+        
         <div class="shop-by-look">
-            <div class="look-row">
-                <!-- Image 1 -->
-                <div class="card-look">
-                    <a href="everydaywear.html">
-                        <img src="images/offer/shopbylook/everdaywearoffer.jpg" class="card-img-top" alt="Look Item 1">
-                    </a>
-                </div>
-        
-                <div class="card-look">
-                    <a href="officewear.html">
-                        <img src="images/offer/shopbylook/officewearoffer.jpg" class="card-img-top" alt="Look Item 2">
-                    </a>
-                </div>
-        
-                <div class="card-look">
-                    <a href="partywear.html">
-                        <img src="images/offer/shopbylook/partywearoffer.jpg" class="card-img-top" alt="Look Item 3">
-                    </a>
-                </div>
-        
-                <div class="card-look">
-                    <a href="weddingwear.html">
-                        <img src="images/offer/shopbylook/weddingwearoffer.jpg" class="card-img-top" alt="Look Item 4">
-                    </a>
-                </div>
+            <div class="row" id="lookCardsSection">
+                <!-- Cards will be dynamically inserted here -->
             </div>
         </div>
+        <script>
+            async function fetchAndShowCategory1(categoryId) {
+                const productSection = document.getElementById('lookCardsSection');
+                productSection.innerHTML = ''; // Clear existing content
+        
+                try {
+                    // Fetch products from the API
+                    const response = await fetch(`http://localhost:3000/api/offers/shopByLook`);
+        
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        alert(`Error fetching products: ${errorData.message}`);
+                        return;
+                    }
+        
+                    const data = await response.json();
+                    console.log(data); // Log API response for debugging
+        
+                    // Check if there are no products
+                    if (!data || data.length === 0) {
+                        productSection.innerHTML = '<p>No products available for this category.</p>';
+                        return;
+                    }
+        
+                    // Render products
+                    renderProducts(data);
+                } catch (error) {
+                    console.error('Error fetching category:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+        
+            function renderProducts(products) {
+                const productSection = document.getElementById('lookCardsSection');
+        
+                products.forEach(product => {
+                    const cardHTML = `
+                        <div class="col-md-3">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-img-container">
+                                    ${product.images
+                                        .map(
+                                            image =>
+                                                `<img src="http://localhost:3000/${image}" class="card-img-top" alt="${product.productName}" />`
+                                        )
+                                        .join('')}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title1">${product.productName}</h5>
+                                    <p class="card-text1">Discount: ${product.discount}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productSection.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            }
+        
+            // Automatically fetch and display products for the "shopByLook" category
+            fetchAndShowCategory1('shopByLook');
+        </script>
+                
         <!-----------------------------------------------------over---------------------------------------------------->
 
         <div class="slider_area slider_black owl-carousel">

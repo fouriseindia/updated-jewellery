@@ -1,4 +1,3 @@
-// routes/offerRoutes.js
 const express = require('express');
 const multer = require('multer');
 const offerController = require('../controllers/addofferController');
@@ -22,8 +21,20 @@ const upload = multer({ storage: storage });
 
 // Routes for each tab
 router.post('/exclusive-discount', exofferController.addExclusiveDiscount);
-router.post('/discover-jewellery', upload.single('image'), offerController.addDiscoverJewellery);
-router.post('/shop-by-look', upload.single('image'), offerController.addShopByLook);
+
+// Route for Discover Jewellery - allow multiple images
+router.post(
+    '/discover-jewellery',
+    upload.array('images', 5), // Allow up to 5 images per product
+    offerController.addDiscoverJewellery
+);
+
+// Route for Shop by Look - allow multiple images
+router.post(
+    '/shop-by-look',
+    upload.array('images', 5), // Allow up to 5 images per product
+    offerController.addShopByLook
+);
 
 // Route to get products by category
 router.get('/:category', offerController.getProductsByCategory);

@@ -5,7 +5,7 @@ const OfferSchema = new mongoose.Schema({
     productName: { type: String},
     discount: { type: Number},
     category: { type: String},
-    image: { type: String}, // Store the image path
+    images: { type: [String] }, // Array to store multiple image paths
 });
 
 module.exports = mongoose.model('Offer', OfferSchema);

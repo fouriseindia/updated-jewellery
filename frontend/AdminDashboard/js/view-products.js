@@ -1,162 +1,94 @@
-function openTab(evt, tabName) {
-    var i, tabContent, tabButton;
-    
-    // Hide all tab content
-    tabContent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
-    
-    // Remove the "active" class from all buttons
-    tabButton = document.getElementsByClassName("tab-button");
-    for (i = 0; i < tabButton.length; i++) {
-        tabButton[i].classList.remove("active");
-    }
-    
-    // Show the current tab and set the button to active
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
-}
-
-// Display the first tab by default
-document.addEventListener('DOMContentLoaded', function() {
-    openTab(event, 'exclusiveDiscount'); // Use the function to show the default tab
-});
-
-// Display the first tab by default
-document.getElementById("exclusiveDiscount").style.display = "block";
-
-function showCategory(categoryId) {
+// Function to show the selected category and fetch data
+async function fetchAndShowCategory(categoryId) {
     // Hide all categories
     const categories = document.getElementsByClassName('product-category');
-    for (let i = 0; i < categories.length; i++) {
-        categories[i].style.display = 'none';
+    for (let category of categories) {
+        category.style.display = 'none';
     }
 
-    // Show selected category
+    // Fetch and display the selected category
+    try {
+        const response = await fetch(`https://api.shankhjewels.com/api/offers/${categoryId}`);
+        const data = await response.json();
+
+        if (response.ok) {
+            populateCategoryTable(`${categoryId}Table`, data); // Correct data structure passed
+        } else {
+            alert(`Error fetching products: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error fetching category:', error);
+        alert('An error occurred. Please try again.');
+    }
+
+    // Show the category container
     document.getElementById(categoryId).style.display = 'block';
 }
 
-// Load products for each category
-document.addEventListener('DOMContentLoaded', function() {
-    loadProducts('exclusiveDiscountTable', exclusiveDiscountProducts);
-    loadProducts('discoverJewelleryTable', discoverJewelleryProducts);
-    loadProducts('shopByLookTable', shopByLookProducts);
-});
+// Function to handle product submission for categories
+async function submitProduct(event, formId, apiEndpoint, tableId) {
+    event.preventDefault();
 
-const exclusiveDiscountProducts = [
-    { name: 'Gold Necklace', discount: '15%', price: '$200', image: 'https://via.placeholder.com/50' },
-    { name: 'Diamond Ring', discount: '20%', price: '$300', image: 'https://via.placeholder.com/50' }
-];
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
 
-const discoverJewelleryProducts = [
-    { name: 'Silver Bracelet', discount: '10%', image: 'https://via.placeholder.com/50' },
-    { name: 'Pearl Earrings', discount: '25%', image: 'https://via.placeholder.com/50' }
-];
+    try {
+        const response = await fetch(apiEndpoint, {
+            method: 'POST',
+            body: formData,
+        });
 
-const shopByLookProducts = [
-    { name: 'Wedding Set', discount: '30%', image: 'https://via.placeholder.com/50' },
-    { name: 'Traditional Necklace', discount: '18%', image: 'https://via.placeholder.com/50' }
-];
+        const data = await response.json();
+        if (response.ok) {
+            alert('Product added successfully!');
+            addProductToTable(tableId, data);
+            form.reset();
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error(`Error adding product to ${formId}:`, error);
+        alert('An error occurred. Please try again.');
+    }
+}
 
-function loadProducts(tableId, products) {
+
+
+
+// Function to populate a category table with products
+function populateCategoryTable(tableId, products) {
     const tableBody = document.getElementById(tableId);
+    if (!tableBody) {
+        console.error(`Table with ID ${tableId} not found.`);
+        return;
+    }
+    tableBody.innerHTML = ''; // Clear existing rows
+
     products.forEach(product => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${product.name}</td>
-            <td>${product.discount}</td>
-            ${product.price ? `<td>${product.price}</td>` : ''}
-            <td><img src="${product.image}" alt="${product.name}"></td>
-        `;
-        tableBody.appendChild(row);
+        addProductToTable(tableId, product);
     });
 }
 
+// Update to render multiple images in the table
+function addProductToTable(tableId, product) {
+    const tableBody = document.getElementById(tableId);
+    const row = document.createElement('tr');
+    const imagesHTML = product.images
+        .map(image => `<img src="https://api.shankhjewels.com/${image}" alt="${product.productName}" width="50">`)
+        .join(' ');
 
-async function submitExclusiveDiscount() {
-        const productName = document.getElementById('productName').value.trim();
-        const startingPrice = document.getElementById('startingPrice').value.trim();
-        const discount = document.getElementById('discount').value.trim();
-    
-        // Check if any field is empty
-        if (!productName || !startingPrice || !discount) {
-            alert("All fields are required.");
-            return;
-        }
-    
-        // Prepare the data to send
-        const data = {
-            productName: productName,
-            startingPrice: parseFloat(startingPrice),
-            discount: parseFloat(discount),
-        };
-    
-        console.log('Submitting data:', data); // Debugging line
-    
-        // Send data to the server using fetch
-        fetch('https://api.shankhjewels.com/api/offers/exclusive-discount', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.message) {
-                alert(data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to add exclusive discount.');
-        });
-    }
-    
-async function submitDiscoverJewellery() {
-    const form = document.getElementById('discoverJewelleryForm');
-    const formData = new FormData(form);
-    
-    try {
-        const response = await fetch('https://api.shankhjewels.com/api/offers/discover-jewellery', {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            alert(data.message);
-            form.reset(); // Clear the form after submission
-        } else {
-            alert('Error: ' + data.message);
-        }
-    } catch (error) {
-        console.error('Error submitting discover jewellery:', error);
-        alert('An error occurred. Please try again.');
-    }
+    row.innerHTML = `
+        <td>${product.productName}</td>
+        <td>${product.discount}</td>
+        <td>${imagesHTML}</td>
+    `;
+    tableBody.appendChild(row);
 }
+// Event listeners for form submissions
+document.getElementById('discoverJewelleryForm').addEventListener('submit', event =>
+    submitProduct(event, 'discoverJewelleryForm', 'https://api.shankhjewels.com/api/offers/discover-jewellery', 'discoverJewelleryTable')
+);
 
-async function submitShopByLook() {
-    const form = document.getElementById('shopByLookForm');
-    const formData = new FormData(form);
-    
-    try {
-        const response = await fetch('https://api.shankhjewels.com/api/offers/shop-by-look', {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            alert(data.message);
-            form.reset(); // Clear the form after submission
-        } else {
-            alert('Error: ' + data.message);
-        }
-    } catch (error) {
-        console.error('Error submitting shop by look:', error);
-        alert('An error occurred. Please try again.');
-    }
-}
+document.getElementById('shopByLookForm').addEventListener('submit', event =>
+    submitProduct(event, 'shopByLookForm', 'https://api.shankhjewels.com/api/offers/shop-by-look', 'shopByLookTable')
+);

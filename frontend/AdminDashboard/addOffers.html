@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Products</title>
+    <link rel="stylesheet" href="./css/view-products.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>View Products</h1>
+        <!-- Category Tabs -->
+        <div class="tab-section">
+            <button class="tab-button" onclick="fetchAndShowCategory('discoverJewellery')">Discover Jewellery</button>
+            <button class="tab-button" onclick="fetchAndShowCategory('shopByLook')">Shop by Look</button>
+        </div>
+        <!-- Product Sections -->
+        <div id="discoverJewellery" class="product-category" style="display: none;">
+            <h2>Discover Jewellery Products</h2>
+            <form id="discoverJewelleryForm" onsubmit="submitDiscoverJewellery(event)">
+                <label>Product Name:</label>
+                <input type="text" name="productName" required>
+                <label>Discount:</label>
+                <input type="number" name="discount" required>
+                <label>Images:</label>
+                <input type="file" name="images" accept="image/*" multiple required>
+                <button type="submit">Add Product</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Discount</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="discoverJewelleryTable"></tbody>
+            </table>
+        </div>
+
+        <div id="shopByLook" class="product-category" style="display: none;">
+            <h2>Shop by Look Products</h2>
+            <form id="shopByLookForm" onsubmit="submitShopByLook(event)">
+                <label>Product Name:</label>
+                <input type="text" name="productName" required>
+                <label>Discount:</label>
+                <input type="number" name="discount" required>
+                <label>Images:</label>
+                <input type="file" name="images" accept="image/*" multiple required>
+                <button type="submit">Add Product</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Discount</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="shopByLookTable"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./js/view-products.js"></script>
+</body>
+
+</html>
