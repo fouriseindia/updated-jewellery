@@ -1,18 +1,14 @@
-// Function to show the selected category and fetch data
+// Fetch and display offers by category
 async function fetchAndShowCategory(categoryId) {
     // Hide all categories
-    const categories = document.getElementsByClassName('product-category');
-    for (let category of categories) {
-        category.style.display = 'none';
-    }
+    document.querySelectorAll('.product-category').forEach(category => (category.style.display = 'none'));
 
-    // Fetch and display the selected category
     try {
         const response = await fetch(`http://localhost:3000/api/offers/${categoryId}`);
         const data = await response.json();
 
         if (response.ok) {
-            populateCategoryTable(`${categoryId}Table`, data); // Correct data structure passed
+            populateCategoryTable(`${categoryId}Table`, data);
         } else {
             alert(`Error fetching products: ${data.message}`);
         }
@@ -21,11 +17,11 @@ async function fetchAndShowCategory(categoryId) {
         alert('An error occurred. Please try again.');
     }
 
-    // Show the category container
+    // Show the selected category
     document.getElementById(categoryId).style.display = 'block';
 }
 
-// Function to handle product submission for categories
+// Submit a product for the selected category
 async function submitProduct(event, formId, apiEndpoint, tableId) {
     event.preventDefault();
 
@@ -33,12 +29,12 @@ async function submitProduct(event, formId, apiEndpoint, tableId) {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch(apiEndpoint, {
+        const response = await fetch(`http://localhost:3000${apiEndpoint}`, {
             method: 'POST',
             body: formData,
         });
-
         const data = await response.json();
+
         if (response.ok) {
             alert('Product added successfully!');
             addProductToTable(tableId, data);
@@ -52,16 +48,9 @@ async function submitProduct(event, formId, apiEndpoint, tableId) {
     }
 }
 
-
-
-
-// Function to populate a category table with products
+// Populate a table with products
 function populateCategoryTable(tableId, products) {
     const tableBody = document.getElementById(tableId);
-    if (!tableBody) {
-        console.error(`Table with ID ${tableId} not found.`);
-        return;
-    }
     tableBody.innerHTML = ''; // Clear existing rows
 
     products.forEach(product => {
@@ -69,7 +58,7 @@ function populateCategoryTable(tableId, products) {
     });
 }
 
-// Update to render multiple images in the table
+// Add a product row to a table
 function addProductToTable(tableId, product) {
     const tableBody = document.getElementById(tableId);
     const row = document.createElement('tr');
@@ -81,14 +70,38 @@ function addProductToTable(tableId, product) {
         <td>${product.productName}</td>
         <td>${product.discount}</td>
         <td>${imagesHTML}</td>
+        <td><button onclick="deleteOffer('${product._id}', '${tableId}')">Delete</button></td>
     `;
     tableBody.appendChild(row);
 }
+
+// Delete an offer
+async function deleteOffer(offerId, tableId) {
+    if (!confirm('Are you sure you want to delete this offer?')) return;
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/offers/${offerId}`, {
+            method: 'DELETE',
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Offer deleted successfully!');
+            fetchAndShowCategory(tableId.replace('Table', '')); // Refresh the table
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error deleting offer:', error);
+        alert('An error occurred. Please try again.');
+    }
+}
+
 // Event listeners for form submissions
 document.getElementById('discoverJewelleryForm').addEventListener('submit', event =>
-    submitProduct(event, 'discoverJewelleryForm', 'http://localhost:3000/api/offers/discover-jewellery', 'discoverJewelleryTable')
+    submitProduct(event, 'discoverJewelleryForm', '/api/offers/discover-jewellery', 'discoverJewelleryTable')
 );
 
 document.getElementById('shopByLookForm').addEventListener('submit', event =>
-    submitProduct(event, 'shopByLookForm', 'http://localhost:3000/api/offers/shop-by-look', 'shopByLookTable')
+    submitProduct(event, 'shopByLookForm', '/api/offers/shop-by-look', 'shopByLookTable')
 );

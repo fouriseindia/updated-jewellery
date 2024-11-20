@@ -10,16 +10,18 @@
 
 <body>
     <div class="container">
-        <h1>View Products</h1>
+        <h1>Manage Offers</h1>
+
         <!-- Category Tabs -->
         <div class="tab-section">
             <button class="tab-button" onclick="fetchAndShowCategory('discoverJewellery')">Discover Jewellery</button>
             <button class="tab-button" onclick="fetchAndShowCategory('shopByLook')">Shop by Look</button>
         </div>
-        <!-- Product Sections -->
+
+        <!-- Discover Jewellery Section -->
         <div id="discoverJewellery" class="product-category" style="display: none;">
             <h2>Discover Jewellery Products</h2>
-            <form id="discoverJewelleryForm" onsubmit="submitDiscoverJewellery(event)">
+            <form id="discoverJewelleryForm" onsubmit="submitProduct(event, 'discoverJewelleryForm', '/api/offers/discover-jewellery', 'discoverJewelleryTable')">
                 <label>Product Name:</label>
                 <input type="text" name="productName" required>
                 <label>Discount:</label>
@@ -33,16 +35,18 @@
                     <tr>
                         <th>Name</th>
                         <th>Discount</th>
-                        <th>Image</th>
+                        <th>Images</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="discoverJewelleryTable"></tbody>
             </table>
         </div>
 
+        <!-- Shop by Look Section -->
         <div id="shopByLook" class="product-category" style="display: none;">
             <h2>Shop by Look Products</h2>
-            <form id="shopByLookForm" onsubmit="submitShopByLook(event)">
+            <form id="shopByLookForm" onsubmit="submitProduct(event, 'shopByLookForm', '/api/offers/shop-by-look', 'shopByLookTable')">
                 <label>Product Name:</label>
                 <input type="text" name="productName" required>
                 <label>Discount:</label>
@@ -56,7 +60,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Discount</th>
-                        <th>Image</th>
+                        <th>Images</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="shopByLookTable"></tbody>

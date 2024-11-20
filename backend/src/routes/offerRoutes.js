@@ -38,5 +38,5 @@ router.post(
 
 // Route to get products by category
 router.get('/:category', offerController.getProductsByCategory);
-
+router.delete('/:id', offerController.deleteOffer);
 module.exports = router;

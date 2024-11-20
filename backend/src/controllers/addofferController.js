@@ -138,3 +138,21 @@ exports.getProductsByCategory = async (req, res) => {
         res.status(500).json({ message: 'Failed to retrieve offers.', error });
     }
 };
+// Delete Offer
+
+exports.deleteOffer = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const deletedOffer = await Offer.findByIdAndDelete(id);
+
+        if (!deletedOffer) {
+            return res.status(404).json({ message: 'Offer not found.' });
+        }
+
+        res.status(200).json({ message: 'Offer deleted successfully.', offer: deletedOffer });
+    } catch (error) {
+        console.error('Error deleting offer:', error);
+        res.status(500).json({ message: 'Failed to delete offer.', error });
+    }
+};
