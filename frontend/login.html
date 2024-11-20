@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <style>
-    /* Your CSS styles here */
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
@@ -24,20 +23,6 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .profile-image {
-      width: 100px;
-      height: 100px;
-      margin: 20px auto;
-      overflow: hidden;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .profile-image img {
-      width: 100%;
-      height: 100%;
     }
 
     .input-field {
@@ -58,6 +43,9 @@
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
+      margin-right: 5px;
+      font-size: 0.9em;
+      color: #555;
     }
 
     .submit-btn {
@@ -82,72 +70,77 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="login-form">
-            <form id="loginForm">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="input-field">
+  <div class="container">
+    <div class="login-form">
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="input-field" required>
 
-                <label for="password">Password</label>
-                <div class="password-container">
-                    <input type="password" id="password" name="password" class="input-field">
-                    <span id="togglePassword" class="toggle-icon">Show</span>
-                </div>
-                <a href="./forgotten-password.html">forgotten password</a>
-                <button type="submit" class="submit-btn">Login</button>
-            </form>
-            <p style="text-align: center;">Don't have an account? <a href="./signup.html">Sign Up</a></p>
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" class="input-field" required>
+          <span id="togglePassword" class="toggle-icon">Show</span>
         </div>
+        <a href="./forgotten-password.html">Forgotten password</a>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+      <p style="text-align: center;">Don't have an account? <a href="./signup.html">Sign Up</a></p>
     </div>
-    <script type="module">
-   
-        document.getElementById('loginForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
+  </div>
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const user=  await fetch('http://localhost:3000/api/users/', {
+  <script type="module">
+    // Toggle Password Visibility
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordField = document.getElementById('password');
+      const isPasswordVisible = passwordField.type === 'password';
+
+      passwordField.type = isPasswordVisible ? 'text' : 'password';
+      this.textContent = isPasswordVisible ? 'Hide' : 'Show';
+    });
+
+    // Handle Login Form Submission
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        // Fetch user details
+        const userResponse = await fetch('http://localhost:3000/api/users/', {
           method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({email})
-          });
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
 
-          const display_name=await user.json()
-          console.log(display_name)
-          sessionStorage.setItem('userId', display_name._id);
-          sessionStorage.setItem("userdata",display_name.firstName)
-  
-          sessionStorage.setItem("loggedInEmail",display_name.email)
-          localStorage.setItem("token",display_name.firstName)
+        const displayName = await userResponse.json();
+        sessionStorage.setItem('userId', displayName._id);
+        sessionStorage.setItem('userdata', displayName.firstName);
+        sessionStorage.setItem('loggedInEmail', displayName.email);
+        localStorage.setItem('token', displayName.firstName);
 
+        // Login API call
+        const loginResponse = await fetch('http://localhost:3000/api/users/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
 
-            const response = await fetch('http://localhost:3000/api/users/login', {
-
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            });
-            const data = await response.json();
-            console.log(data)
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                alert('Login successful');
-                const login='Login successful';
-                sessionStorage.setItem('Login_successful',login)
-                window.location.href = 'index.html';
-                // fetch('http://localhost:3000/api/users')
-            } else {
-                alert(data.message);
-            }
-      });
-
-
-      
-    </script>
-    <script src="js/showPassword.js"></script>
+        const loginData = await loginResponse.json();
+        if (loginResponse.ok) {
+          localStorage.setItem('token', loginData.token);
+          sessionStorage.setItem('Login_successful', 'Login successful');
+          alert('Login successful');
+          window.location.href = 'index.html';
+        } else {
+          alert(loginData.message);
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
 </body>
+
 </html>
