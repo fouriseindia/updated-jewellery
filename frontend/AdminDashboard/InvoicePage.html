@@ -4,189 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
-    <link rel="stylesheet" href="styles.css">
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
-.invoice {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-h1, h3 {
-    text-align: center;
-}
-
-.billing-info {
-    display: flex;
-    justify-content: space-between;
-}
-
-.billing-address, .delivery-address {
-    width: 45%;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    border: none;
-    text-align: center;
-}
-
-.totals {
-    margin-top: 20px;
-    text-align: right;
-}
-
-.btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Mobile View Adjustments */
-@media (max-width: 600px) {
-    .billing-info {
-        flex-direction: column; /* Stack addresses vertically */
-    }
-
-    .billing-address, .delivery-address {
-        width: 100%; /* Full width on small screens */
-        margin-bottom: 20px; /* Space between stacked sections */
-    }
-
-    table {
-        font-size: 14px; /* Adjust table font size */
-    }
-
-    th, td {
-        padding: 8px; /* Smaller padding for table cells */
-    }
-
-    .totals {
-        font-size: 16px; /* Adjust font size for totals */
-    }
-}
-</style>
-
+    <link rel="stylesheet" href="css/invoice.css">
 </head>
 <body>
     <div class="invoice">
         <h1>Your Company Name</h1>
         <p>Your Company Address</p>
-        
+
         <div class="billing-info">
             <div class="billing-address">
                 <h3>Billing Address</h3>
-                <p>Name: <span id="billingName">John Doe</span></p>
-                <p>Company: <span id="billingCompany">Example Co.</span></p>
-                <p>Address: <span id="billingAddress">123 Main St</span></p>
-                <p>Town: <span id="billingTown">Anytown</span></p>
-                <p>Country: <span id="billingCountry">Country</span></p>
-                <p>Postal Code: <span id="billingPostalCode">12345</span></p>
-                <p>Phone: <span id="billingPhone">123-456-7890</span></p>
+                <p>Name: <span id="billingName"></span></p>
+                <p>Address: <span id="billingAddress"></span></p>
+                <p>City: <span id="billingCity"></span></p>
+                <p>State: <span id="billingState"></span></p>
+                <p>Zip: <span id="billingZip"></span></p>
+                <p>Phone: <span id="billingPhone"></span></p>
             </div>
             <div class="delivery-address">
                 <h3>Delivery Address</h3>
-                <p>Address: <span id="deliveryAddress">456 Delivery Rd</span></p>
-                <p>Town: <span id="deliveryTown">Anytown</span></p>
-                <p>Country: <span id="deliveryCountry">Country</span></p>
-                <p>Postal Code: <span id="deliveryPostalCode">54321</span></p>
-                <p>Phone: <span id="deliveryPhone">098-765-4321</span></p>
+                <p>Name: <span id="deliveryName"></span></p>
+                <p>Address: <span id="deliveryAddress"></span></p>
+                <p>City: <span id="deliveryCity"></span></p>
+                <p>State: <span id="deliveryState"></span></p>
+                <p>Zip: <span id="deliveryZip"></span></p>
+                <p>Phone: <span id="deliveryPhone"></span></p>
             </div>
         </div>
 
-        <table id="invoiceTable">
+        <table>
             <thead>
                 <tr>
+                    <th>Product</th>
                     <th>Quantity</th>
-                    <th>Description</th>
-                    <th>Unit Price ($)</th>
-                    <th>Amount ($)</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><input type="number" class="quantity" value="1" min="1" /></td>
-                    <td><input type="text" class="description" value="Product 1" /></td>
-                    <td><input type="number" class="unit-price" value="10.00" /></td>
-                    <td class="amount">$<span>10.00</span></td>
-                </tr>
-                <tr>
-                    <td><input type="number" class="quantity" value="1" min="1" /></td>
-                    <td><input type="text" class="description" value="Product 2" /></td>
-                    <td><input type="number" class="unit-price" value="15.00" /></td>
-                    <td class="amount">$<span>15.00</span></td>
-                </tr>
+            <tbody id="invoiceItems">
+                <!-- Items will be dynamically populated -->
             </tbody>
         </table>
 
         <div class="totals">
-            <div>
-                <p>Subtotal: $<span id="subtotal">25.00</span></p>
-                <p>Sales Tax (10%): $<span id="salesTax">2.50</span></p>
-                <p>Postage & Packaging: $<span id="pnp">5.00</span></p>
-                <h3>Total Due: $<span id="totalDue">32.50</span></h3>
-            </div>
-            <button id="calculateTotal" class="btn">Calculate Total</button>
+            <p><span class="label">Subtotal:</span> ₹<span id="subtotal">0.00</span></p>
+            <p><span class="label">Tax (18%):</span> ₹<span id="tax">0.00</span></p>
+            <p><span class="label">Grand Total:</span> ₹<span id="grandTotal">0.00</span></p>
         </div>
-        <p>Make all cheques payable to [your Company Name]</p>
-        <p>If you have any questions conceming this invoice contact [Name, Phone Number, E-mail]</p>
 
-
-
-        <p>THANK YOU FOR YOUR BUSINESS!!</p>
+        <a href="#" class="btn" id="downloadInvoice">Download Invoice</a>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
-        document.getElementById('calculateTotal').addEventListener('click', function() {
-    let subtotal = 0;
-    const rows = document.querySelectorAll('#invoiceTable tbody tr');
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
 
-    rows.forEach(row => {
-        const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
-        const unitPrice = parseFloat(row.querySelector('.unit-price').value) || 0;
-        const amount = quantity * unitPrice;
+        fetch(`http://localhost:3000/api/checkout/${orderId}`)
+            .then(response => response.json())
+            .then(data => {
+                const order = data.order;
 
-        row.querySelector('.amount span').innerText = amount.toFixed(2);
-        subtotal += amount;
-    });
+                // Populate billing and delivery details
+                document.getElementById('billingName').innerText = `${order.firstName} ${order.lastName}`;
+                document.getElementById('billingAddress').innerText = order.address;
+                document.getElementById('billingCity').innerText = order.city;
+                document.getElementById('billingState').innerText = order.state;
+                document.getElementById('billingZip').innerText = order.zip;
+                document.getElementById('billingPhone').innerText = order.phone;
 
-    const salesTax = subtotal * 0.10; // 10% sales tax
-    const pnp = 5.00; // Fixed postage & packaging
-    const totalDue = subtotal + salesTax + pnp;
+                document.getElementById('deliveryName').innerText = `${order.firstName} ${order.lastName}`;
+                document.getElementById('deliveryAddress').innerText = order.address2 || order.address;
+                document.getElementById('deliveryCity').innerText = order.city;
+                document.getElementById('deliveryState').innerText = order.state;
+                document.getElementById('deliveryZip').innerText = order.zip;
+                document.getElementById('deliveryPhone').innerText = order.phone;
 
-    document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-    document.getElementById('salesTax').innerText = salesTax.toFixed(2);
-    document.getElementById('pnp').innerText = pnp.toFixed(2);
-    document.getElementById('totalDue').innerText = totalDue.toFixed(2);
-});
+                // Populate invoice items
+                const tableBody = document.getElementById('invoiceItems');
+                const product = order.product;
+                const unitPrice = order.price;
+                const quantity = order.quantity;
+                const totalPrice = unitPrice * quantity;
 
+                const row = `
+                    <tr>
+                        <td>${product}</td>
+                        <td>${quantity}</td>
+                        <td>₹${unitPrice.toFixed(2)}</td>
+                        <td>₹${totalPrice.toFixed(2)}</td>
+                    </tr>
+                `;
+                tableBody.insertAdjacentHTML('beforeend', row);
+
+                // Calculate totals
+                const subtotal = totalPrice;
+                const tax = subtotal * 0.18;
+                const grandTotal = subtotal + tax;
+
+                document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+                document.getElementById('tax').innerText = tax.toFixed(2);
+                document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+
+                // Enable the download button after data is loaded
+                document.getElementById('downloadInvoice').addEventListener('click', generatePDF);
+            })
+            .catch(error => {
+                console.error('Error fetching order details:', error);
+            });
+
+        function generatePDF(e) {
+            e.preventDefault();
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add company name and address
+            doc.setFontSize(16);
+            doc.text("Your Company Name", 105, 10, null, null, "center");
+            doc.setFontSize(12);
+            doc.text("Your Company Address", 105, 20, null, null, "center");
+
+            // Add Billing Address
+            doc.text("Billing Address:", 10, 40);
+            doc.text(`Name: ${document.getElementById('billingName').innerText}`, 10, 50);
+            doc.text(`Address: ${document.getElementById('billingAddress').innerText}`, 10, 60);
+            doc.text(`City: ${document.getElementById('billingCity').innerText}`, 10, 70);
+            doc.text(`State: ${document.getElementById('billingState').innerText}`, 10, 80);
+            doc.text(`Zip: ${document.getElementById('billingZip').innerText}`, 10, 90);
+            doc.text(`Phone: ${document.getElementById('billingPhone').innerText}`, 10, 100);
+
+            // Add Delivery Address
+            doc.text("Delivery Address:", 10, 120);
+            doc.text(`Name: ${document.getElementById('deliveryName').innerText}`, 10, 130);
+            doc.text(`Address: ${document.getElementById('deliveryAddress').innerText}`, 10, 140);
+            doc.text(`City: ${document.getElementById('deliveryCity').innerText}`, 10, 150);
+            doc.text(`State: ${document.getElementById('deliveryState').innerText}`, 10, 160);
+            doc.text(`Zip: ${document.getElementById('deliveryZip').innerText}`, 10, 170);
+            doc.text(`Phone: ${document.getElementById('deliveryPhone').innerText}`, 10, 180);
+
+            // Extract Table Data
+            const rows = [];
+            document.querySelectorAll("#invoiceItems tr").forEach(row => {
+                const columns = row.querySelectorAll("td");
+                if (columns.length > 0) {
+                    rows.push([
+                        columns[0].innerText,
+                        columns[1].innerText,
+                        columns[2].innerText,
+                        columns[3].innerText
+                    ]);
+                }
+            });
+
+            // Add Table to PDF
+            doc.autoTable({
+                head: [['Product', 'Quantity', 'Unit Price', 'Total Price']],
+                body: rows,
+                startY: 200
+            });
+
+            // Add Totals
+            const finalY = doc.previousAutoTable.finalY + 10;
+            doc.text(`Subtotal: ₹${document.getElementById('subtotal').innerText}`, 150, finalY);
+            doc.text(`Tax (18%): ₹${document.getElementById('tax').innerText}`, 150, finalY + 10);
+            doc.text(`Grand Total: ₹${document.getElementById('grandTotal').innerText}`, 150, finalY + 20);
+
+            // Save the PDF
+            doc.save("Invoice.pdf");
+        }
     </script>
-
-    <script src="script.js"></script>
 </body>
 </html>

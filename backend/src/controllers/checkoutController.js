@@ -71,3 +71,32 @@ exports.cancelOrder = async (req, res) => {
       res.status(500).json({ message: err.message }); // Respond with the error message
     }
   };
+
+
+  exports.getCheckoutById = async (req, res) => {
+    const { orderId } = req.params; // Extract `orderId` from URL parameters
+    console.log(orderId);
+    
+    try {
+        // Use Mongoose's `findById` to fetch the order
+        const order = await Order.findById(orderId);
+      console.log(order);
+      
+        // Check if the order exists
+        if (!order) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        // If found, return the order details
+        res.status(200).json({
+            message: "Order retrieved successfully",
+            order,
+        });
+    } catch (error) {
+        console.error("Error retrieving order by ID:", error.message);
+        res.status(500).json({
+            message: "Error retrieving order",
+            error: error.message,
+        });
+    }
+};

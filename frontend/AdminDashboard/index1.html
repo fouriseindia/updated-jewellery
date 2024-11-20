@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head style="background-color: #d1e6f9;">
+    <meta charset="utf-8">
+    <meta content='IE=edge' http-equiv=X-UA-Compatible>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/images/logo1.jpeg" rel="icon">
+    <title>Shankh Jewels Jewellery Admin Panel</title>
+    <link rel="shortcut icon" type="image/png" href="#">
+
+    <!-- Core Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-slider.css">
+     
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--Authntication for Dashboard-->
+    <script src="autho.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        
+    body {
+        font-family: Arial, sans-serif;
+        background-color: aliceblue;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background: #007bff;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 0 10px;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    main {
+        padding: 20px;
+        background-color: aliceblue;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        margin-left: 135px;
+        background: aliceblue;
+    }
+    .box {
+        background-color: #e4ebf1;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: calc(33.33% - 20px);
+    }
+    .box h3 {
+        margin-top: 0;
+    }
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .chart-container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+    /* Responsive Styles */
+    @media (max-width: 1190px) {
+        .container {
+            margin-left: 0;
+        }
+    }
+    @media (max-width: 756px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .box {
+            width: calc(100% - 40px);
+        }
+        .br-sideleft {
+        display: block;
+        position: relative;
+        top: 0;
+        left: 250px;
+        width: 280px;
+        height: 100%;
+       background: aliceblue;
+        /* z-index: 1; */
+        /* transform: translateX(100%); */
+        transition: transform 0.3s ease;
+    }
+
+    .br-sideleft.show {
+        /* transform: translateX(0); */
+        display: none;
+    }
+    .dropdown-menu {
+        left: 10px;
+    }
+
+    .mobile-menu-trigger {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+    }
+
+    .mobile-menu-trigger button {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+    }
+    }
+    .mobile-menu-trigger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  display: none;
+}
+
+.mobile-menu-trigger button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mobile-menu-trigger button:focus {
+  outline: none;
+}
+@media (max-width: 756px) {
+  .mobile-menu-trigger {
+    display: block;
+  }
+}
+
+
+
+</style>
+
+    
+</head>
+
+<body>
+    <div class="overlay-background"></div>
+    <!-- ########## START: Setting Box ########## -->
+    <div class="theme-setting-wrapper">
+        
+        
+        <div class="theme-setting-sidebar">
+            <div class="h-100">
+                <div class="mt-4 d-flex align-items-center flex-wrap px-4">
+                    <h4 class="font-weight-bold">THEME CUSTOMIZER</h4>
+                    <small>Customize &amp; Preview in Real Time</small>
+                </div>
+                <hr>
+                <div class="theme-setting-sidebar-scroll">
+                    <div class="px-4">
+                        <div>
+                            <h5 class="mb-2">Dark Mode</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="light" name="light" value="theme-light">
+                                    <label for="light">Light</label>
+                                </div>
+                                <div class="radio theme-radio mr-4">
+                                    <input type="radio" id="dark" name="light" value="theme-dark">
+                                    <label for="dark">Dark</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ########## END: Setting Box ########## -->
+   
+    <!-- ########## START: LEFT PANEL ########## -->
+    <div class="br-sideleft" id="mainmenu">
+       
+        <a id="remove-menu" class="la la-close d-xl-none"></a>
+        <div class="br-logo d-flex justify-content-center align-items-center" style="    background: #b4d6f5;">
+            <a href="index.html"><img src="Images/Logo.jpg" alt="Milko Dashboard Panel" width="80" /></a>
+        </div>
+        <ul class="custom-scroll" id="mainmenu" style="    background: #b4d6f5;">
+            <li class="active"><a href="index.html" class="waves-effect waves-primary"><i
+                        class="la la-dashboard"></i>Dashboard</a></li>
+            <!-- <li><a href="Add.html" class="waves-effect waves-primary"><i class="la la-clone"></i>Add Shop, Farmer <br>& Customer</a></li> -->
+            <!-- <li><a href="ManageProduct.html" class="waves-effect waves-primary"><i class="la la-image"></i>Manage Product</a></li> -->
+            <li><a href="detailForm.html" class="waves-effect waves-primary"><i class="la la-image"></i>Manage Product</a></li>
+            
+            <!-- <li><a href="javascript:;" class="waves-effect waves-primary"><i
+                        class="la la-bullhorn"></i>Campaign</a></li> -->
+            <li class="dropdown-sub-menu">
+                <a href="AddCate.html" class="waves-effect waves-primary"><i
+                            class="la la-users"></i>Add & Manage<br> Category</a>
+             <li><a href="VisitedCustomer_History.html" class="waves-effect waves-primary"><i
+                                class="la la-users"></i>Visited Customer</a></li>
+                <!-- <ul class="sub-menu">
+                        <li><a href="javascript:;"><i class="la la-users"></i>New Customers</a></li>
+                        <li><a href="javascript:;"><i class="la la-users"></i>Old Customers</a></li>
+                    </ul> -->
+            </li>
+            <li><a href="Orders.html" class="waves-effect waves-primary"><i
+                            class="la la-cart-arrow-down"></i>Order's History</a></li>
+            <li><a href="Review.html" class="waves-effect waves-primary"><i
+                            class="la la-wechat"></i>Messages</a></li>
+        
+            <li><a href="herosection.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Home-Hero_Section</a></li>
+            <li><a href="PaymentHistory.html" class="waves-effect waves-primary"><i class="la la-bank"></i>Payments History</a></li>
+            <!-- <li><a href="adminwallet.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Admin Wallet</a> -->
+            <li><a href="Setting.html" class="waves-effect waves-primary"><i class="la la-cog"></i>Settings</a>
+            <li><a  onclick="Logout()" class="waves-effect waves-primary"><i class="la la-cog"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    <header class="header fixed-top d-flex align-items-center">
+        <!-- ########## START: HEAD PANEL ########## -->
+        <div class="br-header d-flex w-100" style="background: #b4d6f5;">
+            <a id="add-menu" class="la la-navicon d-flex d-xl-none align-items-center justify-content-center"></a>
+            <div class="br-header-left">
+                <a href="javascript:;" class="searchbar-toggle la la-search d-flex d-md-none"></a>
+                <form class="searchbar d-flex align-items-center pl-3">
+                    <i class="la la-search"></i>
+                    <input class="form-control border-0 pl-2" type="search" placeholder="Search...">
+                </form>
+            </div>
+            <!-- br-header-left -->
+            <div class="br-header-right ml-auto">
+                <nav class="nav">
+                    
+                    
+
+                    
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownMSG" data-toggle="dropdown">
+                            <i class="la la-envelope-o"></i>
+                            <span class="badge badge-accent">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownMSG">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">Messages</label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-primary">View
+									all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Sham patil</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Sita Ram</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <strong>Shima patil</strong>
+                                                <span>2 minutes ago</span>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                    <div class="dropdown">
+                        <a href="" class="nav-link position-relative dropdown-toggle waves-effect waves-primary" id="dropdownNOTY" data-toggle="dropdown">
+                            <i class="la la-bell"></i>
+                            <span class="badge badge-accent ">1</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header py-0" aria-labelledby="dropdownNOTY">
+                            <div class="dropdown-menu-label">
+                                <label class="mb-0">NOTIFICATIONS </label>
+                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">View
+									all</button>
+                            </div>
+                            <!-- d-flex -->
+                            <div class="dropdown-divider my-0"></div>
+                            <div class="media-list">
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Sham Patil</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of </p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Ram Modi</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession of my entire.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                                <!-- loop starts here -->
+                                <a href="" class="media-list-link">
+                                    <div class="media d-flex align-items-center py-2 px-2">
+                                        <img src="assets/image/img1.jpg" width="50" class="rounded-circle" alt="">
+                                        <div class="media-body pl-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong>Samir Patel</strong>
+                                            </div>
+                                            <!-- d-flex -->
+                                            <p class="mb-0">A wonderful serenity has taken possession.</p>
+                                        </div>
+                                    </div>
+                                    <!-- media -->
+                                </a>
+                                <!-- loop ends here -->
+                            </div>
+                            <!-- media-list -->
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                    <div class="dropdown">
+                        <a href="" class="nav-link-profile d-flex dropdown-toggle" data-toggle="dropdown" id="dropdownprofile">
+                            <img src="Images/Logo.jpg" class="rounded" alt="" width="50">
+                            <span class="logged-name px-3">Shankh Jewels <br><small class="pt-3">Founder</small></span>
+                            <i class="profile-dropdown la la-caret-square-o-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-header dropdown-menu-user" aria-labelledby="dropdownprofile">
+                            <div class="text-center">
+                                <a href=""><img src="Images/Logo.jpg" width="80" class="rounded-circle" alt=""></a>
+                                <h6 class="logged-fullname font-weight-bold mt-2">Brijesh Sir</h6>
+                                <p class="my-0">Shankh Jewelsjewlers@gmail.com</p>
+                            </div>
+                            <hr>
+                            <ul class="list-unstyled user-profile-nav">
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-user"></i>
+										Edit Profile</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-cog"></i>
+										Settings</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-download"></i> Downloads</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-star-o"></i> Favorites</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i class="la la-file"></i>
+										Collections</a></li>
+                                <li><a href="javascript:;" class=" waves-effect waves-light"><i
+											class="la la-power-off"></i> Sign Out</a></li>
+                            </ul>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <!-- dropdown -->
+                </nav>
+            </div>
+            <!-- br-header-right -->
+        </div>
+        <!-- br-header -->
+        <!-- ########## END: HEAD PANEL ########## -->
+    </header>
+    <main>
+        <h2>Dashboard Overview</h2>
+        <div class="container">
+            <div class="box">
+                <h3>Total Customers</h3>
+                <h2 id="totalCustomers">500</h2>
+            </div>
+            <div class="box">
+                <h3>Total Orders</h3>
+                <h2 id="totalOrders">600</h2>
+            </div>
+            <div class="box">
+                <h3>Total Revenue</h3>
+                <h2 id="totalRevenue">₹0</h2>
+            </div>
+            <div class="chart-container">
+                <h2>Sales Analysis Charts</h2>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Visitors Analysis Charts</h2>
+                <canvas id="visitorChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Profit Analysis Charts</h2>
+                <canvas id="profitChart"></canvas>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Dummy data for charts
+        const customerAcquisitionData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'New Customers',
+                data: [50, 60, 70, 80, 90, 100],
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const orderStatusData = {
+            labels: ['Pending', 'Processing', 'Completed'],
+            datasets: [{
+                label: 'Orders',
+                data: [20, 30, 50],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Total counts
+        document.getElementById('totalCustomers').textContent = 100;
+        document.getElementById('totalOrders').textContent = 200;
+        document.getElementById('totalRevenue').textContent = '₹5000';
+        document.getElementById('shopCount').textContent = 10;
+
+        // Customer Acquisition Chart
+        const customerAcquisitionCtx = document.getElementById('customerAcquisitionChart').getContext('2d');
+        const customerAcquisitionChart = new Chart(customerAcquisitionCtx, {
+            type: 'line',
+            data: customerAcquisitionData,
+        });
+
+        // Order Status Chart
+        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+        const orderStatusChart = new Chart(orderStatusCtx, {
+            type: 'bar',
+            data: orderStatusData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <!-- ########## START: MAIN PANEL ########## -->
+   
+            <!-- End Other Elements -->
+            <!----======= End UI Elememnts =======---->
+     
+    <!-- ########## END: MAIN PANEL ########## -->
+
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
+  const brSideleft = document.querySelector('.br-sideleft');
+
+  mobileMenuTrigger.addEventListener('click', function() {
+    brSideleft.classList.toggle('show');
+  });
+});
+    // document.getElementById('toggleMenu').addEventListener('click', function() {
+    //         document.querySelector('.br-sideleft').classList.toggle('show');
+    //     });
+ 
+ function mobileMenu(){
+    if(document.getElementById('mainmenu').style.display == 'block'){
+        document.getElementById('mainmenu').display = 'none';
+    } 
+    else{
+        document.getElementById('mainmenu').display = 'block';
+    }
+ }
+ document.getElementById('menuicon').addEventListener('click', mobileMenu);
+
+// function menuClose(){
+//     document.getElementById('mainmenu').style.display = 'none';
+// }
+document.getElementById('remove-menu').addEventListener('click', mobileMenu);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Sales Analysis Chart
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(salesCtx, {
+        type: 'line', // Line chart
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Weekly Sales',
+                    data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Monthly Sales',
+                    data: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Half-Yearly Sales',
+                    data: [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850],
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Yearly Sales',
+                    data: [600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                },
+                {
+                    label: 'Reduced Sales',
+                    data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderWidth: 1,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Visitors Analysis Chart
+const visitorCtx = document.getElementById('visitorChart').getContext('2d');
+const visitorChart = new Chart(visitorCtx, {
+    type: 'bar', // Bar chart
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+            {
+                label: 'Visitors',
+                data: [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Revisitors',
+                data: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                beginAtZero: true
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+    // Profit Chart
+    var profitCtx = document.getElementById('profitChart').getContext('2d');
+    var profitChart = new Chart(profitCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Weekly', 'Monthly', 'Half-Yearly', 'Yearly'],
+            datasets: [{
+                label: 'Profit',
+                data: [1000, 4000, 12000, 30000], // Replace with your data
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ₹' + tooltipItem.raw;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    function Logout() {
+    // Clear session data
+    localStorage.removeItem('token');  // Example if using a token
+    sessionStorage.clear();             // Clears all session storage
+    document.cookie = "session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Clear session cookie
+
+    // Redirect to the login page
+    window.location.href = "login.html";
+}
+</script>
+
+
+<script src="assets/scripts/jquery.min.js"></script>
+<script src="assets/scripts/popper.min.js"></script>
+<script src="assets/scripts/bootstrap-slider.min.js"></script>
+<script src="assets/scripts/bootstrap.min.js"></script>
+<script src="assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="assets/scripts/bootstrap-select.min.js"></script>
+<script src="assets/scripts/bootstrap-tooltip-custom-class.js"></script>
+<script src="assets/scripts/jquery.mCustomScrollbar.js"></script>
+<script src="assets/scripts/Chart.min.js"></script>
+<script src="assets/scripts/dashboard.js"></script>
+<script src="assets/scripts/datatables.min.js"></script>
+<script src="assets/scripts/ripple.min.js"></script>
+<script src="assets/scripts/custome.js"></script>
+
+</html>

@@ -69,39 +69,36 @@ exports.login = async (req, res) => {
     console.log(users)
     res.status(201).json(users)
   }
-  exports.updateUser = async (req, res) => {
-    console.log(req.params);
-    const { email } = req.params;
-    let updatedData = req.body;
+  
+  // Update user details by ID
+exports.updateUserById = async (req, res) => {
+  const { id } = req.params; // Extract ID from the request parameters
+  const updatedData = req.body; // Extract updated data from the request body
 
-    try {
-        // If a new profile photo is uploaded, update the profilePhoto field
-        if (req.file) {
-            updatedData.profilePhoto = req.file.filename;
-        }
+  try {
+      // Update the user document by ID
+      const user = await User.findByIdAndUpdate(id, updatedData, {
+          new: true, // Return the updated document
+          runValidators: true // Validate data against the schema
+      });
 
-        // Hash the password if it's being updated
-        if (updatedData.password) {
-            const salt = await bcrypt.genSalt(10);
-            updatedData.password = await bcrypt.hash(updatedData.password, salt);
-        }
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
 
-        const user = await User.findOneAndUpdate({ email }, updatedData, {
-            new: true, // Return the updated document
-            runValidators: true // Validate data according to the schema
-        });
-
-        if (!user) {
-            console.log("User not found.");
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(user);
-    } catch (error) {
-        console.error('Error updating user:', error); // Log full error
-        res.status(500).json({ message: 'An error occurred while updating the user', error: error.message });
-    }
+      res.status(200).json({ 
+          message: 'User updated successfully', 
+          user 
+      });
+  } catch (error) {
+      console.error('Error updating user:', error);
+      res.status(500).json({ 
+          message: 'An error occurred while updating the user', 
+          error: error.message 
+      });
+  }
 };
+
 exports.updatePassword = async (req, res) => {
   console.log(req.body)
   const { phone } = req.params; // Fetch phone from URL params

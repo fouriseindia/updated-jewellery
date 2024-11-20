@@ -8,7 +8,7 @@ async function fetchAndShowCategory(categoryId) {
 
     // Fetch and display the selected category
     try {
-        const response = await fetch(`https://api.shankhjewels.com/api/offers/${categoryId}`);
+        const response = await fetch(`http://localhost:3000/api/offers/${categoryId}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -74,7 +74,7 @@ function addProductToTable(tableId, product) {
     const tableBody = document.getElementById(tableId);
     const row = document.createElement('tr');
     const imagesHTML = product.images
-        .map(image => `<img src="https://api.shankhjewels.com/${image}" alt="${product.productName}" width="50">`)
+        .map(image => `<img src="http://localhost:3000/${image}" alt="${product.productName}" width="50">`)
         .join(' ');
 
     row.innerHTML = `
@@ -86,9 +86,9 @@ function addProductToTable(tableId, product) {
 }
 // Event listeners for form submissions
 document.getElementById('discoverJewelleryForm').addEventListener('submit', event =>
-    submitProduct(event, 'discoverJewelleryForm', 'https://api.shankhjewels.com/api/offers/discover-jewellery', 'discoverJewelleryTable')
+    submitProduct(event, 'discoverJewelleryForm', 'http://localhost:3000/api/offers/discover-jewellery', 'discoverJewelleryTable')
 );
 
 document.getElementById('shopByLookForm').addEventListener('submit', event =>
-    submitProduct(event, 'shopByLookForm', 'https://api.shankhjewels.com/api/offers/shop-by-look', 'shopByLookTable')
+    submitProduct(event, 'shopByLookForm', 'http://localhost:3000/api/offers/shop-by-look', 'shopByLookTable')
 );
