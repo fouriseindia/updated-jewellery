@@ -16,6 +16,78 @@
       <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
      <script src="js/navigation.js"></script>
+     <style>
+         .slider_area {
+            position: relative;
+        }
+        .single_slider12 {
+    position: relative; /* Position the container relative for child positioning */
+    background-size: cover; /* Ensure the image covers the container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Avoid image repetition */
+    height: 500px; /* Set the height of the container */
+}
+.slider_content12 {
+    position: absolute; /* Position the content inside the parent */
+    top: 50%; /* Move the content 50% down from the top */
+    left: 50%; /* Move the content 50% from the left */
+    transform: translate(-50%, -50%); /* Center the content exactly */
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Horizontally center items */
+    text-align: center; /* Center text alignment */
+    color: #fff; /* Ensure the text is visible over the image */
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.1)); /* Add a dynamic gradient background */
+    padding: 30px; /* Add spacing around the content */
+    border-radius: 15px; /* Rounded corners for better visuals */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+    animation: fadeIn 1.5s ease-in-out; /* Smooth fade-in animation */
+}
+
+.slider_content12 p,
+.slider_content12 h1,
+.slider_content12 span {
+    margin: 5px 0; /* Reduced spacing between elements */
+}
+
+.slider_content12 .slider_price span {
+    font-weight: bold;
+    color: #ffcc00; /* Highlight the price */
+}
+
+.button1 {
+    margin-top: 10px; /* Reduced margin above the button */
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff5722; /* Orange background for the button */
+    border: 2px solid #fff; /* Add a border to the button */
+    border-radius: 25px; /* Rounded button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0px 4px 10px rgba(255, 87, 34, 0.5); /* Add a shadow to the button */
+}
+
+.button1:hover {
+    background-color: #fff; /* Change background on hover */
+    color: #ff5722; /* Change text color on hover */
+    border-color: #ff5722; /* Change border color on hover */
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+     </style>
 </head>
     <body>
         <div class="home_black_version">
@@ -380,8 +452,8 @@
                     // Generate HTML for each image in the carousel
                     images.forEach(img => {
                         const slideHTML = `
-                            <div class="single_slider1" style="background-image: url('http://localhost:3000/uploads/${img}')">
-                                <div class="slider_content1" style="height:500px">
+                            <div class="single_slider12" style="background-image: url('http://localhost:3000/uploads/${img}')">
+                                <div class="slider_content12" style="height:500px">
                                     <p>Exclusive Offer - ${firstSlider.discount}% off this week</p>
                                     <h1>${firstSlider.title}</h1>
                                     <span>${firstSlider.description}</span>
