@@ -154,7 +154,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories = async () => {
                                                         try {
-                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
+                                                            const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -210,7 +210,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories1 = async () => {
                                                         try {
-                                                            const response = await fetch('http://localhost:3000/api/categories');
+                                                            const response = await fetch('https://api.shankhjewels.com/api/categories');
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -428,7 +428,7 @@
     <script>
         async function fetchSliders() {
             try {
-                const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
                 if (!response.ok) {
                     throw new Error('Failed to fetch sliders');
                 }
@@ -452,7 +452,7 @@
                     // Generate HTML for each image in the carousel
                     images.forEach(img => {
                         const slideHTML = `
-                            <div class="single_slider12" style="background-image: url('http://localhost:3000/uploads/${img}')">
+                            <div class="single_slider12" style="background-image: url('https://api.shankhjewels.com/uploads/${img}')">
                                 <div class="slider_content12" style="height:500px">
                                     <p>Exclusive Offer - ${firstSlider.discount}% off this week</p>
                                     <h1>${firstSlider.title}</h1>
@@ -523,7 +523,7 @@
         productSection.innerHTML = ''; // Clear existing content
 
         try {
-            const response = await fetch(`http://localhost:3000/api/offers/discoverJewellery`);
+            const response = await fetch(`https://api.shankhjewels.com/api/offers/discoverJewellery`);
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -555,7 +555,7 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-img-container">
                             ${product.images
-                                .map(image => `<img src="http://localhost:3000/${image}" class="card-img-top" alt="${product.productName}" />`)
+                                .map(image => `<img src="https://api.shankhjewels.com/${image}" class="card-img-top" alt="${product.productName}" />`)
                                 .join('')}
                         </div>
                         <div class="card-body">
@@ -575,7 +575,7 @@
         lookSection.innerHTML = ''; // Clear existing content
 
         try {
-            const response = await fetch(`http://localhost:3000/api/offers/shopByLook`);
+            const response = await fetch(`https://api.shankhjewels.com/api/offers/shopByLook`);
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -607,7 +607,7 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-img-container">
                             ${product.images
-                                .map(image => `<img src="http://localhost:3000/${image}" class="card-img-top" alt="${product.productName}" />`)
+                                .map(image => `<img src="https://api.shankhjewels.com/${image}" class="card-img-top" alt="${product.productName}" />`)
                                 .join('')}
                         </div>
                         <div class="card-body">

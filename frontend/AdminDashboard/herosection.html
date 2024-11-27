@@ -74,7 +74,7 @@
         }
     
         async function deleteSlider(id) {
-            const response = await fetch(`http://localhost:3000/api/sliders/delete/${id}`, {
+            const response = await fetch(`https://api.shankhjewels.com/api/sliders/delete/${id}`, {
                 method: 'DELETE'
             });
     
@@ -91,7 +91,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             async function fetchSliders() {
                 try {
-                    const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                    const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
                     if (!response.ok) {
                         throw new Error('Failed to fetch sliders');
                     }
@@ -109,7 +109,7 @@
                             : [slider.image]; // If no comma, just use the single image
     
                         const imagesHTML = images
-                            .map(img => `<img src="http://localhost:3000/uploads/${img}" width="100">`)
+                            .map(img => `<img src="https://api.shankhjewels.com/uploads/${img}" width="100">`)
                             .join('');
     
                         newRow.innerHTML = `
@@ -147,7 +147,7 @@
                     formData.append('swiper', swiperSelect.value);
                     formData.append('swiperName', swiperName.value);
     
-                    const response = await fetch('http://localhost:3000/api/sliders/add', {
+                    const response = await fetch('https://api.shankhjewels.com/api/sliders/add', {
                         method: 'POST',
                         body: formData
                     });

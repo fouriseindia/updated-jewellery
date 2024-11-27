@@ -81,7 +81,7 @@
           <input type="password" id="password" name="password" class="input-field" required>
           <span id="togglePassword" class="toggle-icon">Show</span>
         </div>
-        <a href="./forgotten-password.html">Forgotten password</a>
+        <a href="./forgotten-password.html">Forgot Password</a>
         <button type="submit" class="submit-btn">Login</button>
       </form>
       <p style="text-align: center;">Don't have an account? <a href="./signup.html">Sign Up</a></p>
@@ -107,7 +107,7 @@
 
       try {
         // Fetch user details
-        const userResponse = await fetch('http://localhost:3000/api/users/', {
+        const userResponse = await fetch('https://api.shankhjewels.com/api/users/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -120,7 +120,7 @@
         localStorage.setItem('token', displayName.firstName);
 
         // Login API call
-        const loginResponse = await fetch('http://localhost:3000/api/users/login', {
+        const loginResponse = await fetch('https://api.shankhjewels.com/api/users/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })

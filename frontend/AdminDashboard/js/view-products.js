@@ -4,7 +4,7 @@ async function fetchAndShowCategory(categoryId) {
     document.querySelectorAll('.product-category').forEach(category => (category.style.display = 'none'));
 
     try {
-        const response = await fetch(`http://localhost:3000/api/offers/${categoryId}`);
+        const response = await fetch(`https://api.shankhjewels.com/api/offers/${categoryId}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -29,7 +29,7 @@ async function submitProduct(event, formId, apiEndpoint, tableId) {
     const formData = new FormData(form);
 
     try {
-        const response = await fetch(`http://localhost:3000${apiEndpoint}`, {
+        const response = await fetch(`https://api.shankhjewels.com${apiEndpoint}`, {
             method: 'POST',
             body: formData,
         });
@@ -63,7 +63,7 @@ function addProductToTable(tableId, product) {
     const tableBody = document.getElementById(tableId);
     const row = document.createElement('tr');
     const imagesHTML = product.images
-        .map(image => `<img src="http://localhost:3000/${image}" alt="${product.productName}" width="50">`)
+        .map(image => `<img src="https://api.shankhjewels.com/${image}" alt="${product.productName}" width="50">`)
         .join(' ');
 
     row.innerHTML = `
@@ -80,7 +80,7 @@ async function deleteOffer(offerId, tableId) {
     if (!confirm('Are you sure you want to delete this offer?')) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/offers/${offerId}`, {
+        const response = await fetch(`https://api.shankhjewels.com/api/offers/${offerId}`, {
             method: 'DELETE',
         });
         const data = await response.json();

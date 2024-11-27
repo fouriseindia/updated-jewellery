@@ -15,7 +15,7 @@ GenerateOTP.addEventListener('click', async function(e) {
 
         try {
             // Send mobile number to server
-            const response = await fetch('http://localhost:3000/api/otp/send-otp', {
+            const response = await fetch('https://api.shankhjewels.com/api/otp/send-otp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ verify.addEventListener('click', async function() {
     const mobileNumber = mobileInput.value;
     const otp = otpInput.value;  // Directly reference the OTP input field value
     try {
-        const response = await fetch('http://localhost:3000/api/otp/verify-otp', {
+        const response = await fetch('https://api.shankhjewels.com/api/otp/verify-otp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ verifyBtn.addEventListener('click', async function() {
     const otp = otpInput.value;  // Directly reference the OTP input field value
 
     try {
-        const response = await fetch('http://localhost:3000/api/otp/verify-otp', {
+        const response = await fetch('https://api.shankhjewels.com/api/otp/verify-otp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

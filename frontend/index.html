@@ -359,7 +359,7 @@
                                     <script>
                                         const fetchAndDisplayCategories = async () => {
                                             try {
-                                                const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
+                                                const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                 const categories = await response.json();
@@ -415,7 +415,7 @@
                                     <script>
                                         const fetchAndDisplayCategories1 = async () => {
                                             try {
-                                                const response = await fetch('http://localhost:3000/api/categories');
+                                                const response = await fetch('https://api.shankhjewels.com/api/categories');
                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                 const categories = await response.json();
@@ -626,7 +626,7 @@
     <script>
         async function fetchSliders() {
             try {
-                const response = await fetch('http://localhost:3000/api/sliders/all/slider');
+                const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
                 if (!response.ok) {
                     throw new Error('Failed to fetch sliders');
                 }
@@ -650,7 +650,7 @@
                     // Generate HTML for each image in the carousel
                     images.forEach(img => {
                         const slideHTML = `
-                            <div class="single_slider12" style="background-image: url('http://localhost:3000/uploads/${img}')">
+                            <div class="single_slider12" style="background-image: url('https://api.shankhjewels.com/uploads/${img}')">
                                 <div class="slider_content12" style="height:500px">
                                     <p>Exclusive Offer - ${firstSlider.discount}% off this week</p>
                                     <h1>${firstSlider.title}</h1>
@@ -1275,9 +1275,9 @@
                     <div class="col-md-3 product-card" id="product-${product._id}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-img-container">
-                                <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
+                                <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
                                     onclick="window.location.href='detail.html?id=${product._id}'" style="cursor: pointer;">
-                                <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                                <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
                                 <div class="rating">
                                     <img src="images/12.png" alt="Rating Icon"> 5.0
                                 </div>
@@ -1301,7 +1301,7 @@
     
         // Fetch and display all products initially
         let allProducts = [];
-        fetch('http://localhost:3000/api/products/all')
+        fetch('https://api.shankhjewels.com/api/products/all')
             .then(response => response.json())
             .then(products => {
                 allProducts = products;
