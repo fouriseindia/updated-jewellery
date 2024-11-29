@@ -97,7 +97,7 @@
     
     img {
     max-width: 100%;
-    height: auto;
+    /* height: 250px; */
     }
     
     ul {
@@ -1730,7 +1730,7 @@
   }
 }
 .card-img-top {
-  height: 200px;
+  /* height: 200px; */
   width: 100%;
   object-fit: contain;
 }
@@ -3378,6 +3378,8 @@ h3 {
 .card-img-top,
 .card-img-hover {
   width: 100%;
+  
+  transition: opacity 0.3s ease-in-out; /* Smooth hover transition */
 }
 
 .card-img-hover {
@@ -3386,6 +3388,7 @@ h3 {
   left: 0;
   opacity: 0; /* Initially hidden */
 }
+
 
 .card-img-container:hover .card-img-hover {
   opacity: 1; /* Show on hover */
@@ -3839,7 +3842,7 @@ margin: 0 auto;
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
+  /* opacity: 0; */
   pointer-events: none;
 }
 
@@ -3869,7 +3872,7 @@ margin: 0 auto;
 display: flex;
 flex-wrap: wrap; /* Allows cards to wrap onto the next line if there’s not enough space */
 margin-right: -10px; /* Adjust to match the padding in .col-md-3 */
-margin-left: 100px; /* Adjust to match the padding in .col-md-3 */
+margin-left: -10px; /* Adjust to match the padding in .col-md-3 */
 MARGIN-TOP: 5px;
     margin-bottom: 5px;
 }
@@ -4022,7 +4025,7 @@ s
       margin-right: 8px;
      }
   .row > .col-md-3 {
-      /* padding-left: 10px;  */
+      padding-left: 20px; 
       /* margin-left: -14px; */
   }
 

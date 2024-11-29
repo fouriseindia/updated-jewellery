@@ -359,7 +359,7 @@
                                     <script>
                                         const fetchAndDisplayCategories = async () => {
                                             try {
-                                                const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
+                                                const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                 const categories = await response.json();
@@ -415,7 +415,7 @@
                                     <script>
                                         const fetchAndDisplayCategories1 = async () => {
                                             try {
-                                                const response = await fetch('https://api.shankhjewels.com/api/categories');
+                                                const response = await fetch('http://localhost:3000/api/categories');
                                                 if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                 const categories = await response.json();
@@ -484,67 +484,6 @@
                             <button type="submit"><i class="ion-ios-search-strong"></i></button>
                         </form>
                     </div>
-                    
-                    <!-- <div class="wishlist_btn">
-                        <a href="#"><i class="ion-heart"></i></a>
-                    </div> -->
-                    <!-- <div class="cart_link">
-                        <a href="#"><i class="ion-android-cart"></i>
-                            <span class="cart_text_quantity">Rs.67,598</span> -->
-                            <!-- <i class="ion-chevron-down"></i>
-                        </a>
-                        <span class="cart_quantity">2</span>
-  
-                        mini cart
-                        <div class="mini_cart">
-                            <div class="cart_close">
-                                <div class="cart_text">
-                                    <h3>cart</h3>
-                                </div>
-                                <div class="mini_cart_close">
-                                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="images/nav-product/product.jpg" alt=""></a>
-                                </div>
-                                <div class="cart_info">
-                                    <a href="#">Earings</a>
-                                    <span class="quantity">Qty : 1</span>
-                                    <span class="price_cart">Rs. 54,599</span>
-                                </div>
-                                <div class="cart_remove">
-                                    <a href="#"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_item">
-                                <div class="cart_img">
-                                    <a href="#"><img src="images/nav-product/product2.jpg" alt=""></a>
-                                </div>
-                                <div class="cart_info">
-                                    <a href="#">Bracelet</a>
-                                    <span class="quantity">Qty : 1</span>
-                                    <span class="price_cart">Rs. 12,999</span>
-                                </div>
-                                <div class="cart_remove">
-                                    <a href="#"><i class="ion-android-close"></i></a>
-                                </div>
-                            </div>
-                            <div class="cart_total">
-                                <span>Subtotal : </span>
-                                <span>Rs. 67,598</span>
-                            </div>
-                            <div class="mini_cart_footer">
-                                <div class="cart_button view_cart">
-                                    <a href="#">View Cart</a>
-                                </div>
-                                <div class="cart_button checkout">
-                                    <a href="#" class="active">Checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- mini cart ends  -->
                     </div>
                 </div>
             </div>
@@ -552,7 +491,45 @@
     </div>
   </div>
   <!-- header bottom ends -->
-  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.main_menu ul li a');
+
+        // Highlight active link on click
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // Remove 'active' class from all
+                navLinks.forEach(nav => nav.parentElement.classList.remove('active'));
+
+                // Add 'active' class to clicked link's parent <li>
+                this.parentElement.classList.add('active');
+            });
+        });
+
+        // Highlight active link based on current URL
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+        let activeFound = false;
+
+        navLinks.forEach(link => {
+            // Match current page with href value
+            if (link.getAttribute('href') === currentPage) {
+                link.parentElement.classList.add('active');
+                activeFound = true;
+            }
+        });
+
+        // Fallback to index.html if no match is found
+        if (!activeFound) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === 'index.html') {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        }
+    });
+</script>
+
   <!-- Sidebar Structure -->
   <!-- Sidebar Structure -->
   <div id="sidebar" class="sidebar">
@@ -626,7 +603,7 @@
     <script>
         async function fetchSliders() {
             try {
-                const response = await fetch('https://api.shankhjewels.com/api/sliders/all/slider');
+                const response = await fetch('http://localhost:3000/api/sliders/all/slider');
                 if (!response.ok) {
                     throw new Error('Failed to fetch sliders');
                 }
@@ -650,7 +627,7 @@
                     // Generate HTML for each image in the carousel
                     images.forEach(img => {
                         const slideHTML = `
-                            <div class="single_slider12" style="background-image: url('https://api.shankhjewels.com/uploads/${img}')">
+                            <div class="single_slider12" style="background-image: url('http://localhost:3000/uploads/${img}')">
                                 <div class="slider_content12" style="height:500px">
                                     <p>Exclusive Offer - ${firstSlider.discount}% off this week</p>
                                     <h1>${firstSlider.title}</h1>
@@ -1007,12 +984,12 @@
                         <div class="widgets_container contact_us">
                             <h3>About Shankh Jewels</h3>
                             <div class="footer_contact">
-                                <p><i class="fas fa-map-marker-alt"></i> Address: Shop No 43\3b,<br> Vitthal Mangal
+                                <p><i class="fas fa-map-marker-alt"></i> Address:Vitthal Mangal
                                     Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
                                 <p><i class="fas fa-phone-alt"></i> Phone: <a
                                         href="tel:(+91)8329566392">(+91)8329566392</a></p>
                                 <p><i class="fas fa-envelope"></i> Email: <a
-                                        href="mailto:ShankhJewelsjewlers@gmail.com">ShankhJewelsjewlers@gmail.com</a>
+                                        href="mailto:ShankhJewelsjewlers@gmail.com">shankhjewels798@gmail.com</a>
                                 </p>
 
                                 <ul>
@@ -1021,6 +998,7 @@
                                     <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
                                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                     <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 </ul>
                             </div>
 
@@ -1275,9 +1253,9 @@
                     <div class="col-md-3 product-card" id="product-${product._id}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-img-container">
-                                <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
+                                <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}" 
                                     onclick="window.location.href='detail.html?id=${product._id}'" style="cursor: pointer;">
-                                <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                                <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
                                 <div class="rating">
                                     <img src="images/12.png" alt="Rating Icon"> 5.0
                                 </div>
@@ -1288,10 +1266,6 @@
                                     <span class="regular-price"><del>₹${product.regularPrice}</del></span>
                                 </div>
                                 <p class="card-text">${product.productDescription}</p>
-                                <div class="show-more-button">
-                                    <a href="javascript:void(0);" class="btn btn-primary" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</a>
-                                    <a href="checkout.html?id=${product._id}&price=${product.productPrice}&name=${product.productTitle}&des=${product.productDescription}" class="btn btn-primary" style="margin-left: 10px;">Buy Product</a>
-                                </div>
                             </div>
                         </div>
                     </div>`;
@@ -1301,7 +1275,7 @@
     
         // Fetch and display all products initially
         let allProducts = [];
-        fetch('https://api.shankhjewels.com/api/products/all')
+        fetch('http://localhost:3000/api/products/all')
             .then(response => response.json())
             .then(products => {
                 allProducts = products;

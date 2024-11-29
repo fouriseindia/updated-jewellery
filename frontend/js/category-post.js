@@ -10,7 +10,7 @@
    
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const api_uri = 'https://api.shankhjewels.com/api'; // Ensure this is the correct API base URL
+            const api_uri = 'http://localhost:3000/api'; // Ensure this is the correct API base URL
 
             // Fetch the user ID from local storage
             const userId = localStorage.getItem('userId');
@@ -50,7 +50,7 @@
         // Fetch products from the backend
         // 
 
-        const apiUrl = 'https://api.shankhjewels.com/api';
+        const apiUrl = 'http://localhost:3000/api';
 
        
         // Function to add product to cart
@@ -82,7 +82,7 @@
             window.location.href = `checkout.html?id=${productId}&price=${totalPrice}&name=${productTitle}`;
         }
 
-        fetch('https://api.shankhjewels.com/api/products/all')
+        fetch('http://localhost:3000/api/products/all')
             .then(response => response.json())
             .then(products => {
                 const productList = document.getElementById('product-list');
@@ -91,8 +91,8 @@
                 <div class="col-md-3">
                     <div class="card" style="width: 18rem;">
                         <div class="card-img-container">
-                            <img src="https://api.shankhjewels.com/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
-                            <img src="https://api.shankhjewels.com/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
+                            <img src="http://localhost:3000/${product.mainImage}" class="card-img-top" alt="${product.productTitle}">
+                            <img src="http://localhost:3000/${product.thumbnailImages[0]}" class="card-img-hover" alt="${product.productTitle} Hover">
                             <div class="rating">
                                 <img src="images/12.png" alt="Rating Icon"> 5.0
                             </div>

@@ -103,7 +103,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories = async () => {
                                                         try {
-                                                            const response = await fetch(`https://api.shankhjewels.com/api/categories?nocache=${new Date().getTime()}`);
+                                                            const response = await fetch(`http://localhost:3000/api/categories?nocache=${new Date().getTime()}`);
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -159,7 +159,7 @@
                                                 <script>
                                                     const fetchAndDisplayCategories1 = async () => {
                                                         try {
-                                                            const response = await fetch('https://api.shankhjewels.com/api/categories');
+                                                            const response = await fetch('http://localhost:3000/api/categories');
                                                             if (!response.ok) throw new Error('Failed to fetch categories.');
 
                                                             const categories = await response.json();
@@ -790,16 +790,21 @@
                         <div class="widgets_container contact_us">
                             <h3>About Shankh Jewels</h3>
                             <div class="footer_contact">
-                                <p><i class="fas fa-map-marker-alt"></i> Address: Shop No 43\3b,<br> Vitthal Mangal Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
-                                <p><i class="fas fa-phone-alt"></i> Phone: <a href="tel:(+91)8329566392">(+91)8329566392</a></p>
-                                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:ShankhJewelsjewlers@gmail.com">ShankhJewelsjewlers@gmail.com</a></p>
-                                
+                                <p><i class="fas fa-map-marker-alt"></i> Address:Vitthal Mangal
+                                    Office Below,<br> Somnath Nagar, Vadgaon Sheri, Pune (411014)</p>
+                                <p><i class="fas fa-phone-alt"></i> Phone: <a
+                                        href="tel:(+91)8329566392">(+91)8329566392</a></p>
+                                <p><i class="fas fa-envelope"></i> Email: <a
+                                        href="mailto:ShankhJewelsjewlers@gmail.com">shankhjewels798@gmail.com</a>
+                                </p>
+
                                 <ul>
-                                   <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                   <li><a href="#"><i class="fab fa-snapchat"></i></a></li>
-                                   <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                   <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                   <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-snapchat"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                 </ul>
                              </div>
                              

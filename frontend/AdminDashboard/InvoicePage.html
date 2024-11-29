@@ -61,7 +61,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const orderId = urlParams.get('orderId');
 
-        fetch(`https://api.shankhjewels.com/api/checkout/${orderId}`)
+        fetch(`http://localhost:3000/api/checkout/${orderId}`)
             .then(response => response.json())
             .then(data => {
                 const order = data.order;

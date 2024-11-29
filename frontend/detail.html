@@ -37,8 +37,8 @@
 .main-image-container img,
 .main-image-container video {
     width: 100%; /* Ensure image/video fits within the container */
-    height: auto;
-    object-fit: contain; /* Ensures content fits without being cut */
+    height: 450px;
+    /* object-fit: contain;  */
 }
 
 /* Thumbnails Container */
@@ -355,14 +355,6 @@
                                 <span class="sale-price">₹1,499</span>
                                 <span class="regular-price"><del>₹2,799</del></span>
                             </div>
-                            <div class="icons">
-                                <!-- Wishlist logo -->
-                                <svg class="wishlist-icon" id="wishlist1" onclick="toggleWishlist(this)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </svg>
-                                <!-- Share logo -->
-                                <img src="share.png" alt="Share" class="icon">
-                            </div>
                         </div>
                         <p class="text-muted">Incl. of all taxes</p>
         
@@ -530,7 +522,7 @@ function fetchProductDetailsAndAddToCart() {
 
     // Fetch product details using the product ID
     if (productId) {
-        fetch(`https://api.shankhjewels.com/api/products/${productId}`)
+        fetch(`http://localhost:3000/api/products/${productId}`)
             .then(response => response.json())
             .then(product => {
                 // Add the product to the cart
@@ -552,11 +544,11 @@ function fetchProductDetailsAndAddToCart() {
     
             // Fetch product details using the product ID
             if (productId) {
-                fetch(`https://api.shankhjewels.com/api/products/${productId}`)
+                fetch(`http://localhost:3000/api/products/${productId}`)
                     .then(response => response.json())
                     .then(product => {
                         // Populate the main image and thumbnails
-                        document.getElementById('mainImage').src = `https://api.shankhjewels.com/${product.mainImage}`;
+                        document.getElementById('mainImage').src = `http://localhost:3000/${product.mainImage}`;
                         document.getElementById('productTitle').textContent = product.productTitle;
                         
                         document.querySelector('.sale-price').textContent = `₹${product.productPrice}`;
@@ -580,7 +572,7 @@ function fetchProductDetailsAndAddToCart() {
                         thumbnailsContainer.innerHTML = ''; // Clear existing thumbnails
                         product.thumbnailImages.forEach(image => {
                             thumbnailsContainer.innerHTML += `
-                                <img src="https://api.shankhjewels.com/${image}" onclick="changeImage('https://api.shankhjewels.com/${image}')" alt="Thumbnail">
+                                <img src="http://localhost:3000/${image}" onclick="changeImage('http://localhost:3000/${image}')" alt="Thumbnail">
                             `;
                         });
     

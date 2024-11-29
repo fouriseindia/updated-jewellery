@@ -107,7 +107,7 @@
 
       try {
         // Fetch user details
-        const userResponse = await fetch('https://api.shankhjewels.com/api/users/', {
+        const userResponse = await fetch('http://localhost:3000/api/users/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -120,7 +120,7 @@
         localStorage.setItem('token', displayName.firstName);
 
         // Login API call
-        const loginResponse = await fetch('https://api.shankhjewels.com/api/users/login', {
+        const loginResponse = await fetch('http://localhost:3000/api/users/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
