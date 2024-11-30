@@ -29,8 +29,7 @@
                 display: block;
                 margin-bottom: 0.5rem;
                 color: #555;
-            }
-    
+            }    
             .login-container input {
                 width: 100%;
                 padding: 0.5rem;
@@ -117,7 +116,6 @@
                     sessionStorage.setItem('loggedInID',username)
                     sessionStorage.setItem('AdminAuth', 'true');
                     sessionStorage.setItem('authenticated', 'true');
-                    //http://127.0.0.1:5500/frontend/AdminDashboard/login.html
                     window.location.href = '/frontend/AdminDashboard/index.html';
                 } else {
                     document.getElementById('error-message').textContent = result.message;
@@ -129,4 +127,5 @@
     </script>
 </body>
 </html>
+
 
